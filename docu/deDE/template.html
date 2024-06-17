@@ -1,0 +1,99 @@
+<!--no_dialog_start-->
+<div class="card">
+  <p class="do-margin-start">Mit Mausklick auf den entsprechenden Admin-Tab den Arbeitsbereich <span class="mo-icon-text-right mo-tabs-icon mo-tab-template"></span>
+    <span class="mo-bold">{TEMPLATE_BUTTON}</span> aufrufen.
+  </p> {MODUL_mozilo_tabs_template}
+  <!--no_dialog_end-->
+  <p class="mt">Unter " <b>Template</b>" versteht man eine Gruppe von Dateien, in denen das Layout für das Aussehen der Website festgelegt ist. <br /> Sie bestehen im Wesentlichen aus mindestens einer HTML-Datei, einem oder mehreren CSS-Style Sheets, sowie den eingebundenen Grafiken. <br /> Neben Installation und Deinstallation verschiedener Templates lassen sich die Layout-Vorlagen hier in einem Editor auch modifizieren und anpassen. </p>
+</div>
+<div class="card">
+  <div class="c-header">Templates verwalten</div>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Durch Klick auf <b>"{TEMPLATE_TITLE_MANAGE}"</b> wird die Template-Verwaltung ausgeklappt. In diesem Bereich werden Templates installiert oder gelöscht.
+  </p> {MODUL_template_00} <h3 class="do-space-top">Templates installieren:</h3>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Das zu installierende Template auf dem Datenträger suchen und auswählen.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Durch Klick auf " <b>{TEMPLATE_BUTTON_INSTALL}</b>" wird das Template hochgeladen und installiert.
+  </p>
+  <div class="do-box do-info-box flex">
+    <p>Templates müssen als gepacktes <b>.zip Archiv</b> vorliegen um erkannt und installiert zu werden. <br />Es kann auch eine ZIP Datei mit mehren Templates sein z.B. aus einer Backup Datei nur mit Templates. </p>
+  </div>
+  <div class="do-box do-info-box flex mt">
+    <p>Optional kann die ZIP Datei auch in den "template" Ordner gelegt werden. <br />Dann erscheint so eine Auswahl {MODUL_template_00a} </p>
+  </div> {MODUL_template_00b} <h3 class="do-space-top">Templates löschen:</h3>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Durch Klick auf den Button " <b>{TEMPLATE_BUTTON_DELETE}</b>" werden alle Templates gelöscht bei denen die Checkbox aktiviert ist.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Checkbox aktivieren um Template zum Löschen freizugeben.
+  </p> {MODUL_template_01} <div class="do-box do-info-box flex mt">
+    <p>Das aktive, also für den Betrachter der Website sichtbare Template, kann nicht gelöscht werden.</p>
+  </div>
+</div>
+<div class="card">
+  <div class="c-header">Templates Liste</div>
+  <p>In der Grundinstallation von moziloCMS sind bereits einige Templates enthalten. Jedes installierte Template erscheint in dieser Liste als separater Balken.</p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Das aktive, also für den Betrachter der Website sichtbare Template, ist erkennbar an seiner fetteren Schrift und dem Fehlen weiterer Klick-Buttons.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Ein Template wird aktiviert, durch Klick auf den Button " <b>{TEMPLATE_INPUT_SET_ACTIVE}</b>".
+  </p> {MODUL_template_02a} <h3 class="do-space-top">Templates Filter:</h3>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Bei Eingabe eines Buchstaben oder Namensteils bleiben in der Liste nur diejenigen Templates sichtbar, in deren Namen dieser Buchstabe oder Namensteil enthalten ist. Alle anderen werden ausgeblendet.
+  </p> {MODUL_template_02b} <h3 class="do-space-top">Templates bearbeiten:</h3>
+  <p>Hier können die relevanten <b>HTML</b>- und <b>CSS</b>-Dateien des aktiven Templates mit dem mozilo-eigenen Editor bearbeitet werden. <br /> In der HTML-Datei sind im Wesentlichen die Positionen der einzelnen Elemente festgelegt. Die CSS-Datei (Style Sheet) beinhaltet Vorgaben für Werte wie Schriftgrößen, Abstände, Linienstärken u.s.w. Durch Änderungen in diesen Dateien lässt sich das Layout der Website jederzeit modifizieren und somit den eigenen Wünschen anpassen. </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Durch Klick auf den Template-Namen im Template-Balken öffnet sich der Konfigurationsbereich des aktiven Templates.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Nach Klick auf das <b>"Edit-Icon"</b>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="20" width="20" fill="currentColor">
+      <title>Bearbeiten</title>
+      <g>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M21 6.757l-2 2V4h-9v5H5v11h14v-2.757l2-2v5.765a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 20.993V8l6.003-6h10.995C20.55 2 21 2.455 21 2.992v3.765zm.778 2.05l1.414 1.415L15.414 18l-1.416-.002.002-1.412 7.778-7.778z"></path>
+      </g>
+    </svg> öffnet sich das Editor-Fenster, in dem die jeweilige Datei bearbeitet werden kann.
+  </p>
+  <div class="do-box do-info-box flex">
+    <p>Um ein Template bearbeiten zu können, muss es aktiviert sein.</p>
+  </div>
+  <div class="do-box do-info-box flex mt">
+    <p>Wer nicht über die dazu nötigen <b>HTML-</b> und <b>CSS-Kenntnisse</b> verfügt findet ausführliche Anleitungen mit Beispielen bei <a href="http://de.selfhtml.org/" target="_blank">
+        <b>de.selfhtml.org</b>
+      </a>
+    </p>
+  </div>
+  <div class="do-box do-link-box flex mt">
+    <p>Die genaue <b>Erklärung des Editors</b> ist im Kapitel: <b>{INTERNAL_LINK|editsite}</b>
+    </p>
+  </div> {MODUL_template_02} <h3 class="do-space-top">Grafiken:</h3>
+  <p>In diesem Bereich werden die im Template verwendeten Grafiken verwaltet. Hier können sie hochgeladen, überschrieben, oder gelöscht werden.</p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Nach Klick auf <b>"{TEMPLATE_TITLE_GRAFIKEN}"</b> werden alle, zum Template gehörenden Grafiken angezeigt, sowie die Icons zum Datei-Management.
+  </p>
+  <div class="do-box do-link-box flex">
+    <p>Eine genaue Anleitung zum <b>Datei-Management</b> (hochladen, überschreiben oder löschen der Grafiken) gibt es im Kapitel: <b>{INTERNAL_LINK|files}</b>
+    </p>
+  </div> {MODUL_template_03} <h3 class="do-space-top">Plugins:</h3>
+  <p>Sobald Plugins aktiviert sind, die eigene Style-Sheets besitzen, erscheint der Balken " <b>{TEMPLATE_TITLE_PLUGINS}</b>". <br /> Hier können die Stil-Vorgaben der jeweiligen Plugins bearbeitet werden um so das Plugin an das benutzte Template anzupassen. </p> {MODUL_template_04a} <p class="do-arrow-point-box mt">
+    <b class="do-arrow-point">1</b>Nach Klick auf <b>"{TEMPLATE_TITLE_PLUGINS}"</b> wird eine Liste der vorhandenen Style Sheets angezeigt.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Durch Klick auf das <b>Edit-Icon</b>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="20" width="20" fill="currentColor">
+      <title>Bearbeiten</title>
+      <g>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M21 6.757l-2 2V4h-9v5H5v11h14v-2.757l2-2v5.765a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 20.993V8l6.003-6h10.995C20.55 2 21 2.455 21 2.992v3.765zm.778 2.05l1.414 1.415L15.414 18l-1.416-.002.002-1.412 7.778-7.778z"></path>
+      </g>
+    </svg> öffnet sich das Editor-Fenster, in dem die Datei bearbeitet werden kann.
+  </p>
+  <div class="do-box do-link-box flex">
+    <p>Die genaue <b>Erklärung des Editors</b> ist im Kapitel: <b>{INTERNAL_LINK|editsite}</b>
+    </p>
+  </div> {MODUL_template_04}
+</div>

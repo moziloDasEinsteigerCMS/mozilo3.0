@@ -1,0 +1,15 @@
+.thead {font-size:25px}
+
+
+  span::before {
+    content: attr(data-label);
+    word-wrap: break-word;
+    background: #eee;
+    border-right: 2px solid black;
+    width: 20%;
+    float: left;
+    padding: 1em;
+    font-weight: bold;
+    margin: -1em 1em -1em -1em;
+  }
+}

@@ -1,0 +1,129 @@
+<div class="card">
+  <p>
+    <b>Eigene Syntaxelemente</b> werden verwendet:
+  </p>
+  <ul class="do-list do-nomargin-top">
+    <li>Um den Syntax-Umfang von moziloCMS zu <b>erweitern</b>. </li>
+    <li>Um häufig verwendete Elemente oder Texte auf einfache Weise <b>einzubinden</b>. </li>
+    <li>Um vorhandene CMS-Syntaxelemente zu modifizieren, bzw. zu <b>überschreiben</b>. </li>
+  </ul>
+  <div class="do-box do-error-box flex">
+    <p>
+      <b>Zum Erstellen eigener Syntaxelemente sind HTML-Kenntnisse erforderlich!</b>
+      <br /> Daher werden bei den Erläuterungen in dieser Anleitung die entsprechenden Kenntnisse vorausgesetzt.
+    </p>
+  </div>
+  <div class="do-box do-info-box flex mt">
+    <p>Hilfe beim Erstellen eigener Syntaxelemente erhält man <a class="link" href="https://www.mozilo.de/forum/index.php" title="im Supportforum" target="_blank">
+        <b>im mozilo Supportforum</b>
+      </a>
+      <br /> Dort sind auch <a class="link" href="https://www.mozilo.de/forum/index.php/topic,15.0.html" title="im Supportforum" target="_blank">
+        <b>weitere Beispiele</b>
+      </a> für eigene Syntaxelemente zu finden.
+    </p>
+  </div>
+  <div class="do-box do-link-box flex mt">
+    <p>Der Zugang zur Erstellung eigener Syntax Elemente befindet sich im Admin-Bereich <b>{INTERNAL_LINK|config#do_tousersyntax}</b>
+    </p>
+  </div>
+</div>
+<div class="card">
+  <div class="c-header">Grundregeln:</div>
+  <p>Eigene Syntaxelemente <u>müssen</u> in einer <b>neuen Zeile</b> beginnen und bestehen aus <b>drei Teilen</b>: </p>
+  <ol class="do-list do-nomargin-top">
+    <li>
+      <b>Name:</b> Erlaubt sind die Buchstaben <b>A - Z</b> und <b>a - z</b>, die Zahlen <b>0 - 9</b>, sowie der Unterstrich " <b>_</b>".
+    </li>
+    <li>
+      <b>Trennung:</b> Besteht immer aus " <b> = </b>" (Leerzeichen, Gleichheitszeichen, Leerzeichen).
+    </li>
+    <li>
+      <b>Quelltext:</b> Erlaubt ist alles, was auch in <b>HTML</b> möglich ist, sowie natürlich auch alle <b>CMS-Syntaxelemente</b>. <br /> Darüberhinaus sind im Gegensatz zu früheren mozilo-Versionen jetzt auch <b>Zeilenumbrüche</b> innerhalb eigener Syntaxelemente zulässig.
+    </li>
+  </ol>
+  <p>Erscheinen Syntaxname und Trennung farblich markiert: " <span class="do-mo-user-syntax">
+      <b>Syntaxname = </b>
+    </span>" wurden die Regeln eingehalten und das System hat das Element erkannt. </p>
+  <p>Im Quelltext werden an Stellen mit individuellen Inhalten sogenannte " <b>Platzhalter</b>" eingefügt. </p>
+  <p style="margin-left:25px;">Der Platzhalter <span class="do-paren">{</span>
+    <span class="do-mo-syntax">DESCRIPTION</span>
+    <span class="do-paren">}</span> übernimmt den Wert zwischen <span class="do-paren">=</span> und <span class="do-paren">|</span>
+    <br /> Der Platzhalter <span class="do-paren">{</span>
+    <span class="do-mo-syntax">VALUE</span>
+    <span class="do-paren">}</span> übernimmt den Wert zwischen <span class="do-paren">|</span> und <span class="do-paren">]</span>
+  </p>
+</div>
+<div class="card">
+  <div class="c-header">Syntaxbeispiele</div> {MODUL_editor_ace_editor_usersyntax_00} <table class="do-after-br do-table do-table-example">
+    <tr>
+      <th>Beispiel:</th>
+      <th>Ergebnis:</th>
+    </tr>
+    <tr>
+      <td style="padding:.4em;">
+        <span class="do-paren">[</span>
+        <span class="do-mo-syntax">syntax1</span>
+        <span class="do-paren">]</span>
+      </td>
+      <td style="padding:.4em;">
+        <a class="do-molink" href="https://www.mozilo.de">www.mozilo.de</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:.4em;">
+        <span class="do-paren">[</span>
+        <span class="do-mo-syntax">syntax2</span>
+        <span class="do-paren">|</span>www.mozilo.de/forum/ <span class="do-paren">]</span>
+      </td>
+      <td style="padding:.4em;">
+        <a class="do-molink" href="https://www.mozilo.de/forum/">www.mozilo.de/forum/</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:.4em;">
+        <span class="do-paren">[</span>
+        <span class="do-mo-syntax">syntax3</span>
+        <span class="do-paren">=</span>gehe zu mozilo <span class="do-paren">|</span>www.mozilo.de <span class="do-paren">]</span>
+      </td>
+      <td style="padding:.4em;">
+        <a class="do-molink" href="https://www.mozilo.de">gehe zu mozilo</a>
+      </td>
+    </tr>
+  </table>
+  <h4 class="do-h4 do-space-top">Überschreiben eines vorhandenen CMS-Syntaxelementes:</h4>
+  <p>Soll zum Beispiel der Inhalt des vorhandenen CMS-Syntaxelementes <span class="do-paren">[</span>
+    <span class="do-mo-syntax">fett</span>
+    <span class="do-paren">|</span>
+    <span class="do-paren">]</span> {ED_ICON_fett} von " <b>&lt;b&gt; &lt;/b&gt;</b>" zu " <b>&lt;strong&gt; &lt;/strong&gt;</b>" verändert werden, <br /> genügt es ein neues Syntaxelement unter dem Namen " <b>fett = </b>" anzulegen.
+  </p> {MODUL_editor_ace_editor_usersyntax_01}
+</div>
+<div class="card">
+  <div class="c-header">Beispiel einer Fehlinterpretation:</div>
+  <p>Steht im Quelltext nach dem ersten Wort in einer Zeile zufällig " <b> = </b>" (Leerzeichen, Gleichheitszeichen, Leerzeichen), so wird das Ganze von mozilo als Syntaxname interpretiert. </p>
+  <p>
+    <b>Zum Beispiel in einem Textbaustein mit einer Liste von Einwohnerzahlen:</b>
+  </p> {MODUL_editor_ace_editor_usersyntax_02} <p class="mt">Bei dieser Eingabe werden <span class="do-mo-user-syntax">
+      <b>Paris =</b>
+    </span> und <span class="do-mo-user-syntax">
+      <b>London =</b>
+    </span> als neue Syntaxnamen erkannt. </p>
+  <p>Um dies zu verhindern genügt es, es ein <b>Leerzeichen</b> oder <b>Zirkumflex</b> (Hochdach) <b>^</b> vor die Wörter " <b>Paris</b>" und " <b>London</b>" zu setzen. </p> {MODUL_editor_ace_editor_usersyntax_03}
+</div>
+<div class="card">
+  <div class="c-header">Eigene Syntaxelemente Icons (ab 2.0 Revision 34):</div>
+  <p>Um ein eigens Icon zu einem Syntaxelemnt zu erstellen, muss man an den entsprechenden Syntaxnamen <b>___icon</b> (3 x der Unterstrich) anhängen. Als Quelltext benutzt man entweder <b>Text</b>, <b>HTML-Code</b> oder man kann per <b>Selectbox "Dateien"</b> eine selbst erstellte Icon-Grafik auswählen. Die Icon-Grafik kann man wie alle Dateien in den vorhandenen oder einer eigens dafür erstellten Kategorie ablegen. </p>
+  <div class="do-box do-info-box flex">
+    <p>Die Icon-Grafik sollte nicht höher als 16px sein.</p>
+  </div>
+  <p class="do-arrow-point-box mt">
+    <b class="do-arrow-point">1</b>Die Syntaxelemente.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Die Icons dazu.
+  </p> {MODUL_editor_ace_editor_usersyntax_04} <p class="do-space-top do-arrow-point-box">
+    <b class="do-arrow-point">3</b>Die eigenen Icons im Editor.
+  </p>
+  <div class="do-box do-error-box">
+    <p>Damit die Icons sichtbar werden, muss die Seite im Browser neu geladen werden.</p>
+  </div> {MODUL_editor_dialog_editor_01}
+</div>

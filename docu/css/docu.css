@@ -1,0 +1,445 @@
+
+#admin-user ul.submenu {
+display: block;}
+
+.do-body-dialog #do-content {
+  }
+
+.admin-side-docu {
+display: block;
+height: initial
+}
+
+.admin-side-docu .nav {
+max-height: initial;
+}
+
+#do-box h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+}
+
+#do-box h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+}
+
+#do-box h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#do-content h4 {
+    font-weight: bold;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+}
+
+#getplaceholder {
+    float:right;
+}
+
+#do-box .do-nodialog-warp {
+    padding:1em 2em;
+}
+
+#do-box .mo-menu-tabs {
+    border-bottom-width:0;
+}
+
+#do-box .mo-menu-tabs li {
+    white-space:nowrap;
+}
+
+#do-box .do-lang a {
+    padding:  0 var(--main-padding)
+}
+
+/* do-img die bilder aus dem oedner img */
+#do-box .do-img {
+    vertical-align:middle;
+}
+
+/* die von der docu.php erzeugten platzhalter */
+#do-box .do-placholder-link {
+    padding-left:30%;
+}
+
+#do-box .do-placholder-top {
+    margin-top:1em;
+}
+
+#do-box .do-placholder td {
+    vertical-align:top;
+    padding-right:1em;
+    text-align:left;
+}
+
+#do-box .do-placholder .do-placholder-last {
+    padding-right:0;
+}
+
+#do-box .to-auto-button {
+    font-weight : bold;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+#do-box .to-open, .to-close {
+    text-decoration:underline;
+    display:none;
+    cursor:pointer;
+}
+
+#do-box .to-docu-button, #to-docu-button-all-o, #to-docu-button-all-c {
+    font-weight : bold;
+    font-family:monospace;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#do-box .do-docu-table {
+    border-collapse:collapse;
+    background-color:transparent;
+}
+
+#do-box .do-docu-table-td {
+    padding:.2em .5em;
+    text-align:center;
+    vertical-align : middle;
+    border:1px solid #000;
+    background-color:#72FF72;
+}
+
+#do-box .do-docu-table-th {
+    font-weight:bold;
+    padding:.2em .5em;
+    text-align:center;
+    vertical-align : middle;
+    border:1px solid #000;
+    background-color:#CCCCCC;
+}
+
+#do-box .do-placholder-modul-content {
+    border-bottom:.4em dashed #f00;
+}
+
+#do-box .do-docu-table-td-content {
+    padding:0;
+    padding-bottom:1em;
+}
+
+#do-box p .mo-icons-icon, #do-box p .mo-icons-file {
+    margin-top:-4px;
+    margin-bottom:-2px;
+}
+
+#do-box p .mo-icons-file {
+    height:24px;
+}
+
+/* ################################################################################# */
+/* ab hier algemeine css sachen */
+#do-box .do-separate {
+    border-collapse:collapse;
+    border:2px ridge #D6D6D6;
+    border-left-width:0;
+    border-right-width:0;
+    padding-top: .5em;
+    margin: .5em 0 .5em 0;
+}
+
+#do-box .do-separate-1 {
+    border-collapse:collapse;
+    border:2px ridge #D6D6D6;
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    padding-top: .5em;
+    margin: .5em 0 .5em 0;
+}
+
+#do-box .do-after-br {
+    margin-bottom:1.5em;
+}
+
+#do-box .do-indent {
+    padding-left:2em;
+}
+
+#do-box .do-rot {
+    color : #f00;
+}
+
+#do-box .do-table {
+	width: 100%;
+  table-layout: fixed;
+    border-collapse:collapse;
+    background-color:transparent;
+}
+
+/*1=oben, 2=rechts, 3=unten, 4=links*/
+#do-box .do-table td {
+    padding:var(--main-padding);
+    text-align:left;
+    vertical-align : middle;
+    border:1px solid var(--border-color)
+}
+
+#do-box .do-table th {
+    padding:var(--main-padding);
+    font-weight:bold;
+    text-align:center;
+    
+    border:1px solid var(--border-color);
+}
+
+#do-box .do-table-example th {
+    text-align:left;
+    background-color:transparent;
+}
+
+#do-box td.do-no-td {
+    border:0;
+    background-color:transparent;
+}
+
+#do-box td.do-td-top {
+    vertical-align : top;
+  }
+
+#do-box td.do-td-center {
+    text-align:center;
+}
+
+#do-box td.do-td-right {
+    text-align:right;
+}
+
+#do-box .do-box {
+	 display: grid;
+  grid-template-columns: 63px 1fr;
+  align-items: center;
+  padding: 14px 23px 14px 0;
+
+}
+
+#do-box .do-box::before {
+content: "";
+  display: block;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  background-position: center left;
+  background-size: 40px;
+  background-repeat: no-repeat;
+}
+
+#do-box .do-info-box:before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23FFF' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h1m8-9v1m8 8h1M5.6 5.6l.7.7m12.1-.7l-.7.7M9 16a5 5 0 116 0 3.5 3.5 0 00-1 3 2 2 0 01-4 0 3.5 3.5 0 00-1-3M9.7 17h4.6'/%3E%3C/svg%3E");
+
+  }
+#do-box .do-info-box {
+  background: #FFCC99;
+  box-shadow: inset 63px 0 0 0 var(--warning); 
+}
+
+#do-box .do-box p, #do-box .do-box ul {
+margin: 0;
+  padding-left: 23px;
+}
+
+#do-box .do-link-box {
+	background: #CCFFCC;
+  box-shadow: inset 63px 0 0 0 var(--success); 
+}
+
+#do-box .do-link-box::before {
+	 background-image: url("data:image/svg+xml,<svg style='color: white' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'> <path fill-rule='evenodd' d='M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z' fill='white'></path> <path d='M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z' fill='white'></path> </svg>");
+
+	}
+
+#do-box .do-error-box {
+	  background: #FF6666;
+  box-shadow: inset 63px 0 0 0 var(--danger);
+}
+
+#do-box .do-error-box::before {
+	 background-image: url("data:image/svg+xml,<svg style='color: white' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'> <path d='M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z' fill='white'></path> <path d='M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z' fill='white'></path> </svg>");
+
+}
+
+#do-box .do-error-box  a {
+text-decoration: underline;
+color:var(--main-font-color)
+}
+
+#do-box .do-p-tag {
+    margin: 1em 0;
+}
+
+/* das kann iregend wann raus da wir jetzt pfeile ins bild machen */
+#do-box .do-div-legende {
+    position:absolute;
+    padding: .1em .4em;
+    border:1px solid #f00;
+    color:#f00;
+    font-weight:bold;
+    text-align : center;
+    vertical-align:middle;
+}
+
+#do-box .do-list {
+    padding-left: 1.6em;
+}
+
+#do-box .do-list li div {
+    padding-left: .8em;
+}
+
+#do-box .do-li-tag li {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#do-box .do-nomargin-top {
+    margin-top:0;
+}
+
+#do-box h4.do-h4 {
+    font-size:1em;
+    font-weight:bold;
+    margin-bottom:.2em;
+}
+
+#do-box a.do-molink, #do-box a.do-molink:link, #do-box a.do-molink:visited , #do-box a.do-molink:active {
+    cursor:pointer;
+    text-decoration:underline;
+    color:#6A849D;
+}
+
+#do-box a.do-molink:hover {
+    color:#AE6427;
+}
+
+#do-box .do-paren {
+    padding-left:.2em;
+    padding-right:.1em;
+}
+
+
+#doTopLink, #doTopLink:visited, #doTopLink:active, #doTopLink:hover {
+    color:#3d3d3d;
+    font-size:1.2em;
+    position:fixed;
+    left:50%;
+    display:inline-block;
+    background-color:#A0A0A0;
+    background-color:rgba(160,160,160,0.4);
+    font-weight:bold;
+    text-decoration:none;
+    text-align:center;
+    padding:5px;
+    z-index:2000;
+}
+
+.do-body-nodialog #doTopLink {
+    top:0;
+    -moz-border-radius-bottomleft: .6em;
+    -webkit-border-bottom-left-radius: .6em;
+    -khtml-border-bottom-left-radius: .6em;
+    border-bottom-left-radius: .6em;
+    -moz-border-radius-bottomright: .6em;
+    -webkit-border-bottom-right-radius: .6em;
+    -khtml-border-bottom-right-radius: .6em;
+    border-bottom-right-radius: .6em;
+}
+
+.do-body-dialog #doTopLink {
+    bottom:0;
+    -moz-border-radius-topleft: .6em;
+    -webkit-border-top-left-radius: .6em;
+    -khtml-border-top-left-radius: .6em;
+    border-top-left-radius: .6em;
+    -moz-border-radius-topright: .6em;
+    -webkit-border-top-right-radius: .6em;
+    -khtml-border-top-right-radius: .6em;
+    border-top-right-radius: .6em;
+}
+
+#do-box .fu-ext-imgs {
+    vertical-align : middle;
+}
+
+#do-box .mo-icons-icon, #do-box .mo-icons-file {
+    vertical-align:middle;
+}
+
+#do-box .mo-icons-editor-cursor {
+    vertical-align:middle;
+}
+
+#do-box .ed-farbe {
+    background-color: #d30000;
+    color: #000;
+}
+
+#do-box .pagecontent .mo-icons-editor-cursor {
+    position:absolute;
+}
+
+#do-box .pagecontent-border {
+    margin: 0;
+    padding: 0;
+}
+
+.do-tabs {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap
+}
+
+.do-tab-label {
+padding: var(--main-padding);
+  cursor: pointer;
+  background-color: var(--border-color);
+  flex: 1;
+}
+
+.do-tab-label.active {
+background-color: var(--main-color);
+  color: #fff;
+}
+
+.do-arrow-point {
+  background:  var(--danger);
+    color:#fff;
+    display:inline-flex;
+    text-align:center;
+    width:24px;
+    height:24px;
+    margin-right:8px;
+border-radius: 50%;
+justify-content: center;
+align-items: center;
+}
+
+.do-arrow-warp {
+    position:relative;
+}
+
+@media only screen and (min-width: 48em) {
+	.do-tabs {
+	flex-direction: row;
+	}
+	
+.do-tab-label {
+border-right: 1px solid var(--main-bg-color);
+}
+}

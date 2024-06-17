@@ -1,0 +1,1549 @@
+:root {
+  --main-color: #306897;
+  --main-bg-color: #f9f9f9;
+  --main-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --main-font-color: #333;
+  --main-link-color: #eb6236;
+  --main-padding: .625rem;
+  --main-margin: .625rem;
+  --border-color: #e8e8e8;
+  --border-radius: 5px;
+  --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
+  --header-bgColor: #306897;
+  --header-txtColor: #dde9f8;
+  --side-bgColor: #306897;
+  --side-txtColor: #dde9f8;
+  --content-bgColor: #f9f9f9;
+  --content-blockColor: #fff;
+  --footer-bgColor: #306897;
+  --footer-txtColor: #dde9f8;
+  --success: #009900;
+  --warning: #eb6236;
+  --danger: #CC0033;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+/*Theme Toggle*/
+
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 5px
+}
+
+.theme-toggle > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  stroke-linecap: round
+}
+
+/*Dark Theme*/
+
+[data-theme="dark"] {
+  --main-bg-color: #1a2035;
+  --main-font-color: rgb(255,255,255,.6);
+  --main-link-color: #ffa726;
+  --border-color: rgb(255,255,255,.6);
+  --header-bgColor: #1a2035;
+  --header-txtColor: rgb(255,255,255,.6);
+  --side-bgColor: #1a2035;
+  --side-txtColor: rgb(255,255,255,.6);
+  --content-bgColor: #f9f9f9;
+  --content-blockColor: #202940;
+  --footer-bgColor: #1a2035;
+  --footer-txtColor: rgb(255,255,255,.6);
+  --success: #66bb6a;
+  --warning: #eb6236;
+  --danger: #ec407a;
+}
+
+[data-theme="dark"] body {
+background: var(--main-bg-color)
+}
+
+[data-theme="dark"] .card {
+border: 1px solid transparent;
+box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
+}
+
+[data-theme="dark"] select, [data-theme="dark"] input[type="text"], [data-theme="dark"] input[type="password"], [data-theme="dark"] input[type="search"], [data-theme="dark"] textarea {
+	color: var(--main-font-color)
+}
+
+[data-theme="dark"] select, [data-theme="dark"] input[type="text"], [data-theme="dark"] input[type="password"], [data-theme="dark"] input[type="search"], [data-theme="dark"] textarea {
+	background: transparent
+}
+
+
+[data-theme="dark"] .button, [data-theme="dark"] button, [data-theme="dark"] input[type="button"] {
+  background: var(--content-blockColor);
+  color: var(--main-font-color);
+  background-image: initial
+}
+
+[data-theme="dark"] .fileupload-buttonbar button,[data-theme="dark"] .template-download button {
+background: currentColor
+}
+
+[data-theme="dark"] .fileupload-buttonbar { 
+background: transparent;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius)
+}
+
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+  transform-origin: center
+}
+
+.sun-and-moon > :is(.moon, .sun) {
+  fill: var(--header-txtColor)
+}
+
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+  fill: var(--main-link-color)
+}
+
+.sun-and-moon > .sun-beams {
+  stroke: var(--header-txtColor);
+  stroke-width: 2px
+}
+
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+  stroke: var(--main-link-color)
+}
+
+[data-theme="dark"] .sun-and-moon > .sun {
+  transform: scale(1.75)
+}
+
+[data-theme="dark"] .sun-and-moon > .sun-beams {
+  opacity: 0
+}
+
+[data-theme="dark"] .sun-and-moon > .moon > circle {
+  transform: translateX(-7px)
+}
+
+@supports (cx: 1) {
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    cx: 17;
+    transform: translateX(0)
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sun-and-moon > .sun {
+    transition: transform .5s var(--ease-elastic-3)
+  }
+
+  .sun-and-moon > .sun-beams {
+    transition: transform .5s var(--ease-elastic-4), opacity .5s var(--ease-3)
+  }
+
+  .sun-and-moon .moon > circle {
+    transition: transform .25s var(--ease-out-5)
+  }
+
+  @supports (cx: 1) {
+    .sun-and-moon .moon > circle {
+      transition: cx .25s var(--ease-out-5)
+    }
+  }
+
+  [data-theme="dark"] .sun-and-moon > .sun {
+    transition-timing-function: var(--ease-3);
+    transition-duration: .25s;
+    transform: scale(1.75)
+  }
+
+  [data-theme="dark"] .sun-and-moon > .sun-beams {
+    transition-duration: .15s;
+    transform: rotateZ(-25deg)
+  }
+
+  [data-theme="dark"] .sun-and-moon > .moon > circle {
+    transition-duration: .5s;
+    transition-delay: .25s
+  }
+}
+
+/*Allgemein*/
+
+body {
+  font-family: var(--main-font);
+  background: var(--main-bg-color);
+  color: var(--main-font-color);
+  font-size: 13px;
+  line-height: 1.4;
+  background: -webkit-linear-gradient(274deg, rgb(255, 255, 255) 0%, rgb(214, 227, 233) 66%, rgb(158, 189, 210) 86%, rgb(255, 255, 255) 92%);
+  background: -moz-linear-gradient(274deg, rgb(255, 255, 255) 0%, rgb(214, 227, 233) 66%, rgb(158, 189, 210) 86%, rgb(255, 255, 255) 92%);
+  background: linear-gradient(176deg, rgb(255, 255, 255) 0%, rgb(214, 227, 233) 66%, rgb(158, 189, 210) 86%, rgb(255, 255, 255) 92%);
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+
+.hide-mobile {
+display: none
+}
+
+/*Menü*/
+
+.admin-side {
+	height: 0;
+  z-index: 999
+}
+
+.admin-side.install {
+	height: initial;
+  z-index: initial
+}
+
+.nav-wrapper {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center
+}
+
+.admin-side ul {
+  list-style: none;
+  overflow: hidden
+}
+
+.admin-side.install ul {
+flex-wrap: wrap;
+}
+
+.admin-side li a {
+  display: -webkit-flex;
+  display: flex;
+  padding: var(--main-padding)
+}
+
+.admin-side li a:last-child {
+  border-right: none
+}
+
+.admin-side li a:hover,.admin-side .menu-btn:hover {
+  opacity: 1
+}
+
+.admin-side .nav {
+  background: var(--header-bgColor);
+  max-height: 0;
+  transition: max-height .2s ease-out;
+  margin: 0
+}
+
+.admin-side.install .nav {
+max-height: initial
+}
+
+.header .menu-icon {
+  cursor: pointer;
+  margin-left: auto;
+  padding: var(--main-padding)
+}
+
+.header .menu-icon .navicon {
+  background: var(--header-txtColor);
+  display: block;
+  height: 2px;
+  position: relative;
+  width: 1.125rem
+}
+
+.header .menu-icon .navicon:before, .header .menu-icon .navicon:after {
+  background: var(--header-txtColor);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%
+}
+
+.header .menu-icon .navicon:before {
+  top: 6px
+}
+
+.header .menu-icon .navicon:after {
+  top: -6px
+}
+
+.admin-side .menu-btn {
+  display: none
+}
+
+.admin-side .menu-btn:checked~.nav {
+  max-height: 400px;
+  border-top: 1px solid var(--header-txtColor);
+  overflow-y: auto
+}
+
+.admin-side .disabled a {
+  color: #6c757d !important;
+  pointer-events: none;
+  cursor: default
+}
+
+.card, .ui-dialog {
+  background: var(--content-blockColor);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: calc(var(--main-padding)/2) var(--main-padding)
+}
+
+.card ul, .card ol {
+  list-style-position: inside
+}
+
+.c-header, .ui-dialog-titlebar {
+  color: var(--main-color);
+  font-weight: 700;
+  padding-bottom: var(--main-padding)
+}
+
+.c-header:after {
+  content: "";
+  display: block;
+  width: 50%;
+  padding-top: 5px;
+  border-bottom: 1px solid var(--main-color)
+}
+
+.c-content, .ui-dialog-content {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border-color);
+  padding: calc(var(--main-padding)/2) 0;
+  align-items: center
+}
+
+.c-content:first-of-type {
+  padding-top: 0
+}
+
+.c-content:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0
+}
+
+.c-content div {
+  flex: 1;
+  width: 100%
+}
+
+.home .c-content div {
+text-align: center
+}
+
+.c-content div input[type="text"],.c-content div input[type="password"] {
+  width: 100%
+}
+
+.template .c-content {
+align-items: initial
+}
+
+.column {
+flex-direction: column
+}
+
+.c-header .column {
+flex-direction: initial
+}
+
+.footer {
+  grid-area: footer;
+  background: var(--footer-bgColor);
+  color: var(--footer-txtColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--main-padding)
+}
+
+/*Generic*/
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-100 {
+  flex: 1
+}
+
+.grid-4 {
+  width: 40% !important
+}
+
+.mb {
+  margin-bottom: var(--main-margin)
+}
+
+.mb:last-of-type {
+  margin-bottom: 0
+}
+
+.mt {
+  margin-top: var(--main-margin)
+}
+
+.mr {
+  margin-right: var(--main-margin)
+}
+
+.ml {
+  margin-left: var(--main-margin)
+}
+
+.mo-ma-l-auto {
+  margin-left: auto
+}
+
+.mo-ma-r-auto {
+  margin-right: auto
+}
+
+p, ul, ol {
+  margin-bottom: var(--main-margin)
+}
+
+a {
+  color: var(--main-link-color);
+  text-decoration: none
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.mo-bold {
+  font-weight: 700
+}
+
+.mo-padding-right {
+  padding-right: var(--main-padding)
+}
+
+.mo-padding-left {
+  padding-left: var(--main-padding)
+}
+
+.mo-padding-bottom {
+  padding-bottom: var(--main-padding)
+}
+
+.mo-align-center {
+  text-align: center
+}
+
+.mo-align-right {
+  text-align: right
+}
+
+.mo-wrap {
+  flex-wrap: wrap
+}
+
+.mo-placeholder {
+	  background: var(--header-txtColor);
+  border: 1px solid var(--main-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: calc(var(--main-padding)/2) var(--main-padding);
+  height: 36px
+}
+
+select, input[type=text], input[type=password], input[type=search], textarea {
+  display: inline-block;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  background: var(--content-blockColor);
+  padding: calc(var(--main-padding)/4);
+  font-family: var(--main-font);
+  margin-left: calc(var(--main-margin)/2);
+  margin-right: calc(var(--main-margin)/2)
+}
+
+input[type="checkbox"] {
+  margin-right: var(--main-margin)
+}
+
+input:focus {
+  border-color: transparent;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(48 104 151 / 25%)
+}
+
+.button, button, input[type=button] {
+  display: inline-block;
+  background: var(--main-color);
+  color: var(--main-bg-color);
+  padding: calc(var(--main-padding)/2) var(--main-padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  font-size: .8rem;
+  font-family: var(--main-font);
+  background-image: linear-gradient(to bottom, rgba(256, 256, 256, .5), rgba(256, 256, 256, 0));
+  cursor: pointer
+}
+
+.button:hover, button:hover, input[type=button]:hover {
+  background-image: var(--main-color)
+}
+
+.button:disabled, button:disabled, input[type=button]:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: initial
+}
+
+.red {
+  color: var(--danger) !important
+}
+
+.green {
+  color: var(--success)
+}
+
+/*Menu Fix*/
+
+#menu-fix {
+  grid-area: menu-fix
+}
+
+#menu-fix-content {
+  display: flex;
+  justify-content: center
+}
+
+#menu-fix-content ul {
+  flex: 1;
+  margin-bottom: 0
+}
+
+#menu-fix .c-header {
+color: var(--main-font-color);
+font-weight: initial;
+padding-bottom: initial
+}
+
+#menu-fix .c-header::after {
+border-bottom: none;
+padding-top: initial
+} 
+
+.logout {
+  color: var(--main-link-color) !important
+}
+
+/*install icons*/
+
+.mo-install-icon {
+    display: inline-block;
+    width: 18px !important;
+    height: 18px;
+    background-color: currentColor;
+    margin: calc(var(--main-margin)/2) calc(var(--main-margin)*2);
+  }
+
+.mo-tool-icon::before,.ed-syntax-icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-size: 1.4rem;
+  font-weight: 900;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  width: 2em
+}
+
+.mo-install-help {
+	mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z'></path> </svg>")
+	}
+
+.mo-install-language {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 512 512'><path d='M363,176,246,464h47.24l24.49-58h90.54l24.49,58H480ZM336.31,362,363,279.85,389.69,362Z'></path><path d='M272,320c-.25-.19-20.59-15.77-45.42-42.67,39.58-53.64,62-114.61,71.15-143.33H352V90H214V48H170V90H32v44H251.25c-9.52,26.95-27.05,69.5-53.79,108.36-32.68-43.44-47.14-75.88-47.33-76.22L143,152l-38,22,6.87,13.86c.89,1.56,17.19,37.9,54.71,86.57.92,1.21,1.85,2.39,2.78,3.57-49.72,56.86-89.15,79.09-89.66,79.47L64,368l23,36,19.3-11.47c2.2-1.67,41.33-24,92-80.78,24.52,26.28,43.22,40.83,44.3,41.67L255,362Z'></path></svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 512 512'><path d='M363,176,246,464h47.24l24.49-58h90.54l24.49,58H480ZM336.31,362,363,279.85,389.69,362Z'></path><path d='M272,320c-.25-.19-20.59-15.77-45.42-42.67,39.58-53.64,62-114.61,71.15-143.33H352V90H214V48H170V90H32v44H251.25c-9.52,26.95-27.05,69.5-53.79,108.36-32.68-43.44-47.14-75.88-47.33-76.22L143,152l-38,22,6.87,13.86c.89,1.56,17.19,37.9,54.71,86.57.92,1.21,1.85,2.39,2.78,3.57-49.72,56.86-89.15,79.09-89.66,79.47L64,368l23,36,19.3-11.47c2.2-1.67,41.33-24,92-80.78,24.52,26.28,43.22,40.83,44.3,41.67L255,362Z'></path></svg>")
+}
+
+.mo-install-chmod_test {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z'></path> </svg>")
+}
+
+.mo-install-environment {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'><path d='M8,17a1,1,0,1,0,1,1A1,1,0,0,0,8,17Zm0-6a1,1,0,1,0,1,1A1,1,0,0,0,8,11ZM8,5A1,1,0,1,0,9,6,1,1,0,0,0,8,5ZM20,5a3,3,0,0,0-3-3H7A3,3,0,0,0,4,5V7a3,3,0,0,0,.78,2A3,3,0,0,0,4,11v2a3,3,0,0,0,.78,2A3,3,0,0,0,4,17v2a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V17a3,3,0,0,0-.78-2A3,3,0,0,0,20,13V11a3,3,0,0,0-.78-2A3,3,0,0,0,20,7ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V17a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Zm0-6a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Zm0-6a1,1,0,0,1-1,1H7A1,1,0,0,1,6,7V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1Z'></path></svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'><path d='M8,17a1,1,0,1,0,1,1A1,1,0,0,0,8,17Zm0-6a1,1,0,1,0,1,1A1,1,0,0,0,8,11ZM8,5A1,1,0,1,0,9,6,1,1,0,0,0,8,5ZM20,5a3,3,0,0,0-3-3H7A3,3,0,0,0,4,5V7a3,3,0,0,0,.78,2A3,3,0,0,0,4,11v2a3,3,0,0,0,.78,2A3,3,0,0,0,4,17v2a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V17a3,3,0,0,0-.78-2A3,3,0,0,0,20,13V11a3,3,0,0,0-.78-2A3,3,0,0,0,20,7ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V17a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Zm0-6a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Zm0-6a1,1,0,0,1-1,1H7A1,1,0,0,1,6,7V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1Z'></path></svg>")
+}
+
+.mo-install-rewrite {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z'></path> <path d='M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z'></path> <path d='M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z'></path> </svg>")
+}
+
+.mo-install-password {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'> <g> <path fill='none' d='M0 0h24v24H0z'></path> <path d='M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'></path> </g> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'> <g> <path fill='none' d='M0 0h24v24H0z'></path> <path d='M20 22h-2v-2a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v2H4v-2a5 5 0 0 1 5-5h6a5 5 0 0 1 5 5v2zm-8-9a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'></path> </g> </svg>")
+}
+
+.mo-install-update {
+  mask-image: url("data:image/svg+xml;utf8,<svg width='18' height='18' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M17 20V4M17 4L20 7M17 4L14 7' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M7 4V20M7 20L10 17M7 20L4 17' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg width='18' height='18' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'> <path d='M17 20V4M17 4L20 7M17 4L14 7' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'></path> <path d='M7 4V20M7 20L10 17M7 20L4 17' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'></path> </svg>")
+}
+
+.mo-install-finish {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z'></path> </svg>")
+}
+
+.mo-install-text {
+  display: none
+}
+
+.ui-icon-closethick {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'></path> </svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'></path> </svg>");
+ color: var(--content-bgColor);
+}
+
+.ui-icon-check {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z'></path> <path d='M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z'></path> <path d='M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z'></path> </svg>")
+}
+
+.ui-icon-search {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'></path> </svg>");
+  cursor: pointer
+}
+
+.ui-resizable-handle {
+mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M0 4.5A2.5 2.5 0 0 1 2.5 2h11A2.5 2.5 0 0 1 16 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 11.5v-7zM2.5 3A1.5 1.5 0 0 0 1 4.5v7A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 3h-11zm10.854 4.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708l3-3a.5.5 0 0 1 .708 0zm0 2.5a.5.5 0 0 1 0 .708l-.5.5a.5.5 0 0 1-.708-.708l.5-.5a.5.5 0 0 1 .708 0z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='currentColor' viewBox='0 0 16 16'> <path d='M0 4.5A2.5 2.5 0 0 1 2.5 2h11A2.5 2.5 0 0 1 16 4.5v7a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 11.5v-7zM2.5 3A1.5 1.5 0 0 0 1 4.5v7A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 3h-11zm10.854 4.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708l3-3a.5.5 0 0 1 .708 0zm0 2.5a.5.5 0 0 1 0 .708l-.5.5a.5.5 0 0 1-.708-.708l.5-.5a.5.5 0 0 1 .708 0z'></path> </svg>");
+cursor: se-resize
+}
+
+/*Login*/
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    ". login login ."
+    ". login login ."
+    ". . . .";
+  height: 100vh
+}
+
+.login {
+  grid-area: login;
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  padding: 40px var(--main-padding) var(--main-padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  background: var(--main-bg-color);
+  min-width: 300px
+}
+
+.avatar {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 9;
+  background: #73a7cf;
+  padding: 5px;
+  box-shadow: 0px 2px 2px rgb(0 0 0 / 10%)
+}
+
+.mo-login_message_fehler,.mo-noscript {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: var(--main-padding)
+}
+
+#loginform {
+display: flex;
+flex-direction: column
+}
+
+#loginform #password {
+flex:1;
+margin-bottom: 0;
+border: transparent
+}
+
+#loginform span {
+width: 40px;
+height: 39px;
+background: var(--content-blockColor);
+border-radius: 0 5px 5px 0;
+cursor: pointer;
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23333333' d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z'></path> <path d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z'></path> </svg>");
+background-repeat: no-repeat;
+background-position: center
+}
+
+#loginform .visible {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23333333' d='M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z'></path> <path d='M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z'></path> <path d='M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z'></path> </svg>")
+  }
+
+#loginform input {
+  padding: var(--main-padding);
+  margin: 0 0 var(--main-margin) 0
+}
+
+#loginform .mo-login_submit {
+  display: block;
+  margin: var(--main-margin) auto 0 auto
+}
+
+#loginform .mo-login_submit:focus {
+  background: var(--main-color);
+  color: var(--main-bg-color)
+}
+
+#loginform .form-group {
+border: 1px solid var(--border-color);
+border-radius: var(--border-radius)
+}
+
+#loginform .form-group input:focus {
+  box-shadow: none  
+}
+
+#loginform .form-group:focus-within { 
+ border-color: transparent;
+box-shadow: 0 0 0 0.2rem rgb(48 104 151 / 25%)
+}
+
+[data-theme="dark"] #loginform span {
+	background: transparent;
+	background-repeat: no-repeat;
+background-position: center;
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23ffffff' d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z'></path> <path fill='%23ffffff' d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z'></path> </svg>")
+}
+
+[data-theme="dark"] #loginform .visible {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23ffffff' d='M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z'></path> <path fill='%23ffffff' d='M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z'></path> <path fill='%23ffffff' d='M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z'></path> </svg>")
+  }
+
+/*Admin*/
+
+.admin-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60px 30px 1fr 60px;
+  gap: 0px 0px;
+  grid-template-areas:
+    "header"
+    "admin-side"
+    "admin-main"
+    "footer";
+}
+
+.admin-container.install {
+grid-template-rows: 60px min-content 1fr 60px;
+}
+
+.admin-container.install form {
+display: contents
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  padding: var(--main-padding);
+  background: var(--header-bgColor);
+  color: var(--header-txtColor)
+}
+
+.header-left {
+  display: flex;
+  align-items: center
+}
+
+.header-left img {
+  border-radius: 50%;
+  background: #fff;
+  padding: 2px;
+  margin-right: var(--main-margin)
+}
+
+.header-center {
+  display: none
+}
+
+.header-right {
+flex: 1;
+justify-content: space-around
+}
+
+/*Admin User Menu*/
+#admin-user input,#admin-user ul.submenu {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  right: 0
+}
+
+#admin-user label {
+  display: block;
+  cursor: pointer
+}
+#admin-user label::after
+ { content:"\2304"; margin-left:5px }
+ 
+#admin-user ul > li {
+  list-style-type: none;
+  padding: var(--main-padding) calc(var(--main-padding)*2)
+}
+
+#admin-user input:checked~ul.submenu {
+  display: block;
+  text-align: left
+}
+
+#admin-user {
+position: relative
+}
+
+.admin-side {
+  grid-area: admin-side;
+  background: var(--side-bgColor);
+  color: var(--side-txtColor)
+}
+
+.admin-side .nav a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  font-weight: 500;
+  color: var(--side-txtColor)
+}
+
+.admin-side .nav li.active,.admin-side .nav li:hover {
+  background-color: rgba(255, 255, 255, 0.1)
+}
+
+.admin-main {
+  display: grid;
+  gap: 10px 10px;
+  grid-area: admin-main;
+  padding: 10px
+}
+
+.admin-main.install {
+
+display: initial}
+
+.home.admin-main {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas:
+    "card-1"
+    "card-2"
+    "card-3"
+    "card-4"
+    "card-5"
+}
+
+.catpage.admin-main {
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content;
+  grid-template-areas:
+    "js-mofilterplugin"
+    "menu-fix"
+    "card";
+}
+
+.files.admin-main {
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content;
+  grid-template-areas:
+    "js-mofilterplugin"
+    "card";
+}
+
+.gallery.admin-main {
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content max-content;
+  grid-template-areas:
+    "scale"
+    "js-mofilterplugin"
+    "menu-fix"
+    "card";
+}
+
+.plugins.admin-main {
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content;
+  grid-template-areas:
+    "scale"
+    "js-mofilterplugin"
+    "card";
+}
+
+.admin-main svg {
+cursor: pointer
+}
+
+.admin form {
+text-align: left
+}
+
+.template.admin-main {
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content max-content;
+  grid-template-areas:
+    "js-template-manage"
+    "js-mofilterplugin"
+	 "card"
+    "card";
+}
+
+.js-mofilterplugin.card {
+  grid-area: js-mofilterplugin;
+  background: var(--header-bgColor); 
+  color: var(--header-txtColor)
+}
+
+.js-plugins select {
+width: 100%
+}
+
+.mo-manage-toggle + div + div .js-plugin-del, .mo-manage-toggle + form div .template-del {
+display: none
+}
+.mo-manage-toggle[open] + div + div .js-plugin-del, .mo-manage-toggle[open] + form div .template-del {
+display: inline
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 calc(var(--main-margin)/2);
+  padding: var(--main-padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  align-self: stretch;
+  align-items: center;
+  text-decoration: none;
+  color: var(--main-font-color)
+}
+
+.box:hover {
+  color: var(--main-link-color)
+}
+
+.js-gallery .files {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  justify-content: center
+}
+
+.js-gallery .files .template-download,.js-gallery .files .template-upload {
+  width: 100%;
+  flex-direction: column
+}
+
+.js-template .js-template-name::before {
+	content: '';
+font-size: 1.6rem
+}
+/*Admin icons*/
+
+.mo-icons-delete {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'></path> <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'></path> </svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z'></path> <path fill-rule='evenodd' d='M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z'></path> </svg>")
+}
+
+.template-download button.mo-icons-delete,.template-upload button.mo-icons-icon {background: var(--main-font-color)}
+
+.mo-icons-save {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' stroke-width='1.5' viewBox='0 0 24 24' fill='none'> <path d='M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z' stroke='currentColor' stroke-width='1.5'></path> <path d='M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z' stroke='currentColor' stroke-width='1.5'></path> <path d='M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z' stroke='currentColor' stroke-width='1.5'></path> </svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' stroke-width='1.5' viewBox='0 0 24 24' fill='none'> <path d='M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z' stroke='currentColor' stroke-width='1.5'></path> <path d='M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z' stroke='currentColor' stroke-width='1.5'></path> <path d='M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z' stroke='currentColor' stroke-width='1.5'></path> </svg>")
+}
+
+.js-move-me-page, .js-move-me-cat, .mo-icons-copy {
+  cursor: move
+}
+
+/*Dialog*/
+
+#dialog-del {
+width: 100%;
+text-align: center;
+flex-direction: column;
+display: flex;
+}
+
+.ui-dialog-titlebar {
+position: relative;
+}
+
+.ui-dialog-titlebar-close {
+margin-left: auto
+}
+
+.js-dialog-content {
+  text-align: center
+}
+
+.mo-message-icon {
+justify-content: center
+}
+
+.ui-dialog-buttonset {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--main-padding)
+}
+
+.ui-dialog-buttonset button {
+margin: 0 calc(var(--main-margin)/2)
+}
+
+.ui-responsive {
+  width: 90% !important;
+  margin: 0 auto;
+}
+
+/*Multiselect*/
+
+.ui-multiselect {
+align-items: center;
+flex-direction: row-reverse;
+  padding: calc(var(--main-padding)/2) !important;
+  margin-bottom: calc(var(--main-margin)/2) !important
+}
+
+.fileupload-buttonbar, .ui-dialog-titlebar {
+align-items: center;
+  display: flex;
+  background: var(--main-color);
+  padding: calc(var(--main-padding)/2) var(--main-padding);
+  margin-bottom: calc(var(--main-margin)/2);
+  color: var(--header-txtColor);
+  flex-wrap: wrap;
+  border-radius: var(--border-radius)
+}
+
+/*Upload icons*/
+
+.mo-icons-add-file {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'></path> <path d='M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'></path> <path d='M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z'></path> </svg>");
+}
+
+.mo-icons-stop {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z'></path> </svg>");
+}
+
+.mo-icons-img-scale {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'><path d='M3,8.1a1,1,0,0,0,1-1V6.91a1,1,0,0,0-2,0V7.1A1,1,0,0,0,3,8.1Zm0-4A1,1,0,0,0,3.42,4,1,1,0,0,0,3.1,2H3A1.09,1.09,0,0,0,2,3.1,1,1,0,0,0,3,4.05Zm17.39-.19A1,1,0,0,0,22,3a1,1,0,0,0-1-1h-.1a1,1,0,0,0-.51,1.86ZM11.89,4h.22a1,1,0,0,0,0-2h-.22a1,1,0,0,0,0,2ZM7.39,4H7.6a1,1,0,0,0,0-2H7.39a1,1,0,0,0,0,2ZM21,20a1,1,0,0,0-.42.1A1,1,0,0,0,20.9,22H21a1.09,1.09,0,0,0,1-1.1A1,1,0,0,0,21,20ZM14,11a1,1,0,0,0-1-1H3.27A1.08,1.08,0,0,0,3,10,1,1,0,0,0,2,11V21a1,1,0,0,0,1,1H13.1a1,1,0,0,0,.9-1.42Zm-2,9H5.52l3.91-3.9a.33.33,0,0,1,.47,0L12,18.19Zm0-4.63-.68-.69a2.35,2.35,0,0,0-3.31,0l-4,4V12h8Zm9,0a1,1,0,0,0-1,1v.21a1,1,0,0,0,2,0V16.4A1,1,0,0,0,21,15.4Zm0-9a1,1,0,0,0-1,1V7.6a1,1,0,1,0,2,0V7.39A1,1,0,0,0,21,6.39Zm0,4.5a1,1,0,0,0-1,1v.22a1,1,0,0,0,2,0v-.22A1,1,0,0,0,21,10.89ZM17.1,20h-.2a1,1,0,1,0,0,2h.2a1,1,0,0,0,0-2ZM16.61,4a1,1,0,0,0,0-2H16.4a1,1,0,1,0,0,2Z'></path></svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'><path d='M3,8.1a1,1,0,0,0,1-1V6.91a1,1,0,0,0-2,0V7.1A1,1,0,0,0,3,8.1Zm0-4A1,1,0,0,0,3.42,4,1,1,0,0,0,3.1,2H3A1.09,1.09,0,0,0,2,3.1,1,1,0,0,0,3,4.05Zm17.39-.19A1,1,0,0,0,22,3a1,1,0,0,0-1-1h-.1a1,1,0,0,0-.51,1.86ZM11.89,4h.22a1,1,0,0,0,0-2h-.22a1,1,0,0,0,0,2ZM7.39,4H7.6a1,1,0,0,0,0-2H7.39a1,1,0,0,0,0,2ZM21,20a1,1,0,0,0-.42.1A1,1,0,0,0,20.9,22H21a1.09,1.09,0,0,0,1-1.1A1,1,0,0,0,21,20ZM14,11a1,1,0,0,0-1-1H3.27A1.08,1.08,0,0,0,3,10,1,1,0,0,0,2,11V21a1,1,0,0,0,1,1H13.1a1,1,0,0,0,.9-1.42Zm-2,9H5.52l3.91-3.9a.33.33,0,0,1,.47,0L12,18.19Zm0-4.63-.68-.69a2.35,2.35,0,0,0-3.31,0l-4,4V12h8Zm9,0a1,1,0,0,0-1,1v.21a1,1,0,0,0,2,0V16.4A1,1,0,0,0,21,15.4Zm0-9a1,1,0,0,0-1,1V7.6a1,1,0,1,0,2,0V7.39A1,1,0,0,0,21,6.39Zm0,4.5a1,1,0,0,0-1,1v.22a1,1,0,0,0,2,0v-.22A1,1,0,0,0,21,10.89ZM17.1,20h-.2a1,1,0,1,0,0,2h.2a1,1,0,0,0,0-2ZM16.61,4a1,1,0,0,0,0-2H16.4a1,1,0,1,0,0,2Z'></path></svg>");
+  cursor: pointer
+}
+
+.fu-ext-img {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'></path> <path d='M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'></path> <path d='M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z'></path> </svg>");
+}
+
+.fu-ext-txt {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z'></path> <path d='M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z'></path> <path d='M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z'></path> </svg>");
+}
+
+.fu-ext-wav {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z'></path> <path d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z'></path> <path d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z'></path> </svg>");
+}
+
+.fu-ext-doc {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5.485 6.879a.5.5 0 1 0-.97.242l1.5 6a.5.5 0 0 0 .967.01L8 9.402l1.018 3.73a.5.5 0 0 0 .967-.01l1.5-6a.5.5 0 0 0-.97-.242l-1.036 4.144-.997-3.655a.5.5 0 0 0-.964 0l-.997 3.655L5.485 6.88z'></path> <path d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5.485 6.879a.5.5 0 1 0-.97.242l1.5 6a.5.5 0 0 0 .967.01L8 9.402l1.018 3.73a.5.5 0 0 0 .967-.01l1.5-6a.5.5 0 0 0-.97-.242l-1.036 4.144-.997-3.655a.5.5 0 0 0-.964 0l-.997 3.655L5.485 6.88z'></path> <path d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z'></path> </svg>");
+
+}
+
+.fu-ext-mov {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M10.304 3.13a1 1 0 0 1 1.196.98v1.8l-2.5.5v5.09c0 .495-.301.883-.662 1.123C7.974 12.866 7.499 13 7 13c-.5 0-.974-.134-1.338-.377-.36-.24-.662-.628-.662-1.123s.301-.883.662-1.123C6.026 10.134 6.501 10 7 10c.356 0 .7.068 1 .196V4.41a1 1 0 0 1 .804-.98l1.5-.3z'></path> <path d='M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M10.304 3.13a1 1 0 0 1 1.196.98v1.8l-2.5.5v5.09c0 .495-.301.883-.662 1.123C7.974 12.866 7.499 13 7 13c-.5 0-.974-.134-1.338-.377-.36-.24-.662-.628-.662-1.123s.301-.883.662-1.123C6.026 10.134 6.501 10 7 10c.356 0 .7.068 1 .196V4.41a1 1 0 0 1 .804-.98l1.5-.3z'></path> <path d='M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z'></path> </svg>");
+}
+
+.fu-ext-none {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z'></path> </svg>");
+}
+
+.fu-ext-pdf {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z'></path> <path d='M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z'></path> <path d='M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z'></path> </svg>");
+}
+
+.fu-ext-zip {
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5 7.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.11 0l-.929-.62a1 1 0 0 1-.415-1.074L5 8.438V7.5zm2 0H6v.938a1 1 0 0 1-.03.243l-.4 1.598.93.62.929-.62-.4-1.598A1 1 0 0 1 7 8.438V7.5z'></path> <path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1h-2v1h-1v1h1v1h-1v1h1v1H6V5H5V4h1V3H5V2h1V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z'></path> </svg>");
+-webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M5 7.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.11 0l-.929-.62a1 1 0 0 1-.415-1.074L5 8.438V7.5zm2 0H6v.938a1 1 0 0 1-.03.243l-.4 1.598.93.62.929-.62-.4-1.598A1 1 0 0 1 7 8.438V7.5z'></path> <path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1h-2v1h-1v1h1v1h-1v1h1v1H6V5H5V4h1V3H5V2h1V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z'></path> </svg>");
+}
+
+/*Tabelle*/
+
+.mo-table {
+  width: 100%;
+  border-collapse: collapse
+}
+
+/*Animation*/
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both
+}
+
+@-webkit-keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    visibility: visible
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
+} 
+
+/* Animation End*/
+
+details summary {
+  display: flex;
+  cursor: pointer;
+ position: relative;
+  list-style-type: none
+}
+
+details summary>* {
+  flex: 1
+}
+
+summary:before {
+  color: var(--main-link-color);
+    transition: 0.2s;
+  content: '\203A'; /* chevron */
+  font-size: 1.6rem
+  }
+ 
+ summary.js-help-plugin:before {
+  content: ''
+  } 
+  
+
+details[open]>summary:before {
+  transform: rotate(90deg);
+  }
+  
+  details summary::-webkit-details-marker {
+  display: none
+}
+
+#menu-fix summary:before {
+  display: none
+}
+
+.mo-hidden {
+  display: none
+}
+
+/*Overlay*/
+
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms
+}
+
+/*Icons*/
+
+ .ui-icon.ui-icon-triangle-2-n-s {
+	display: flex;
+background-color: initial;
+justify-content: flex-end;
+margin: initial
+}
+
+  .ui-icon,.fu-ext-imgs,.mo-icons-icon {
+  	display: inline-block;
+   width: 18px;
+ height: 18px;
+      background-color: currentColor;
+      margin:calc(var(--main-margin)/2) var(--main-margin);
+      padding: 0
+  }
+  
+ /*Slider Switch*/
+ 
+ .switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 16px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  left: 4px;
+  bottom: 4px;
+border-radius: 50%;
+  background-color: var(--main-bg-color);;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--main-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--main-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  transform: translateX(16px);
+} 
+
+@media only screen and (min-width: 36rem) {}
+
+@media only screen and (min-width: 48rem) {
+	
+	body {
+font-size: 14px	
+	}
+  
+  .hide-mobile {
+display: initial
+}
+
+.header-right {
+flex: initial;
+justify-content: flex-end
+}
+
+  /*Menü*/
+
+  .admin-side .nav {
+    max-height: initial
+  }
+
+  .nav-wrapper {
+    display: none
+  }
+
+  .mo-install-text {
+    display: block
+  }
+
+  .admin-container, .admin-container.install {
+    grid-template-columns: 240px 1fr 1fr 1fr;
+    grid-template-rows: 60px 1fr 60px;
+    grid-template-areas:
+      "header header header header"
+      "admin-side admin-main admin-main admin-main"
+      "admin-side footer footer footer";
+  }
+
+  .header-center {
+    display: inline-block;
+    padding-left: var(--main-padding)
+  }
+
+  .admin-side {
+    display: block;
+    height: initial;
+    z-index: initial
+  }
+
+  .home.admin-main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "card-1 card-2"
+      "card-3 card-4"
+      "card-5 card-5";
+  }
+
+  .home.admin-main .card:last-of-type {
+    grid-column: 1 / span 2
+  }
+
+  .catpage.admin-main {
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 40px max-content;
+    grid-template-areas:
+      "js-mofilterplugin js-mofilterplugin"
+      "card menu-fix";
+  }
+
+  .gallery.admin-main {
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "scale scale"
+      "js-mofilterplugin js-mofilterplugin"
+      "card menu-fix";
+  }
+
+  .gallery .mo-manage-toggle {
+    grid-area: scale
+  }
+
+  .js-gallery.mo-ul.card {
+    grid-area: card
+  }
+
+  .c-content {
+    flex-direction: initial
+  }
+  
+  .ui-dialog-content {}
+
+  .c-content div {
+    width: initial
+  }
+  
+  .home   .c-content div {
+    text-align: initial
+ }
+
+  .column {
+ flex-direction: initial
+  }
+
+  /*Login*/
+
+  .login-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      ". . . . ."
+      ". . login . ."
+      ". . login . ."
+      ". . . . ."
+  }
+
+  .avatar {
+    top: -50px;
+    width: 95px;
+    height: 95px;
+    padding: 10px
+  }
+
+  /*Admin Nav und install icons*/
+  
+  .mo-tabs-icon {
+  	display: inline-block;
+   width: 18px!important;
+ height: 18px;
+      background-color: currentColor;
+      margin:calc(var(--main-margin)/2) calc(var(--main-margin)*2) 
+  }
+
+  .mo-tab-home {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'></path> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'></path> <path d='m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'></path> </svg>");
+}
+  .mo-tab-catpage {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z'></path> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z'></path> </svg>")
+  }
+
+  .mo-tab-files {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z'></path> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z'></path> </svg>");
+  }
+
+  .mo-tab-gallery {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'></path> <path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'></path> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z'></path> <path d='M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z'></path> </svg>")
+  }
+
+  .mo-tab-config {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path fill-rule='evenodd' d='M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z'></path> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path fill-rule='evenodd' d='M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z'></path> </svg>")
+  }
+
+  .mo-tab-admin {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'> <g> <path fill='none' d='M0 0h24v24H0z'></path> <path d='M12 14v2a6 6 0 0 0-6 6H4a8 8 0 0 1 8-8zm0-1c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm9 6h1v5h-8v-5h1v-1a3 3 0 0 1 6 0v1zm-2 0v-1a1 1 0 0 0-2 0v1h2z'></path> </g> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'> <g> <path fill='none' d='M0 0h24v24H0z'></path> <path d='M12 14v2a6 6 0 0 0-6 6H4a8 8 0 0 1 8-8zm0-1c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm9 6h1v5h-8v-5h1v-1a3 3 0 0 1 6 0v1zm-2 0v-1a1 1 0 0 0-2 0v1h2z'></path> </g> </svg>")
+  }
+
+  .mo-tab-plugins {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M6 0a.5.5 0 0 1 .5.5V3h3V.5a.5.5 0 0 1 1 0V3h1a.5.5 0 0 1 .5.5v3A3.5 3.5 0 0 1 8.5 10c-.002.434-.01.845-.04 1.22-.041.514-.126 1.003-.317 1.424a2.083 2.083 0 0 1-.97 1.028C6.725 13.9 6.169 14 5.5 14c-.998 0-1.61.33-1.974.718A1.922 1.922 0 0 0 3 16H2c0-.616.232-1.367.797-1.968C3.374 13.42 4.261 13 5.5 13c.581 0 .962-.088 1.218-.219.241-.123.4-.3.514-.55.121-.266.193-.621.23-1.09.027-.34.035-.718.037-1.141A3.5 3.5 0 0 1 4 6.5v-3a.5.5 0 0 1 .5-.5h1V.5A.5.5 0 0 1 6 0zM5 4v2.5A2.5 2.5 0 0 0 7.5 9h1A2.5 2.5 0 0 0 11 6.5V4H5z'></path> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 16 16'> <path d='M6 0a.5.5 0 0 1 .5.5V3h3V.5a.5.5 0 0 1 1 0V3h1a.5.5 0 0 1 .5.5v3A3.5 3.5 0 0 1 8.5 10c-.002.434-.01.845-.04 1.22-.041.514-.126 1.003-.317 1.424a2.083 2.083 0 0 1-.97 1.028C6.725 13.9 6.169 14 5.5 14c-.998 0-1.61.33-1.974.718A1.922 1.922 0 0 0 3 16H2c0-.616.232-1.367.797-1.968C3.374 13.42 4.261 13 5.5 13c.581 0 .962-.088 1.218-.219.241-.123.4-.3.514-.55.121-.266.193-.621.23-1.09.027-.34.035-.718.037-1.141A3.5 3.5 0 0 1 4 6.5v-3a.5.5 0 0 1 .5-.5h1V.5A.5.5 0 0 1 6 0zM5 4v2.5A2.5 2.5 0 0 0 7.5 9h1A2.5 2.5 0 0 0 11 6.5V4H5z'></path> </svg>")
+  }
+
+  .mo-tab-template {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'> <path stroke='none' d='M0 0h24v24H0z' fill='none'></path> <rect x='4' y='4' width='16' height='4' rx='1'></rect> <rect x='4' y='12' width='6' height='8' rx='1'></rect> <line x1='14' y1='12' x2='20' y2='12'></line> <line x1='14' y1='16' x2='20' y2='16'></line> <line x1='14' y1='20' x2='20' y2='20'></line> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'> <path stroke='none' d='M0 0h24v24H0z' fill='none'></path> <rect x='4' y='4' width='16' height='4' rx='1'></rect> <rect x='4' y='12' width='6' height='8' rx='1'></rect> <line x1='14' y1='12' x2='20' y2='12'></line> <line x1='14' y1='16' x2='20' y2='16'></line> <line x1='14' y1='20' x2='20' y2='20'></line> </svg>")
+  }
+
+  .mo-tab-logout {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'> <g> <path fill='none' d='M0 0h24v24H0z'></path> <path d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2a9.985 9.985 0 0 1 8 4h-2.71a8 8 0 1 0 .001 12h2.71A9.985 9.985 0 0 1 12 22zm7-6v-3h-8v-2h8V8l5 4-5 4z'></path> </g> </svg>");
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' height='18' width='18'> <g> <path fill='none' d='M0 0h24v24H0z'></path> <path d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2a9.985 9.985 0 0 1 8 4h-2.71a8 8 0 1 0 .001 12h2.71A9.985 9.985 0 0 1 12 22zm7-6v-3h-8v-2h8V8l5 4-5 4z'></path> </g> </svg>")
+  }
+
+  .js-gallery .files .template-download,.js-gallery .files .template-upload {
+    width: initial;
+    min-width: 300px;
+    margin: var(--main-margin)
+  }
+  
+   .fu-ext-imgs {
+      margin:calc(var(--main-margin)/2) calc(var(--main-margin)*2)
+  }
+ 
+
+  .fileupload-buttonbar {
+    line-height: initial
+  }
+  
+  select, input[type=text], input[type=password], input[type=search], textarea {
+  padding: calc(var(--main-padding)/2)
+}
+
+}
+
+@media only screen and (min-width: 62rem) {
+  .catpage.admin-main,.gallery.admin-main {
+    grid-template-columns: 5fr 1fr;
+    }
+}
+
+@media only screen and (min-width: 75rem) {}

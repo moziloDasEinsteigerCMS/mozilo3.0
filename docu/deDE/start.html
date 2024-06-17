@@ -1,0 +1,119 @@
+<div class="card" style="padding-bottom: 180px">
+  <p>Kurzübersicht über den Admin-Bereich</p>
+  <div class="c-header">Der Kopfbalken:</div>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Name der Website (siehe <b>{INTERNAL_LINK|config#do_towebsitename}</b>). Ist z. B. als Orientierungshilfe beim gleichzeitigen Editieren mehrerer Websites hilfreich.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">2</b>Klick auf <button class="theme-toggle ml mr" id="theme-toggle" title="{ADMIN_THEME_TOGGLE}" aria-label="light">
+      <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+        <mask class="moon" id="moon-mask">
+          <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
+          <circle cx="24" cy="10" r="6" fill="black"></circle>
+        </mask>
+        <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor"></circle>
+        <g class="sun-beams" stroke="currentColor">
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </g>
+      </svg>
+    </button> wechselt zwischem dem Hellen und Dunklen Theme.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">3</b>Klick auf <span class="mo-bold">"{ADMIN_USER_GREETING}, Admin"</span> öffnet das User Sub-Menü.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">4</b>Klick auf <span class="mo-bold">"{BUTTON_PREVIEW}"</span> öffnet die Webseite in einem neuen Browserfenster.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">5</b>Klick auf <span class="mo-bold">"{HOME_HELP}"</span> öffnet die Anleitung zum jeweiligen Arbeitsbereich.
+  </p>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">6</b>Klick auf <span class="mo-bold">"{LOGOUT_BUTTON}"</span> meldet den Benutzer aus dem Adminbereich ab und schließt den Zugang.
+  </p>
+  <div class="do-after-br do-box do-error-box">
+    <p>Nach Fertigstellung der administrativen Arbeiten <b>unbedingt immer abmelden!</b>
+      <br> Das <b>verhindert Missbrauch</b>, wie z. B. <b>Fremdzugriff</b> und gibt den letzten Arbeitsbereich für das nächste Admin-Login wieder frei. <b>{INTERNAL_LINK|home#do_tomultiuser}</b>
+    </p>
+  </div> {MODUL_start_00}
+</div>
+<div class="card">
+  <div class="c-header">Die Tab-Leiste:</div>
+  <p class="do-arrow-point-box">
+    <b class="do-arrow-point">1</b>Durch Klick auf einen dieser Tabs wird der jeweilige Arbeitsbereich aufgerufen.
+  </p> {MODUL_mozilo_tabs_start} <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-home"></span>
+    <span class="mo-bold">{INTERNAL_LINK|home}</span>
+    <p class="do-indent do-nomargin-top">Im Bereich " <b>Info</b>" werden verschiedene Basis-Informationen angezeigt, die das CMS und den Server betreffen. </p>
+  </div>
+  <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-catpage"></span>
+    <span class="mo-bold">{INTERNAL_LINK|catpage}</span>
+    <p class="do-indent do-nomargin-top">Hier werden die <b>Inhaltsseiten</b> der Website erstellt. <br> Diese werden auf zuvor, ebenfalls in diesem Arbeitsbereich angelegte <b>Kategorien</b> verteilt. Kategorien sind mit den Kapiteln in einem Buch vergleichbar. <br> Kategorien und Inhaltsseiten können sowohl lokal angelegt werden als auch als reine Links, die zu externen Webseiten führen. <br> Nach der Installation von moziloCMS ist als Beispiel die Kategorie "Willkommen", mit drei Inhaltsseiten, bereits angelegt. </p>
+  </div>
+  <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-files"></span>
+    <span class="mo-bold">{INTERNAL_LINK|files}</span>
+    <p class="do-indent do-nomargin-top">In diesem Bereich werden <b>Dateien</b> hochgeladen und verwaltet, die auf der Website Verwendung finden. <br> Das können <b>Bilder</b> sein, die auf Inhaltsseiten zur Illustration angezeigt werden, oder <b>Dateien</b> die <b>zum Download</b> bereitgestellt werden. <br> Solche Dateien sind zum Beispiel Bilder, Audio- und Video-Dateien, Text- und Tabellen-Dokumente, pdf-Dateien, zip-Archive, CD/DVD-Abbilder, u.s.w. <br> Im Arbeitsbereich "<b>Dateien</b>" werden diese Dateien hochgeladen und man kann sie bei Bedarf auch umbenennen und wieder löschen. </p>
+  </div>
+  <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-gallery"></span>
+    <span class="mo-bold">{INTERNAL_LINK|gallery}</span>
+    <p class="do-indent do-nomargin-top">Hier werden <b>Bildergalerien</b> angelegt, die dann unter Verwendung eines <b>Galerie-Plugins</b> angezeigt werden. <br> Auf welche Art die Bilder angezeigt werden, hängt von den Möglichkeiten und Vorgaben des jeweiligen Plugins ab. <br> In der Installation von moziloCMS ist das Plugin "<b>Standardgalerie</b>" und eine kleine Beispielgalerie bereits enthalten. </p>
+  </div>
+  <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-config"></span>
+    <span class="mo-bold">{INTERNAL_LINK|config}</span>
+    <p class="do-indent do-nomargin-top">In diesem Bereich können verschiedene <b>Grundeinstellungen</b> und <b>Vorgaben</b> für die Website ausgewählt werden. </p>
+  </div>
+  <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-admin"></span>
+    <span class="mo-bold">{INTERNAL_LINK|admin}</span>
+    <p class="do-indent do-nomargin-top">Hier werden <b>Einstellungen für den Admin-Bereich</b> von moziloCMS vorgenommen. </p>
+  </div>
+  <div class="card mb">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-plugins"></span>
+    <span class="mo-bold">{INTERNAL_LINK|plugins}</span>
+    <p class="do-indent do-nomargin-top">
+      <b>Plugins</b> dienen dazu moziloCMS um beliebige <b>Funktionen</b> zu erweitern. Der Kreativität von Softwareentwicklern sind dabei kaum Grenzen gesetzt. <br> Bereits in der Grundinstallation findet zum Beispiel die <b>Anzeige von Bildergalerien</b> über ein Plugin statt. <br> In diesem Bereich werden Plugins hinzugefügt oder entfernt, sowie sämtliche Einstellungen innerhalb der Plugins vorgenommen.
+    </p>
+  </div>
+  <div class="card">
+    <span class="mo-icon-text-right mo-tabs-icon mo-tab-template"></span>
+    <span class="mo-bold">{INTERNAL_LINK|template}</span>
+    <p class="do-indent do-nomargin-top">Unter " <b>Template</b>" versteht man eine Gruppe von Dateien, in denen das <b>Layout der Website</b> festgelegt ist. <br> Es besteht im Wesentlichen aus mindestens einer <b>HTML-Datei</b>, einem oder mehreren <b>CSS-Style Sheets</b>, sowie den eingebundenen <b>Grafiken</b>. <br> Neben <b>Installation und Deinstallation von Templates</b> lassen sich die Layout-Vorlagen hier in einem Editor auch verändern. </p>
+  </div>
+</div>
+<div class="card">
+  <div class="c-header">Der Editor:</div>
+  <p>Der interne <b>{INTERNAL_LINK|editsite}</b> öffnet sich nach Klick auf das <b>Edit-Icon</b>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="20" width="20" fill="currentColor">
+      <title>Bearbeiten</title>
+      <g>
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M21 6.757l-2 2V4h-9v5H5v11h14v-2.757l2-2v5.765a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 20.993V8l6.003-6h10.995C20.55 2 21 2.455 21 2.992v3.765zm.778 2.05l1.414 1.415L15.414 18l-1.416-.002.002-1.412 7.778-7.778z"></path>
+      </g>
+    </svg> auf einer neuen Ebene, die sich über den ADMIN-Bereich legt.
+  </p>
+  <p>Er ist zu finden bei:</p>
+  <ul class="do-list">
+    <li class="flex">
+      <span class="mo-icon-text-right mo-tabs-icon mo-tab-catpage"></span>
+      <span class="mo-bold">{INTERNAL_LINK|catpage}</span> Zum Bearbeiten der Inhaltsseiten.
+    </li>
+    <li class="flex">
+      <span class="mo-icon-text-right mo-tabs-icon mo-tab-config"></span>
+      <span class="mo-bold">{INTERNAL_LINK|config#do_tousersyntax}</span> Zum Erstellen zusätzlicher Syntax-Elemente.
+    </li>
+    <li class="flex">
+      <span class="mo-icon-text-right mo-tabs-icon mo-tab-template"></span>
+      <span class="mo-bold">{INTERNAL_LINK|template}</span> Zum Bearbeiten der HTML- und CSS-Dateien des Templates.
+    </li>
+  </ul>
+</div>

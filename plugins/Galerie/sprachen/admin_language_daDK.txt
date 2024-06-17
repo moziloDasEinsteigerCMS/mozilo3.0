@@ -1,0 +1,5 @@
+
+config_gallery_usethumbs                = Opret miniature
+config_gallery_placeholders             = 
+config_gallery_plugin_name              = 
+config_gallery_plugin_desc              = 

@@ -1,0 +1,68 @@
+<div class="card">
+<div class="c-header">Sprache</div>
+<p>Als erstes kann die gewünschte Sprache eingestellt werden. moziloCMS kommt bereits mit einer Vielzahl an Übersetzungen.</p>
+<p>Die gewählte Sprache wird zunächst für die Webseite und den Admin-Bereich übernommen. Nach der Installation kann im Admin-Bereich, im Tab "Einstellungen", die Sprache der Webseite und im Tab "Admin" die der Administrationsoberfläche geändert werden.</p>
+<div class="card">
+<div class="c-content">
+<div>Sprachauswahl:</div>
+<div>
+<select id="select-lang" name="language" class="mo-select" style="width:100%">
+<option selected="selected" value="deDE">Deutsch</option>
+<option value="enEN">English</option>
+<option value="frFR">Français</option>
+<option value="esES">Español</option>
+<option value="itIT">Italiano</option>
+<option value="nlNL">Nederlands</option>
+<option value="plPL">Polski</option>
+<option value="daDK">Dansk</option>
+<option value="ptBR">Português</option>
+<option value="hrHR">Hrvatski</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="c-header">Hilfe</div>
+<p>Bei einer Neuinstallation stehen einige der Funktionen nicht zur Verfügung.</p>
+<div class="card red mb"><p class="mo-bold">Diese Funktion ist nur bei einer bereits installierten Version verfügbar!</p><p>Ich habe nur mein Passwort vergessen und möchte ein neues vergeben.</p><input type="submit" class="button" name="getonlypassword" value="nur das Passwort ändern" disabled=""></div>
+<div class="card red mb"><p class="mo-bold">Diese Funktion ist nur bei einer bereits installierten Version verfügbar!</p><p>Ich habe moziloCMS bereits installiert, habe aber noch aus einer alten Version Daten die ich konvertieren möchte.</p><input type="submit" class="button" name="getonlyupdate" value="nur eine alte moziloCMS Version Updaten" disabled=""></div>
+<p><b>Der Installer ist auch nötig wenn:</b></p>
+<ul><li>das Passwort vergessen wurde oder</li><li>das moziloCMS vom Rechner auf den Webserver kopiert wurde oder</li><li>aus einer alten moziloCMS Version noch Daten aktualisiert werden sollen.</li></ul>
+
+<div class="card green mb"><p>Ich habe nur mein Passwort vergessen und möchte ein neues vergeben.</p><input type="submit" class="button" name="getonlypassword" value="nur das Passwort ändern"></div>
+<div class="card green mb"><p>Ich habe moziloCMS bereits installiert, habe aber noch aus einer alten Version Daten die ich konvertieren möchte.</p><input type="submit" class="button" name="getonlyupdate" value="nur eine alte moziloCMS Version Updaten"></div>
+</div>
+<div class="card">
+<div class="c-header">Datei- und Zugriffsrechte</div>
+<p>Es wird versucht die Server-Dateirechte zu ermitteln und zu setzen, die für das einwandfreie Funktionieren von moziloCMS nötig sind. Sollte dies nicht vollständig gelingen, können sie im Admin-Bereich, im Tab "Admin", nachträglich gesetzt werden.</p><p>Falls der Server moziloCMS daran hindert Dateien anzulegen, müssen die dafür nötigen Dateirechte zuerst per FTP, mit dem chmod-Befehl gesetzt werden, bevor die Installation fortgesetzt werden kann.</p>
+<div class="card mb"><div class="c-content"><div>Lässt sich die Datei "<b>test_install.txt</b>" per FTP <b>löschen?</b> Aktueller Wert 644</div><div><input type="submit" class="button" name="chmod_testfile" value="Ja"><input type="submit" class="button" name="chmod_testfile" value="Dateirechte erweitern"><b class="do-arrow-point">1</b></div></div></div>
+
+
+<p>Wenn es nicht möglich ist, müssten die Dateirechte erweitert werden. Hierzu so lange auf <b class="do-arrow-point">1</b>"Dateirechte erweitern" klicken, bis die Rechte korrekt gesetzt sind.</p>
+<div class="card mb"><div class="c-content"><div>Lässt sich die Datei "<b>test_install.txt</b>" per FTP <b>löschen?</b> Aktueller Wert 666</div><div><b class="do-arrow-point">2</b><input type="submit" class="button" name="chmod_testfile" value="Ja"><input type="submit" class="button" name="chmod_testfile" value="Dateirechte erweitern"></div></div></div>
+<p>Abschließend auf <b class="do-arrow-point">2</b>"{YES}" klicken.</p>
+<div class="card green mb">Diese Dateirechte werden benutzt: "<b>666</b>"</div>
+</div>
+<div class="card">
+<div class="c-header">Serverumgebung</div>
+<p>Der Webserver wird auf die für moziloCMS notwendigen Grundvoraussetzungen hin geprüft. Nicht hervorgehobene Funktionen sind optional, d.h. moziloCMS funktioniert grundlegend. Du musst aber unter Umständen auf die entsprechende Funktion verzichten.</p>
+</div>
+<div class="card">
+<div class="c-header">Schöne URLs</div>
+<p>moziloCMS versucht, auf dem Server das mod_rewrite-Modul zu aktivieren. Dadurch werden besser lesbare und suchmaschinenfreundlichere URLs erzeugt.</p><p>Ist mod_rewrite verfügbar, kann es später im Admin-Bereich, im Tab "Einstellungen", nach Wunsch deaktiviert oder aktiviert werden.</p>
+<p>Sofern mod_rewrite verfügbar ist, wird eine .htaccess Datei angelegt. <span class="green">"mod_rewrite ist verfügbar und wurde durch Anlegen einer .htaccess-Datei aktiviert."</span> Anderenfalls erscheint folgende Meldung <span class="red">"mod_rewrite ist nicht verfügbar."</span></p>
+
+</div>
+<div class="card">
+<div class="c-header">Passwort</div>
+<p>Hier werden die Zugangsdaten festgelegt, mit denen sich der "<b>Super-User</b>" nach der Installation im Admin-Bereich anmeldet.</p><p>Dem Super-User steht der Administrationsbereich in vollem Umfang zur Verfügung.</p>
+</div>
+<div class="card">
+<div class="c-header">Daten konvertieren</div>
+<p>Sofern noch Daten aus einer alten mozilo Installation konvertiert werden müssen, erfolgt dies in diesem Schritt.</p>
+</div>
+<div class="card">
+<div class="c-header">Abschließen</div>
+<p>Es ist geschafft. Die Installation war erfolgreich! Wir wünschen viel Freude beim Erstellen deiner Webseite!</p>
+</div>

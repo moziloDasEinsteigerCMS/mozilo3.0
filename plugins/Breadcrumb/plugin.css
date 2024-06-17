@@ -1,0 +1,4 @@
+.breadcrumb {display:flex; font-size: .8rem; padding: .5rem 0;border-bottom: 1px solid #e6e6e6}
+.breadcrumb-entry {margin-right: .5rem}
+.breadcrumb ol {list-style-type: none;}
+.breadcrumb ol li {display: inline;}

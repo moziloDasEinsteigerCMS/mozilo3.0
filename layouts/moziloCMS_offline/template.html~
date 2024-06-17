@@ -1,0 +1,35 @@
+<!-- usesubmenu = 0 -->
+<!DOCTYPE html>
+<html lang="de">
+<!--
+|===============================================================================|
+| Template: moziloCMS Baustellen Template                                                 |
+| Author: moziloCMS                                          |
+| Version: 0.1                                                                  | 
+| *********  Dieser Hinweis darf nicht entfernt werden!  *********              |
+|===============================================================================|
+-->
+
+<head>
+    <meta charset="{CHARSET}">
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="{WEBSITE_DESCRIPTION}">
+    <meta name="keywords" content="{WEBSITE_KEYWORDS}">
+    <title>{WEBSITE_NAME}</title>
+    <link rel="SHORTCUT ICON" href="{LAYOUT_DIR}/favicon.ico" />
+    <link rel="stylesheet" href="{LAYOUT_DIR}/css/style.css">
+</head>
+
+<body>
+<main>
+<div class="text-item">
+<img src="{LAYOUT_DIR}/grafiken/mozilocms-logo.png" alt="moziloCMS Logo">
+<h1>{WEBSITE_NAME}</h1>
+<p class="bold">Wir sind offline</p>
+<p>Besuchen Sie uns bald wieder.</p>
+</div>
+</main>   
+
+</body>
+</html>
