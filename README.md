@@ -6,7 +6,7 @@ moziloCMS ist ein einfaches und einsteigerfreundliches Content-Management-System
 Ein Webserver mit PHP 5.5.1 oder höher ist notwendig. Eine Datenbank wird nicht benötigt, da moziloCMS ein Flat-file CMS ist (alle Daten werden in einfachen Dateien gespeichert).
 
 ## Achtung Nutzer die ein Update machen
-ab Revision 41 hat sich der Pfad zum Download von Dateien geändert.
+ab mozilo 2.0 Revision 41 hat sich der Pfad zum Download von Dateien geändert.
 
 Wer möchte das die Links zum Download Angebotener Dateien in den Suchmaschinen weiterhin funktionieren, hat folgende Möglichkeiten.
 
