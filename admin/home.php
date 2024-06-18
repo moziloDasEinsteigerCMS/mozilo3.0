@@ -56,7 +56,7 @@ else {
         $error[$titel][] = true;
         
         if ($versionhere < trim($version)) {
-          $template[$titel][] = array(getLanguageValue('home_cmsupdate_text'),getLanguageValue('home_cmsupdate_text_update').'('.$version.')'.'<br/> <a class="button" href="https://github.com/moziloDasEinsteigerCMS/mozilo2.0/archive/master.zip" title="neueste Version von moziloCMS herunter laden" download>'.getLanguageValue('home_cmsupdate_text_download').'</a>'); 
+          $template[$titel][] = array(getLanguageValue('home_cmsupdate_text'),getLanguageValue('home_cmsupdate_text_update').'('.$version.')'.'<br/> <a class="button" href="https://github.com/moziloDasEinsteigerCMS/mozilo3.0/archive/refs/heads/main.zip" title="neueste Version von moziloCMS herunter laden" download>'.getLanguageValue('home_cmsupdate_text_download').'</a>'); 
         } else {   
           //
           // Debug: 2022-01-01
@@ -67,7 +67,7 @@ else {
           $mozilo_unknown = getLanguageValue("home_cmsupdate_unknown_version");
           $mozilo_download = getLanguageValue("home_cmsupdate_stable_version");
           $template[$titel][] = array($mozilo_unknown, $mozilo_download
-          .'<br> <a class="button" href="https://github.com/moziloDasEinsteigerCMS/mozilo2.0/archive/master.zip" title="' . $mozilo_download . '" download>'.getLanguageValue("home_cmsupdate_text_download").'</a>');
+          .'<br> <a class="button" href="https://github.com/moziloDasEinsteigerCMS/mozilo3.0/archive/refs/heads/main.zip" title="' . $mozilo_download . '" download>'.getLanguageValue("home_cmsupdate_text_download").'</a>');
         }
 
       } else {
