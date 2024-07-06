@@ -1,5 +1,5 @@
 config_breadcrumb_text    = Vorgestellter Text (Standard: leer)
 config_first_entry        = Erster Eintrag (Standard: Start)
 config_breadcrumb_divider  = Trennzeichen (Standard »)
-description     = Fügt ein Breadcrumb an einer beliebigen Stelle in einem Artikel oder an einer beliebigen Stelle im Template ein.
-placeholder     = Fügt ein Breadcrumb ein
+description     = Fügt einen Brotkrumenpfad an einer beliebigen Stelle in einem Artikel oder an einer beliebigen Stelle in der Vorlage ein.
+placeholder     = Fügt einen Brotkrumenpfad ein
