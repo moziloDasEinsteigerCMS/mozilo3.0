@@ -323,7 +323,7 @@ function save_plugin_settings($conf_plugin,$config,$currentelement) {
                 $conf_inhalt = implode(",", $conf_inhalt);
             # alle die kein array sind
             } else {
-                $conf_inhalt = str_replace(array("\r\n","\r","\n"),"<br>",$conf_inhalt);
+                $conf_inhalt = str_replace(array("\r\n","\r","\n"),"<br />",$conf_inhalt);
             }
 
             if(isset($config[$name]['regex_error'])) {
@@ -511,7 +511,7 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
                         }
                         $in_radio = '<input name="'.$currentelement.'['.$name.']"'.$type.$value.$checked.' id="'.$currentelement.'-'.$name.'-'.$key.'">';
                         $descriptions = '<label for="'.$currentelement.'-'.$name.'-'.$key.'">'.$descriptions.'</label>';
-                        $input .= $descriptions.'&nbsp;&nbsp;'.$in_radio.'<br>';
+                        $input .= $descriptions.'&nbsp;&nbsp;'.$in_radio.'<br />';
                         if($template !== false or $template_conf === true) {
                             $search[] = '{'.$name.'_radio_'.$key.'}';
                             $replace[] = $in_radio;
@@ -551,7 +551,7 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
         } elseif($template_conf === true) {
             if($config[$name]['template'] == "template_test")
                 # wennn in $config[name][template] nur template_test steht alle Platzhalter ausgeben
-                $ul_template["config_button"][] = array("Template Platzhalter",implode("<br>", $search));
+                $ul_template["config_button"][] = array("Template Platzhalter",implode("<br />", $search));
             else
                 $ul_template["config_button"][] = str_replace($search,$replace,$config[$name]['template']);
         }
@@ -563,7 +563,7 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
     # Achtung wenn in $config['--template~~'] nur "template_test" steht werden
     # alle $search ergebnisse ausgegeben
     if($template == "template_test") {
-        $ul_template["config_button"][] = array("Template Platzhalter",implode("<br>", $search));
+        $ul_template["config_button"][] = array("Template Platzhalter",implode("<br />", $search));
     }
     $show = '';
     if($conf_plugin->get("active") != "true")

@@ -32,6 +32,14 @@
         $errormessage = "";
         $form = "";
 
+$_SESSION['contactform_privacy'] = $_SESSION['contactform_privacy'] ?? '';
+$_SESSION['contactform_name'] = $_SESSION['contactform_name'] ?? '';
+$_SESSION['contactform_subject'] = $_SESSION['contactform_subject'] ?? '';
+$_SESSION['contactform_mail'] = $_SESSION['contactform_mail'] ?? '';
+$_SESSION['contactform_website'] = $_SESSION['contactform_website'] ?? '';
+$_SESSION['contactform_message'] = $_SESSION['contactform_message'] ?? '';
+$_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '';
+
         if (isset($_SESSION['contactform_name'])) {
             $name       = getRequestValue($_SESSION['contactform_name'],'post', false);
             $subject    = getRequestValue($_SESSION['contactform_subject'],'post', false);
@@ -73,12 +81,18 @@
             if (($sendtime == "") || !preg_match("/^[\d+]+$/", $sendtime)) {
                 $sendtime = 15;
             }
-            if (time() - $_SESSION['contactform_loadtime'] < $sendtime) {
-                $errormessage = $lang_contact->getLanguageValue("contactform_senttoofast", $sendtime);
-            }
+
+			if (! isset($_SESSION['contactform_loadtime'])) {
+				$_SESSION['contactform_loadtime'] = 0;
+			} else {
+				if (time() - $_SESSION['contactform_loadtime'] < $sendtime) {
+					$errormessage = $lang_contact->getLanguageValue("contactform_senttoofast", $sendtime);
+				}   
+			}
+
             if ($settings->get("contactformusespamprotection") == "true") {
                 // Nochmal Spamschutz: Ergebnis der Spamschutz-Aufgabe auswerten
-                if (strtolower($calcresult) != strtolower($_SESSION['calculation_result'])) {
+                if (strtolower($calcresult) != strtolower($_SESSION['calculation_result'] ?? '')) {
                     $errormessage = $lang_contact->getLanguageValue("contactform_wrongresult");
                 }
             }
@@ -106,7 +120,7 @@
             }
             // Es ist ein Fehler aufgetreten!
             if ($errormessage <> "") {
-                $form .= "<div id=\"contact_errormessage\">".$errormessage."</div>";
+                $form .= "<div id=\"formular_message\"><div id=\"contact_errormessage\">".$errormessage."</div></div>";
             }
             else {
                 $mailcontent = "";
@@ -143,7 +157,7 @@
                 // Mail an eingestellte Mail-Adresse (Mail-Absender muss auch diese Adresse sein,
                 // sonst gibts kein Mail wenn der keine oder ungültige Adresse eingibt..
                 sendMail($mailsubject, $mailcontent, $settings->get("formularmail"), $settings->get("formularmail"), $mail);
-                $form .= "<div id=\"contact_successmessage\">".$lang_contact->getLanguageValue("contactform_confirmation")."</div>";
+                $form .= "<div id=\"formular_message\"><div id=\"contact_successmessage\">".$lang_contact->getLanguageValue("contactform_confirmation")."</div></div>";
                 
                 // Felder leeren
                 $name = "";
@@ -164,8 +178,7 @@
         $_SESSION['contactform_loadtime'] = time();
         global $CatPage;
         $action_para = $CatPage->get_Href(CAT_REQUEST,PAGE_REQUEST);
-
-        $form .= "<form accept-charset=\"".CHARSET."\" method=\"post\" action=\"$action_para\" name=\"contact_form\" id=\"contact_form\">"
+        $form .= "<form accept-charset=\"".CHARSET."\" method=\"post\" action=\"#formular_message\" name=\"contact_form\" id=\"contact_form\">"
         ."<input type=\"hidden\" name=\"cat\" value=\"".$CatPage->get_AsKeyName(CAT_REQUEST)."\" />"
         ."<input type=\"hidden\" name=\"page\" value=\"".$CatPage->get_AsKeyName(PAGE_REQUEST)."\" />";
         if ($config_name[1] == "true") {
@@ -180,7 +193,7 @@
             }
             $form .= '<div class="form-group">';
             $form .= "<label class=\"hide-mobile\">$name_mandatory $config_name[0]</label>";
-            $form .= '<input type="text" id="contact_name" name="'.$_SESSION['contactform_name'].'" placeholder="'.$name_mandatory.' '.$config_name[0].'" aria-label="'.$config_name[0].'" '.$name_mandatory_label.'>';
+            $form .= '<input type="text" id="contact_name" name="'.$_SESSION['contactform_name'].'" value="'.$name.'" placeholder="'.$name_mandatory.' '.$config_name[0].'" aria-label="'.$config_name[0].'" '.$name_mandatory_label.'>';
             $form .= '</div>';
         }
       if ($config_mail[1] == "true") {
@@ -194,7 +207,7 @@
             }
             $form .= '<div class="form-group">';
             $form .= "<label class=\"hide-mobile\">$mail_mandatory $config_mail[0]</label>";
-            $form .= '<input type="email" id="contact_mail" name="'.$_SESSION['contactform_mail'].'" placeholder="'.$mail_mandatory.' '.$config_mail[0].'" aria-label="'.$config_mail[0].'" '.$mail_mandatory_label.'>';
+            $form .= '<input type="email" id="contact_mail" name="'.$_SESSION['contactform_mail'].'" value="'.$mail.'" placeholder="'.$mail_mandatory.' '.$config_mail[0].'" aria-label="'.$config_mail[0].'" '.$mail_mandatory_label.'>';
             $form .= '</div>';
         }
         if ($config_website[1] == "true") {
@@ -208,7 +221,7 @@
             }
             $form .= '<div class="form-group">';
             $form .= "<label class=\"hide-mobile\">$website_mandatory $config_website[0]</label>";
-            $form .= '<input type="url" id="contact_website" name="'.$_SESSION['contactform_website'].'" placeholder="'.$website_mandatory.' '.$config_website[0].'" aria-label="'.$config_website[0].'" '.$website_mandatory_label.'>';
+            $form .= '<input type="url" id="contact_website" name="'.$_SESSION['contactform_website'].'" value="'.$website.'" placeholder="'.$website_mandatory.' '.$config_website[0].'" aria-label="'.$config_website[0].'" '.$website_mandatory_label.'>';
             $form .= '</div>';
         }
         //hp schutz
@@ -228,7 +241,7 @@
             }
             $form .= '<div class="form-group">';
             $form .= "<label class=\"hide-mobile\">$subject_mandatory $config_subject[0]</label>";
-            $form .= '<input type="text" id="contact_subject" name="'.$_SESSION['contactform_subject'].'" placeholder="'.$subject_mandatory.' '.$config_subject[0].'" aria-label="'.$config_subject[0].'" '.$subject_mandatory_label.'>';
+            $form .= '<input type="text" id="contact_subject" name="'.$_SESSION['contactform_subject'].'" value="'.$subject.'" placeholder="'.$subject_mandatory.' '.$config_subject[0].'" aria-label="'.$config_subject[0].'" '.$subject_mandatory_label.'>';
             $form .= '</div>';
         }
         if ($config_message[1] == "true") {
@@ -252,7 +265,7 @@
             $_SESSION['calculation_result'] = $calculation_data[1];
             $form .= "<label><span>* ".$lang_contact->getLanguageValue("contactform_spamprotection_text")."</span>"
                 ."<span>&nbsp;".$calculation_data[0]."</span></label>"
-                .'<input type="text" id="contact_calculation" name="'.$_SESSION['contactform_calculation'].'"aria-label="Spam Protection" aria-required="true">';            
+                .'<input type="text" id="contact_calculation" name="'.$_SESSION['contactform_calculation'].'" aria-label="Spam Protection" aria-required="true">';            
         }
         if ($config_privacy[1] == "true") {
         

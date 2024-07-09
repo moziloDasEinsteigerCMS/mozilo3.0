@@ -143,7 +143,7 @@ vertical-align:middle;
 }
 
 .files .subtitle span {
- /*  width: 97%;*/
+   width: 97%;
     min-height: 1rem;
  /*   display: block;*/
     cursor: text;

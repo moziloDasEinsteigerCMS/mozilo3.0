@@ -81,8 +81,6 @@ function gallery() {
     }
 
     $dircontent = getDirAsArray(GALLERIES_DIR_REL,"dir","sort");
-    
-require_once(BASE_DIR_ADMIN."jquery/File-Upload/fileupload.php");
 
     $pagecontent = "";
 
