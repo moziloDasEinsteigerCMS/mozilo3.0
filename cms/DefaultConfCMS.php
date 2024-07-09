@@ -1,6 +1,6 @@
 <?php if(!defined('IS_CMS')) die();
 
-define("CMSVERSION","3.0");
+define("CMSVERSION","3.0.1");
 define("CMSNAME","Hope");
 // define("CMSREVISION","1");
 define("CMSSTATUS", "stabil");
