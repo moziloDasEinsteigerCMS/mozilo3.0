@@ -1,4 +1,4 @@
-ungetoolbar_platzhalter_contact     = Kontaktformular
+toolbar_platzhalter_contact     = Kontaktformular
 #config_titel_contact           = Kontaktformular-Einstellungen
 config_text_formularmail        = Deine E-Mail-Adresse, an die das Kontaktformular gesendet werden soll.
 config_error_formularmail       = Das ist keine gültige E-Mail-Adresse.
