@@ -1,0 +1,10 @@
+config_cookieDays       = Nombre de jours, pour lesquels le message doit être masqué après acceptation (par défaut:30).
+config_cookieDays_error = Nombre de jours: Veuiller taper un chiffre.
+config_cookieTitle      = Votre titre (Standard: vide)
+config_cookieDesc     = Votre déscription
+config_cookieBtn     = Votre déscription pour bouton
+config_cookiePrivacy    = Texte pour lien vers page sur la protection des données
+config_cookieCat        = Catégorie dans laquelle ce trouve la page sur la protection des données
+config_cookiePage       = Nom de la page sur la protection des données
+description     = Insère une mention de traceur avec {Cookies}. Le titre, le texte, le bouton et la durée peuvent être configurés individuellement.
+placeholder     = Insère une mention de traceur.
