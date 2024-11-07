@@ -392,7 +392,7 @@ template_input_set_active            = Aktivieren
 template_input_active                = Aktiviert
 template_select                      = oder aus dem Ordner "template"
 
-install_tab_help                     = Hilfe
+install_tab_help                     = Erste Schritte
 install_tab_language                 = Sprache
 install_tab_chmod_test               = Dateirechte
 install_tab_environment              = Serverumgebung

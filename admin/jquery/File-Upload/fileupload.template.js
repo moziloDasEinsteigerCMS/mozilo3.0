@@ -56,7 +56,7 @@ $('.fileupload').fileupload({
                     '<div class="size mo-ma-l-auto mr mo-nowrap"><\/div>'+
                 '<div class="delete flex">'+
                     '<button class="fu-img-button mo-icons-icon mo-icons-delete"><\/button>'+
-                '<input type="checkbox" name="delete" value="1" \/><\/td>'+
+                '<input type="checkbox" name="delete" value="1" \/>'+
   //              '<\/tr><\/tbody>'+
   //              '<\/div>'+
                 '<\/div>');

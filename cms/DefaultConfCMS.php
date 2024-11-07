@@ -1,12 +1,12 @@
 <?php if(!defined('IS_CMS')) die();
 
-define("CMSVERSION","3.0.1");
+define("CMSVERSION","3.0.2");
 define("CMSNAME","Hope");
 // define("CMSREVISION","1");
 define("CMSSTATUS", "stabil");
 
 #!!!!!!!! die version müssen wir noch checken
-define("MIN_PHP_VERSION","5.5.1");
+define("MIN_PHP_VERSION","7.0");
 
 define("PACK_JS",true);
 define("PACK_CSS",true);

@@ -55,7 +55,8 @@ class Breadcrumb extends Plugin {
        if (ACTION_REQUEST == "search") {
          $actionname = $language->getLanguageValue("message_search_0");
        }
-       $content = '<div class="breadcrumb">' .$entry. '
+       $content = '<nav class="breadcrumb" aria-label="breadcrumbs">
+       				 <span class="breadcrumb-entry">' .$entry. '</span>
                    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
                      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                        <a itemprop="item" href="{BASE_URL}"><span itemprop="name">' . $start . '</span></a>
@@ -66,11 +67,12 @@ class Breadcrumb extends Plugin {
                        <meta itemprop="position" content="2">
                      </li>
                    </ol>
-                   </div>';
+                   </nav>';
      
      } elseif($CMS_CONF->get("hidecatnamedpages") == "true" and $cat == $page)  {
      	
-     	$content = '<div class="breadcrumb">' .$entry. '
+     	$content = '<nav class="breadcrumb" aria-label="breadcrumbs">
+       				<span class="breadcrumb-entry">' .$entry. '</span>
                    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
                      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                        <a itemprop="item" href="{BASE_URL}"><span itemprop="name">' .$start. '</span></a>
@@ -81,10 +83,11 @@ class Breadcrumb extends Plugin {
                        <meta itemprop="position" content="2">
                      </li>
                    </ol>
-                   </div>';     
+                   </nav>';     
      }   
      else {
-       $content = '<div class="breadcrumb">' .$entry. '
+       $content = '<nav class="breadcrumb" aria-label="breadcrumbs">
+       				<span class="breadcrumb-entry">' .$entry. '</span>
                    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
                      <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                        <a itemprop="item" href="{BASE_URL}"><span itemprop="name">' .$start. '</span></a>
@@ -99,7 +102,7 @@ class Breadcrumb extends Plugin {
                        <meta itemprop="position" content="3">
                      </li>
                    </ol>
-                   </div>';     
+                   </nav>';     
      }
 
     return $content;
