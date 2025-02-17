@@ -1,3 +1,5 @@
+[![Packagist](https://img.shields.io/packagist/dt/moziloDasEinsteigerCMS/mozilo3.0.svg)](https://packagist.org/packages/moziloDasEinsteigerCMS/mozilo3.0)
+
 # moziloCMS
 
 moziloCMS ist ein einfaches und einsteigerfreundliches Content-Management-System (CMS) für Benutzer mit geringen HTML-Kenntnissen.
