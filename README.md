@@ -1,5 +1,3 @@
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/moziloDasEinsteigerCMS/mozilo3.0/total)
-
 # moziloCMS
 
 moziloCMS ist ein einfaches und einsteigerfreundliches Content-Management-System (CMS) für Benutzer mit geringen HTML-Kenntnissen.
