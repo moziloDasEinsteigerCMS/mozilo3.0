@@ -223,9 +223,11 @@ if($showdebug and !empty($debug))
             	$html_templates_active .= '</details>'."\n";
             } else {
             	$html_templates_inactive .= '<div class="js-template mo-middle mo-tag-height-from-icon ui-helper-clearfix flex card mb">'."\n";
+            	$html_templates_inactive .='<div class="flex flex-100">'."\n";
             	$html_templates_inactive .= '<span class="js-template-name mo-padding-left flex-100">'.$specialchars->rebuildSpecialChars($file,false,true).'</span>'."\n";
             	$html_templates_inactive .= '<span><label class="mo-radio" for="template-status'.$pos.'"><input id="template-status'.$pos.'" class="mr" name="template-active" type="radio" value="'.$file.'">'.getLanguageValue("template_input_set_active").'</label></span>'."\n";
             	$html_templates_inactive .= '<span><input type="checkbox" name="template-del[]" value="'.$file.'" class="mo-checkbox ml"></span>'."\n";
+            	$html_templates_inactive .='</div>'."\n";
             	$html_templates_inactive .='</div>'."\n";
             }
         }

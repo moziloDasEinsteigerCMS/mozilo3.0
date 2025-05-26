@@ -14,14 +14,10 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
             $count = count($CatPage->get_FileArray($curent_dir));
         }
         $head = '<summary><span class="flex">'
-            .'<span class="js-gallery-name mo-padding-left flex-100 mo-bold">'.$dir.'</span>'
-#            .'<div class="mo-nowrap">'
+            .'<span class="flex-100"><span class="js-gallery-name mo-padding-left mo-bold">'.$dir.'</span></span>'
                 .'<span class="mo-staus mo-font-small'.$newcss.'">( '
                 .'<span class="files-count">'.$count.'</span> '.$count_text.' )</span>'
- #               .'<span class="js-tools-icon-show-hide js-toggle mo-tool-icon'.$newcss.' mo-icons-icon mo-icons-edit"></span>'
-                .'<span>'.$gallery_tools.'</span>'
- #           .'</div>'
-#            .'<br class="mo-clear" />'
+                .$gallery_tools
         .'</span></summary>';
     }
 
@@ -43,7 +39,6 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
                 .'</span>'
                 .'<button type="submit" class="fu-img-button start mo-icons-icon mo-icons-save" title="'.getLanguageValue("button_save").'"></button>'
                 .'<button type="reset" class="fu-img-button cancel mo-icons-icon mo-icons-stop" title="'.getLanguageValue("button_cancel").'"></button>'
-    #            .'<img style="width:2em;height:1px;" src="'.ICON_URL_SLICE.'" alt=" " />'
                 .'<button class="fu-img-button delete mo-icons-icon mo-icons-delete" title="'.getLanguageValue("admin_delete").'"></button>';
                 if(ACTION == "gallery") {
                     $fileupload .= '<button class="fu-img-button resize mo-icons-icon mo-icons-img-scale" title="'.getLanguageValue("gallery_scale_thumbs").'"></button>';
@@ -58,9 +53,7 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
                     if($GALLERY_CONF->get('maxheight') != "auto" and $GALLERY_CONF->get('maxheight') > 0)
                         $tmp_h = $GALLERY_CONF->get('maxheight');
                     $fileupload .= ''
-                #    .'<img style="width:2em;height:1px;" src="'.ICON_URL_SLICE.'" alt=" " />'
                     .'<div class="upload-bar-middle flex flex-100"><span class="">'.getLanguageValue("gallery_image_size").'</span><span><input type="text" name="new_width" value="'.$tmp_w.'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"> x <input type="text" name="new_height" value="'.$tmp_h.'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></span></div>'
-                #    .'<img style="width:2em;height:1px;" src="'.ICON_URL_SLICE.'" alt=" " />'
                     .'<div class="upload-bar-right flex flex-100"><span class="">'.getLanguageValue("gallery_preview_size").'</span><span><input type="text" name="thumbnail_max_width" value="'.$GALLERY_CONF->get('maxthumbwidth').'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"> x <input type="text" name="thumbnail_max_height" value="'.$GALLERY_CONF->get('maxthumbheight').'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></span></div>'
                     .'';
                 }
@@ -69,7 +62,7 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
         .'</div>'
     .'</div>';
 
-    $form_start = '<form class="fileupload" action="index.php" method="post" enctype="multipart/form-data">';
+    $form_start = '<form class="fileupload flex-100" action="index.php" method="post" enctype="multipart/form-data">';
     if(ACTION != "template") {
     $form_start .= '<details>';
     }    

@@ -19,9 +19,14 @@ class Galerie extends Plugin {
         global $CMS_CONF;
         global $specialchars;
         global $lang_gallery_cms;
+        global $syntax;
 
         $dir = PLUGIN_DIR_REL."Galerie/";
         $lang_gallery_cms = new Language($dir."sprachen/cms_language_".$CMS_CONF->get("cmslanguage").".txt");
+        
+        $tail = '<script src="'.URL_BASE.PLUGIN_DIR_NAME.'/Galerie/script.js"></script>';
+       
+       $syntax->insert_in_tail($tail);
  
         $embedded = $this->settings->get("target");
     
@@ -180,8 +185,8 @@ class Galerie extends Plugin {
                 $gal_name = $specialchars->rebuildSpecialChars($values[1], false, false);
             }
             global $syntax;
-            return "<div class=\"galleries\"><figure class=\"galleries-item\"><a class=\"gallery\" href=\"".$linkprefix."gal=".$gal_request."\" ".$syntax->getTitleAttribute($lang_gallery_cms->getLanguageHtml("tooltip_link_gallery_2", $specialchars->rebuildSpecialChars($values[0], false, true), $j))." ><figcaption class=\"galleries-caption\">".$gal_name."</figcaption></a></figure></div>";
-        }
+            return "<div class=\"galleries\"><figure class=\"galleries-item\"><a class=\"gallery\" href=\"".$linkprefix."gal=".$gal_request."\" ".$syntax->getTitleAttribute($lang_gallery_cms->getLanguageHtml("tooltip_link_gallery_2", $specialchars->rebuildSpecialChars($values[0], false, true), $j))." target=\"_blank\"><span class=\"galleries-caption\">".$gal_name."</span></a></figure></div>";
+                  }
     } // function getContent
     
 
@@ -248,10 +253,6 @@ class Galerie extends Plugin {
 
         global $lang_gallery_cms;
 
- //       $picsperrow = $this->settings->get("picsperrow");
-
- //       if (empty($picsperrow)) $picsperrow = 4;
-
         $thumbs = "<div class=\"gallerytable\">";
 
         $i = 0;
@@ -270,14 +271,19 @@ class Galerie extends Plugin {
 
             if (file_exists($GALERIE_DIR.PREVIEW_DIR_NAME."/".$specialchars->replaceSpecialChars($picarray[$i],false))) {
             list($width, $height, $type, $attr) = getimagesize($GALERIE_DIR.PREVIEW_DIR_NAME."/".$specialchars->replaceSpecialChars($picarray[$i],false));
-                $thumbs .= "<a id=\"".$specialchars->rebuildSpecialChars($picarray[$i],true,true)."\" href=\"#".$specialchars->rebuildSpecialChars($picarray[$i],true,true)."\" role=\"button\">";
-                $thumbs .="<img  class=\"thumbnail\" src=\"".$GALERIE_DIR_SRC.PREVIEW_DIR_NAME."/".$specialchars->replaceSpecialChars($picarray[$i],true)."\" alt=\"$description\" title=\"$description\" $attr />";
-                $thumbs .="<div class=\"galleryoverlay\">";
-                $thumbs .="<figure><img itemprop=\"image\" src=\"".$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true)."\" alt=\"$description\" title=\"$description\" $attr>";
-                $thumbs .="<figcaption>".$description."</figcaption></figure>";
-                $thumbs .="</div>";
-                $thumbs .="</a>";
-                $thumbs .="<a class=\"galeryimgclose\" href=\"#!\"></a>";
+        //        $thumbs .= "<a id=\"".$specialchars->rebuildSpecialChars($picarray[$i],true,true)."\" href=\"#".$specialchars->rebuildSpecialChars($picarray[$i],true,true)."\" role=\"button\">";
+                $thumbs .='<figure>';
+                $thumbs .='<img  class="thumbnail" loading="lazy" src="'.$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true).'" alt="'.$description.'" title="'.$description.'">';
+       //         $thumbs .="<div class=\"galleryoverlay\">";
+       //         $thumbs .="<figure><img itemprop=\"image\" src=\"".$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true)."\" alt=\"$description\" title=\"$description\" $attr>";
+       if ($this->settings->get("caption") == "true") {
+       $thumbs .='<figcaption>'.$description.'</figcaption>';
+       }
+                
+$thumbs .='</figure>';
+        //        $thumbs .="</div>";
+        //        $thumbs .="</a>";
+         //       $thumbs .="<a class=\"galeryimgclose\" href=\"#!\"></a>";
          //       $thumbs .="<a class=\"galleryimgprev\" href=\"#image1\">&lt;</a>";
          //       $thumbs .="<a class=\"galleryimgnext\" href=\"#image3\">&gt;</a>";
 
@@ -302,8 +308,25 @@ class Galerie extends Plugin {
             $i++;
 
         }
+        
 
-        $thumbs .= "</div>";
+
+        $thumbs .= "</div>";       
+        
+                $thumbs .= '<div class="gallery-modal">';
+			$thumbs .= '<span class="close">&times;</span>';
+			$thumbs .= '<a role="button" class="prev">&#10094;</a>';
+			$thumbs .= '<a role="button" class="next">&#10095;</a>';
+			$thumbs .= '<div class="modal-content">';
+	 
+			$thumbs .= '<figure>';
+			$thumbs .= '<img src="'.$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true).'" alt="'.$description.'" class="modal-img">';
+				if ($this->settings->get("caption") == "true") {
+					$thumbs .='<figcaption class="modal-txt">'.$description.'</figcaption>';
+				}
+			$thumbs .= '</figure>';
+			$thumbs .= '</div>';
+			$thumbs .= '</div>';
 
         // Rückgabe der Thumbnails
 
@@ -331,7 +354,9 @@ class Galerie extends Plugin {
         $currentpic = "<div class=\"gallerynothumbs\">";
         $currentpic .="<figure>";
         $currentpic .= "<img src=\"".$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$arraypos],true)."\" alt=\"".$lang_gallery_cms->getLanguageHtml("alttext_galleryimage_1", $specialchars->rebuildSpecialChars($picarray[$arraypos],true,true))."\" loading=\"lazy\">";
+        if ($this->settings->get("caption") == "true") {
         $currentpic .="<figcaption>{CURRENTDESCRIPTION}</figcaption>";
+     }
         $currentpic .="</figure>";
         // Link zur Vollbildansicht schliessen
         $currentpic .= "</div>";
@@ -432,6 +457,10 @@ class Galerie extends Plugin {
                 "_blank" => $lang_gallery_admin->get("config_gallery_target_blank"),
                 )
         );
+        $config['caption'] = array(
+            "type" => "checkbox",
+            "description" => $lang_gallery_admin->get("config_gallery_captions"),
+        );
         $config['gallerytemplate'] = array(
             "type" => "textarea",
             "cols" => "90",
@@ -466,7 +495,7 @@ class Galerie extends Plugin {
 
         $info = array(
             // Plugin-Name
-            "<b>".$lang_gallery_admin->get("config_gallery_plugin_name")."</b> \$Revision: 144 $",
+            "<b>".$lang_gallery_admin->get("config_gallery_plugin_name")."</b> \$Revision: 145 $",
             // CMS-Version
             "2.0 / 3.0",
             // Kurzbeschreibung

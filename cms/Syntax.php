@@ -652,8 +652,8 @@ class Syntax {
                 }
             // mit Untertitel
             else {
-                return '<figure><img itemprop="image" src="'.$imgsrc.'" alt="'.$language->getLanguageHtml("alttext_image_1", $alt).'" class="'.$cssclass.'" '.$attr.'><figcaption itemprop="caption" class="imagesubtitle">'.$subtitle.'</figcaption></figure>';
-            }
+            	return '<figure class="'.$cssclass.'"><img itemprop="image" src="'.$imgsrc.'" alt="'.$language->getLanguageHtml("alttext_image_1", $alt).'" class="'.$cssclass.'" '.$attr.'><figcaption itemprop="caption" class="imagesubtitle">'.$subtitle.'</figcaption></figure>';
+                }
         }
     }
 
@@ -750,22 +750,42 @@ class Syntax {
         // Tabellen
         $tabellecss = "contenttable";
         if(!empty($desciption))
-            # was nach dem = steht wird als class name verwendet
+            // was nach dem = steht wird als class name verwendet
             $tabellecss = $desciption;
         // Tabelleninhalt aufbauen
         $tablecontent = "";
         // Tabellenzeilen
 
-        preg_match_all("/(&lt;|&lt;&lt;)(.*)(&gt;|&gt;&gt;)/Umsi", $value, $tablelines);
+    preg_match_all("/(&lt;|&lt;&lt;)(.*)(&gt;|&gt;&gt;)/Umsi", $value, $tablelines);
+
+    // Ueberschrift Tabelle
+    preg_match_all("/(.*)(-html_br~)/Umsi", $value, $caption);
+        $caption = preg_replace('/-html_br~/', "", $caption[0]);
+        // Ueberschrift vorhanden, Anzeige
+        $tablecaption = "";
+        if(!empty($caption[0])) {
+            $tablecaption = '<caption>'.$caption[0].'</caption>';  
+        }
+
         foreach ($tablelines[0] as $j => $tablematch) {
             // Kopfzeilen
+
             if (preg_match("/&lt;&lt;([^&gt;]*)/Umsi", $tablematch)) {
+
                 $linecontent = preg_replace('/\|/', '</th><th class="'.$tabellecss.'">', $tablelines[2][$j]);
                 $linecontent = preg_replace('/&lt;(.*)/', "$1", $linecontent);
-                $tablecontent .= '<tr><th class="'.$tabellecss.'">'.$linecontent.'</th></tr>';
+                $tablecontent .= '<thead><tr><th class="'.$tabellecss.'">'.$linecontent.'</th></tr></thead><tbody>';
+
+                $th_content = explode("|",$tablelines[2][0]);
+                $th_content = preg_replace('/&lt;(.*)/', "$1", $th_content);
+                // css-style bei data-label ncht erlaubt
+                $th_content = preg_replace("(</?[^>]*\>)i", "", $th_content);
             }
             // normale Tabellenzeilen
             else {
+                if(!isset($th_content)) {
+                  $tablecontent .= '<tbody>';
+                }
                 // CSS-Klasse immer im Wechsel
                 $cssline = $tabellecss."1";
                 if ($j%2 == 0) {
@@ -773,15 +793,26 @@ class Syntax {
                 }
                 // Pipes durch TD-Wechsel ersetzen
                 $linecontent = explode("|",$tablelines[2][$j]);
-                $tablecontent .= "<tr>";
+                $tablecontent .= '<tr>';
+
                 foreach($linecontent as $pos => $td_content) {
-                    # td css vortlaufend nummerieren mit 1 anfangen
-                    $tablecontent .= '<td class="'.$cssline.' '.$tabellecss."cell".($pos + 1).'">'.$td_content.'</td>';
+
+                    // Fehler wenn $th_content nicht vorhanden
+                    if(!isset($th_content[$pos])) {
+                      $th_content[$pos] = "";
+                    }
+                    // td vortlaufend nummerieren
+                    if($pos == 0) {
+                     $tablecontent .= '<td class="'.$cssline.' '.$tabellecss."cell".($pos + 1).'" data-label="'.$th_content[0].'">'.$td_content.'</td>';
+                     }
+                     else {
+                     $tablecontent .= '<td class="'.$cssline.' '.$tabellecss."cell".($pos + 1).'" data-label="'.$th_content[$pos].'">'.$td_content.'</td>';
+                     }
                 }
-                $tablecontent .= "</tr>";
+                $tablecontent .= '</tr>';
             }
         }
-        return '<table class="'.$tabellecss.'">'.$tablecontent.'</table>';
+        return '<table class="'.$tabellecss.'">'.$tablecaption.$tablecontent.'</tbody></table>';
     }
 
     function syntax_include($desciption,$value) {

@@ -20,22 +20,22 @@ class MenuSubs extends Plugin {
             global $specialchars;
             $this->menu2 = $specialchars->replaceSpecialChars(replaceFileMarker($this->settings->get("menusubs_2"),false),false);
         }
-        if($value === false)
+        if($value == false)
             return $this->getMenuCat();
-        if($value === "main")
+        if($value == "main")
             return $this->getMenuCat(true);
-        if($value === "detail") {
+        if($value == "detail") {
             if(strpos(CAT_REQUEST,"%2F") > 1) {
                 $tmp_cat = explode("%2F",CAT_REQUEST);
                 return $this->getMenuPage($tmp_cat[0]);
             } else
                 return $this->getMenuPage(CAT_REQUEST);
         }
-        if($this->menu2 and $value === "menusubs_2")
+        if($this->menu2 and $value == "menusubs_2")
             return $this->getMenuPage($this->menu2,false,true);
-        if($value === "sitemap_content")
+        if($value == "sitemap_content")
             return $this->getSitemapCat();
-        if($value === "breadcrumb") {
+        if($value == "breadcrumb") {
             $this->breadcrumb_delimiter = "»";
             if($this->settings->get("breadcrumb_delimiter"))
                 $this->breadcrumb_delimiter = $this->settings->get("breadcrumb_delimiter");
@@ -45,7 +45,8 @@ class MenuSubs extends Plugin {
     }
 
     function getBreadcrumb() {
-        global $CatPage, $CMS_CONF;
+        global $CatPage;
+        global $CMS_CONF;
         $css = "";
         $ul = '<ul class="menusubs-breadcrumb">';
         $ul .= '<li class="menusubs-breadcrumb-home"><a href="{BASE_URL}" title="Home">Home</a></li>';
@@ -69,7 +70,8 @@ class MenuSubs extends Plugin {
     }
 
     function getBreadcrumbPage($cat,$subcat = false,$menu_2 = false) {
-        global $CatPage, $CMS_CONF;
+        global $CatPage;
+        global $CMS_CONF;
         $ul = '';
         foreach($CatPage->get_PageArray($cat,array(EXT_PAGE,EXT_HIDDEN)) as $page) {
             if(strpos($cat,"%2F") > 1
@@ -94,7 +96,9 @@ class MenuSubs extends Plugin {
     }
 
     function create_BreadcrumbLinkTag($cat,$page,$css) {
-        global $specialchars, $CatPage, $language;
+        global $specialchars;
+        global $CatPage;
+        global $language;
         $cssactiv = "";
         $cat = substr($cat,3);
         return $CatPage->create_LinkTag(
@@ -105,7 +109,8 @@ class MenuSubs extends Plugin {
     }
 
     function getMenuCat($only_main = false) {
-        global $CatPage, $CMS_CONF;
+        global $CatPage;
+        global $CMS_CONF;
         $return = false;
         $css = "cat-menusubs-link menusubs-link";
         $ul = '<ul class="cat-menusubs">';
@@ -145,7 +150,8 @@ class MenuSubs extends Plugin {
     }
 
     function getMenuPage($cat,$subcat = false,$menu_2 = false) {
-        global $CatPage, $CMS_CONF;
+        global $CatPage;
+        global $CMS_CONF;
         $return = false;
         $ul = '<ul class="page-menusubs sub'.$this->sub_count.'">';
         if($subcat)
@@ -188,7 +194,9 @@ class MenuSubs extends Plugin {
     }
 
     function create_CatSubLinkTag($cat,$page,$css) {
-        global $specialchars, $CatPage, $language;
+        global $specialchars;
+        global $CatPage; 
+        global $language;
         $cssactiv = "";
         if(strstr(CAT_REQUEST,$page))
             $cssactiv = "active";
@@ -204,7 +212,9 @@ class MenuSubs extends Plugin {
     }
 
     function getSitemapCat() {
-        global $CatPage, $CMS_CONF, $language;
+        global $CatPage;
+        global $CMS_CONF;
+        global $language;
         $return = false;
         $menu_2 = "";
         $include_pages = array(EXT_PAGE);
@@ -235,7 +245,8 @@ class MenuSubs extends Plugin {
     }
 
     function getSitemapPage($cat,$menu2 = false) {
-        global $CatPage, $CMS_CONF;
+        global $CatPage;
+        global $CMS_CONF;
         $return = false;
         $sitemap = '<ul>';
         if($menu2)
@@ -308,7 +319,7 @@ class MenuSubs extends Plugin {
             $info_txt = file_get_contents(BASE_DIR.PLUGIN_DIR_NAME."/MenuSubs/lang/info_deDE.txt");
         $info = array(
             // Plugin-Name
-            "<b>MenuSubs</b> Revision: 5",
+            "<b>MenuSubs</b> Revision: 6",
             // Plugin-Version
             "2.0 / 3.0",
             // Kurzbeschreibung
@@ -316,7 +327,7 @@ class MenuSubs extends Plugin {
             // Name des Autors
             "stefanbe",
             // Download-URL
-            array("https://github.com/mozilo/mozilo2.0","moziloCMS 2.0"),
+            '',
             array("{MenuSubs|main/detail/menusubs_2/breadcrumb}" => "MenuSubs")
             );
         return $info;

@@ -24,8 +24,7 @@ var reflectPreference = () => {
   document.firstElementChild.setAttribute('data-theme', theme.value);
 
   document
-    .querySelector('#theme-toggle')
-    ?.setAttribute('aria-label', theme.value);
+    .querySelector('#theme-toggle')?.setAttribute('aria-label', theme.value);
 };
 
 var theme = {
@@ -40,8 +39,10 @@ window.onload = () => {
   reflectPreference();
 
   // now this script can find and listen for clicks on the control
-  document.querySelector('#theme-toggle').addEventListener('click', onClick);
-
+  var elem = document.querySelector('#theme-toggle');
+  if (elem) {
+    elem.addEventListener('click', onClick);
+  }
 };
 
 // sync with system changes

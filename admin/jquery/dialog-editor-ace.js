@@ -497,9 +497,16 @@ $(function() {
             click: function() {
                 send_editor_data(editor_file+"&content="+rawurlencode_js(editor_session.getValue()),true);
             }
+        },
+        {
+                text: mozilo_lang["close"],
+                click: function() {
+                    $(this).dialog("close");
+                }
         }],
         close: function(event, ui) {
             $("#menu-fix-close-editor").show(0).attr("id","menu-fix");
+            $('body').css('overflow','');
             if(dialog_editor.data("send_object"))
                 dialog_editor.data("send_object").abort();
             dialog_editor.data("send_object",false);
@@ -513,6 +520,8 @@ $(function() {
             }
         },
         open: function(event, ui) {
+        	$('body').css('overflow','hidden');
+        	$('.ui-widget-overlay').bind('click', function () { $(this).siblings('.ui-dialog').find('.ui-dialog-content').dialog('close'); });
             if($('.js-coloreditor-button').length > 0)
                 $('#ce-colorchange').dialog("close");
             $("#menu-fix").hide(0).attr("id","menu-fix-close-editor");
@@ -565,7 +574,12 @@ $(function() {
             create: function(event, ui) {
                 dialog_prev_pageedit_box = $(this);
             },
+            open: function(event, ui) {
+            $('body').css('overflow','hidden');
+				$('.ui-widget-overlay').bind('click', function () { $(this).siblings('.ui-dialog').find('.ui-dialog-content').dialog('close'); });
+        },
             close: function(event, ui) {
+            	$('body').css('overflow','');
                 if(dialog_editor.data("send_object"))
                     dialog_editor.data("send_object").abort();
                 dialog_editor.data("send_object",false);

@@ -1,40 +1,19 @@
 <div class="header mo-align-center mo-head-box ui-widget ui-state-default ui-corner-all mo-li-head-tag-no-ul mo-li-head-tag mo-td-middle ui-helper-clearfix">
 	<div class="header-left mo-td-middle">
-	<img src="css/images/mozilo-logo-24.webp" alt="moziloCMS Logo">
-	<span class="hide-mobile mr mo-bold">{CMS_ADMIN_TITEL}</span>
+		<img src="css/images/mozilo-logo-24.webp" alt="moziloCMS Logo">
+		<span class="hide-mobile mr mo-bold">{CMS_ADMIN_TITEL}</span>
 	</div>
 	<div class="header-center">
-	<div class="tooltips">moziloCMS - Das CMS für Einsteiger<span>1</span></div>
+		<span class="tooltips">{DO_WEBSITETITLE}</span>
 	</div>
-	<div class="header-right flex">
-	<button class="theme-toggle mr" name="theme-toggle" title="{ADMIN_THEME_TOGGLE}" aria-label="light">
-  <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
-    <mask class="moon" id="moon-mask">
-      <rect x="0" y="0" width="100%" height="100%" fill="white"></rect>
-      <circle cx="24" cy="10" r="6" fill="black"></circle>
-    </mask>
-    <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor"></circle>
-    <g class="sun-beams" stroke="currentColor">
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-     </g>
-  </svg>
-</button>
-<div id="admin-user" class="mr ml"><input id="admin-user-check" type="checkbox" name="menu">
-<label for="admin-user-check">{ADMIN_USER_GREETING}, Admin</label>
-<ul class="submenu card">
-  <li><a href="../index.php?draft=true" title="{HELP_WEBSITE_BUTTON}" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><b class="do-arrow-point">4</b><span>{BUTTON_PREVIEW}</span></a></li>
-  <li><a href="/dev/mozilo-3-0-admin-65/docu/index.php" title="{HOME_HELP}" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><b class="do-arrow-point">5</b>{HOME_HELP}</a></li>
-  <li><a href="index.php?logout=true" title="{LOGOUT_BUTTON}"><b class="do-arrow-point">6</b><span>{LOGOUT_BUTTON}</span></a></li>
-</ul>
-</div>
-
-	</div>
-
+	<div class="header-right flex">{MODUL_icon_sun-and-moon}
+		<div id="admin-user" class="mr ml"><input id="admin-user-check" type="checkbox" name="menu">
+			<label for="admin-user-check">{ADMIN_USER_GREETING}, {ADMIN_NOROOT_ADMIN}</label>
+			<ul class="submenu card">
+				<li><a href="../index.php?draft=true" title="{HELP_WEBSITE_BUTTON}" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><b class="do-arrow-point">4</b><span>{BUTTON_PREVIEW}</span></a></li>
+				<li><a href="../docu/index.php" title="{HOME_HELP}" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><b class="do-arrow-point">5</b>{HOME_HELP}</a></li>
+				<li><a href="index.php?logout=true" title="{LOGOUT_BUTTON}"><b class="do-arrow-point">6</b><span>{LOGOUT_BUTTON}</span></a></li>
+			</ul>
 		</div>
+	</div>
+</div>

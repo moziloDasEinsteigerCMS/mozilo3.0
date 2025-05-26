@@ -15,10 +15,17 @@ class UploadHandler
     protected $options;
     protected $subtitle;
     protected $alowed_img_array;
+    protected $alowed_file_array;
     
     function __construct($options=null) {
+    	global $ADMIN_CONF;
+
+                $acceptfiletypesuser = ".".str_replace("%2C","%2C.",$ADMIN_CONF->get("upload"));
+                $acceptfiletypesuser = explode("%2C",$acceptfiletypesuser);
         global $ALOWED_IMG_ARRAY;
-        $this->alowed_img_array = $ALOWED_IMG_ARRAY;
+        $this->alowed_img_array = array_merge($ALOWED_IMG_ARRAY,$acceptfiletypesuser);
+        global $ALOWED_FILE_ARRAY;
+        $this->alowed_file_array = $ALOWED_FILE_ARRAY;
 
 #file_put_contents(BASE_DIR."out_UploadHandler.txt","request=".$_REQUEST['curent_dir']."\n",FILE_APPEND);
 
@@ -281,19 +288,28 @@ class UploadHandler
         }
 #        if (!preg_match($this->options['accept_file_types'], $file->name)) {
 #            return 'acceptFileTypes';
-#        }
-        $acceptfiletypes = $this->alowed_img_array;
+#       }
+
+        $acceptimagetypes = $this->alowed_img_array;
+		$acceptfiletypes = $this->alowed_file_array;
+
+        global $ADMIN_CONF;
+        $acceptfiletypesuser = ".".str_replace("%2C","%2C.",$ADMIN_CONF->get("upload"));
+        $acceptfiletypesuser = explode("%2C",$acceptfiletypesuser);
+
         if(ACTION == "files") {
-            global $ADMIN_CONF;
-            if(strlen($ADMIN_CONF->get("noupload")) > 0) {
-                $acceptfiletypes = ".".str_replace("%2C","%2C.",$ADMIN_CONF->get("noupload"));
-                $acceptfiletypes = explode("%2C",$acceptfiletypes);
-            } else
-                $acceptfiletypes = array();
-            if(in_array(strtolower(substr($file->name,(strrpos($file->name,".")))),$acceptfiletypes))
+#           global $ADMIN_CONF;
+#           if(strlen($ADMIN_CONF->get("noupload")) > 0) {
+#               $acceptfiletypesuser = ".".str_replace("%2C","%2C.",$ADMIN_CONF->get("upload"));
+#				$acceptfiletypesuser = explode("%2C",$acceptfiletypesuser);
+#			} else
+#               $acceptfiletypes = $this->alowed_file_array;
+            if(!in_array(strtolower(substr($file->name,(strpos($file->name,".")))),$acceptfiletypes) && (!in_array(strtolower(substr($file->name,(strpos($file->name,".")))),$acceptimagetypes))  && (!in_array(strtolower(substr($file->name,(strpos($file->name,".")))),$acceptfiletypesuser)))
                 return 'acceptFileTypes';
         } else {
-            if(!in_array(strtolower(substr($file->name,(strrpos($file->name,".")))),$acceptfiletypes))
+        	
+ //       	$image_mime = mime_content_type($uploaded_file);
+            if(!in_array(strtolower(substr($file->name,(strpos($file->name,".")))),$acceptimagetypes)  && (!in_array(strtolower(substr($file->name,(strpos($file->name,".")))),$acceptfiletypesuser) )  )
                 return 'acceptFileTypes';
         }
         if ($uploaded_file && is_uploaded_file($uploaded_file)) {

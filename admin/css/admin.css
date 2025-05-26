@@ -77,14 +77,15 @@ border: 1px solid transparent;
 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
 }
 
-[data-theme="dark"] select, [data-theme="dark"] input[type="text"], [data-theme="dark"] input[type="password"], [data-theme="dark"] input[type="search"], [data-theme="dark"] textarea {
+[data-theme="dark"] input[type="text"], [data-theme="dark"] input[type="password"], [data-theme="dark"] input[type="search"], [data-theme="dark"] textarea {
+background: transparent;
 	color: var(--main-font-color)
 }
 
-[data-theme="dark"] select, [data-theme="dark"] input[type="text"], [data-theme="dark"] input[type="password"], [data-theme="dark"] input[type="search"], [data-theme="dark"] textarea {
-	background: transparent
+[data-theme="dark"] select {
+background: var(--content-blockColor);
+color: var(--main-font-color)
 }
-
 
 [data-theme="dark"] .button, [data-theme="dark"] button, [data-theme="dark"] input[type="button"] {
   background: var(--content-blockColor);
@@ -529,7 +530,11 @@ input:focus {
 /*Menu Fix*/
 
 #menu-fix {
-  grid-area: menu-fix
+  grid-area: menu-fix;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  z-index: 2
 }
 
 #menu-fix-content {
@@ -684,7 +689,7 @@ cursor: se-resize
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  z-index: 9;
+ /* z-index: 9;*/
   background: #73a7cf;
   padding: 5px;
   box-shadow: 0px 2px 2px rgb(0 0 0 / 10%)
@@ -695,7 +700,8 @@ cursor: se-resize
   top: 0;
   right: 0;
   left: 0;
-  padding: var(--main-padding)
+  padding: var(--main-padding);
+  z-index: 2
 }
 
 #loginform {
@@ -820,32 +826,74 @@ justify-content: space-around
 }
 
 /*Admin User Menu*/
-#admin-user input,#admin-user ul.submenu {
-  display: none;
+#admin-user .dropdown {
+  position: relative;
+  width: 14em;
+}
+
+#admin-user .dropdown-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--main-padding) calc(var(--main-padding)*2);
+  border-radius: var(--border-radius);
+  border: none
+}
+
+#admin-user .dropdown-button .dropdown-button-arrow {
+position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 14px;
+  z-index: 2;
+  fill: currentColor;
+  transition: all 0.4s ease;
+}
+
+#admin-user .dropdown-button-arrow {
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+#admin-user .dropdown[data-open=true] .dropdown-button-arrow {
+  transform: rotate(180deg);
+}
+
+#admin-user .dropdown-menu {
   position: absolute;
-  z-index: 999;
-  right: 0
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  margin-top: var(--main-margin);
+  padding: var(--main-padding) 0;
+  background: var(--main-bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+#admin-user .dropdown[data-open=true] .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
 }
 
-#admin-user label {
-  display: block;
-  cursor: pointer
+#admin-user .dropdown-menu-item {
+  display: flex;
+  justify-content: center;
+ padding: var(--main-padding) calc(var(--main-padding)*2);
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
-#admin-user label::after
- { content:"\2304"; margin-left:5px }
- 
-#admin-user ul > li {
-  list-style-type: none;
-  padding: var(--main-padding) calc(var(--main-padding)*2)
-}
-
-#admin-user input:checked~ul.submenu {
-  display: block;
-  text-align: left
+#admin-user .dropdown-menu-item:focus {
+  background-color: hsl(var(--clr-primary)/10%);
 }
 
-#admin-user {
-position: relative
+#admin-user .dropdown-menu.slide {
+  transform: translateY(1rem);
+}
+#admin-user .dropdown[data-open=true] .dropdown-menu.slide {
+  transform: translateY(0);
 }
 
 .admin-side {
@@ -930,7 +978,7 @@ display: initial}
     "card";
 }
 
-.admin-main svg {
+.js-tools-icon-show-hide {
 cursor: pointer
 }
 
@@ -1006,6 +1054,43 @@ display: inline
 	content: '';
 font-size: 1.6rem
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -160px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 /*Admin icons*/
 
 .mo-icons-delete {
@@ -1020,8 +1105,8 @@ font-size: 1.6rem
   -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' stroke-width='1.5' viewBox='0 0 24 24' fill='none'> <path d='M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z' stroke='currentColor' stroke-width='1.5'></path> <path d='M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z' stroke='currentColor' stroke-width='1.5'></path> <path d='M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z' stroke='currentColor' stroke-width='1.5'></path> </svg>")
 }
 
-.js-move-me-page, .js-move-me-cat, .mo-icons-copy {
-  cursor: move
+.js-move-me-page, .js-move-me-cat, .mo-icons-copy, #menu-fix-content .js-li-cat, #menu-fix-content .js-new-gallery details summary  {
+  cursor: grabbing
 }
 
 /*Dialog*/
@@ -1059,9 +1144,9 @@ justify-content: center
 margin: 0 calc(var(--main-margin)/2)
 }
 
-.ui-responsive {
-  width: 90% !important;
-  margin: 0 auto;
+.ui-dialog {
+  max-width: 90vw;
+  margin: 0 auto
 }
 
 /*Multiselect*/
@@ -1231,7 +1316,7 @@ details summary>* {
 
 summary:before {
   color: var(--main-link-color);
-    transition: 0.2s;
+    transition: 0.4s;
   content: '\203A'; /* chevron */
   font-size: 1.6rem
   }
@@ -1266,7 +1351,7 @@ details[open]>summary:before {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.7);
-  transition: opacity 500ms
+  transition: opacity 0.4s
 }
 
 /*Icons*/
@@ -1340,6 +1425,18 @@ input:checked + .slider:before {
   -webkit-transform: translateX(16px);
   transform: translateX(16px);
 } 
+
+/*Preview*/
+
+#js-imgload-box {
+max-height: 100%;
+max-width: 100%
+}
+
+#js-imgload {
+max-height: 100%;
+max-width: 100%
+}
 
 @media only screen and (min-width: 36rem) {}
 

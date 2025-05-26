@@ -14,7 +14,7 @@ window.locale = {
         "errors": {
             "maxFileSize": "File is too big",
             "minFileSize": "File is too small",
-            "acceptFileTypes": "Filetype not allowed",
+            "acceptFileTypes": ""+mozilo_lang["error_upload_filetype"]+"",
             "maxNumberOfFiles": "Max number of files exceeded",
             "uploadedBytes": "Uploaded bytes exceed file size",
             "emptyResult": "Empty file upload result"

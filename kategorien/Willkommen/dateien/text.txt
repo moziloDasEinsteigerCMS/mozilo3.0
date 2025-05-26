@@ -6,6 +6,5 @@ moziloCMS Webseite:     https://www.mozilo.de/
 moziloCMS Forum:        https://www.mozilo.de/forum/
 moziloCMS Mediaseite:   https://www.mozilo.de/media/
 moziloCMS auf Facebook: https://www.facebook.com/moziloCMS-109072477457291/
-moziloCMS auf Twitter:  https://twitter.com/mozilo/
-moziloCMS auf Github:   https://github.com/moziloDasEinsteigerCMS/mozilo2.0/
+moziloCMS auf Github:   https://github.com/moziloDasEinsteigerCMS/mozilo3.0/
 moziloCMS auf Mastodon: https://mastodon.social/@mozilo/

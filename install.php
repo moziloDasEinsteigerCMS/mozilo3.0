@@ -893,6 +893,7 @@ function getLanguageSelect() {
     global $LANG_INSTALL;
     global $LANG_TMP;
     $admin_inhalt = '<select id="select-lang" name="language" class="mo-select" style="width:100%">';
+     	ksort($LANG_INSTALL);
     foreach ($LANG_INSTALL as $key => $element) {
         if(is_file(BASE_DIR_ADMIN.LANGUAGE_DIR_NAME."/language_".$key.".txt")) {
             $selected = "";

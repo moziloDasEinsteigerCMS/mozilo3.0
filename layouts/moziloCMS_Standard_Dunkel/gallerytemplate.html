@@ -1,0 +1,34 @@
+﻿<!-- usesubmenu = 2 -->
+<!DOCTYPE html>
+<html lang="de">
+   <!--
+      | Template: moziloCMS Standard Dunkel
+      | Datum: Februar 2025
+      | Autor: moziloCMS // www.mozilo.de
+      | Version: 1.1     
+      | *********  Dieser Hinweis darf nicht entfernt werden!  *********    
+      -->
+<head>
+   <meta charset="{CHARSET}">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>{WEBSITE_NAME}</title>
+   <meta name="description" content="{WEBSITE_DESCRIPTION}">
+   <meta name="keywords" content="{WEBSITE_KEYWORDS}">
+   <link rel="icon" type="image/x-icon" href="{LAYOUT_DIR}/favicon.ico">
+    <link rel="stylesheet" href="{LAYOUT_DIR}/css/style.css">
+</head>
+<body>
+    <div class="flexcontainer">
+        <input type="checkbox" id="menu-checkbox" role="button">
+            <label for="menu-checkbox" id="menu-toggler">{WEBSITE_NAME}
+                <span id="menu-toggler-icon"></span>
+            </label>
+        <nav>{MAINMENU}</nav>
+        <header><span>{WEBSITE_NAME}</span></header>
+        <main>
+        	<div class="embeddedgallery">{Galerie}</div>
+        </main>
+        <footer>&copy; <script>document.write(new Date().getFullYear());</script> - {SITEMAPLINK} - {CMSINFO} - {MEMORYUSAGE} - {EXECUTETIME} &#10073; Layout: <a href="https://www.mozilo.de" title="Zur moziloCMS Webseite wechseln">moziloCMS</a></footer>
+    </div>
+</body>
+</html>

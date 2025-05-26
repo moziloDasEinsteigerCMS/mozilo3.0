@@ -35,19 +35,16 @@ function admin_Template($pagecontent,$message) {
             echo '</div>'."\n";
         }
 
-  #          ."</div>"
   			if(LOGIN) {
   			echo	'<div class="footer">'."\n"
 .'<small>Powered by <a href="https://www.mozilo.de" target="_blank" title="moziloCMS Website">moziloCMS</a> &copy; 2006 - '.date("Y").' &#10072; Version: '.CMSVERSION.' ("'.CMSNAME.'") '.CMSSTATUS.'</small>'."\n"
 .'</div>'."\n";}
-  #          '<div class="mo-td-content-width" id="out"></div>';
         if(LOGIN)
             echo get_Message($message);
- #       echo '<img class="mo-td-content-width" src="'.ICON_URL_SLICE.'" alt=" " height="1" hspace="0" vspace="0" align="left" border="0" />'
              echo '</div>'."\n";
 
     } else {
-        echo '<body class="ui-widget body-pluginadmin" style="font-size:12px;">'
+        echo '<body class="ui-widget body-pluginadmin">'
             .$pagecontent;
         if(LOGIN)
             echo get_Message($message);
@@ -69,11 +66,12 @@ function get_HtmlHead() {
     global $ADMIN_CONF;
     global $CMS_CONF;
     global $specialchars;
+	global $acceptfiletypesall;
     $packJS = array();
     $packCSS = array();
 
     echo '<!DOCTYPE html>'."\n"
-        .'<html lang="de">'."\n"
+        .'<html lang="'.getLanguageValue("html_lang").'">'."\n"
         .'<head>'."\n"
         .'<script src="'.URL_BASE.ADMIN_DIR_NAME.'/jquery/theme.js" ></script>'."\n"
         .'<meta charset="'.CHARSET.'">'."\n"
@@ -87,7 +85,6 @@ function get_HtmlHead() {
 
     if(ACTION == "files" or ACTION == "gallery" or ACTION == "template") {
         echo '<link rel="stylesheet" href="'.URL_BASE.ADMIN_DIR_NAME.'/jquery/File-Upload/jquery.fileupload-ui.css">'."\n";
- //       echo '<link rel="stylesheet" href="'.URL_BASE.ADMIN_DIR_NAME.'/jquery/File-Upload/bootstrap.cms.css">'."\n";
     }
 
     if(ACTION == "catpage" or ACTION == "config" or ACTION == "template")
@@ -96,17 +93,32 @@ function get_HtmlHead() {
     if(defined('PLUGINADMIN') and is_file(BASE_DIR.PLUGIN_DIR_NAME.'/'.PLUGINADMIN.'/plugin.css'))
         $packCSS[] = PLUGIN_DIR_NAME.'/'.PLUGINADMIN.'/plugin.css';
 
-//prüfen ob die beiden Zeilen wirklich gebraucht werden: Zeilen 99,100 auskommentiert, macht <style></style> in der Seitenansicht
     $cssMinifier = new cssMinifier();
-    $cssMinifier->echoCSS($packCSS);
+#    $cssMinifier->echoCSS($packCSS);          //macht <style></style> in der Seitenansicht weg
 
-    $dialog_jslang = array("close","yes","no","button_cancel","button_save","button_preview","page_reload","page_edit_discard","page_cancel_reload","dialog_title_send","dialog_title_error","dialog_title_messages","dialog_title_save_beforeclose","dialog_title_delete","dialog_title_lastbackup","dialog_title_docu","login_titel_dialog","error_name_no_freename","error_save_beforeclose","dialog_title_coloredit","error_exists_file_dir","error_datei_file_name","error_zip_nozip","filter_button_all_hide","filter_button_all_show","filter_text","filter_text_gallery","filter_text_plugins","filter_text_files","filter_text_catpage","filter_text_template","config_error_modrewrite","template_title_editor","gallery_text_subtitle","pixels");
+    $dialog_jslang = array("close","yes","no","button_cancel","button_save","button_preview","page_reload","page_edit_discard","page_cancel_reload","dialog_title_send","dialog_title_error","dialog_title_messages","dialog_title_save_beforeclose","dialog_title_delete","dialog_title_lastbackup","dialog_title_docu","login_titel_dialog","error_name_no_freename","error_save_beforeclose","dialog_title_coloredit","error_exists_file_dir","error_datei_file_name","error_zip_nozip","filter_button_all_hide","filter_button_all_show","filter_text","filter_text_gallery","filter_text_plugins","filter_text_files","filter_text_catpage","filter_text_template","config_error_modrewrite","template_title_editor","gallery_text_subtitle","pixels","admin_delete","error_upload_filetype","error_upload_replace");
 
     $home_jslang = array("home_error_test_mail");
 
-    $gallery_jslang = array("files","url_adress","page_error_save","images","gallery_delete_confirm");
+    $gallery_jslang = array("files","url_adress","page_error_save","images","gallery_delete_confirm","gallery_scale_thumbs");
 
     $catpage_jslang = array("self","blank","target","page_status","files","pages","page_edit","url_adress","page_error_save",array(EXT_PAGE,"page_saveasnormal"),array(EXT_HIDDEN,"page_saveashidden"),array(EXT_DRAFT,"page_saveasdraft"));
+
+	global $ALOWED_IMG_ARRAY;
+	global $ALOWED_FILE_ARRAY;
+		
+     $acceptfiletypesuser = ".".str_replace("%2C","%2C.",$ADMIN_CONF->get("upload") ?? '');
+    $acceptfiletypesuser = explode("%2C",$acceptfiletypesuser);
+			    
+	$acceptfiletypesall = implode($ALOWED_IMG_ARRAY).implode($ALOWED_FILE_ARRAY).implode($acceptfiletypesuser);
+	$acceptfiletypesall = "/(\\.".str_replace(".","|\\.",$acceptfiletypesall).")$/i;";
+	$acceptfiletypesall = str_replace("\.|","",$acceptfiletypesall);
+		
+	$acceptimgtypes = "/^image\/(".".".str_replace(".","|",implode($ALOWED_IMG_ARRAY).implode($acceptfiletypesuser)).")$/";
+	$acceptimgtypes = str_replace(".|","",$acceptimgtypes);
+		
+# echo $acceptimgtypes."<br>";    // zum Anschauen
+# echo $acceptfiletypesall;
 
     echo '<script>/*<![CDATA[*/'."\n"
         .'var FILE_START = "'.FILE_START.'";'
@@ -131,13 +143,17 @@ function get_HtmlHead() {
     else
         echo makeJsLanguageObject($dialog_jslang);
 
-    $acceptfiletypes = "/(\\.".str_replace("%2C","|\\.",$ADMIN_CONF->get("noupload")).")$/i;";
-    if(strlen($acceptfiletypes) > 0)
-        # nur die nicht in der liste sind
-        echo 'var mo_acceptFileTypes = '.$acceptfiletypes;
-    else
+#		$acceptfiletypes = "/(\\.".str_replace("%2C","|\\.",$ADMIN_CONF->get("upload")).")$/i;";
+#	    if(strlen($acceptfiletypesall) > 0)
+        # nur die in der liste sind
+        echo  'var mo_acceptFileTypes = '.$acceptfiletypesall.' '
+		     .'var mo_acceptImageTypes = '.$acceptimgtypes.';';
+	
+#   	echo 'var mo_acceptImgTypes = '.$acceptimgtypes;
+#           else
         # alle erlauben
-        echo 'var mo_acceptFileTypes = /#$/i;';
+#	    echo 'var mo_acceptFileTypes = /#$/i;'; 
+	
 /*
     if(LOGIN and defined('MULTI_USER') and MULTI_USER)
        echo 'var multi_user_time = '.((MULTI_USER_TIME - 10) * 1000).';'; # Sekunde * 1000 = Millisekunden
@@ -220,7 +236,6 @@ function get_HtmlHead() {
                 }
             }
         }
-        //prüfen ob gebraucht wird: Zeilen 222,223 auskommentiert
         if(count($packCSS) > 0)
             $cssMinifier->echoCSS($packCSS);
 
@@ -238,19 +253,8 @@ function get_Head() {
 
     echo '<div class="mo-td-content-width mo-margin-bottom header">'."\n"
         .'<div class="mo-align-center mo-head-box ui-widget ui-state-default ui-corner-all mo-li-head-tag-no-ul mo-li-head-tag mo-td-middle header-left">'."\n"
-  #          .'<span class="mo-td-middle">'
-  #              .getHelpIcon()
-  #              .'<a href="../index.php?draft=true" title="'.getLanguageValue("help_website_button",true).'" target="_blank" class="mo-butten-a-img"><img class="mo-icons-icon mo-icons-website" src="'.ICON_URL_SLICE.'" alt="" /></a>'
-  #              .'<span class="mo-bold mo-td-middle mo-padding-left">'
                 .'<img src="'.URL_BASE.ADMIN_DIR_NAME.'/css/images/mozilo-logo-24.webp" alt="moziloCMS Logo">'."\n"
                     .'<span class="hide-mobile mr mo-bold">'.getLanguageValue("cms_admin_titel",true).'</span>'."\n"
-   #             .'</span>'
-    #        .'</span>'
-    #        .'<span id="admin-websitetitle" class="mo-bold mo-td-middle">'
-    #            .$specialchars->rebuildSpecialChars($CMS_CONF->get("websitetitle"), false, true)
-    #        .'</span>'
-    #        .'<img style="width:1px;" class="mo-icons-icon mo-icons-blank mo-td-middle" src="'.ICON_URL_SLICE.'" alt="" />'
-    #        .'<a href="index.php?logout=true" title="'.getLanguageValue("logout_button",true).'" class="mo-butten-a-img"><img class="mo-icons-icon mo-icons-logout" src="'.ICON_URL_SLICE.'" alt="" /></a>'
         .'</div>'."\n"
         .'<div class="header-center">'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitetitle"), false, true).'</div>'."\n"
         .'<div class="header-right flex">'."\n"
@@ -276,16 +280,25 @@ function get_Head() {
         if(empty($_SESSION['username'])){
     $_SESSION['username'] = '';
   }
-echo '<div id="admin-user" class="mr ml"><input id="admin-user-check" type="checkbox" name="menu">
-<label for="admin-user-check">'.getLanguageValue("admin_user_greeting").', '.$_SESSION['username'].'</label>
-<ul class="submenu card">
-  <li><a href="../index.php?draft=true" title="'.getLanguageValue("help_website_button",true).'" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><span>'.getLanguageValue("button_preview").'</span></a></li>
-  <li>'.getHelpMenu().'</li>
-  <li><a href="index.php?logout=true" title="'.getLanguageValue("logout_button",true).'" class="mo-butten-a-img logout"><span>'.getLanguageValue("logout_button",true).'</span></a></li>
-</ul>'."\n"
-.'</div>'."\n"
-   #             .'<a href="index.php?logout=true" title="'.getLanguageValue("logout_button",true).'" class="mo-butten-a-img"><i class="las la-sign-out-alt la-2x"></i><img class="mo-icons-icon mo-icons-logout" src="'.ICON_URL_SLICE.'" alt="" /></a>'
-
+echo '<div id="admin-user" class="mr ml">'
+.'<div class="dropdown" data-open="false">
+  <button class="dropdown-button" aria-haspopup="true" aria-expanded="false">
+    <span>'.getLanguageValue("admin_user_greeting").', '.$_SESSION['username'].'</span>
+    <span class="dropdown-button-arrow" ><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg></span>
+  </button>
+  <ul class="dropdown-menu slide" role="menu" aria-hidden="true">
+    <li class="dropdown-menu-item" tabindex="-1" role="menuitem">      
+      <span><a href="../index.php?draft=true" title="'.getLanguageValue("help_website_button",true).'" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><span>'.getLanguageValue("button_preview").'</span></a></span>
+    </li>
+    <li class="dropdown-menu-item" tabindex="-1" role="menuitem">      
+      <span>'.getHelpMenu().'</span>
+    </li>
+    <li class="dropdown-menu-item" tabindex="-1" role="menuitem">      
+      <span><a href="index.php?logout=true" title="'.getLanguageValue("logout_button",true).'" class="mo-butten-a-img logout"><span>'.getLanguageValue("logout_button",true).'</span></a></span>
+    </li>
+  </ul>
+</div>
+</div>'."\n"
         .'</div>'."\n"
         .'<span class="nav-wrapper">
   <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>

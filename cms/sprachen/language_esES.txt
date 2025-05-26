@@ -7,7 +7,7 @@
 _dateformat_0                                   = d-m-Y, H:i:s
 _translator_0                                   = Miguel A. Glez. "euato"
 # der Wert ist für date_default_timezone_set()
-_timezone                                       =
+_timezone                                       = Europe/Madrid
 # komma separierte list von Grossbuchstaben die in Kleine gewandelt werden müssen
 # siehe SearchClass.php setLowerChars()
 _search_chars_lo                                =

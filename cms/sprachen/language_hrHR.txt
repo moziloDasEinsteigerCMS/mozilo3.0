@@ -6,6 +6,7 @@
 #
 _dateformat_0                                   = d.m.Y, H:i:s
 _translator_0                                   = Mighty
+_timezone                                       = Europe/Zagreb
 # alttext_galleryimage_1                        = Slika u galeriji "{PARAM1}"
 alttext_image_1                                 = Slika "{PARAM1}"
 anchor_top_0                                    = Povratak na vrh
@@ -27,7 +28,7 @@ message_lastchange_0                            = zadnja promjena:
 message_nodatafound_0                           = Nije pronađen nijedan podudarni sadržaj.
 # message_previousimage_0                       = Prethodna slika
 message_search_0                                = traži
-message_searchresult_0                          = 
+message_searchresult_0                          = Rezultati pretraživanja
 message_searchresult_1                          = Rezultati pretraživanja za "{PARAM1}"
 message_searchnoresult_1                        = Za ove ključne riječi "{PARAM1}" nisu pronađeni rezultati.
 message_searchhelp_0                            = Za pretraživanje morate unijeti pojmove odvojene razmacima (pogoci su stranice koje sadrže barem jedan od ovih pojmova). Postavite pojmove koji sadrže razmak u navodnicima.

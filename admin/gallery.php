@@ -94,7 +94,7 @@ function gallery() {
     }
     $pagecontent .= '</div>';
 
-    $new_gallery = '<div class="js-new-gallery mo-ul new-gallery">';
+    $new_gallery = '<div class="js-new-gallery mo-ul new-gallery flex-100">';
     $new_gallery .= '<div class="js-file-dir mo-li ui-widget-content ui-corner-all card mb">';
     $new_gallery .= getFileUpload($specialchars->rebuildSpecialChars(getLanguageValue("gallery_name_new"),false,true), getLanguageValue("gallery_name_new"),getLanguageValue("images")," mo-hidden");
     $new_gallery .= '</div>';

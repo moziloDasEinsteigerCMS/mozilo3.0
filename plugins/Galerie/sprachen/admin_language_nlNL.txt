@@ -5,6 +5,7 @@ config_gallery_target                   = Moet het album worden geopend in een n
 config_gallery_target_self              = 
 config_gallery_target_blank             = 
 config_gallery_usethumbs                = Voorbeeld afbeeldingen maken
+config_gallery_captions                 = 
 config_gallery_placeholders             = 
 config_gallery_plugin_name              = 
 config_gallery_plugin_desc              = 

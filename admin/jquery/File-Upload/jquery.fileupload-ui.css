@@ -12,32 +12,16 @@
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0;}
 
 .fu-img-button {
-/*    padding:0; */
-/*    margin: 0 .8em 0 0;*/
-/*    border:none; */
-/*    vertical-align:middle;*/
-/*    cursor: pointer;*/
+
 }
 
 button.fu-img-button {
-/*    border:none;*/
-    /*background-repeat:no-repeat;
-    background-position:0 0;*/
- /*   background-color:transparent; */
-/*    padding:0;
-    margin: 0 .8em 0 0;*/
-/*    width:24px;*/
-/*    height:24px;*/
-/*    vertical-align:middle;
-    cursor: pointer;*/
+
 }
 
 .fileinput-button {
   overflow: hidden;
-  position: relative;
-/*  float: left;*/
-/*  margin: 0 .8em 0 .4em;*/
-  /*margin-right: 4px;*/
+  position: relative
 }
 /*1=oben, 2=rechts, 3=unten, 4=links*/
 .fileinput-button input {
@@ -52,31 +36,30 @@ button.fu-img-button {
   -moz-transform: translate(-300px, 0) scale(4);
   direction: ltr;
   cursor: pointer;
-  height: 24px;
+  height: 24px
 }
 
 .fileupload-buttonbar .toggle {
-  /*margin-bottom: 5px;*/
   margin: 0 0 0 auto
 }
 
 .fileupload-buttonbar button, .fileupload-button-img {
-/*    margin:0;
-    padding:0;*/
-/*    border:none; */
- /*   background:transparent; */
-  /*cursor: pointer;*/
+
 }
 
 .upload-bar-middle {margin-bottom: var(--main-margin)}
 
+.progress {
+  background-color: var(--border-color);
+}
+
 .files .progress {
-  width: 100%;
+  width: 100%
 }
 
 .progress-animated .bar {
   background: url(progressbar.gif) !important;
-  filter: none;
+  filter: none
 }
 
 .fileupload-loading {
@@ -85,100 +68,77 @@ button.fu-img-button {
   width: 128px;
   height: 128px;
   background: url(loading.gif) center no-repeat;
-  display: none;
+  display: none
 }
 
 .fileupload-processing .fileupload-loading {
-  display: block;
-}
-
-/* Fix for IE 6: */
-*html .fileinput-button {
-  line-height: 22px;
-  margin: 1px -3px 0 0;
-}
-
-/* Fix for IE 7: */
-*+html .fileinput-button {
-  margin: 1px 0 0 0;
+  display: block
 }
 
 /*1=oben, 2=rechts, 3=unten, 4=links*/
 ul.files {
     list-style-type: none;
     margin: .4em .4em 0 .4em;
-    padding:0;
+    padding:0
 }
 
 ul.files li {
     margin: 0 0 .4em 0;
-    padding:.4em;
-
+    padding:.4em
 }
 
 .mo-pading-l-r {
-/*    padding: 0 .8em 0 .8em; */
+
 }
 
 .files {
-/* width: 100%; */
-  /*margin: 10px 0;*/
-/*  border-collapse: collapse;*/
+
 }
 
 .files td {
 vertical-align:middle;
-  /*padding: 5px;
-  border-spacing: 5px;*/
   white-space: nowrap;
-  text-align: left;
+  text-align: left
 }
 
 .files td.subtitle {
-  white-space: normal;
+  white-space: normal
 }
 
 .files td.subtitle input ,.files td.name input {
-    width: 100%;
+    width: 100%
 }
 
 .files .subtitle span {
    width: 97%;
     min-height: 1rem;
- /*   display: block;*/
-    cursor: text;
+    cursor: text
 }
 
 .files .subtitle span.fu-empty {
-    background-color: var(--border-color);
+    background-color: var(--border-color)
 }
 
 .files img {
 vertical-align:middle;
-  border: none;
+  border: none
 }
 
 .files td.error {
     padding: 0;
-    font-size:1px;
- /* border-spacing: 0;*/
+    font-size:1px
+
 }
 
 .files .ui-state-error td.error {
-  /*border-spacing: 5px;*/
-    /*padding: 5px;*/
-    font-size:1em;
+    font-size:1em
 }
 
 .fu-ext-imgs {
-/*    width:24px;*/
-/*    height:24px;*/
-/*    background-image: url(ext_icons.png);*/
-/*    background-repeat:no-repeat;*/
+
 }
 
   .files .delete {
- /*   width: 60px;*/
  justify-content:space-between
   }
   
@@ -193,12 +153,12 @@ vertical-align:middle;
   }
   
  .files .template-download:first-of-type {
-  padding-top: 0;
+  padding-top: 0
 }
 
 .files .template-download:last-of-type {
   border-bottom: none;
-  padding-bottom: 0;
+  padding-bottom: 0
 }
 
 .progress-success .bar {
@@ -208,21 +168,20 @@ vertical-align:middle;
 
 @media (max-width: 480px) {
   .files .btn span {
-    display: none;
+    display: none
   }
   .files .preview * {
- /*   width: 40px;*/
+
   }
   .files .name * {
- /*   width: 80px;*/
     display: inline-block;
-    word-wrap: break-word;
+    word-wrap: break-word
   }
   .files .progress {
-/*    width: 20px;*/
+
   }
   .files .delete {
- /*   width: 60px;*/
+
   }
 }
 @media only screen and (min-width: 48rem) {

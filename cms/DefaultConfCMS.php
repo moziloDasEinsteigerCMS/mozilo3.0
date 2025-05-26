@@ -1,6 +1,6 @@
 <?php if(!defined('IS_CMS')) die();
 
-define("CMSVERSION","3.0.2");
+define("CMSVERSION","3.0.3");
 define("CMSNAME","Hope");
 // define("CMSREVISION","1");
 define("CMSSTATUS", "stabil");
@@ -46,7 +46,10 @@ define("SORT_CAT_PAGE",BASE_DIR.CONTENT_DIR_NAME."/SortCatPage.php");
 define("MAIL_REGEX",'/^([^\s@,:"<>]+)@([^\s@,:"<>]+\.[^\s@,:"<>.\d]{2,40}|(\d{1,3}\.){3}\d{1,3})$/');
 
 global $ALOWED_IMG_ARRAY;
-$ALOWED_IMG_ARRAY = array(".png",".jpg",".jpeg",".gif",".ico",".webp");
+$ALOWED_IMG_ARRAY = array(".png",".jpg",".jpeg",".gif",".ico",".x-icon",".webp");
+
+global $ALOWED_FILE_ARRAY;
+$ALOWED_FILE_ARRAY = array(".txt",".mp4", ".avi", ".mpg", ".mov", ".wmv",".doc", ".docx",".mp3",".wav",".wma");
 
 # Um Cross-Site Scripting-Schwachstellen zu verhindern
 $_SERVER["SCRIPT_NAME"] = htmlspecialchars($_SERVER["SCRIPT_NAME"], ENT_QUOTES, CHARSET);

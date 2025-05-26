@@ -166,8 +166,25 @@ function admin() {
         }
     }
     // Zeile "UPLOAD-FILTER"
-    if(ROOT or in_array("noupload",$show)) {
-        $template[$titel][] = array(getLanguageValue("admin_text_uploadfilter"),'<input type="text" class="mo-input-text" name="noupload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("noupload"),true,true).'">');
+     if(ROOT or in_array("upload",$show)) {
+        global $ALOWED_IMG_ARRAY;
+         global $ALOWED_FILE_ARRAY;
+         $line_break = array('.nnn');
+         $combined_extension = array_merge($ALOWED_IMG_ARRAY,$ALOWED_FILE_ARRAY,$line_break);
+         $extension_list = sort($combined_extension);
+         $extension_list = implode(',', $combined_extension);
+         $extension_list = str_replace('.', '', $extension_list);
+         $extension_list = str_replace('nnn,', '<br>', $extension_list);
+    //    $template[$titel][] = array(getLanguageValue("admin_text_uploadfilter"),'<input type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'">');
+        $template[$titel][] = getLanguageValue("admin_text_upload_notice")
+        .'<div class="flex">'
+        .'<div class="mo-in-li-r">'.getLanguageValue("admin_text_uploadfilter").'</div><div>'.''.getLanguageValue("admin_text_upload_available").'<span class="tooltip ml"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path> <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path> </svg>
+        
+        <span class="tooltiptext">'.$extension_list.'</span>
+        </span><input type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'">'.'</div>'
+        
+        .'</div>';
+  //      .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'"></div>';   
     }
 
     global $loginpassword;

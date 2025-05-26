@@ -40,7 +40,7 @@ $.each($(options.filesContainer).find('.template-download'), function (index) {
         var time = (new Date()).getTime();
         $(this).hide(0).attr('id','oldfile'+index+time);
         current_appendTo.addClass('ui-state-error name-twice').attr('id','newfile'+index+time);
-        current_appendTo.find('.progress').prepend('<b>Überschreibe Datei<\/b>');
+        current_appendTo.find('.error').prepend('<span class="red">'+mozilo_lang["error_upload_replace"]+'<\/span>');
     }
 });
 //$("#out").html($("#out").html()+"<br>files=");
@@ -140,7 +140,7 @@ that._changeFilesCount();
                                 if(file.error)
                                     context.find('.error').html('Error: '+file.error);
                                 else
-                                    context.find('.error').html('Error: Unbekant keine json');
+                                    context.find('.error').html('Error: Unbekannt, keine json');
                             } else {
 //$("#out").html($("#out").html() + "<br>file.pixel_w="+ file.pixel_w);
 //$("#out").html($("#out").html() + "<br>context="+ context.attr('class'));
@@ -214,7 +214,7 @@ mimeType: this._mimeType,
                 if (!this.options.previewSourceFileTypes.test(file.type))
                     return 'acceptFileTypes';
             } else {
-                if (this.options.acceptFileTypes.test(file.name))
+                if (this.options.acceptFileTypes.test(file.type))    // (file.name))->noupload
                     return 'acceptFileTypes';
             }
             if (this.options.maxFileSize &&
@@ -234,7 +234,7 @@ mimeType: this._mimeType,
                 ext = file.name.substring(file.name.lastIndexOf(".")+1).toLowerCase();
             var img = "none";
             if(typeof ext == "string") {
-                if(ext == "png" || ext == "gif" || ext == "jpg" || ext == "jpeg" || ext == "ico" || ext == "webp") {
+                if(ext == "png" || ext == "gif" || ext == "jpg" || ext == "jpeg" || ext == "ico" || ext == "webp" || ext == "bmp") {
                     img = "img";
                 } else if(ext == "doc" || ext == "odf") {
                     img = "doc";

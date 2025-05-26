@@ -23,6 +23,5 @@ Bleibe bei moziloCMS immer auf dem laufenden:
 [liste|[moziloCMS_Forum=moziloCMS Forum|]]
 [liste|[moziloCMS_Media=moziloCMS Mediaseite|]]
 [liste|[moziloCMS_Facebook=moziloCMS auf Facebook|]]
-[liste|[moziloCMS_Twitter=moziloCMS auf Twitter|]]
 [liste|[moziloCMS_Github=moziloCMS auf Github|]]
 [liste|[moziloCMS_Mastodon=moziloCMS auf Mastodon|]]

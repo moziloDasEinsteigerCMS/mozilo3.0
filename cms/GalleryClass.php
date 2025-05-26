@@ -14,15 +14,24 @@ class GalleryClass {
     var $GalleryTemplate = false;
     function __construct() {
         global $ALOWED_IMG_ARRAY;
-        $this->allowed_pics = $ALOWED_IMG_ARRAY;
+        global $ADMIN_CONF;
+
+        $acceptfiletypesuser = "";
+        
+        if(empty ($acceptfiletypesuser)) {
+        	$this->allowed_pics = $ALOWED_IMG_ARRAY;
+        	} else {
+        		$acceptfiletypesuser = ".".str_replace("%2C","%2C.",$ADMIN_CONF->get("upload"));
+        		$acceptfiletypesuser = explode("%2C",$acceptfiletypesuser);
+        		$this->allowed_pics = array_merge($ALOWED_IMG_ARRAY,$acceptfiletypesuser);
+        		}		
+				
         if(isset($_REQUEST['galtemplate']))
             $this->GalleryTemplate = true;
 
         # das ist nur ein array mit den Galerie Ordnernamen
         # ohne jegliche Prüfung
         $this->GalleriesArray = getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME,"dir");
-#        if(isset($_REQUEST['gal']) and strlen($_REQUEST['gal']) > 0)
-#            $this->currentGallery = $_REQUEST['gal'];
     }
 
     # Das muss nach $GalleryClass = new GalleryClass(); gemacht werden
@@ -531,7 +540,7 @@ $description = $specialchars->rebuildSpecialChars($description,false,true);
             $css = ' class="'.$css.'"';
         else
             $css = NULL;
-        return '<img src="'.$this->get_Src($preview,$index,$group).'" alt="'.$alt.'"'.$css.' hspace="0" vspace="0" border="0" loading="lazy">';
+        return '<img src="'.$this->get_Src($preview,$index,$group).'" alt="'.$alt.'"'.$css.' loading="lazy">';
     }
 
     function is_Activ($index) {
@@ -627,7 +636,7 @@ $description = $specialchars->rebuildSpecialChars($description,false,true);
             return NULL;
         if($css === false)
             $css = "gallery";
-        $thumbs = '<table cellspacing="0" border="0" cellpadding="0" class="'.$css.'table">';
+        $thumbs = '<table class="'.$css.'table">';
         $td_width = floor(100 / $this->Cols);
         foreach ($this->get_ColsRowsArray() as $row => $row_array) {
             $thumbs .= "<tr>";

@@ -1,7 +1,3 @@
-
-#admin-user ul.submenu {
-display: block;}
-
 .do-body-dialog #do-content {
   }
 
@@ -12,6 +8,10 @@ height: initial
 
 .admin-side-docu .nav {
 max-height: initial;
+}
+
+#admin-user ul.submenu {
+display: block;
 }
 
 #do-box h1 {
@@ -432,6 +432,76 @@ align-items: center;
 
 .do-arrow-warp {
     position:relative;
+}
+
+/*Sprachauswahl Menu*/
+#do-lang .dropdown {
+  position: relative;
+  width: 14em;
+}
+
+#do-lang .dropdown-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--main-padding) calc(var(--main-padding)*2);
+  border-radius: var(--border-radius);
+  border: none
+}
+
+#do-lang .dropdown-button .dropdown-button-arrow {
+position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 14px;
+  z-index: 2;
+  fill: currentColor;
+  transition: all 0.4s ease;
+}
+
+#do-lang .dropdown-button-arrow {
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+#do-lang .dropdown[data-open=true] .dropdown-button-arrow {
+  transform: rotate(180deg);
+}
+
+#do-lang .dropdown-menu {
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  margin-top: var(--main-margin);
+  padding: var(--main-padding) 0;
+  background: var(--main-bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+#do-lang .dropdown[data-open=true] .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+#do-lang .dropdown-menu-item {
+  display: flex;
+ padding: var(--main-padding) calc(var(--main-padding)*2);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+#do-lang .dropdown-menu-item:focus {
+  background-color: hsl(var(--clr-primary)/10%);
+}
+
+#do-lang .dropdown-menu.slide {
+  transform: translateY(1rem);
+}
+#do-lang .dropdown[data-open=true] .dropdown-menu.slide {
+  transform: translateY(0);
 }
 
 @media only screen and (min-width: 48em) {

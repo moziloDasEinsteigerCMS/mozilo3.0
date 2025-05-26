@@ -125,3 +125,6 @@ $(function () {
     });
 });
 
+document.querySelector('#menu-fix-content details').addEventListener('click', function(e) {
+    e.preventDefault();
+});

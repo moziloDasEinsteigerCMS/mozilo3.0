@@ -6,7 +6,7 @@ function makeDefaultConf($conf_array,$for_new = false) {
     $basic = array(
                     'text' => array(
                         'adminmail' => '',
-                        'noupload' => 'php%2Cphp3%2Cphp4%2Cphp5%2Cphp6%2Csvg%2Cxml',
+                        'upload' => '',  // 'php%2Cphp3%2Cphp4%2Cphp5%2Cphp6%2Csvg%2Cxml',
                         'language' => 'deDE'),
                     'digit' => array(
                         'backupmsgintervall' => '30',
@@ -26,13 +26,13 @@ function makeDefaultConf($conf_array,$for_new = false) {
                         'backupmsgintervall',
                         'getbackup',
                         'chmodnewfilesatts',
-                        'noupload',
+                        'upload',
                         'userpassword')
                     );
 
     $main = array(
                     'text' => array(
-                        'titlebarseparator' => '%20%3A%3A%20',
+                        'titlebarseparator' => '%20-%20',
                         'websitedescription' => '',
                         'websitekeywords' => '',
                         'titlebarformat' => '%7BWEBSITE%7D%7BSEP%7D%7BCATEGORY%7D%7BSEP%7D%7BPAGE%7D',
@@ -78,8 +78,7 @@ function makeDefaultConf($conf_array,$for_new = false) {
 'moziloCMS_Forum' => '[link={DESCRIPTION}|https://www.mozilo.de/forum/{VALUE}]',
 'moziloCMS_Media' => '[link={DESCRIPTION}|https://www.mozilo.de/media/{VALUE}]',
 'moziloCMS_Facebook' => '[link={DESCRIPTION}|https://www.facebook.com/moziloCMS-109072477457291/{VALUE}]',
-'moziloCMS_Twitter' => '[link={DESCRIPTION}|https://twitter.com/mozilo/{VALUE}]',
-'moziloCMS_Github' => '[link={DESCRIPTION}|https://github.com/moziloDasEinsteigerCMS/mozilo2.0/{VALUE}]',
+'moziloCMS_Github' => '[link={DESCRIPTION}|https://github.com/moziloDasEinsteigerCMS/mozilo3.0/{VALUE}]',
 'moziloCMS_Mastodon' => '[link={DESCRIPTION}|https://mastodon.social/@mozilo/{VALUE}]');
 
     $loginpass = array('name' => '',

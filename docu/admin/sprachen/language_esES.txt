@@ -1,9 +1,10 @@
 _dateformat                          = d-m-Y, H:i:s
-_translator                          = Miguel A. Glez. "euato"
+_translator                          = Miguel A. Glez. "euato", mozilo
 # der Wert ist für date_default_timezone_set()
 _timezone                            = Europe/Madrid
-language_name                        = Español
-cms_admin_titel                      = Página de Administración
+language_name                        = Español es_ES
+html_lang                            = es
+cms_admin_titel                      = Administrador de moziloCMS
 file                                 = archivo
 files                                = Archivos
 page                                 = Página de contenido 
@@ -13,14 +14,14 @@ name                                 = Nombre
 url_adress                           = dirección url
 contents                             = Contenidos
 category                             = Categoría
-day                                  = día
-days                                 = días
-hour                                 = hora
-hours                                = horas
-minute                               = minuto
-minutes                              = minutos
-second                               = segundo
-seconds                              = segundos
+day                                  = Día
+days                                 = Días
+hour                                 = Hora
+hours                                = Horas
+minute                               = Minuto
+minutes                              = Minutos
+second                               = Segundo
+seconds                              = Segundos
 error_chmod                          = No se pueden modificar los permisos sobre el archivo
 error_mkdir                          = No se puede crear el directorio
 error_no_file_dir                    = No existe el archivo o directorio
@@ -37,7 +38,7 @@ error_write_sitemap                  = No se puede escribir el archivo sitemap.x
 error_write_robots                   = No se puede escribir el archivo robots.txt
 error_read_robots                    = No se puede leer el archivo sitemap.xml
 error_no_root                        = No tienes permitido realizar esta acción.
-error_no_javascript                  = Tu navegador no soporta Javascript o está deshabilitado <br /> El área de administración de esta versión de mozilo requiere Javascript.
+error_no_javascript                  = Tu navegador no soporta Javascript o está deshabilitado <br> El área de administración de esta versión de mozilo requiere Javascript.
 error_no_freename                    = El nombre del archivo ya existe
 error_input_empty                    = Debes rellenar el campo de entrada de texto 	
 error_multi_user_tab                 = Lo siento, otro usuario está ahora mismo trabajando en <b>{PARAM1}</b>. Por favor, vuelve a intentarlo en <b>{PARAM2}</b> segundos. 
@@ -47,6 +48,8 @@ error_file_upload                    = Error al subir archivo
 error_zip_nozip                      = El archivo no es un ZIP	
 error_read_htaccess                  = Error al leer el archivo .htaccess
 error_write_htaccess                 = Error al escribir el archivo .htaccess
+error_upload_filetype                = Tipo de archivo no permitido.
+error_upload_replace                 = Ya existe un archivo con el nombre. Se debe reemplazar el archivo?
 
 dialog_title_error                   = Mensajes de error
 dialog_title_messages                = Mensajes
@@ -56,27 +59,29 @@ dialog_title_delete                  = ¿Realmente deseas eliminar?
 dialog_title_lastbackup              = Recordatorio copia de seguridad
 dialog_title_docu                    = Documentación
 dialog_title_coloredit               = Editar color
-yes                                  = sí
-no                                   = no
+yes                                  = Sí
+no                                   = No
 pixels                               = Píxeles
 logout_button                        = Cerrar sesión
 website_button                       = Sitio web
 help_website_button                  = Pulsa aquí para ver el sitio en modo borrador
-target                               = Destino:
-self                                 = misma pestaña
-blank                                = nueva pestaña
-password                             = contraseña
-username                             = nombre de usuario
+target                               = Target:
+self                                 = self
+blank                                = blank
+admin_login                          = Área de administración
+password                             = Contraseña
+username                             = Nombre de usuario
+login_submit                         = Registro
 login_return                         = Volver al sitio web
 incorrect_login                      = Datos de acceso incorrectos, por favor inténtalo de nuevo
 install_login                        = Debes lanzar el instalador primero
-images                               = imágenes
+images                               = Imágenes
 function_exists_error                = Esta función no existe
-button_cancel                        = cancelar
+button_cancel                        = Cancelar
 button_save                          = Guardar
 button_preview                       = Vista previa
 files_button                         = Archivos
-get_memory                           = memoria usada
+get_memory                           = Memoria usada
 get_execut_time                      = Sitio creado en {PARAM1} segundos
 
 properties_error_save                = Error mientras se guardaban las propiedades. Comprueba los permisos del archivo
@@ -114,7 +119,7 @@ toolbar_platzhalter_MAINMENU         = Menú principal
 toolbar_platzhalter_DETAILMENU       = Detalle del menú
 toolbar_platzhalter_MEMORYUSAGE      = Memoria usada por moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Este valor representa cuánto tiempo tarda moziloCMS en cargar la página
-toolbar_platzhalter_VALUE            = valor
+toolbar_platzhalter_VALUE            = Valor
 toolbar_platzhalter_DESCRIPTION      = Descripción
 toolbar_editor_linenumber            = Mostrar / ocultar los números de línea
 toolbar_editor_controlcharacter      = Mostrar / ocultar los caracteres de control
@@ -135,9 +140,9 @@ filter_text_gallery                  = Galerías
 filter_text_plugins                  = Complementos
 filter_text_files                    = Archivos
 filter_text_catpage                  = Categorías
-filter_text_template                 = 
+filter_text_template                 = Plantilla
 
-home_button                          = Inicio
+home_button                          = Información
 home_multiuser                       = Reseteo multiusuario
 home_multiuser_text                  = Cierra todas las demás sesiones de administradores que estén activas. <br /> Esta acción desbloquea las pestañas de administración bloqueadas.
 home_multiuser_button                = Cerrar la sesión al resto de usuarios
@@ -145,25 +150,26 @@ home_multiuser_mode_text             = Modo multiusuario disponible (tiempo máx
 home_text                            = Información del sistema
 home_cmssize_text                    = Tamaño total de moziloCMS en el servidor
 home_cmsversion_text                 = Versión instalada de moziloCMS
-home_cmsrevision_text                = revisión
+home_cmsrevision_text                = Revisión
 home_cmsupdate_text                  = Comprobación de nuevas versiones disponibles de moziloCMS
 home_cmsupdate_text_noupdate         = Está instalada la última versión disponible
 home_cmsupdate_text_update           = Nueva versión disponible. Revisión: 
 home_cmsupdate_text_download         = Descargar
+home_cmsupdate_text_download_title   = Descargue la última versión de moziloCMS
 home_cmsupdate_text_failed           = Comprobación no disponible. Por favor, revisa tu conexión a internet
-home_cmsupdate_text_failed_fopen     =
+home_cmsupdate_text_failed_fopen     = Examen no posible. "allow_url_fopen" está deshabilitado.
 home_cmsupdate_unknown_version       = ¡Estás usando una versión de moziloCMS desconocida!
 home_cmsupdate_stable_version        = Descargue la versión actual de moziloCMS:
 home_phpversion_text                 = Versión de PHP instalada
-home_error_phpversion_text           = La versión de PHP es demasiado antigua para moziloCMS, se requiere al menos la versión 5.5.1.
+home_error_phpversion_text           = La versión de PHP es demasiado antigua para moziloCMS, se requiere al menos 7.x.
 home_installpath_text                = Ruta del servidor donde moziloCMS está instalado
 home_help                            = Ayuda
 home_help_text_docu                  = Documentación detallada -en alemán- (abre en nueva ventana)
 home_help_text_info                  = Breve introducción a moziloCMS -en alemán- (abre en la misma ventana)
 home_no_help                         = No hay ayuda disponible
-home_mod_rewrite                     = mod_rewrite (<a href="https://httpd.apache.org/docs/current/mod/mod_rewrite.html">módulo del servidor Apache</a>) está disponible
-home_error_mod_rewrite               = mod_rewrite (<a href="https://httpd.apache.org/docs/current/mod/mod_rewrite.html">módulo del servidor Apache</a>) no está disponible 
-home_mod_rewrite_deact               = mod_rewrite (<a href="https://httpd.apache.org/docs/current/mod/mod_rewrite.html">módulo del servidor Apache</a>) no está activado
+home_mod_rewrite                     = mod_rewrite disponible
+home_error_mod_rewrite               = mod_rewrite no está disponible
+home_mod_rewrite_deact               = no activado
 home_error_safe_mode                 = ¡El modo seguro está activado!<br > (moziloCMS puede no funcionar adecuadamente).
 home_text_safemode                   = Modo seguro activado
 home_text_gd                         = GDlib está disponible.
@@ -188,7 +194,7 @@ category_button                      = Categorías
 page_button                          = Página contenido
 page_status                          = Estado
 page_edit                            = Editar página de contenido
-page_saveasdraft                     = borrador
+page_saveasdraft                     = Borrador
 page_saveashidden                    = oculto
 page_saveasnormal                    = normal
 page_error_save                      = Error al guardar la página de contenido. ¡Comprueba los permisos del archivo!
@@ -219,7 +225,7 @@ gallery_text_from_ftp                = Transformar los nombres de todas las gale
 gallery_text_from_ftp_button         = Compatibilidad CMS
 gallery_text_subtitle                = Pie de foto:
 
-config_button                        = Ajustes
+config_button                        = Configuración
 config_error_defaultcat_emty         = Actualmente, no hay categorías disponibles
 config_error_defaultcat_existed      = Esta categoría no existe
 config_error_language_empty          = No se puede cargar el archivo de idioma
@@ -229,12 +235,12 @@ config_error_layouts_existed         = Este diseño no existe
 config_error_modrewrite              = mod_rewrite (módulo del servidor Apache) no está disponible
 config_input_catnamedpages           = Ocultar
 config_input_download                = Descargas de archivos
-config_input_draftlayout             = No hay diseño asociado al "modo mantenimiento"
+config_input_draftlayout             = sin diseño de sitio de construcción
 config_input_draftmode               = Modo en mantenimiento
 config_input_link                    = Enlaces externos
 config_input_modrewrite              = Usar mod_rewrite
 config_input_pagesasdefaultpage      = Como página de contenidos por defecto para categorías, siempre que sea la primera página de contenido
-config_input_pagesincmsvariables     = "Dentro de las variables de la 'página próxima / previa'" 
+config_input_pagesincmsvariables     = En los marcadores de posición para la página de contenido anterior/siguiente
 config_input_replaceemoticons        = Habilitar / deshabilitar emoticonos
 config_input_search                  = Dentro de los resultados de la búsqueda
 config_input_showsyntaxtooltips      = Mostrar mensaje emergente en los enlaces
@@ -245,7 +251,7 @@ config_input_usesyntax               = Usar sintaxis CMS
 config_text                          = Aquí puedes cambiar los ajustes que afectan al comportamiento de moziloCMS
 config_text_catnamedpages            = ¿Deben ocultarse en el submenú de detalle las páginas de contenido que tengan el mismo nombre que sus categorías?
 config_text_cmslanguage              = Selecciona el idioma por defecto para los textos mostrados en el sitio web <br />(p. ej. mensajes emergentes)
-config_text_cmslayout                = Selecciona el diseño para tu CMS mozilo. Puedes conseguir más diseños <a href="https://www.mozilo.de/media/Layouts%202.0.html">aquí</a> 
+config_text_cmslayout                = Seleccione la plantilla de diseño del sitio web.
 config_text_defaultcat               = Selecciona la categoría de inicio por defecto del sitio web<br /><i>Se muestra cuando se accede al sitio web por primera vez o si no existe una página</i>
 config_text_defaultcolors            = Selector de color para definir y guardar la paleta de colores predefinida.<br />Arrastrar el cuadro del color seleccionado hasta el rectángulo de la izquierda antes de guardar (se pueden ordenar una vez desplazados)
 config_text_draftmode                = Poner el sitio en "modo mantenimiento": <br /> Sólo la categoría de inicio será mostrada y una plantilla especial del sitio. <br /> Menú para seleccionar la plantilla de "modo mantenimiento"
@@ -254,27 +260,27 @@ config_text_replaceemoticons         = Uso de emoticonos en el editor de conteni
 config_text_showhiddenpages          = Por defecto, las páginas de contenido oculto nunca se muestran en el sitio. <br />Aquí puedes definir excepciones ¿dónde se debería revelar contenido invisible?
 config_text_showsyntaxtooltips       = ¿Quieres que los usuarios del sitio vean una descripción al pasar el puntero sobre un enlace?
 config_text_target                   = ¿Qué enlaces deben abrirse en una nueva pestaña / ventana del navegador?
-config_text_usersyntax               = Puedes añadir tus propios elementos a la sintaxis CMS. <br /><i>Para más información <a href="https://www.mozilo.de/moziloCMS%202.0/Anleitung/Editor/Eigene%20Syntaxelemente.html">consulta esta referencia</a> (en alemán)<i/>
+config_text_usersyntax               = Crea tus propios elementos de sintaxis.
 config_text_usesitemap               = Crea un mapa del sitio para los motores de búsqueda <br />Archivo: <i>sitemap.xml</i> en la raiz de la instalación
-config_text_usesyntax                = Usar sintaxis de CMS
+config_text_usesyntax                = Crea tus propios elementos de sintaxis.
 config_text_websitedescription       = Describe -brevemente- tu sitio web. El texto se mostrará como información adicional en los motores de búsqueda. 
 config_text_websitekeywords          = Determina las palabras claves asociadas a tu sitio web. Serán tenidos en cuenta por los motores de búsqueda, pero ten presente que muchos motores de búsqueda penalizan el abuso de palabras claves con una calificación peor o incluso eliminándola de los indexados. 
 config_text_websitetitle             = ¿Cuál será el título global del sitio web?
-config_text_websitetitlebar          = Composición del título que se mostrará en la barra del navegador:<br /><br />Elementos disponibles:<br><ul><li>{WEBSITE} = Título global definido en el primer campo</li><li>{SEP} = Separador definido en el segundo campo</li><li>{CATEGORY} = Nombre de la categoría mostrada actualmente</li><li>{PAGE} = Nombre de la página de contenido que se muestra actualmente</li><li>Cualquier texto literal</li></ul> 
+config_text_websitetitlebar          = Lista de lo que debe mostrarse en la barra de título del navegador.<br>Se permiten título=<b>{WEBSITE}</b>, separador=<b>{SEP}</b>, categoría=<b>{CATEGORY}</b>, página de contenido=<b>{PAGE}</b> y <b>Texto</b> 
 config_text_websitetitleseparator    = ¿Cuál será el separador entre los elementos de la barra de títulos?
 config_titel_cmsglobal               = Configuración global
 config_titel_cmssyntax               = Configuración sintaxis CMS
 config_titel_expert                  = Configuración avanzada
 config_titel_usersyntax_test         = Comprobar sintaxis
 
-admin_button                         = Administrar
+admin_button                         = Administrador
 admin_button_del_user                = Eliminar usuario
 admin_button_get_backup              = Descargar copia de seguridad
 admin_button_include_catpage         = incluir Categorías
 admin_button_include_cms             = incluir moziloCMS
 admin_button_include_docu            = incluir Documentación 
 admin_button_include_gallery         = incluir Galerías
-admin_button_include_layouts         = incluir Plantillas
+admin_button_include_layouts         = incluir Plantilla
 admin_button_include_plugins         = incluir Complementos
 admin_error_adminmail                = Por favor, introduce una dirección de correo válida
 admin_error_backupmsgintervall       = El valor debe ser numérico con al menos 4 dígitos de longitud.
@@ -295,22 +301,24 @@ admin_noroot_admin                   = Administración
 admin_noroot_config                  = Ajustes
 admin_noroot_plugins                 = Complementos
 admin_noroot_tabs                    = Pestañas administración
-admin_noroot_template                = Plantillas
+admin_noroot_template                = Plantilla
 admin_noroot_text                    = Selecciona el acceso y permisos de los que disfrutará el usuario administrador
 admin_text                           = Aquí puedes modificar los ajustes que afectan al comportamiento de la administración de mozilo.
-admin_text_adminmail                 = Esta dirección de correo será la receptora de los mensajes enviados relacionados con la administración de mozilaCMS. (p. ej. recuperación de cuenta)<br /> No es el destino de los mensajes del formulario de contacto (ese dato debes especifícarlo dentro de la configuración del complemento "CONTACT").<br /><i> En la página de inicio del área de administración podrás comprobar si tu servidor es capaz de enviar correos</i>
-admin_text_backup                    = Realizar una copia de seguridad periódica es la mejor manera de tener tu información a salvo. <br />Por eso mozilo te lo quiere recordar, introduce el número de días que pasarán entre los mensajes de recordatorio -introduciendo '0' se desactivará esta función, pero está explícitamente desaconsejado-
-admin_text_chmodnewfiles             = Permisos de archivos a aplicar por defecto en el servidor. (Tres dígitos, al estilo del <a href="https://desarrolloweb.com/articulos/tutorial-comando-chmod.html" target="_blank">comando CHMOD</a>)<br><i>Usar sólo en el caso de que la asignación automática falle o después de una carga masiva de archivos a través de FTP<i/>
+admin_text_adminmail                 = Dirección de correo electrónico a la que se deben enviar notificaciones sobre eventos importantes.
+admin_text_backup                    = Después de cuántos días debe moziloCMS recordarle que debe realizar una copia de seguridad del sitio web? (0 = nunca)
+admin_text_chmodnewfiles             = Establezca los permisos de archivo que moziloCMS generalmente debería tener en el servidor.
 admin_text_get_backup                = Crear y descargar una copia de seguridad (archivo .zip).<br /> Por favor, selecciona todo lo que quieras incluir en la misma. <br />Dependiendo del tamaño resultante el tiempo de volcado variará.
-admin_text_uploadfilter              = Tipos de archivos que <b>NO están permitidos subir</b>.
-admin_theme_toggle                    = alternar entre tema claro y oscuro
+admin_text_upload_notice             = <i>Nota: Debido a preocupaciones de seguridad en torno a moziloCMS, recomendamos encarecidamente no utilizar las extensiones de archivo (tipo) php, SVG, XML.</i>
+admin_text_uploadfilter              = Ingrese extensiones de archivo adicionales para cargar archivos aquí.<br> <b>Sin</b> espacios y solo separados por <u>comas</u>.
+admin_text_upload_available          = Tipos de archivos disponibles de forma predeterminada:
+admin_theme_toggle                   = Alternar entre tema claro y oscuro
 admin_user_greeting                  = Hola
 
-admin_copy                          = Copiar
-admin_edit                          = Editar
-admin_delete                          = Extinguir
-admin_rename                          = Rebautizar
-admin_new                            = 
+admin_copy                           = Copiar
+admin_edit                           = Editar
+admin_delete                         = Extinguir
+admin_rename                         = Rebautizar
+admin_new                            = Nuevo
 
 admin_user_select_websitetitle       = Título barra navegación
 admin_user_select_websitedescription = Descripción / palabras clave del sitio web
@@ -333,12 +341,13 @@ admin_user_select_adminmail          = Dirección de correo
 admin_user_select_backupmsgintervall = Recordatorio de copia de seguridad
 admin_user_select_getbackup          = Copia de seguridad del sitio
 admin_user_select_chmodnewfilesatts  = Permisos
-admin_user_select_noupload           = Tipos de archivos no permitidos
+admin_user_select_upload             = Tipos de archivos permitidos
 admin_user_select_userpassword       = Acceso usuario
 
-pw_help                              = <i>Nota:<br />El nombre de usuario debe contener al menos cinco caracteres.<br />La contraseña al menos debe contener ocho caracteres, mayúsculas y minúsculas y números.</i><br />&nbsp;<br />
-pw_text_login                        = Usuario y contraseña para el <b>superusuario</b>
+pw_help                              = <p><i>Nota: El nombre de usuario debe tener al menos cinco caracteres y la contraseña al menos ocho caracteres. El nombre de usuario sólo puede contener letras, números, guiones o guiones bajos. La contraseña debe contener letras mayúsculas y minúsculas y números.</i></p>
+pw_text_login                        = <p>Nombre de usuario y contraseña para el <b>superusuario</b></p>
 userpw_text_login                    = Usuario y contraseña para otros <b>usuarios administradores</b> (con acceso y permisos restringidos)
+pw_error_invalidname                 = El nombre de usuario sólo puede contener letras, números, guiones o guiones bajos.
 pw_error_missingvalues               = No todos los campos fueron rellenados
 pw_error_newpwerror                  = La contraseña nueva no cumple las normas (al menos debe contener ocho caracteres, mayúsculas, minúsculas y números).
 pw_error_newpwmismatch               = Las contraseñas no coinciden
@@ -375,7 +384,7 @@ plugins_button_install               = Instalar
 plugins_button_delete                = Eliminar todos los complementos seleccionados
 plugins_select                       = o desde la carpeta "complementos"
 
-template_button                      = Plantillas
+template_button                      = Plantilla
 template_title_grafiken              = Imágenes
 template_title_html_css              = Archivos HTML y CSS
 template_title_plugins               = Complemento para archivos CSS
@@ -387,10 +396,10 @@ template_text_fileinfo               = Todos los archivos serán sobrescritos
 template_button_install              = Instalar
 template_button_delete               = Eliminar todas las plantillas seleccionadas
 template_input_set_active            = Activar
-template_input_active                = 
-template_select                      = o desde la carpeta "plantillas"
+template_input_active                = Activado
+template_select                      = o desde la carpeta "plantilla"
 
-install_tab_help                     = Ayuda
+install_tab_help                     = Pinitos
 install_tab_language                 = Idioma
 install_tab_chmod_test               = Permisos
 install_tab_environment              = Entorno de servidor
@@ -401,12 +410,12 @@ install_tab_finish                   = Completo
 install_toggle_open                  = ... Leer más
 install_toggle_close                 = Menos ...
 
-install_help_title                  = Bienvenido al instalador de moziloCMS
-install_help                         = Los siguientes pasos valoraran el cumplimiento de las condiciones necesarias para instalar moziloCMS.<br />Además, las configuraciones básicas quedarán hechas. <br /> <i>Todas ellas editables -en cualquier momento- desde el área de administración</i>.<br /><br /><b>¡Atención!</b> Los siguientes archivos deben ser eliminados después de la instalación por motivos de seguridad: "install.php" (en el caso de existir) "update.php" y la carpeta "update".
+install_help_title                   = Bienvenido al instalador de moziloCMS
+install_help                         = En los siguientes pasos, probaremos si el servidor web o el paquete de alojamiento web cumple con los requisitos de moziloCMS. Además se realizan ajustes preestablecidos básicos. Todas las configuraciones se pueden cambiar más tarde en cualquier momento en el área de administración.</p><p>Si tienes problemas con los "permisos de archivos" o las "URL bonitas", probablemente encontrarás la ayuda que necesitas en <a href="https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank">esta publicación del foro</a>. De lo contrario, simplemente pregunte.</p><p><b>El programa de instalación también es necesario si:</b></p><ul><li>Ha olvidado su contraseña o</li><li>moziloCMS se ha copiado de su computadora al servidor web o</li><li>necesita actualizar datos de una versión anterior de moziloCMS.</li></ul><p><b>¡ATENCIÓN!</b></p><p>Las carpetas "<b>install.php</b>" y, si están presentes, "<b>update.php</b>", así como "<b>update</b>", deben eliminarse después del proceso de instalación, ya que representan un riesgo de seguridad significativo. Por favor, compruebe si este es el caso.</p>
 
-install_help_update_title            = <b>Bienvenido al asistente de instalación de moziloCMS</b> <br /> <br /> Los siguientes pasos están encaminados a comprobar si el servidor o entorno host cumple los requisitos de moziloCMS. <br /> Además, las configuraciones básicas quedarán hechas. <br /><i>Todas ellas editables posteriormente -en cualquier momento- desde el área de administración.</i> <br /> <br /> Para problemas con los "permisos de archivos" o "URL's amigables" existe una <a href=" https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank"> entrada en el foro </a>(en alemán) donde probablemente encontrarás la ayuda necesaria. Si no es asi, simplemente pregunta... <br /> <br /> <b> El instalador también es necesario si: </b> <ul> <li> La contraseña se olvidó </li> <li> Si la instancia se copia desde un entorno local a un servidor </li> <li> Todavía no se ha actualizada una versión anterior a la moziloCMS 2.0. </li> </ul> <br /> <b> ¡Atención! </b> <br /> Los archivos "<b>install.php</b>" y "<b>update.php</b>" y la carpeta "<b>update</b>" deben ser eliminados después del proceso de instalación al ocupar una gran cantidad de espacio (asegúrate de ello).
+install_help_update_title            = <p><b>Instrucciones de actualización</b> de <b>moziloCMS 1.12, moziloCMS 2.0</b> a la versión actual <b>moziloCMS 3.x</b></p>
 
-install_help_update_text             = Las acciones realizadas por el instalador (en concreto al actualizar desde una versión anterior a 2.0) pueden llevarse a cabo también de manera manual en cualquier momento: <ul> <li> Copiar todas las categorías con sus contenidos en la versión 2.0 de la carpeta: "<b>kategorien</b>". </li> <li> Copiar las galerías en la carpeta 2.0 "<b>galerien</b>" </li> <li> Copiar los diseños en la carpeta 2.0 de "<b>layouts</b>". </li> <li> Además en la carpeta raíz (usualmente: moziloCMS/...) se ha creado la carpeta "<b>update</b>" </li> <li> Dicha ubicación "<b>update</b>", contiene todos los archivos <b>.conf</b>, los ubicados en <b>admin/conf</b> y en <b>cms/conf</b> y, si está disponible <b> cms/form/formular.conf</b></li><li>Copiar el archivo de configuración de complementos de moziloCMS 1.12 (<b>plugin.conf</b>) en moziloCMS 2.0 update </li></ul> <br /> Prerrequisitos: <ol> <li> El complemento está también disponible para moziloCMS 2.0 </li> <li> Los ajustes son demasiado complicados para ser llevados a cabo de manera manual</li> <li> Existen los mismos ajustes que en la versión anterior </li> </ol> Instrucciones: <ol> <li> Si existiera el archivo <b> plugin.conf.php </b> se debe eliminar. </li> <li> Desde el antiguo complemento, pegar <b>plugin.conf</b> dentro de la nueva copia. </li> </ol>
+install_help_update_text             = <p>Todos los pasos enumerados aquí se pueden realizar más tarde, uno tras otro o todos a la vez.</p><ul><li>Copie todas las categorías y su contenido en la carpeta <b>categories</b> de la versión 2.0/3.x.</li><li>Copie las galerías en la carpeta <b>galleries</b> de la versión 2.0/3.x.</li><li>Copie los diseños en la carpeta <b>layouts</b> de la versión 2.0/3.x.</li><li>Ahora cree la carpeta <b>update</b> en el directorio raíz (por ejemplo: moziloCMS/).</li><li>Copie todos los archivos <b>.conf</b> de <b>.../admin/conf</b> y <b>.../cms/conf</b> y, si está disponible, <b>.../formular/formular.conf</b> en esta carpeta <b>update</b>.</li></ul><p>moziloCMS 1.12 Actualización de los archivos de configuración del complemento (<b>plugin.conf</b>) a moziloCMS 2.0/3.x</p><p>Requisito:</p><ol><li>El complemento también está disponible para moziloCMS 2.0/3.x</li><li>La configuración es tan compleja que el ajuste manual sería demasiado complicado.</li><li>La configuración es la misma que en el complemento anterior.</li></ol><p>Instrucciones:</p><ol><li>Elimine el archivo <b>plugin.conf.php</b> si existe.</li><li>Copie el archivo <b>plugin.conf</b> del complemento anterior al nuevo.</li></ol>
 
 install_help_password                = Solamente he olvidado mi contraseña y quiero generar otra
 install_help_password_button         = Sólo modificar la contraseña
@@ -416,7 +425,7 @@ install_help_no_button               = ¡Está opción sólo está disponible pa
 install_help_php_error               = <b>¡Atención!</b> La versión de PHP es: "<b>{PARAM1}</b>" y debería ser al menos: "<b>{PARAM2}</b>". <br /> Esto sólo puede ser modificado por el administrador, a través del panel de control que facilite el proveedor del host.
 
 install_lang_select                  = Escoge tu idioma
-install_lang_help_title             = Idioma
+install_lang_help_title              = Idioma
 install_lang_help                    = <p>Se fijará el idioma tanto para el sitio web como para el área de administración. Puedes modificarlo -en cualquier momento- después de la instalación. <i>Cambia el idioma del sitio web en: "Ajustes" y en "Administración"</i>.</p>
 install_next                         = Siguiente
 
@@ -429,44 +438,44 @@ install_chmod_testfile_next_button   = Ampliar los permisos del fichero
 
 install_chmod_use                    = Las siguientes propiedades de archivo fueron fijadas: "<b>{PARAM1}</b>"
 
-install_chmod_change_ftp             = " Si moziloCMS se ubicó en una carpeta separada, como se recomienda, deberías poder fijar los permisos de la carpeta de manera recursiva. Si no, tienes que fijarlos de manera manual para cada subcarpeta.<br />Se recomienda modificar cada carpeta de manera individual mientras este mensaje no desaparezca.<br />Tu cliente FTP puede usar la función "'apply only on files'" y "'apply only on folders'". Su uso es lo recomendado.<br />Las carpetas necesitan x-Bit, los archivos no y no deberían.<br />Atención: Los valores aquí mostrados deben ser usados cada vez que subas un archivo via FTP."
+install_chmod_change_ftp             = <p>Si ha creado una carpeta separada para moziloCMS, como se recomienda, puede aplicarle de forma recursiva los permisos de archivo. De lo contrario, debe realizar esto para todas las carpetas pertenecientes a moziloCMS.</p><p>Se recomienda realizar esto gradualmente hasta que el mensaje desaparezca.</p><p>Es probable que su programa FTP admita las funciones "aplicar solo a archivos" y "aplicar solo a carpetas"; también debería hacerlo.</p><p>Las carpetas necesitan el bit x, los archivos no, y no deberían tenerlo.</p><p>Precaución: El valor determinado aquí debe aplicarse cada vez que cargue archivos por FTP.</p>
 
-install_chmod_change_ftp_button      = Hecho.
+install_chmod_change_ftp_button      = He hecho.
 
-install_environment_help_title      = Entorno del servidor
-install_environment_help             = 
+install_environment_help_title       = Entorno del servidor
+install_environment_help             = <p>El servidor web ha sido probado para garantizar que cumple con los requisitos básicos de moziloCMS. Las características no resaltadas son opcionales, lo que significa que moziloCMS funciona en su nivel básico. Sin embargo, es posible que tengas que renunciar a la función correspondiente.</p>
 install_environment_session          = Sesión disponible?
 install_environment_conf             = Los archivos de configuración de moziloCMS han sido creados o ya estaban presentes:
 
-install_rewrite_help_title          = mod_rewrite / Motor de búsqueda amigable con las URLs
-install_rewrite_help                 = Siempre que se encuentre disponible, moziloCMS intentará activar el módulo 'mod_rewrite' y crear el archivo .htacces-file. A través de esta URL estática será posible.<br />En el caso de estar disponible y poder configurarse, puedes activarlo y desactivarlo -en cualquier momento- en la sección de "Ajustes" del área de administración.
-install_rewrite_yes                  = mod_rewrite (<a href="https://httpd.apache.org/docs/current/mod/mod_rewrite.html">módulo del servidor Apache</a>) está disponible y el archivo .htaccess ha sido creado
-install_rewrite_no                   = mod_rewrite (<a href="https://httpd.apache.org/docs/current/mod/mod_rewrite.html">módulo del servidor Apache</a>) no está disponible y el archivo .htaccess ha sido eliminado
-install_rewrite_no_htaccess          = <b> Atención </b> Ya existe un archivo <b>.htaccess</b>. Si no proviene de la propia instalación del proveedor del host puede ser eliminado
+install_rewrite_help_title           = Habilitar "mod_rewrite"
+install_rewrite_help                 = <p>moziloCMS ahora intentará habilitar el módulo mod_rewrite en el servidor. Esto crea URL más legibles y amigables para los motores de búsqueda.</p><p>Si mod_rewrite está disponible, se puede deshabilitar o habilitar más tarde en el área de administración, en la pestaña "Configuración", según se desee.</p>
+install_rewrite_yes                  = mod_rewrite está disponible y se ha habilitado mediante la creación de un archivo .htaccess.
+install_rewrite_no                   = mod_rewrite no está disponible
+install_rewrite_no_htaccess          = <b>¡ATENCIÓN!</b> Ya existe un archivo <b>.htaccess</b>. Si no es del proveedor se puede eliminar.
 install_rewrite_test_text            = Configuración de las pruebas {PARAM1} de {PARAM2}
 
-install_password_help_title         = Contraseña
-install_password_help                = Use los datos de acceso apropiados para acceder como super usuario al área de administración. <br /> Pudiendo disponer de todas las ajustes y opciones disponibles
+install_password_help_title          = Contraseña
+install_password_help                = <p>Aquí se especifican los datos de acceso con los que el "<b>superusuario</b>" inicia sesión en el área de administración después de la instalación.</p><p>El superusuario tiene acceso completo al área de administración.</p>
 
-install_finish_help_title            = Ya casi has concluido la instalación de moziloCMS!
-install_finish_help                  = Para dejar una instalación final limpia <b>pulsa el botón "Finalizar" situado en la franja superior</b>.<br /> Es importante de cara a eliminar los archivos: "update.php" y la carpeta "update". <br /><br />Justo después serás redireccionado al área de administración de tu nueva instalación de moziloCMS.<br /><br /><i>Disfruta creando tu Website!</i><br />El equipo moziloCMS<br /><br /><b>¡Importante!</b> Por razones de seguridad comprueba que la eliminación se ejecutó correctamente, asegurate que los siguientes archivos fueron eliminados: "install.php", "update.php" y la carpeta "update".<br />
+install_finish_help_title            = Finalizar
+install_finish_help                  = <p>Está hecho. ¡La instalación fue exitosa! ¡Esperamos que disfrutes creando tu sitio web!</p><p>El equipo de moziloCMS</p><p><b>¡Importante!</b> Dado que los archivos "install.php", "update.php" y la carpeta "update" representan un riesgo de seguridad para el sitio web, asegúrate de comprobar mediante FTP si el comando de eliminación se ejecutó correctamente.</p>
 
-install_finish_delerror              = <b>PELIGRO</b> No todos los archivos pueden ser eliminados <br /> Por favor, usa un cliente de FTP para eliminarlos manualmente <br /> <b> {PARAM1} </b> <br />
-install_finish_del                   = Todos los archivos críticos han sido eliminados exitosamente.
-install_finish_local                 = <b>IMPORTANTE:</b> esta es una instalación local <br /> por lo tanto, los archivos vinculados a la seguridad no necesitan ser eliminados
-install_finish_submit                = Pulsa aquí para acceder directamente al área de administración de moziloCMS
-install_finish_clean_button          = Finalizar (elimina archivos críticos) 
-install_finish_clean                 = <b>¡ATENCIÓN!</b> Por razones de seguridad, los archivos críticos: <b>"install.php"</b> y <b>"update.php"</b> deben ser eliminados, así como la carpeta <b>"update"</b>, si existe. <br/>
+install_finish_delerror              = <b>¡ATENCIÓN!</b> No se pudieron eliminar todos los archivos.<br>El <br><br><b>{PARAM1}</b><br> debe eliminarse manualmente mediante un programa FTP.
+install_finish_del                   = Todos los archivos relevantes se eliminaron exitosamente.
+install_finish_local                 = <p>Esta es una instalación local. Por lo tanto, no es necesario eliminar los archivos relevantes para la seguridad.</p>
+install_finish_submit                = Haga clic aquí para iniciar sesión en moziloCMS
+install_finish_clean_button          = Eliminar datos relevantes para la seguridad
+install_finish_clean                 = <b>¡ATENCIÓN!</b> Por razones de seguridad, se deben eliminar <b>"install.php"</b> y <b>"update.php"</b>, así como la carpeta <b>"update"</b>, si existe.<br>
 
-install_update_help                  = " <b> ¡Atención! la actualización sólo debe aplicarse sobre una copia de los archivos</b> <br /> En categorías y páginas de contenido la posición será eliminada. En todos los archivos e imágenes lo espacios serán sustituidos por "_" todos los demás tipos de caracteres especiales serán eliminados. Si este proceso provocase duplicidad en los nombres de los archivos dentro de una misma carpeta, se usará el prefijo "Zahl_" (cifras)."
+install_update_help                  = <p><b>¡Atención! La actualización solo debe aplicarse a una copia de los archivos.</b></p><p>La posición se eliminará de las categorías y páginas de contenido. Para todos los archivos e imágenes, los espacios se convierten en "_" y las diéresis se convierten, por ejemplo, en ae. Se eliminarán todos los demás caracteres especiales. Si esto da como resultado nombres de archivos duplicados en una carpeta, se agrega un "número_" consecutivo al frente.</p>
 install_update_no_help               = <b>No hay actualizaciones disponibles.</b>
 install_update_buttom                = Iniciar actualización
 install_update_files_in_pages        = Reemplazar los nuevos nombres de ficheros en todas las páginas de contenido.<br /><b>¡Atención! se trata de una sustitución directa: nombre anterior por el nuevo.</b>
-install_update_conf_help             = " El contenido de los archivos de configuración de la carpeta "'update'" será transferido a los nuevos archivos"
+install_update_conf_help             = El contenido de los archivos de configuración de la carpeta "update" se transfiere a los nuevos archivos.
 install_update_kategorien_help       = Las categorías, páginas de contenido y los archivos en categorías, serán renombrados.
 install_update_galerien_help         = Las imágenes de la galería serán renombradas
-install_update_plugins_help          = " Los archivos "'plugin.conf'" serán convertidos al nuevo formato. <b>Atención</b> Las versiones antiguas de de tus complementos, podrían no funcionar más. Consigue los nuevos complementos y usa el nuevo archivo: "'plugin.conf.php'" "
-install_update_layouts_help          = " El archivo "'layoutsettings.conf'" ya no se necesita más. Será eliminado y la entrada de menú "'usesubmenu'" se añadirá a la primera línea de "'template.html'"."
+install_update_plugins_help          = Los archivos "plugin.conf" de los complementos respectivos se convierten al nuevo formato. <b>Atención:</b> Los complementos antiguos ya no funcionarán. Descargue e instale los nuevos complementos correspondientes y utilice el archivo "plugin.conf.php" recién creado.
+install_update_layouts_help          = El archivo "layoutsettings.conf" ya no es necesario en los diseños. Esto se elimina y la entrada "usesubmenu" se transfiere a la primera línea de "template.html".
 
-install_update_error                 = <b>Atención! Existen algunos problemas debido a los permisos del archivo de la categoría. Debes establecerlos vía cliente de FTP.</b><br />Después de solventarlo ya no es necesario este sitio. Simplemente pulsa en la pestaña de actualización de nuevo.
+install_update_error                 = <b>¡Atención! Hay problemas con los permisos de archivo en la categoría correspondiente. Deben resolverse previamente mediante un programa FTP.</b>No es necesario cerrar la página una vez finalizado el proceso FTP. Simplemente haga clic en la pestaña de actualización nuevamente.
 install_update_successful            = Actualización exitosa <b>Por favor, revisa tu sitio web</b> 

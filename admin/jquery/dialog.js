@@ -117,6 +117,7 @@ function dialog_from_php() {
                 }};
         buttons.push(button_reload);
     }
+        
     dialog_multi.dialog( "option", "buttons", buttons);
     // user login mit ajax
     if(settings.find('form[name="loginform"]').length > 0) {
@@ -418,7 +419,7 @@ else
                     replace_tags(replace_item);
                 }
             } else {
-                dialog_open("error","unbekanter fehler");
+                dialog_open("error","Unbekannter Fehler");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -450,6 +451,7 @@ $(function() {
         },
         close: function(event, ui) {
             $("#menu-fix-close-dialog").show(0).attr("id","menu-fix");
+            $('body').css('overflow','');
             dialog_multi.css("background","transparent").html("")
                 .data("is_open",false)
                 .dialog({
@@ -465,6 +467,8 @@ $(function() {
         },
         open: function(event, ui) {
             $("#menu-fix").hide(0).attr("id","menu-fix-close-dialog");
+            $('body').css('overflow','hidden');
+            $('.ui-widget-overlay').bind('click', function () { $(this).siblings('.ui-dialog').find('.ui-dialog-content').dialog('close'); });
             if(dialog_multi.data("is_open")) {
                 return false;
             }

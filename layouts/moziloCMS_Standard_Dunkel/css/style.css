@@ -1,3 +1,11 @@
+:root {
+ --main-color: #333;
+ --bg-color: #fff;
+ --font-color: #333;
+ --padding: .625rem;
+ --margin: .625rem
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,7 +16,8 @@ html,
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  color: #333;
+ color: var(--font-color);
+  background: var(--bg-color);
   height: 100%;
 }
 
@@ -21,7 +30,7 @@ body {
 }
 
 .flexcontainer>* {
-  padding: .625em;
+  padding: var(--padding)
 }
 
 header {
@@ -30,8 +39,8 @@ header {
 }
 
 nav {
-  background: #333;
-  border-top: 1px solid #fff;
+  background: var(--main-color);
+  border-top: 1px solid var(--bg-color);
   display: none;
   flex-shrink: 0
 }
@@ -41,13 +50,13 @@ main {
 }
 
 footer {
-  background: #333;
-  color: #fff;
+  background: var(--main-color);
+  color: var(--bg-color);
   text-align: center
 }
 
 footer a {
-  color: #fff;
+  color: var(--bg-color);
 }
 
 /*MENÜ*/
@@ -55,8 +64,6 @@ footer a {
 #menu-checkbox {
   display: none
 }
-
-/*Show menu when invisible checkbox is checked*/
 
 #menu-checkbox:checked~nav {
   display: -webkit-flex;
@@ -67,11 +74,11 @@ footer a {
   display: -webkit-flex;
   display: flex;
   flex-shrink: 0;
-  padding: 0 .625em;
+  padding: 0 var(--padding);
   height: 4.375em;
   line-height: 4.375em;
-  background: #333;
-  color: #fff;
+  background: var(--main-color);
+  color: var(--bg-color);
 }
 
 #menu-toggler-icon:after,
@@ -88,7 +95,7 @@ footer a {
 
 #menu-toggler-icon {
   position: absolute;
-  right: .625em;
+  right: var(--padding);
   top: 1.875em
 }
 
@@ -97,12 +104,10 @@ footer a {
 #menu-toggler-icon:before {
   width: 2.500em;
   height: 5px;
-  background-color: #fff;
+  background-color: var(--bg-color);
   transition: all 0.3s;
   border-radius: 2px;
 }
-
-/* on menu activation */
 
 #menu-checkbox:checked~#menu-toggler>#menu-toggler-icon {
   background-color: transparent;
@@ -118,7 +123,7 @@ footer a {
 
 nav ul li a {
   padding: 1em;
-  color: #fff;
+  color: var(--bg-color);
   text-decoration: none
 }
 
@@ -136,8 +141,8 @@ ul.detailmenu a {
 }
 
 ul.mainmenu a:hover {
-  background: #fff;
-  color: #333
+  background: var(--bg-color);
+  color: var(--font-color)
 }
 
 ul.detailmenu {
@@ -158,9 +163,9 @@ ul.detailmenu {
 h1,
 h2,
 h3 {
-  color: #333;
-  margin-bottom: .625em;
-  margin-top: .625em;
+ color: var(--font-color);
+  margin-bottom: var(--margin);
+  margin-top: var(--margin);
 }
 
 .heading1 {
@@ -205,8 +210,8 @@ table.contenttable {
 }
 
 th.contenttable {
-  background: #333;
-  color: #fff;
+  background: var(--main-color);
+  color: var(--bg-color);
   border-right: 1px solid;
   padding: 7px
 }
@@ -217,12 +222,12 @@ th.contenttable:last-child {
 
 td {
   padding: 7px;
-  border-bottom: 1px solid #333
+  border-bottom: 1px solid color: var(--font-color);
 }
 
 a.link,
 a {
-  color: #333;
+ color: var(--font-color);
 }
 
 a.link:hover,
@@ -252,6 +257,25 @@ li.gallerymenu, li.gallerynumbermenu {
     padding : 0 5px 0 5px;
 }
 
+/*Sitemap # search results  # tableofcontents*/
+
+.result-list-header {
+	display: block;
+	font-size: 1.2em;
+    margin: calc(var(--margin)*2) 0;
+    border-bottom: 1px solid var(--font-color)
+}
+
+.result-list-item {
+    padding-bottom: var(--padding);
+    padding-left: calc(var(--padding)*2);
+    list-style-type: none
+}
+
+.sitemap a, .searchmap a, .tableofcontents a {
+    color: var(--font-color)
+}
+
 /*Syntax Ende*/
 
 @media only screen and (min-width: 768px) {
@@ -268,18 +292,18 @@ li.gallerymenu, li.gallerynumbermenu {
   }
   footer {
     order: 4;
-    padding-top: 2em !important;
-    padding-bottom: 2em !important;
+    padding-top: calc(var(--padding)*3) !important;
+    padding-bottom: calc(var(--padding)*3) !important;
   }
   header {
     display: -webkit-flex;
     display: flex;
     height: 15em;
-    background: #333;
-    color: #fff;
+    background: var(--main-color);
+    color: var(--bg-color);
     justify-content: center;
     align-items: center;
-    margin-bottom: .625em
+    margin-bottom: var(--margin)
   }
   header span {
     font-size: 5em;
@@ -319,7 +343,7 @@ li.gallerymenu, li.gallerynumbermenu {
     padding: 0;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     line-height: 1.5em;
-    background: #333;
+    background: var(--main-color);
     min-width: 150%;
   }
   nav ul li:hover>ul {
@@ -329,12 +353,12 @@ li.gallerymenu, li.gallerynumbermenu {
     align-items: flex-start
   }
   ul.detailmenu a:hover {
-    background: #fff;
-    color: #333
+    background: var(--bg-color);
+    color: color: var(--font-color);
   }
   .menuactive {
-    background: #fff;
-    color: #333;
+    background: var(--bg-color);
+   color: var(--font-color);
     font-weight: 400;
   }
   #menu-toggler {
