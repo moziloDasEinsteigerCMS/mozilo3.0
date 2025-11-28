@@ -13,6 +13,7 @@ do_page2                       = Een galerij
 do_page3                       = Contact
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = De beschikbare afbeeldingen worden geselecteerd
 do_editsitesyntax_text_28_2    = ingevoegd.
 do_editsitesyntax_text_29      = Voor alle afbeeldingssyntaxiselementen:
 do_editsitesyntax_text_30      = Als u een <span class="do-paren">=</span> teken achter de opdrachtnaam plaatst en vervolgens tekst invoert, wordt deze als bijschrift weergegeven.
+do_editsitesyntax_text_30_1    = Het invoeren van alternatieve tekst (toegankelijk) alt<span class="do-paren">=</span> is optioneel. Als er geen tekst wordt ingevoerd, wordt de naam van het afbeeldingsbestand overgenomen.
 do_editsitesyntax_text_31      = Lotusbloem bij het meer
+do_editsitesyntax_text_31_1    = Een lotusbloem toont zijn volle pracht
 do_editsitesyntax_text_32_1    = A met
 do_editsitesyntax_text_32_2    = geplaatste afbeelding kan worden bewerkt met de opdrachten
 do_editsitesyntax_text_32_3    = horizontaal uitgelijnd.

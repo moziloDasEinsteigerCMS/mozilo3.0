@@ -1,40 +1,62 @@
 function file_rename(change_item) {
-    var curent_name = new RegExp('file='+change_item.siblings('.fu-rename-file').text()),
-        curent_newname = 'file='+change_item.val(),
+    var baseName = change_item.val();               // Name ohne Endung
+    var ext = change_item.data('ext') || '';       // Endung (inkl. Punkt)
+    var oldName = change_item.siblings('.fu-rename-file').text();
+    var newName = baseName + ext;
 
-        curent_name_srv = new RegExp('/'+change_item.siblings('.fu-rename-file').text()),
-        curent_newname_srv = '/'+change_item.val(),
-        template = change_item.closest('.template-download');
+    var template = change_item.closest('.template-download');
 
-    change_item.siblings('.fu-rename-file').removeClass('fu-nosearch').text(change_item.val()).show(0);
+    // --- UI: Namen aktualisieren ---
+    change_item.siblings('.fu-rename-file')
+        .removeClass('fu-nosearch')
+        .text(newName)
+        .show(0);
 
-    template.find('.delete button').attr('data-url',template.find('.delete button').attr('data-url').replace(curent_name,curent_newname));
+    // alten .name-ext Span entfernen
+    change_item.siblings('.name-ext').remove();
 
-    if(template.find('.preview').length > 0) {
-        template.find('.preview a').prop('href',template.find('.preview a').prop('href').replace(curent_name_srv,curent_newname_srv)).prop('title',change_item.val());
-
-        template.find('.preview img').prop('src',template.find('.preview img').prop('src').replace(curent_name_srv,curent_newname_srv));
+    // --- Delete-Button URL anpassen ---
+    var deleteBtn = template.find('.delete button');
+    if (deleteBtn.length && deleteBtn.attr('data-url')) {
+        deleteBtn.attr(
+            'data-url',
+            deleteBtn.attr('data-url').replace(oldName, newName)
+        );
     }
+
+    // --- Preview-Link anpassen ---
+    var previewLink = template.find('.preview a');
+    if (previewLink.length && previewLink.attr('href')) {
+    var href = decodeURIComponent(previewLink.attr('href'));
+    href = href.replace(oldName, newName);
+        previewLink.attr('href', encodeURI(href))
+               .attr('title', baseName);
+}
+
+    // --- Vorschaubild aktualisieren ---
+    var previewImg = template.find('.preview img');
+    if (previewImg.length && previewImg.attr('src')) {
+
+        // ALT-Text:
+        // 1. wenn .fu-alt vorhanden und nicht leer → diesen nehmen
+        // 2. sonst baseName als Fallback
+        var fuAltEl = template.find('.fu-alt');
+        var fuAltText = fuAltEl.length ? fuAltEl.text().trim() : '';
+        var currentAlt = fuAltText !== '' ? fuAltText : baseName;
+
+        previewImg
+            .attr('src', previewImg.attr('src').replace(oldName + ext, newName))
+            .attr('title', baseName)
+            .attr('alt', currentAlt);
+    }
+    // --- Eingabefeld entfernen ---
     change_item.remove();
 }
-/*
-function is_filename_allowed(name) {
-    if(name.search(/[^a-zA-Z0-9._-]/) != -1)         
-        return false;
-    return true;
-}
 
-function is_filename_allowed(name) {
-    if(name.search(/^[A-Za-z0-9\-\_]+\.[a-zA-Z]{3,4}$/) != -1)
-        return true;
-    return false;
-}
-*/                 
-//alert (new String(mo_acceptFileTypes));
 function is_filename_allowed(name) {
 	const variable = new String(mo_acceptFileTypes);                //Erlaubte Dateiendungen zum Umbenennen, von mo_acceptFileTypes
 	const type = variable.replace(/\.|\$\/i|\/|\\|/ig,'');
-    const regex = new RegExp(`^[\\w\\-\\_]+\\.${type}$`);	
+    const regex = new RegExp(`^[\\w\\-\\_]+\\.${type}$`, 'i');	
     if(name.search(regex) != -1)   
         return true;
     return false;
@@ -57,23 +79,9 @@ function load_files_datajson(that) {
 }
 
 $(function () {
-//    'use strict';
 
     $('input[type="file"]').prop('multiple','multiple');
 
- //   if(action_activ == "gallery") {
- //       $('.js-gallery').on("click",'.js-toggle:not(.js-img-loadet)', function(event) {
- //           $(this).addClass('js-img-loadet');
- //           load_files_datajson($(this).parents('.fileupload'));
- //       });
- //   } 
- //   else if(action_activ == "files") {
- //       $('.js-files').on("click",'.js-toggle:not(.js-img-loadet)', function(event) {
- //           $(this).addClass('js-img-loadet');
- //           load_files_datajson($(this).parents('.fileupload'));
- //       });
- //   } 
- //   else {
         $('.fileupload').each(function () {
             if($(this).parents('#menu-fix').length > 0) {
                 // wie continue
@@ -91,48 +99,86 @@ $(function () {
             dialog_iframe_preview(this.href);
     });
 
-    $('.fu-rename-file').live('dblclick', function (e) {
-        e.preventDefault();
-        $(this).addClass('fu-nosearch').hide(0).after("<input class=\"fu-rename-in-file\" type=\"text\" value=\""+$(this).text()+"\">");
-        $(this).siblings('.fu-rename-in-file').focus();
-    });
+// --- Doppelklick auf Dateiname ---
+$('.fu-rename-file').live('dblclick', function(e) {
+    e.preventDefault();
 
-    $('.fu-rename-in-file').live('keydown', function (e) {
-        if(e.which == 13) { // enter
-            e.preventDefault();
-            var new_name = $(this).val();
-            var name_twice = false;
-            $(this).closest('.fileupload').find('.fu-rename-file:not(.fu-nosearch)').each(function(){
-                if(new_name == $(this).text())
-                    name_twice = true;
-            });
-            if(name_twice) {
-                dialog_open("error_messages",returnMessage(false,mozilo_lang["error_exists_file_dir"]));
-            } else {
-                if(new_name == $(this).siblings('.fu-rename-file').text()) {
-                    $(this).siblings('.fu-rename-file').removeClass('fu-nosearch').show(0);
-                    $(this).remove();
-                    return false;
-                }
-                if(!is_filename_allowed(new_name)) {
-                    dialog_open("error_messages",returnMessage(false,mozilo_lang["error_datei_file_name"]));
-                    return false;
-                }
-                send_item_status = "file_rename";
-                var para = "newfile="+new_name+"&orgfile="+$(this).siblings('.fu-rename-file').text()+"&curent_dir="+rawurlencode_js($(this).closest('.fileupload').find('input[name="curent_dir"]').val());    // new_name.split('php').shift().split('svg').shift().split('xml').shift()
-                send_data(para,$(this));
-            }
-        } else if(e.which == 27) { // esc
-            e.preventDefault();
-            $(this).siblings('.fu-rename-file').removeClass('fu-nosearch').show(0);
-            $(this).remove();
+    var fullName = $(this).text();
+    var dotIndex = fullName.lastIndexOf('.');
+    var baseName = dotIndex > 0 ? fullName.substring(0, dotIndex) : fullName;
+    var ext = dotIndex > 0 ? fullName.substring(dotIndex) : '';
+
+    // Span verstecken, Input daneben einfügen
+    $(this).addClass('fu-nosearch').hide(0).after(
+        "<input class='fu-rename-in-file' type='text' data-ext='" + ext + "' value='" + baseName + "'><span class='name-ext'>"+ ext +"</span>"
+    );
+
+    $(this).siblings('.fu-rename-in-file').focus();
+});
+
+// --- Eingabe im Input-Feld ---
+$('.fu-rename-in-file').live('keydown', function(e) {
+    if (e.which === 13) { // Enter
+        e.preventDefault();
+
+        var baseName = $(this).val();
+        var ext = $(this).data('ext') || '';
+        var new_name = baseName + ext;
+        var originalName = $(this).siblings('.fu-rename-file').text();
+
+        var fileupload = $(this).closest('.fileupload');
+        var name_twice = false;
+
+        // Prüfen, ob Name schon existiert
+        fileupload.find('.fu-rename-file:not(.fu-nosearch)').each(function() {
+            if ($(this).text() === new_name) name_twice = true;
+        });
+
+        if (name_twice) {
+            dialog_open("error_messages", returnMessage(false, mozilo_lang["error_exists_file_dir"]));
+            return false;
         }
-    });
+
+        if (new_name === originalName) {
+            $(this).siblings('.fu-rename-file').removeClass('fu-nosearch').show(0);
+            $(this).siblings('.name-ext').removeClass('name-ext').hide(0); 
+            $(this).remove();
+            return false;
+        }
+
+        if (!is_filename_allowed(new_name)) {
+            dialog_open("error_messages", returnMessage(false, mozilo_lang["error_datei_file_name"]));
+            return false;
+        }
+
+        // --- UI-Update zentral über file_rename ---
+        file_rename($(this));
+
+        // --- Server-Anfrage ---
+        send_item_status = "file_rename";
+        var para = "newfile=" + new_name +
+                   "&orgfile=" + originalName +
+                   "&curent_dir=" + rawurlencode_js(fileupload.find('input[name="curent_dir"]').val());
+        send_data(para, $(this));
+
+    } else if (e.which === 27) { // ESC
+        e.preventDefault();
+        $(this).siblings('.fu-rename-file').removeClass('fu-nosearch').show(0);
+        $(this).siblings('.name-ext').removeClass('name-ext').hide(0);
+        $(this).remove();
+    }
+});
 
     $('.fu-subtitle').live('dblclick', function (e) {
         e.preventDefault();
         $(this).hide(0).after("<input class=\"fu-subtitle-in\" type=\"text\">");
         $(this).siblings('.fu-subtitle-in').val($(this).text()).focus();
+    });
+	
+    $('.fu-alt').live('dblclick', function (e) {
+        e.preventDefault();
+        $(this).hide(0).after("<input class=\"fu-alt-in\" type=\"text\">");
+        $(this).siblings('.fu-alt-in').val($(this).text()).focus();
     });
 
     $('.fu-subtitle-in').live('keydown', function (e) {
@@ -146,6 +192,21 @@ $(function () {
         } else if(e.which == 27) { // esc
             e.preventDefault();
             $(this).siblings('.fu-subtitle').show(0);
+            $(this).remove();
+        }
+    });
+	
+	$('.fu-alt-in').live('keydown', function (e) {
+        if(e.which == 13) { // enter
+            e.preventDefault();
+            send_item_status = "gallery_alt";
+            var para = "alttext="+rawurlencode_js($(this).val())+
+                "&curent_dir="+rawurlencode_js($(this).closest('.fileupload').find('input[name="curent_dir"]').val())+
+                "&file="+$(this).closest('.template-download').find('.fu-rename-file').text();
+            send_data(para,$(this));
+        } else if(e.which == 27) { // esc
+            e.preventDefault();
+            $(this).siblings('.fu-alt').show(0);
             $(this).remove();
         }
     });

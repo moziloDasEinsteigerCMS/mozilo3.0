@@ -1,10 +1,10 @@
 
 alttext_galleryimage_1                  = Galerie d'images "{PARAM1}"
 message_firstimage_0                    = Première image
-message_gallery_no_preview              = 
+message_gallery_no_preview              = Image d'aperçu non disponible
 message_gallery_xoutofy_2               = (Image {PARAM1} de {PARAM2})
 message_gallerydir_error_1              = Galerie répertoire inconnu "{PARAM1}"!
-message_gallerydir_error_0              = 
+message_gallerydir_error_0              = Aucun répertoire de galerie n'a été fourni!
 message_galleryempty_0                  = Cette galerie ne contient pas d'images.
 message_lastimage_0                     = Dernière image
 message_nextimage_0                     = prochaine image

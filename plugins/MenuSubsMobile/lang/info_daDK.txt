@@ -1,0 +1,145 @@
+Opretter en menu med næsten ubegrænset indlejring af undermenuer.<br>
+<br>
+Dette plugin er en udvidelse af MenuSubs-pluginnet.<br>
+Det kræver ikke JavaScript.<br>
+I Opera Mini er afkrydsningsfelterne ikke gennemsigtige, så der bruges en lille smule JavaScript der.<br>
+<br>
+<b>Ændringerne er:</b>
+<ul>
+<li>Listen indeholder altid alle kategorier og indholdssider. De styres nu via klasserne menusubs-hidden og menusubs-show.</li>
+<li>Hver kategori modtager også et HTML-element til label og input checkbox, bortset fra skabelon-switchen usesubmenu = 2.</li>
+<li>Foran listen er der også et HTML-element til label og input checkbox til at udvide eller skjule menuen.</li>
+<li>I normal visning er alle HTML-elementer til label og input checkbox usynlige, så det er en helt normal menu.</li>
+</ul>
+<br>
+<b>Bemærk:</b> Et par specialfunktioner er dokumenteret i plugin.css!<br>
+<br>
+<b>Bemærk:</b> Kategorier, der indeholder en "/" (skråstreg), vises ikke længere, da vi bruger "/" til undermenuen.<br>
+<br>
+For at bruge en detaljemenu skal du bruge {MenuSubsMobile|main} og bruge {MenuSubsMobile|detail}, ellers kun {MenuSubsMobile}<br>
+<b>Bemærk:</b> Parameteren "usesubmenu = 0" (indtastet øverst i layoutene) bruges ikke her!<br>
+<br>
+<b>Beskrivelse:</b>
+<ul>
+<li>Så snart en skjult indholdsside med et "/" i navnet findes, erstattes den som en undermenu med den kategori, der har samme navn.</li>
+<li><b>Vigtigt:</b> Navnet betragtes som en sti.</li>
+<li>For at bruge en indholdsside i underkategorier, der er skjult, ved hjælp af indstillingen "Angiv, om indholdssider med samme navn som kategorien skal skjules i detaljemenuen:", skal navnet være det samme som den sidste del af underkategorierne, f.eks. Underkategorier=Kategori/Undermenu_1 Indholdsside=Undermenu_1, og den første indholdsside skal være være.</li>
+</ul>
+<br>
+<b>Eksempel:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategori</b>
+<ul>
+<li>Indhold side_1</li>
+<li>Kategori / Undermenu_1 <b>skjult</b></li>
+<li>Indhold side_2</li>
+</ul>
+<b>Kategori / Undermenu_1</b>
+<ul>
+<li>Indhold side_3</li>
+<li>Kategori / Undermenu_1 / Undermenu_2 <b>skjult</b></li>
+</ul>
+<b>Kategori / Undermenu_1 / Undermenu_2</b>
+<ul>
+<li>Indhold side_4</li>
+<li>Indhold Side_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Resultat:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategori</b>
+<ul>
+<li>Indhold Side_1</li>
+<li><b>Undermenu_1</b>
+<ul>
+<li>Indhold Side_3</li>
+<li><b>Undermenu_2</b>
+<ul>
+<li>Indhold Side_4</li>
+<li>Indhold Side_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Indhold Side_2</li>
+</ul>
+</li></ul>
+<br>
+En anden menu kan oprettes med <b>{MenuSubsMobile|menusubs_2}</b>.<br>
+For eksempel til impressum og kontaktoplysninger i sidefoden af Side.<br>
+Vælg blot en kategori i plugin-konfigurationen, og indtast <b>{MenuSubsMobile|menusubs_2}</b> <br>på den ønskede placering i skabelonen.<br>
+Kun kategorier, der ikke har et "/" i deres navn, er tilgængelige.<br>
+Underkategorier er selvfølgelig også mulige.<br>
+<br>
+For breadcrumb-navigation skal du blot indtaste <b>{MenuSubsMobile|breadcrumb}</b> på den ønskede placering.Opretter en menu med næsten ubegrænset indlejring af undermenuer.<br>
+<br>
+Dette plugin er en udvidelse af MenuSubs-pluginnet.<br>
+Det kræver ikke JavaScript.<br>
+I Opera Mini er afkrydsningsfelterne ikke gennemsigtige, så der bruges en lille smule JavaScript der.<br>
+<br>
+<b>Ændringerne er:</b>
+<ul>
+<li>Listen indeholder altid alle kategorier og indholdssider. De styres nu via klasserne menusubs-hidden og menusubs-show.</li>
+<li>Hver kategori modtager også et HTML-element til label og input checkbox, bortset fra skabelon-switchen usesubmenu = 2.</li>
+<li>Foran listen er der også et HTML-element til label og input checkbox til at udvide eller skjule menuen.</li>
+<li>I normal visning er alle HTML-elementer til label og input checkbox usynlige, så det er en helt normal menu.</li>
+</ul>
+<br>
+<b>Bemærk:</b> Et par specialfunktioner er dokumenteret i plugin.css!<br>
+<br>
+<b>Bemærk:</b> Kategorier, der indeholder en "/" (skråstreg), vises ikke længere, da vi bruger "/" til undermenuen.<br>
+<br>
+For at bruge en detaljemenu skal du bruge {MenuSubsMobile|main} og bruge {MenuSubsMobile|detail}, ellers kun {MenuSubsMobile}<br>
+<b>Bemærk:</b> Parameteren "usesubmenu = 0" (indtastet øverst i layoutene) bruges ikke her!<br>
+<br>
+<b>Beskrivelse:</b>
+<ul>
+<li>Så snart en skjult indholdsside med et "/" i navnet findes, erstattes den som en undermenu med den kategori, der har samme navn.</li>
+<li><b>Vigtigt:</b> Navnet betragtes som en sti.</li>
+<li>For at bruge en indholdsside i underkategorier, der er skjult, ved hjælp af indstillingen "Angiv, om indholdssider med samme navn som kategorien skal skjules i detaljemenuen:", skal navnet være det samme som den sidste del af underkategorierne, f.eks. Underkategorier=Kategori/Undermenu_1 Indholdsside=Undermenu_1, og den første indholdsside skal være være.</li>
+</ul>
+<br>
+<b>Eksempel:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategori</b>
+<ul>
+<li>Indhold side_1</li>
+<li>Kategori / Undermenu_1 <b>skjult</b></li>
+<li>Indhold side_2</li>
+</ul>
+<b>Kategori / Undermenu_1</b>
+<ul>
+<li>Indhold side_3</li>
+<li>Kategori / Undermenu_1 / Undermenu_2 <b>skjult</b></li>
+</ul>
+<b>Kategori / Undermenu_1 / Undermenu_2</b>
+<ul>
+<li>Indhold side_4</li>
+<li>Indhold Side_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Resultat:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategori</b>
+<ul>
+<li>Indhold Side_1</li>
+<li><b>Undermenu_1</b>
+<ul>
+<li>Indhold Side_3</li>
+<li><b>Undermenu_2</b>
+<ul>
+<li>Indhold Side_4</li>
+<li>Indhold Side_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Indhold Side_2</li>
+</ul>
+</li></ul>
+<br>
+En anden menu kan oprettes med <b>{MenuSubsMobile|menusubs_2}</b>.<br>
+For eksempel til impressum og kontaktoplysninger i sidefoden af Side.<br>
+Vælg blot en kategori i plugin-konfigurationen, og indtast <b>{MenuSubsMobile|menusubs_2}</b> <br>på den ønskede placering i skabelonen.<br>
+Kun kategorier, der ikke har et "/" i deres navn, er tilgængelige.<br>
+Underkategorier er selvfølgelig også mulige.<br>
+<br>
+For breadcrumb-navigation skal du blot indtaste <b>{MenuSubsMobile|breadcrumb}</b> på den ønskede placering.

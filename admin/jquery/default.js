@@ -3,31 +3,32 @@ var dialogMaxheightOffset = 40;
 var max_menu_tab = false;
 
   //password toggle  
-function togglePassword() {
-var password = document.getElementById("password-toggle");
-  password.classList.toggle("visible");
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+function togglePassword(e) {
+    e.preventDefault();
+    const input = document.getElementById("password");
+    const btn = document.getElementById("password-toggle");
+    input.type = (input.type === "password") ? "text" : "password";
+    btn.classList.toggle("visible");
 }
 
-// disable login button
+//disable login button
 function checkform() {
-	const formElements = document.forms["loginform"].elements;
-	var submitBtnActive = true;
+    const formElements = document.forms["loginform"].elements;
+    let submitBtnActive = true;
 
-	for (var inputEl = 0; inputEl < formElements.length; inputEl++) {
-		if (formElements[inputEl].value.length == 0) submitBtnActive = false;
-	}
+    for (let i = 0; i < formElements.length; i++) {
+        const el = formElements[i];
+        if (el.type !== "submit" && el.type !== "button" && el.value.length === 0) {
+            submitBtnActive = false;
+        }
+    }
 
-	if (submitBtnActive) {
-		document.getElementById("loginbtn").disabled = false;
-	} else {
-		document.getElementById("loginbtn").disabled = "disabled";
-	}
+    const btn = document.getElementById("loginbtn");
+    if (submitBtnActive) {
+        btn.removeAttribute("disabled");
+    } else {
+        btn.setAttribute("disabled", "disabled");
+    }
 }
 
 function sleep(milliSeconds) {

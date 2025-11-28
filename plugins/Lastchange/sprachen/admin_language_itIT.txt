@@ -1,11 +1,11 @@
 
-config_lastchange_plugin_name              = LastChange
-config_lastchange_plugin_desc              = 
-config_lastchange_plugin_lastchange         = 
-config_lastchange_plugin_text               = 
-config_lastchange_plugin_page               = 
-config_lastchange_plugin_pagelink           = 
-config_lastchange_plugin_date               = 
-config_lastchange_messagetext               = 
-config_lastchange_date                      = 
-config_lastchange_showhiddenpagesinlastchanged = 
+config_lastchange_plugin_name                  = Lastchange
+config_lastchange_plugin_desc                  = Visualizza l'ultima modifica.<br><br><span style="font-weight:bold;">Utilizzo:</span><br>{Lastchange} stampa qualcosa come: "Ultima modifica: Benvenuto (23.10.2020, 09:07:20)"<br>{Lastchange|text} stampa qualcosa come: "Ultima modifica"<br>{Lastchange|page} stampa qualcosa come: "Benvenuto"<br>{Lastchange|pagelink} stampa qualcosa come: "Benvenuto" (con un link alla pagina dei contenuti)<br>{Lastchange|date} stampa qualcosa come: "(23.10.2020, 09:07:20)"<br><br><span style="font-weight:bold;">Configurazione:</span><br>Il plugin recupera il testo "Ultima modifica" e il formato della data dal file di lingua del CMS; puoi anche specificarli entrambi autonomamente. Il formato della data si basa sulla funzione date() di PHP.
+config_lastchange_plugin_lastchange            = Ultima modifica con link e data
+config_lastchange_plugin_text                  = Testo dell'ultima modifica:
+config_lastchange_plugin_page                  = Nome dell'ultima pagina di contenuto modificata
+config_lastchange_plugin_pagelink              = Link all'ultima pagina di contenuto modificata
+config_lastchange_plugin_date                  = Data dell'ultima modifica
+config_lastchange_messagetext                  = Testo personalizzato per l'ultima modifica:
+config_lastchange_date                         = Formato data personalizzato:
+config_lastchange_showhiddenpagesinlastchanged = Includere pagine di contenuto nascoste? 

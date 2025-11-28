@@ -1,0 +1,5 @@
+no_menusubs_2        = Brak MenuSubs_2
+menusubs_2           = Wybierz kategorię dla MenuSubs_2
+sitemap_show_menu2   = Pokaż MenuSubs_2 w mapie witryny
+breadcrumb_delimiter = Ogranicznik ścieżki nawigacyjnej. Domyślnie "»"
+hidden               = Style, które mają zostać zastosowane po otwarciu menu mobilnego. Lista oddzielonych przecinkami elementów ID = Właściwość CSS: wartość

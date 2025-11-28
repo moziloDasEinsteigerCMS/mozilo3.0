@@ -51,6 +51,11 @@ class SpecialChars {
 // Inhaltsseiten/Kategorien für Speicherung umlaut- und sonderzeichenbereinigen 
 // ------------------------------------------------------------------------------
     function replaceSpecialChars($text,$nochmal_erlauben) {
+    	
+    	// NULL → leerer String vermeiden
+    if ($text === null) {
+        $text = "";
+    }
         # $nochmal_erlauben = für Tags mit src z.B. img dann muss das % auch gewandelt werden
         $text = str_replace('/','ssslashhh',$text);
         if(preg_match('#\%([0-9a-f]{2})#i',$text) < 1)

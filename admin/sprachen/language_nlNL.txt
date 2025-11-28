@@ -22,6 +22,10 @@ minute                               = Minuut
 minutes                              = Notulen
 second                               = Seconde
 seconds                              = Seconden
+toggle_all                           = Alles selecteren
+
+files_upload                         = Bestanden uploaden
+
 error_chmod                          = De bestandsrechten konden niet worden gewijzigd.
 error_mkdir                          = De map kan niet worden gemaakt.
 error_no_file_dir                    = De map of het bestand bestaat niet.
@@ -120,6 +124,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Geheugen gebruikt door moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Zo lang heeft moziloCMS erover gedaan
 toolbar_platzhalter_VALUE            = Waarde
 toolbar_platzhalter_DESCRIPTION      = Beschrijving
+toolbar_editor_color                 = Geselecteerde kleur
 toolbar_editor_linenumber            = Regelnummers weergeven/verbergen
 toolbar_editor_controlcharacter      = Controlekarakters weergeven/verbergen
 toolbar_editor_highlighter           = syntaxis-accentueringmodus
@@ -140,6 +145,7 @@ filter_text_plugins                  = Plugins
 filter_text_files                    = Bestanden
 filter_text_catpage                  = Categorieën
 filter_text_template                 = Sjabloon
+filter_no_match                      = Geen wedstrijd
 
 home_button                          = Informatie
 home_multiuser                       = Multi-user systeem resetten
@@ -214,6 +220,8 @@ gallery_error_noexists               = Er is geen galerie met deze naam.
 gallery_error_subtitle_conf          = Het ondertitelbestand kon niet worden aangemaakt.
 gallery_help_conf                    = Hier kan je de algemene foto album instellingen aanpassen.
 gallery_image_size                   = Efbeeldingsgrootte
+gallery_image_size_width             = Breedte
+gallery_image_size_height            = Hoogte
 gallery_messages_from_ftp            = De volgende galerijen zijn geconverteerd naar CMS-compatibel.
 gallery_messages_from_ftp_no         = Alle galerijen zijn CMS-compatibel.
 gallery_name_new                     = Nieuwe Galerie
@@ -223,6 +231,7 @@ gallery_scale_thumbs                 = Maak kleine voorbeeld afbeeldingen met de
 gallery_text_from_ftp                = Maakt alle galerijen en afbeeldingen geüpload via FTP
 gallery_text_from_ftp_button         = CMS-compatibel
 gallery_text_subtitle                = Ondertitels
+gallery_text_alt                     = Alt-tekst
 
 config_button                        = Instellingen
 config_error_defaultcat_emty         = Er zijn op dit moment geen categorieÃ«n beschikbaar.
@@ -382,6 +391,7 @@ plugins_text_fileinfo                = Bestaande configuratie-instellingen blijv
 plugins_button_install               = Installeren
 plugins_button_delete                = Verwijder alle geselecteerde plug-ins
 plugins_select                       = of vanuit de map "plug-ins"
+plugins_checkbox_toggle              = Selectievakje aan/uit
 
 template_button                      = Sjabloon
 template_title_grafiken              = Grafische afbeeldingen

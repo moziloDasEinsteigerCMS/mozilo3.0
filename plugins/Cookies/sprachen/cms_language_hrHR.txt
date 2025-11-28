@@ -1,0 +1,4 @@
+cookieDesc                                    = Koristimo kolačiće.
+cookieBtn                                     = Prihvati
+cookiePrivacy                                 = Više informacija u pravilima o privatnosti.
+cookieSr                                      = Koriste se kolačići. Molimo vas da se složite.

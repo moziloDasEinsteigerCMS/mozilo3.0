@@ -172,7 +172,7 @@ if(function_exists($current_step))
 echo getHtml("start",$current_step);
 echo menu_tabs($steps,$current_step,$status);
 echo $html_check_update;
-echo '<div class="admin-main install">';
+echo '<main class="admin-main install">';
 
 
 if($clean) {
@@ -185,7 +185,7 @@ if($debug) {
     echo '<input type="submit" name="reset" value="Reset">';
     echo '<input type="hidden" name="debug" value="true">';
 }
-echo '</div>'."\n";
+echo '</main>'."\n";
 
 
 if($debug) {
@@ -245,7 +245,7 @@ function help() {
 
 
 function language() {
-    $html1 = getLanguageValue("install_lang_select");
+    $html1 = '<label for="select-lang">'.getLanguageValue("install_lang_select").'</label>';
     $html2 = getLanguageSelect();
     return array(true,contend_template('<div class="c-header">'.getLanguageValue("install_lang_help_title").'</div>'.installHelp("install_lang_help"),"")
                 .contend_template(array($html1,$html2),""));
@@ -322,7 +322,7 @@ function environment() {
     }
 
     // Zeile "PHP-Version"
-    if(version_compare(PHP_VERSION, '5.5.1') >= 0) {
+    if(version_compare(PHP_VERSION, '8.1') >= 0) {
         $html = array(getLanguageValue("home_phpversion_text"),phpversion());
         $html_ret .= contend_template($html,true);
     } else {
@@ -533,9 +533,8 @@ function password() {
         // keine fehler, dann daten schreiben
         if(empty($form_errmsg)) {
             $status = true;
-            require_once(BASE_DIR.CMS_DIR_NAME.'/PasswordHash.php');
-            $t_hasher = new PasswordHash(8, FALSE);
-            $pw = $t_hasher->HashPassword($_POST['password1']);
+            
+            $pw = password_hash($_POST['password1'], PASSWORD_DEFAULT); 
             $loginpassword = new Properties(BASE_DIR.ADMIN_DIR_NAME.'/'.CONF_DIR_NAME."/loginpass.conf.php");
             $loginpassword->set("name", $_POST['username']);
             $loginpassword->set("pw", $pw);
@@ -545,9 +544,9 @@ function password() {
 
     $html = getLanguageValue("pw_text_login").' '.getLanguageValue("pw_help")
         .'<div class="card">'
-        .'<div class="c-content mo-in-li-r"><div>'.getLanguageValue("pw_titel_newname").'</div><div>'.'<input type="text" class="js-in-pwroot mo-input-text" name="username" value="'.$form_username.'">'.'</div></div>'
-        .'<div class="c-content mo-in-li-r"><div>'.getLanguageValue("pw_titel_newpw").'</div><div>'.'<input type="password" class="js-in-pwroot mo-input-text" value="'.NULL.'" name="password1">'.'</div></div>'
-        .'<div class="c-content mo-in-li-r"><div>'.getLanguageValue("pw_titel_newpwrepeat").'</div><div>'.'<input type="password" class="js-in-pwroot mo-input-text" value="" name="password2">'.'</div></div>'
+        .'<div class="c-content mo-in-li-r"><div><label for="username">'.getLanguageValue("pw_titel_newname").'</label></div><div>'.'<input type="text" id="username" class="js-in-pwroot mo-input-text" name="username" value="'.$form_username.'">'.'</div></div>'
+        .'<div class="c-content mo-in-li-r"><div><label for="password1">'.getLanguageValue("pw_titel_newpw").'</label></div><div>'.'<input type="password" id="password1" class="js-in-pwroot mo-input-text" value="'.NULL.'" name="password1">'.'</div></div>'
+        .'<div class="c-content mo-in-li-r"><div><label for="password2">'.getLanguageValue("pw_titel_newpwrepeat").'</label></div><div>'.'<input type="password" id="password2" class="js-in-pwroot mo-input-text" value="" name="password2">'.'</div></div>'
         .'<div class="c-content mo-in-li-r"><div></div><div>'.'<input type="submit" class="button" name="pw_submit" value="'.getLanguageValue("button_save").'">'.'</div></div>'
         ."</div>";
 
@@ -600,7 +599,7 @@ function menu_tabs($steps,$current_step,$status) {
         $post_step_status .= '<input type="hidden" name="only" value="'.$_POST['only'].'">'."\n";
     }
 
-    $tabs = '<div class="admin-side install">'."\n"
+    $tabs = '<nav class="admin-side install">'."\n"
     .'<ul id="js-menu-tabs" class="nav flex">'."\n";
 
     foreach($steps as $pos => $step) {
@@ -625,14 +624,14 @@ function menu_tabs($steps,$current_step,$status) {
         }
         $lang_step = getLanguageValue("install_tab_".$step);
         $tabs .= '<li class="flex-100 js-multi-user ui-state-default'.$activ.'">';
-        $tabs .= '<a href="install.php" class="step_tabs" title="'.$lang_step.'" name="'.$step.'">'
+        $tabs .= '<a href="install.php" class="step_tabs" name="'.$step.'">'
             .'<span class="mo-install-icon mo-install-'.$step.'"></span><span class="mo-install-text">'.$lang_step.'</span>'
             .'</a>';
 
         $tabs .= '</li>'."\n";
     }
     $tabs .= '</ul>'."\n";
-    $tabs .= '</div>'."\n";
+    $tabs .= '</nav>'."\n";
     $tabs .= '<input id="step_input" type="hidden" name="current_step" value="">'."\n";
 
     $post_finish_steps = '<input type="hidden" name="finish_steps" value="'.implode(",",$finish_steps).'">'."\n";
@@ -932,109 +931,151 @@ function contend_template($daten_array,$error = NULL) {
 }
 
 function getHtml($art,$current_step = false) {
-$install_js = 'function test_modrewrite(url,para,step) {
+$install_js = <<<'JS'
+function test_modrewrite(url, para, step) {
     var send_to_test = false;
-    $.ajax({
-        global: true,
-        cache: false,
-        type: "POST",
-        url: url,
-        data: para,
-        async: true,
-        dataType: "html",
-        timeout:20000,
-        success: function(data, textStatus, jqXHR){
-            if($("<span>"+data+"</span>").find("#mod-rewrite-true").length > 0) {
-                finish_test = true;
-            } else if($("<span>"+data+"</span>").find("#return-modconf").length > 0) {
-                send_to_test = true;
+
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" },
+        body: para
+    })
+    .then(function(resp){ return resp.text(); })
+    .then(function(data){
+        // HTML-String in DOM-Fragment parsen (wie $("<span>...</span>").find(...))
+        var wrapper = document.createElement("span");
+        wrapper.innerHTML = data;
+
+        if (wrapper.querySelector("#mod-rewrite-true")) {
+            finish_test = true;
+        } else if (wrapper.querySelector("#return-modconf")) {
+            send_to_test = true;
+        }
+    })
+    .catch(function(){ /* optional: Fehler ignorieren wie bei jQuery */ })
+    .finally(function(){
+        var stepLabel = document.querySelector("#step-mod-conf");
+        var form = document.querySelector("form");
+        var rewriteInput = document.querySelector('input[name="rewrite"]');
+
+        if (send_to_test === true) {
+            test_modrewrite("install/xy/test.php", "", step);
+        } else if (finish_test === false && step < max_step) {
+            step++;
+            if (stepLabel) stepLabel.textContent = String(step);
+            test_modrewrite("install.php", "fromajax=true&current_step=rewrite&modconf="+step, step);
+        } else if (finish_test === true) {
+            if (stepLabel) stepLabel.textContent = String(step);
+            if (rewriteInput) rewriteInput.value = String(step);
+            if (form) {
+                if (typeof form.requestSubmit === "function") form.requestSubmit();
+                else form.submit();
             }
-        },
-        complete: function() {
-            if(send_to_test === true) {
-                test_modrewrite("install/xy/test.php","",step);
-            } else if(finish_test === false && step < max_step) {
-                step++;
-                $("#step-mod-conf").text(step);
-                test_modrewrite("install.php","fromajax=true&current_step=rewrite&modconf="+step,step);
-            } else if(finish_test === true) {
-                $("#step-mod-conf").text(step);
-                $(\'input[name="rewrite"]\').val(step);
-                $("form").trigger("submit");
-            } else {
-                $("#step-mod-conf").text(step);
-                $(\'input[name="rewrite"]\').val("no_modrewrite");
-                $("form").trigger("submit");
+        } else {
+            if (stepLabel) stepLabel.textContent = String(step);
+            if (rewriteInput) rewriteInput.value = "no_modrewrite";
+            if (form) {
+                if (typeof form.requestSubmit === "function") form.requestSubmit();
+                else form.submit();
             }
-        },
+        }
     });
 }
 
-$(function() {
-
-    if(typeof max_step != "undefined") {
-        $("#step-mod-conf").text("0");
+document.addEventListener("DOMContentLoaded", function() {
+    // mod_rewrite-Test automatisch starten
+    if (typeof max_step !== "undefined") {
+        var stepLabel = document.querySelector("#step-mod-conf");
+        if (stepLabel) stepLabel.textContent = "0";
         test_modrewrite("install.php","fromajax=true&current_step=rewrite&modconf=0",0);
     }
 
-    $(".step_tabs").on("click", function(event) {
-        event.preventDefault();
-        if($(this).closest("li").hasClass("js-no-click"))
-            return false;
-        $("#step_input").val($(this).attr("name"));
-        $("form").trigger("submit");
-    });
-
-    $("#select-lang").on("change", function(event) {
-        event.preventDefault();
-        $("form").trigger("submit");
-    });
-
-    $(".js-in-pwroot").on("keydown", function(event) {
-        if(event.which == 13)
+    // Tab-Navigation
+    document.querySelectorAll(".step_tabs").forEach(function(a) {
+        a.addEventListener("click", function(event) {
             event.preventDefault();
+            var li = a.closest("li");
+            if (li && li.classList.contains("js-no-click")) return;
+            var stepInput = document.querySelector("#step_input");
+            if (stepInput) stepInput.value = a.getAttribute("name") || "";
+            var form = document.querySelector("form");
+            if (form) {
+                if (typeof form.requestSubmit === "function") form.requestSubmit();
+                else form.submit();
+            }
+        });
     });
 
-    $("form").on("submit",function(event) {
-        if($("#step_input").val() == "")
-            $("#step_input").val($(".ui-tabs-selected a").attr("name"));
+    // Sprachwechsel
+    var langSelect = document.querySelector("#select-lang");
+    if (langSelect) {
+        langSelect.addEventListener("change", function(event) {
+            event.preventDefault();
+            var form = document.querySelector("form");
+            if (form) {
+                if (typeof form.requestSubmit === "function") form.requestSubmit();
+                else form.submit();
+            }
+        });
+    }
+
+    // Enter in Passwortfeldern unterdrücken
+    document.querySelectorAll(".js-in-pwroot").forEach(function(el) {
+        el.addEventListener("keydown", function(event) {
+            if (event.key === "Enter" || event.which === 13) {
+                event.preventDefault();
+            }
+        });
     });
+
+    // Fallback: beim Absenden current tab setzen, falls leer
+    var form = document.querySelector("form");
+    if (form) {
+        form.addEventListener("submit", function() {
+            var stepInput = document.querySelector("#step_input");
+            if (stepInput && stepInput.value === "") {
+                var selected = document.querySelector(".ui-tabs-selected a");
+                if (selected) stepInput.value = selected.getAttribute("name") || "";
+            }
+        });
+    }
 });
-
-';
+JS;
 
 $html_start = '<!DOCTYPE html>'."\n"
         .'<html lang="de">'."\n"
         .'<head>'."\n"
+        .'<script src="'.URL_BASE.ADMIN_DIR_NAME.'/jquery/theme.js" ></script>'."\n"
         .'<meta charset="'.CHARSET.'">'."\n"
         .'<meta name="viewport" content="width = device-width, initial-scale = 1.0">'."\n"
         .'<title>moziloCMS - Setup</title>'."\n"
         .'<link rel="shortcut icon" href="'.URL_BASE.ADMIN_DIR_NAME.'/favicon.ico">'."\n"
-        .'<link rel="stylesheet" href="'.URL_BASE.ADMIN_DIR_NAME.'/css/admin.css">'."\n"       
+        .'<link rel="stylesheet" href="'.URL_BASE.ADMIN_DIR_NAME.'/css/admin.css">'."\n"    
+        .'<link rel="stylesheet" href="'.URL_BASE.ADMIN_DIR_NAME.'/css/install.css">'."\n"   
     .'</head>'."\n"
     .'<body>'."\n"
     .'<div class="admin-container install">'."\n"
     .'<noscript><div class="mo-noscript slideInDown card red mo-align-center">'.getLanguageValue("error_no_javascript").'</div></noscript>'."\n"
-    .'<div class="header">'."\n"
+    .'<header class="header">'."\n"
       .'<div class="header-left">'."\n"
   .'<img src="'.URL_BASE.ADMIN_DIR_NAME.'/css/images/mozilo-logo-24.webp" alt="moziloCMS Logo">'."\n"
   .'<span class="mr mo-bold">moziloCMS Setup</span>'."\n"
   .'</div>'."\n"
-    .'</div>'."\n";
+    .'</header>'."\n";
        $html_start .= '<form class="install-form" action="install.php" method="post">'."\n";
+
     $html_end = '</form>'."\n"    
-.'<div class="footer">'."\n"
+.'<footer class="footer">'."\n"
 .'<small>Powered by <a href="https://www.mozilo.de" target="_blank">moziloCMS</a> &copy; 2006 - '.date("Y").' &#10072; Version: '.CMSVERSION.' ("'.CMSNAME.'") '.CMSSTATUS.'</small>'."\n"
-.'</div>'."\n"
+.'</footer>'."\n"
         .'</div>'."\n"
-                .'<script src="'.URL_BASE.CMS_DIR_NAME.'/jquery/jquery-'.JQUERY.'.min.js"></script>'."\n"
-        .'<script>/*<![CDATA[*/'
+
+        .'<script>'
         .$install_js
-        .'/*]]>*/</script>'."\n" ;
+        .'</script>'."\n" ;
 
     if($art == "start")
         return $html_start;
     if($art == "end")
         return $html_end;
 }
-?>

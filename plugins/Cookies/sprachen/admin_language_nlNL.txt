@@ -1,0 +1,11 @@
+config_cookieDays                             = Aantal dagen dat het bericht na acceptatie verborgen moet blijven (standaard: 30).
+config_cookieDays_error                       = Aantal dagen: Voer een getal in.
+config_cookieTitle                            = Aangepaste titel (standaard: leeg)
+config_cookieDesc                             = Aangepaste beschrijving
+config_cookieSr                               = Aangepaste beschrijving voor tekst van schermlezer
+config_cookieBtn                              = Aangepaste beschrijving voor knop
+config_cookiePrivacy                          = Tekst voor link naar de privacypagina
+config_cookieCat                              = Categorie waarin de privacypagina zich bevindt
+config_cookiePage                             = Naam van de privacypagina
+description                                   = Voegt een cookiemelding in met behulp van {Cookies}. Titel, tekst, knop en duur kunnen afzonderlijk worden geconfigureerd.
+placeholder                                   = Voegt een cookiemelding in.

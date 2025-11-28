@@ -1,0 +1,4 @@
+cookieDesc                                    = Nous utilisons des traceurs.
+cookieBtn                                     = Accepter
+cookiePrivacy                                 = Informations supplémentaires dans la déclaration de confidentialité sur la protection de données.
+cookieSr                                      = Des cookies sont utilisés. Veuillez accepter.

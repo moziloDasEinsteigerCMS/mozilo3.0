@@ -1,0 +1,5 @@
+config_breadcrumb_text    = Texto em destaque (padrão: vazio)
+config_first_entry        = Primeira entrada (padrão: iniciar)
+config_breadcrumb_divider = Divisor (padrão »)
+description               = Insere uma trilha de navegação em qualquer lugar de um artigo ou modelo.
+placeholder               = Insere uma trilha de navegação

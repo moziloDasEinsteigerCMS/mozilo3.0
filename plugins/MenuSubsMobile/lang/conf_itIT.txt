@@ -1,0 +1,5 @@
+no_menusubs_2        = Nessun MenuSubs_2
+menusubs_2           = Seleziona categoria per MenuSubs_2
+sitemap_show_menu2   = Mostra MenuSubs_2 nella mappa del sito
+breadcrumb_delimiter = Delimitatore breadcrumb. Il valore predefinito è "»"
+hidden               = Stili da applicare all'apertura del menu mobile. Un elenco di ID separati da virgole = Proprietà CSS: valore

@@ -1,0 +1,5 @@
+config_breadcrumb_text    = Texte en vedette (par défaut : vide)
+config_first_entry        = Première entrée (par défaut : début)
+config_breadcrumb_divider = Séparateur (par défaut »)
+description               = Insère un fil d'Ariane n'importe où dans un article ou un modèle.
+placeholder               = Insère un fil d'Ariane

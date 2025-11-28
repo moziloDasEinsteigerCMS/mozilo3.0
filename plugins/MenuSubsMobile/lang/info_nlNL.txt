@@ -1,0 +1,74 @@
+Creëert een menu met vrijwel onbeperkte submenu-nesting.<br>
+<br>
+Deze plugin is een uitbreiding van de MenuSubs-plugin.<br>
+Er is geen JavaScript voor nodig.<br>
+In Opera Mini zijn de selectievakjes niet transparant, dus er wordt een kleine hoeveelheid JavaScript gebruikt.<br>
+<br>
+<b>De wijzigingen zijn:</b>
+<ul>
+<li>De lijst bevat altijd alle categorieën en contentpagina's. Ze worden nu beheerd via de klassen menusubs-hidden en menusubs-show.</li>
+<li>Elke categorie krijgt ook een label en een invoerselectievakje HTML-element, met uitzondering van de template switch usesubmenu = 2.</li>
+<li>Voor de lijst staat ook een label en een invoerselectievakje HTML-element om het menu uit of in te klappen.</li>
+<li>In de normale weergave zijn alle label en invoerselectievakje HTML-elementen onzichtbaar, dus het is een volledig normaal menu.</li>
+</ul>
+<br>
+<b>Opmerking:</b> Een paar speciale functies worden beschreven in de plugin.css!<br>
+<br>
+<b>Opmerking:</b> Categorieën met een "/" (slash) worden niet langer weergegeven, omdat we de "/" voor het submenu gebruiken.<br>
+<br>
+Om een ​​detailmenu te gebruiken, moet u {MenuSubsMobile|main} en {MenuSubsMobile|detail} gebruiken,
+anders alleen {MenuSubsMobile}<br>
+<b>Opmerking:</b> De schakelaar "usesubmenu = 0" (bovenaan de lay-outs ingevoerd) wordt hier niet gebruikt!<br>
+<br>
+<b>Beschrijving:</b>
+<ul>
+<li>Zodra een verborgen contentpagina met een "/" in de naam wordt gevonden, wordt deze vervangen als submenu door de categorie met dezelfde naam.</li>
+<li><b>Belangrijk:</b> De naam wordt beschouwd als een pad.</li>
+<li>Om een ​​contentpagina in subcategorieën te gebruiken die verborgen is met de instelling "Geef op of contentpagina's met dezelfde naam als de categorie verborgen moeten worden in het detailmenu:", moet de naam hetzelfde zijn als het laatste deel van de subcategorieën, bijvoorbeeld SubCategories=Category/Submenu_1 ContentPage=Submenu_1, en de eerste contentpagina moet zijn.</li>
+</ul>
+<br>
+<b>Voorbeeld:</b><br>
+<ul><li style="list-style-type:none;"><b>Categorie</b>
+<ul>
+<li>Inhoudsopgave pagina_1</li>
+<li>Categorie / Submenu_1 <b>verborgen</b></li>
+<li>Inhoudsopgave pagina_2</li>
+</ul>
+<b>Categorie / Submenu_1</b>
+<ul>
+<li>Inhoudsopgave pagina_3</li>
+<li>Categorie / Submenu_1 / Submenu_2 <b>verborgen</b></li>
+</ul>
+<b>Categorie / Submenu_1 / Submenu_2</b>
+<ul>
+<li>Inhoudsopgave pagina_4</li>
+<li>Inhoudsopgave Pagina_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Resultaat:</b><br>
+<ul><li style="list-style-type:none;"><b>Categorie</b>
+<ul>
+<li>Inhoudspagina_1</li>
+<li><b>Submenu_1</b>
+<ul>
+<li>Inhoudspagina_3</li>
+<li><b>Submenu_2</b>
+<ul>
+<li>Inhoudspagina_4</li>
+<li>Inhoudspagina_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Inhoudspagina_2</li>
+</ul>
+</li></ul>
+<br>
+Een tweede menu kan worden aangemaakt met <b>{MenuSubsMobile|menusubs_2}</b>.<br>
+Bijvoorbeeld voor impressum en contactgegevens in de voettekst van de Pagina.<br>
+Selecteer eenvoudig een categorie in de pluginconfiguratie en voer <b>{MenuSubsMobile|menusubs_2}</b> <br>in op de gewenste locatie in de template.<br>
+Alleen categorieën zonder "/" in hun naam zijn beschikbaar.<br>
+Subcategorieën zijn uiteraard ook mogelijk.<br>
+<br>
+Voor breadcrumb-navigatie voert u eenvoudig <b>{MenuSubsMobile|breadcrumb}</b> in op de gewenste locatie.

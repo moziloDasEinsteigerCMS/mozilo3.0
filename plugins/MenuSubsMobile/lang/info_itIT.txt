@@ -1,0 +1,74 @@
+Crea un menu con un numero quasi illimitato di sottomenu annidati.<br>
+<br>
+Questo plugin è un'estensione del plugin MenuSubs.<br>
+Non richiede JavaScript.<br>
+In Opera Mini, le caselle di controllo non sono trasparenti, quindi viene utilizzata una piccola quantità di JavaScript.<br>
+<br>
+<b>Le modifiche sono:</b>
+<ul>
+<li>L'elenco include sempre tutte le categorie e le pagine di contenuto. Ora sono controllati tramite le classi menusubs-hidden e menusubs-show.</li>
+<li>Ogni categoria riceve anche un'etichetta e un elemento HTML di input checkbox, ad eccezione del template switch usesubmenu = 2.</li>
+<li>Davanti all'elenco, sono presenti anche un'etichetta e un elemento HTML di input checkbox per espandere o comprimere il menu.</li>
+<li>Nella visualizzazione normale, tutti gli elementi HTML di input checkbox e etichetta sono invisibili, quindi si tratta di un menu completamente normale.</li>
+</ul>
+<br>
+<b>Nota:</b> Alcune funzionalità speciali sono documentate nel file plugin.css!<br>
+<br>
+<b>Nota:</b> le categorie contenenti una "/" (barra) non vengono più visualizzate, poiché utilizziamo la "/" per il sottomenu.<br>
+<br>
+Per utilizzare un menu dettagliato, è necessario utilizzare {MenuSubsMobile|main} e {MenuSubsMobile|detail},
+altrimenti solo {MenuSubsMobile}<br>
+<b>Nota:</b> l'opzione "usesubmenu = 0" (inserita nella parte superiore dei layout) non viene utilizzata qui!<br>
+<br>
+<b>Descrizione:</b>
+<ul>
+<li>Non appena viene trovata una pagina di contenuto nascosta con una "/" nel nome, questa viene sostituita come sottomenu con la categoria che ha lo stesso nome.</li>
+<li><b>Importante:</b> il nome è considerato un percorso.</li>
+<li>Per utilizzare una pagina di contenuto nelle sottocategorie nascoste utilizzando l'impostazione "Specifica se le pagine di contenuto con lo stesso nome della categoria devono essere nascoste nel menu dettagli:", il nome deve essere uguale all'ultima parte delle sottocategorie, ad esempio, SubCategories=Category/Submenu_1 ContentPage=Submenu_1, e la prima pagina di contenuto deve essere essere.</li>
+</ul>
+<br>
+<b>Esempio:</b><br>
+<ul><li style="list-style-type:none;"><b>Categoria</b>
+<ul>
+<li>Pagina dei contenuti_1</li>
+<li>Categoria / Sottomenu_1 <b>nascosto</b></li>
+<li>Pagina dei contenuti_2</li>
+</ul>
+<b>Categoria / Sottomenu_1</b>
+<ul>
+<li>Pagina dei contenuti_3</li>
+<li>Categoria / Sottomenu_1 / Sottomenu_2 <b>nascosto</b></li>
+</ul>
+<b>Categoria / Sottomenu_1 / Sottomenu_2</b>
+<ul>
+<li>Pagina dei contenuti_4</li>
+<li>Contenuti Pagina_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Risultato:</b><br>
+<ul><li style="list-style-type:none;"><b>Categoria</b>
+<ul>
+<li>Pagina Indice_1</li>
+<li><b>Sottomenu_1</b>
+<ul>
+<li>Pagina Indice_3</li>
+<li><b>Sottomenu_2</b>
+<ul>
+<li>Pagina Indice_4</li>
+<li>Pagina Indice_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Pagina Indice_2</li>
+</ul>
+</li></ul>
+<br>
+È possibile creare un secondo menu con <b>{MenuSubsMobile|menusubs_2}</b>.<br>
+Ad esempio, per informazioni di contatto e impronta nel piè di pagina Pagina.<br>
+Basta selezionare una categoria nella configurazione del plugin e inserire <b>{MenuSubsMobile|menusubs_2}</b> <br>nella posizione desiderata nel modello.<br>
+Sono disponibili solo le categorie che non hanno una "/" nel nome.<br>
+Naturalmente, sono possibili anche le sottocategorie.<br>
+<br>
+Per la navigazione breadcrumb, basta inserire <b>{MenuSubsMobile|breadcrumb}</b> nella posizione desiderata.

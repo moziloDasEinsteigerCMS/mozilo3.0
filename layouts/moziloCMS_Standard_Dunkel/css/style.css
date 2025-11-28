@@ -272,7 +272,7 @@ li.gallerymenu, li.gallerynumbermenu {
     list-style-type: none
 }
 
-.sitemap a, .searchmap a, .tableofcontents a {
+#sitemap a, .searchmap result-list result-list a, .tableofcontents a {
     color: var(--font-color)
 }
 
@@ -370,4 +370,15 @@ li.gallerymenu, li.gallerynumbermenu {
   main {
     width: 60%;
   }
+}
+/* -------------------------------------------------------- */
+/* [block|...] */
+/* ----------- */
+.alignjustify {
+    text-align:justify;
+}
+fieldset#searchfieldset {
+   border:none;
+   margin:0px;
+   padding:0px;
 }

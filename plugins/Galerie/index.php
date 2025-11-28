@@ -80,6 +80,11 @@ class Galerie extends Plugin {
             $alldescriptions = false;
             if(is_file($GALERIE_DIR."texte.conf.php"))
                 $alldescriptions = new Properties($GALERIE_DIR."texte.conf.php");
+                
+                $allalts = false;
+            if(is_file($GALERIE_DIR."alt.conf.php"))
+                $allalts = new Properties($GALERIE_DIR."alt.conf.php");
+                
             // Galerieverzeichnis einlesen
             $picarray = getDirAsArray($GALERIE_DIR,"img");
             $allindexes = array();
@@ -131,7 +136,7 @@ class Galerie extends Plugin {
             $html = str_replace('{CURRENTGALLERY}', $specialchars->rebuildSpecialChars($gal_request,false,true), $html);
             if ($usethumbs) {
                 $html = str_replace('{GALLERYMENU}', "&nbsp;", $html);
-                $html = str_replace('{NUMBERMENU}', $this->getThumbnails($picarray,$alldescriptions,$GALERIE_DIR,$GALERIE_DIR_SRC), $html);
+                $html = str_replace('{NUMBERMENU}', $this->getThumbnails($picarray,$alldescriptions,$allalts, $GALERIE_DIR,$GALERIE_DIR_SRC), $html);
                 $html = str_replace('{CURRENTPIC}', "&nbsp;", $html);
                 $html = str_replace('{CURRENTDESCRIPTION}', "&nbsp;", $html);
                 $html = str_replace('{XOUTOFY}', "&nbsp;", $html);
@@ -150,8 +155,12 @@ class Galerie extends Plugin {
                     $gallerypicname = $picarray[$arraypos];
                     $getcurrentdescription = "";
                     $getcurrentdescription = $this->getCurrentDescription($gallerypicname,$picarray,$alldescriptions);
+                    $getcurrentalt = $this->getCurrentAlt($gallerypicname,$picarray,$allalts);
+$getcurrenttitle = $this->getCurrentTitle($gallerypicname,$picarray,$alldescriptions);
 
                     $html = str_replace('{CURRENTDESCRIPTION}', $getcurrentdescription, $html);
+$html = str_replace('{CURRENTALT}', $getcurrentalt, $html);
+$html = str_replace('{CURRENTTITLE}', $getcurrenttitle, $html);
                 } else {
                     $html = str_replace('{CURRENTDESCRIPTION}', "", $html);
                 }
@@ -247,92 +256,94 @@ class Galerie extends Plugin {
     // Thumbnails erzeugen
     // ------------------------------------------------------------------------------
 
-    function getThumbnails($picarray,$alldescriptions,$GALERIE_DIR,$GALERIE_DIR_SRC) {
+    function getThumbnails($picarray, $alldescriptions, $allalts, $GALERIE_DIR, $GALERIE_DIR_SRC) {
 
-        global $specialchars;
+    global $specialchars;
+    global $lang_gallery_cms;
 
-        global $lang_gallery_cms;
-
-        $thumbs = "<div class=\"gallerytable\">";
-
-        $i = 0;
-
-        for ($i=0; $i<count($picarray); $i++) {
-
-            // Bildbeschreibung holen
-
-            $description = $this->getCurrentDescription($picarray[$i],$picarray,$alldescriptions);
-
-            if ($description == "")
-
-                $description = "&nbsp;";
-
-            $thumbs .= "<div class=\"gallerytd\">"; 
-
-            if (file_exists($GALERIE_DIR.PREVIEW_DIR_NAME."/".$specialchars->replaceSpecialChars($picarray[$i],false))) {
-            list($width, $height, $type, $attr) = getimagesize($GALERIE_DIR.PREVIEW_DIR_NAME."/".$specialchars->replaceSpecialChars($picarray[$i],false));
-        //        $thumbs .= "<a id=\"".$specialchars->rebuildSpecialChars($picarray[$i],true,true)."\" href=\"#".$specialchars->rebuildSpecialChars($picarray[$i],true,true)."\" role=\"button\">";
-                $thumbs .='<figure>';
-                $thumbs .='<img  class="thumbnail" loading="lazy" src="'.$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true).'" alt="'.$description.'" title="'.$description.'">';
-       //         $thumbs .="<div class=\"galleryoverlay\">";
-       //         $thumbs .="<figure><img itemprop=\"image\" src=\"".$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true)."\" alt=\"$description\" title=\"$description\" $attr>";
-       if ($this->settings->get("caption") == "true") {
-       $thumbs .='<figcaption>'.$description.'</figcaption>';
-       }
-                
-$thumbs .='</figure>';
-        //        $thumbs .="</div>";
-        //        $thumbs .="</a>";
-         //       $thumbs .="<a class=\"galeryimgclose\" href=\"#!\"></a>";
-         //       $thumbs .="<a class=\"galleryimgprev\" href=\"#image1\">&lt;</a>";
-         //       $thumbs .="<a class=\"galleryimgnext\" href=\"#image3\">&gt;</a>";
-
-            } else {
-
-                 $thumbs .= '<div><a style="color:red;" href="'.$GALERIE_DIR_SRC.PREVIEW_DIR_NAME."/".$specialchars->replaceSpecialChars($picarray[$i],true).'" target="_blank" title="'.$lang_gallery_cms->getLanguageHtml("tooltip_gallery_fullscreen_1", $specialchars->rebuildSpecialChars
-
-($picarray[$i],true,true)).'"><b>'.$lang_gallery_cms->getLanguageHtml('message_gallery_no_preview').'</b></a></div>';
-
-            }
-
-   //         $thumbs .= "<div class=\"desc\">$description</div>"
-
-           $thumbs .= "</div>";
-
-        }
-
-        while ($i<count($picarray)) {
-
-            $thumbs .= "<div class=\"gallerytd\"></div>";
-
-            $i++;
-
-        }
-        
-
-
-        $thumbs .= "</div>";       
-        
-                $thumbs .= '<div class="gallery-modal">';
-			$thumbs .= '<span class="close">&times;</span>';
-			$thumbs .= '<a role="button" class="prev">&#10094;</a>';
-			$thumbs .= '<a role="button" class="next">&#10095;</a>';
-			$thumbs .= '<div class="modal-content">';
-	 
-			$thumbs .= '<figure>';
-			$thumbs .= '<img src="'.$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$i],true).'" alt="'.$description.'" class="modal-img">';
-				if ($this->settings->get("caption") == "true") {
-					$thumbs .='<figcaption class="modal-txt">'.$description.'</figcaption>';
-				}
-			$thumbs .= '</figure>';
-			$thumbs .= '</div>';
-			$thumbs .= '</div>';
-
-        // Rückgabe der Thumbnails
-
-        return $thumbs;
-
+    // Keine Bilder?
+    if (count($picarray) == 0) {
+        return "<div class=\"gallerytable\">&nbsp;</div>";
     }
+
+    $thumbs = "<div class=\"gallerytable\">";
+
+    // -----------------------------------------
+    // Thumbnails erzeugen
+    // -----------------------------------------
+    foreach ($picarray as $picname) {
+
+        // Beschreibung, ALT, TITLE ermitteln
+        $description = $this->getCurrentDescription($picname, $picarray, $alldescriptions);
+        $alt         = $this->getCurrentAlt($picname, $picarray, $allalts);
+        $title       = $this->getCurrentTitle($picname, $picarray, $alldescriptions);
+
+        if ($description == "") $description = "&nbsp;";
+
+        $thumbs .= '<div class="gallerytd">';
+
+        // Thumbnail existiert?
+        $previewFile = $GALERIE_DIR . PREVIEW_DIR_NAME . "/" . $specialchars->replaceSpecialChars($picname, false);
+
+        if (file_exists($previewFile)) {
+
+            $thumbs .= '<figure>';
+$thumbs .= '<img class="thumbnail" loading="lazy"
+                 src="' . $GALERIE_DIR_SRC . $specialchars->replaceSpecialChars($picname, true) . '"
+                 alt="' . $alt . '"
+                 title="' . $title . '"
+                 data-description="' . htmlspecialchars($description, ENT_QUOTES) . '">';
+
+if ($this->settings->get("caption") == "true") {
+    $thumbs .= '<figcaption>' . $description . '</figcaption>';
+}
+
+$thumbs .= '</figure>';
+
+
+        } else {
+
+            // Fehlerhinweis, falls kein Vorschau-Bild
+            $thumbs .= '<div><a style="color:red;" href="' . $GALERIE_DIR_SRC . PREVIEW_DIR_NAME . "/" . $specialchars->replaceSpecialChars($picname, true) . '" target="_blank" title="' . $lang_gallery_cms->getLanguageHtml("tooltip_gallery_fullscreen_1", $specialchars->rebuildSpecialChars($picname, true, true)) . '">
+                            <b>' . $lang_gallery_cms->getLanguageHtml('message_gallery_no_preview') . '</b>
+                        </a></div>';
+        }
+
+        $thumbs .= "</div>";
+    }
+
+    $thumbs .= "</div>"; // gallerytable schließen
+
+
+    $firstPic = $picarray[0];
+
+    // Beschreibung für erstes Bild holen
+    $firstDescription = $this->getCurrentDescription($firstPic, $picarray, $alldescriptions);
+    $firstAlt         = $this->getCurrentAlt($firstPic, $picarray, $allalts);
+    $firstTitle       = $this->getCurrentTitle($firstPic, $picarray, $alldescriptions);
+
+    $thumbs .= '<div class="gallery-modal">';
+    $thumbs .= '<span class="close">&times;</span>';
+    $thumbs .= '<a role="button" class="prev">&#10094;</a>';
+    $thumbs .= '<a role="button" class="next">&#10095;</a>';
+    $thumbs .= '<div class="modal-content">';
+    $thumbs .= '<figure>';
+
+    $thumbs .= '<img src="' . $GALERIE_DIR_SRC . $specialchars->replaceSpecialChars($firstPic, true) . '" 
+                     alt="' . $firstAlt . '" 
+                     title="' . $firstTitle . '" 
+                     class="modal-img">';
+
+    if ($this->settings->get("caption") == "true") {
+        $thumbs .= '<figcaption class="modal-txt">' . $firstDescription . '</figcaption>';
+    }
+
+    $thumbs .= '</figure>';
+    $thumbs .= '</div></div>';
+
+    return $thumbs;
+}
+
     
     // ------------------------------------------------------------------------------
     // Aktuelles Bild anzeigen
@@ -353,8 +364,8 @@ $thumbs .='</figure>';
         // Link zur Vollbildansicht öffnen
         $currentpic = "<div class=\"gallerynothumbs\">";
         $currentpic .="<figure>";
-        $currentpic .= "<img src=\"".$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$arraypos],true)."\" alt=\"".$lang_gallery_cms->getLanguageHtml("alttext_galleryimage_1", $specialchars->rebuildSpecialChars($picarray[$arraypos],true,true))."\" loading=\"lazy\">";
-        if ($this->settings->get("caption") == "true") {
+        $currentpic .= "<img src=\"".$GALERIE_DIR_SRC.$specialchars->replaceSpecialChars($picarray[$arraypos],true)."\" alt=\"{CURRENTALT}\" title=\"{CURRENTTITLE}\" loading=\"lazy\">";
+if ($this->settings->get("caption") == "true") {
         $currentpic .="<figcaption>{CURRENTDESCRIPTION}</figcaption>";
      }
         $currentpic .="</figure>";
@@ -420,6 +431,38 @@ $thumbs .='</figure>';
         sort($picarray);
         return $picarray;
     }
+    
+    // ------------------------------------------------------------------------------
+    // ALT-Text zum aktuellen Bild anzeigen
+    // ------------------------------------------------------------------------------
+    function getCurrentAlt($picname,$picarray,$allalts) {
+        global $specialchars;
+
+        if(!$allalts) return "";
+        if (count($picarray) == 0) return "";
+
+        $alt = $allalts->get($picname);
+        if (empty($alt)) return "";
+
+        return htmlspecialchars($specialchars->rebuildSpecialChars($alt,false,true), ENT_QUOTES);
+    }
+
+    // ------------------------------------------------------------------------------
+    // TITLE zum aktuellen Bild anzeigen
+    // ------------------------------------------------------------------------------
+    function getCurrentTitle($picname,$picarray,$alldescriptions) {
+        global $specialchars;
+
+        if(!$alldescriptions) return "";
+        if (count($picarray) == 0) return "";
+
+        $title = $alldescriptions->get($picname);
+        if (empty($title)) return "";
+
+        return htmlspecialchars($specialchars->rebuildSpecialChars($title,false,true), ENT_QUOTES);
+    }
+
+
 
     // ------------------------------------------------------------------------------
     // Hilfsfunktion: "title"-Attribut zusammenbauen (oder nicht, wenn nicht konfiguriert)
@@ -495,7 +538,7 @@ $thumbs .='</figure>';
 
         $info = array(
             // Plugin-Name
-            "<b>".$lang_gallery_admin->get("config_gallery_plugin_name")."</b> \$Revision: 145 $",
+            "<b>".$lang_gallery_admin->get("config_gallery_plugin_name")."</b> \$Revision: 146 $",
             // CMS-Version
             "2.0 / 3.0",
             // Kurzbeschreibung

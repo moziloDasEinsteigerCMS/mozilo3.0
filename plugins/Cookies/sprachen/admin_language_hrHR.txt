@@ -1,0 +1,11 @@
+config_cookieDays                             = Broj dana koliko poruka treba biti skrivena nakon prihvaćanja (zadano: 30).
+config_cookieDays_error                       = Broj dana: Molimo unesite broj.
+config_cookieTitle                            = Prilagođeni naslov (zadano: prazno)
+config_cookieDesc                             = Prilagođeni opis
+config_cookieSr                               = Prilagođeni opis za tekst čitača zaslona
+config_cookieBtn                              = Prilagođeni opis za gumb
+config_cookiePrivacy                          = Tekst za poveznicu na stranicu o privatnosti
+config_cookieCat                              = Kategorija u kojoj se nalazi stranica o privatnosti
+config_cookiePage                             = Naziv stranice o privatnosti
+description                                   = Umeće obavijest o kolačićima pomoću {Cookies}. Naslov, tekst, gumb i trajanje mogu se konfigurirati pojedinačno.
+placeholder                                   = Umeće obavijest o kolačićima.

@@ -1,0 +1,4 @@
+cookieDesc                                    = Vi bruger cookies.
+cookieBtn                                     = Accepter
+cookiePrivacy                                 = Mere information i privatlivspolitikken.
+cookieSr                                      = Cookies bruges. Accepter venligst.

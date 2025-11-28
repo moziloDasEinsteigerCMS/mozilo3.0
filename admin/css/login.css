@@ -1,0 +1,139 @@
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    ". login login ."
+    ". login login ."
+    ". . . .";
+  height: 100vh
+}
+
+.login {
+  grid-area: login;
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  padding: 40px var(--main-padding) var(--main-padding);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  background: var(--main-bg-color);
+  min-width: 300px
+}
+
+.avatar {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #73a7cf;
+  padding: 5px;
+  box-shadow: 0px 2px 2px rgb(0 0 0 / 10%)
+}
+
+.mo-login_message_fehler,.mo-noscript {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: var(--main-padding);
+  z-index: 2
+}
+
+#loginform {
+display: flex;
+flex-direction: column
+}
+
+#loginform #password {
+flex:1;
+margin-bottom: 0;
+border: transparent
+}
+
+#password-toggle {
+width: 40px;
+height: 39px;
+background: var(--content-blockColor);
+border: none;
+cursor: pointer;
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23333333' d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z'></path> <path d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z'></path> </svg>");
+background-repeat: no-repeat;
+background-position: center
+}
+
+#password-toggle.visible {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23333333' d='M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z'></path> <path d='M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z'></path> <path d='M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z'></path> </svg>")
+  }
+
+#loginform input {
+  padding: var(--main-padding);
+  margin: 0 0 var(--main-margin) 0
+}
+
+#loginform .mo-login_submit {
+  display: block;
+  margin: var(--main-margin) auto 0 auto
+}
+
+#loginform .mo-login_submit:focus {
+  background: var(--main-color);
+  color: var(--main-bg-color)
+}
+
+#loginform .form-group {
+border: 1px solid var(--border-color);
+border-radius: var(--border-radius)
+}
+
+#loginform .form-group input:focus {
+  box-shadow: none  
+}
+
+#loginform .form-group:focus-within { 
+ border-color: transparent;
+box-shadow: 0 0 0 0.2rem rgb(48 104 151 / 25%)
+}
+
+[data-theme="dark"] #password-toggle {
+	background: transparent;
+	background-repeat: no-repeat;
+background-position: center;
+background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23ffffff' d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z'></path> <path fill='%23ffffff' d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z'></path> </svg>")
+}
+
+[data-theme="dark"] #password-toggle.visible {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'> <path fill='%23ffffff' d='M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z'></path> <path fill='%23ffffff' d='M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z'></path> <path fill='%23ffffff' d='M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z'></path> </svg>")
+  }
+  
+  .login-title {
+  font-size: 14px;
+  }
+
+@media only screen and (min-width: 48rem) {
+
+  .login-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      ". . . . ."
+      ". . login . ."
+      ". . login . ."
+      ". . . . ."
+  }
+
+  .avatar {
+    top: -50px;
+    width: 95px;
+    height: 95px;
+    padding: 10px
+  }
+}
+

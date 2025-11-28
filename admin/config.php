@@ -48,36 +48,59 @@ function config() {
     // Zeile "WEBSITE-TITEL", "TITEL-TRENNER" und "WEBSITE-TITELLEISTE"
     if(ROOT or in_array("websitetitle",$show)) {
         $error[$titel][] = false;
-        $template[$titel][] = '<div class="c-content">'
-                        .'<div class="mo-in-li-l">'.getLanguageValue("config_text_websitetitle").'</div>'
-                        .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text" name="websitetitle" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitetitle"),true,true).'">'.'</div>'
-                    .'</div>'
-                    .'<div class="mo-padding-top c-content">'
-                        .'<div class="mo-in-li-l">'.getLanguageValue("config_text_websitetitleseparator").'</div>'
-                        .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text" name="titlebarseparator" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("titlebarseparator"),true,true).'">'.'</div>'
-                    .'</div>'
-                    .'<div class="mo-padding-top c-content">'
-                        .'<div class="mo-in-li-l">'.getLanguageValue("config_text_websitetitlebar").'</div>'
-                        .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text mo-input-margin-top" name="titlebarformat" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("titlebarformat"),true,true).'">'.'</div>'
-                    .'</div>';
+        $template[$titel][] = '<div class="c-content">
+            <div class="mo-in-li-l">
+                <label for="websitetitle">'.getLanguageValue("config_text_websitetitle").'</label>
+            </div>
+            <div class="mo-in-li-r">
+                <input id="websitetitle" type="text" class="mo-input-text" name="websitetitle" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitetitle"),true,true).'">
+            </div>
+        </div>';
+
+        $template[$titel][] = '<div class="c-content">
+            <div class="mo-in-li-l">
+                <label for="titlebarseparator">'.getLanguageValue("config_text_websitetitleseparator").'</label>
+            </div>
+            <div class="mo-in-li-r">
+                <input id="titlebarseparator" type="text" class="mo-input-text" name="titlebarseparator" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("titlebarseparator"),true,true).'">
+            </div>
+        </div>';
+
+        $template[$titel][] = '<div class="c-content">
+            <div class="mo-in-li-l">
+                <label for="titlebarformat">'.getLanguageValue("config_text_websitetitlebar").'</label>
+            </div>
+            <div class="mo-in-li-r">
+                <input id="titlebarformat" type="text" class="mo-input-text mo-input-margin-top" name="titlebarformat" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("titlebarformat"),true,true).'">
+            </div>
+        </div>';
 
     }
 
     // Zeile "WEBSITE-BESCHREIBUNG" und "WEBSITE-KEYWORDS"
     if(ROOT or in_array("websitedescription",$show)) {
         $error[$titel][] = false;
-        $template[$titel][] = '<div class="mo-padding-top c-content">'
-        .'<div class="mo-in-li-l">'.getLanguageValue("config_text_websitedescription").'</div>'
-        .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text mo-input-margin-top" name="websitedescription" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitedescription"),true,true).'">'.'</div>'
-        .'</div>'
-                    .'<div class="mo-padding-top c-content">'
-        .'<div class="mo-in-li-l">'.getLanguageValue("config_text_websitekeywords").'</div>'
-        .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text mo-input-margin-top" name="websitekeywords" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitekeywords"),true,true).'">'.'</div>'
-        .'</div>';
+        $template[$titel][] = '<div class="c-content">
+            <div class="mo-in-li-l">
+                <label for="websitedescription">'.getLanguageValue("config_text_websitedescription").'</label>
+            </div>
+            <div class="mo-in-li-r">
+                <input id="websitedescription" type="text" class="mo-input-text mo-input-margin-top" name="websitedescription" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitedescription"),true,true).'">
+            </div>
+        </div>';
+
+        $template[$titel][] = '<div class="c-content">
+            <div class="mo-in-li-l">
+                <label for="websitekeywords">'.getLanguageValue("config_text_websitekeywords").'</label>
+            </div>
+            <div class="mo-in-li-r">
+                <input id="websitekeywords" type="text" class="mo-input-text mo-input-margin-top" name="websitekeywords" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("websitekeywords"),true,true).'">
+            </div>
+        </div>';
     }
 
     // Zeile "SPRACHAUSWAHL"
-    if(ROOT or in_array("cmslanguage",$show)) {
+        if(ROOT or in_array("cmslanguage",$show)) {
         $tmp_array = getDirAsArray(BASE_DIR_CMS.'sprachen',"file","natcasesort");
         if(count($tmp_array) <= 0) {
             $error[$titel][] = getLanguageValue("config_error_language_empty");
@@ -85,46 +108,38 @@ function config() {
             $error[$titel][] = getLanguageValue("config_error_languagefile_error")."<br>".CMS_DIR_NAME."/sprachen/language_".$CMS_CONF->get('cmslanguage').".txt";
         } else
             $error[$titel][] = false;
-        $conf_inhalt = '<div class="mo-select-div flex"><select name="cmslanguage" class="mo-select flex-100">';
+
+        $conf_inhalt = '<div class="c-content">
+            <div class="mo-in-li-l">
+                <label for="cmslanguage">'.getLanguageValue("config_text_cmslanguage").'</label>
+            </div>
+            <div class="mo-in-li-r">
+                <div class="mo-select-div flex">
+                    <select id="cmslanguage" name="cmslanguage" class="mo-select flex-100">';
         foreach($tmp_array as $file) {
-            $currentlanguagecode = substr($file,strlen("language_"),strlen($file)-strlen("language_")-strlen(".txt"));
-            $selected = NULL;
-            // aktuell ausgewählte Sprache als ausgewählt markieren 
-            if($currentlanguagecode == $CMS_CONF->get("cmslanguage")) {
-                $selected = " selected";
-            }
-            $conf_inhalt .= '<option'.$selected.' value="'.$currentlanguagecode.'">';
-            // Übersetzer aus der aktuellen Sprachdatei holen
+            $currentlanguagecode = substr($file,strlen("language_"),-4);
+            $selected = ($currentlanguagecode == $CMS_CONF->get("cmslanguage")) ? "selected" : "";
             $languagefile = new Properties(BASE_DIR_CMS."sprachen/".$file);
-            $conf_inhalt .= $currentlanguagecode." (".getLanguageValue("config_input_translator")." ".$languagefile->get("_translator_0").")";
-            $conf_inhalt .= "</option>";
+            $conf_inhalt .= '<option value="'.$currentlanguagecode.'" '.$selected.'>'.$currentlanguagecode.' ('.getLanguageValue("config_input_translator").' '.$languagefile->get("_translator_0").')</option>';
         }
-        $conf_inhalt .= "</select></div>";
-        $template[$titel][] = array(getLanguageValue("config_text_cmslanguage"),$conf_inhalt);
+        $conf_inhalt .= '</select></div></div></div>';
+        $template[$titel][] = $conf_inhalt;
     }
 
     // Zeile "STANDARD-KATEGORIE"
-    if(ROOT or in_array("defaultcat",$show)) {
+    if(ROOT || in_array("defaultcat",$show)) {
         $tmp_array = getDirAsArray(CONTENT_DIR_REL,"dir","natcasesort");
-        if(count($tmp_array) <= 0) {
-            $error[$titel][] = getLanguageValue("config_error_defaultcat_emty");
-        } elseif(!in_array($CMS_CONF->get('defaultcat'),$tmp_array)) {
-            $error[$titel][] = getLanguageValue("config_error_defaultcat_existed")."<br>".$specialchars->rebuildSpecialChars($CMS_CONF->get('defaultcat'),true,true);
-        } else
-            $error[$titel][] = false;
-        $conf_inhalt = '<div class="mo-select-div flex"><select name="defaultcat" class="mo-select flex-100">';
+        $conf_inhalt = '<div class="c-content">
+            <div class="mo-in-li-l"><label for="defaultcat">'.getLanguageValue("config_text_defaultcat").'</label></div>
+            <div class="mo-in-li-r"><div class="mo-select-div flex">
+            <select id="defaultcat" name="defaultcat" class="mo-select flex-100">';
         foreach($tmp_array as $element) {
-            if (count(getDirAsArray(CONTENT_DIR_REL.$element,array(EXT_PAGE,EXT_HIDDEN),"none")) == 0) {
-                continue;
-            }
-            $selected = NULL;
-            if ($element == $CMS_CONF->get("defaultcat")) {
-                $selected = "selected ";
-            }
-            $conf_inhalt .= '<option '.$selected.'value="'.$element.'">'.$specialchars->rebuildSpecialChars($element, true, true)."</option>";
+            if (count(getDirAsArray(CONTENT_DIR_REL.$element,array(EXT_PAGE,EXT_HIDDEN),"none")) == 0) continue;
+            $selected = ($element == $CMS_CONF->get("defaultcat")) ? "selected" : "";
+            $conf_inhalt .= '<option value="'.$element.'" '.$selected.'>'.$specialchars->rebuildSpecialChars($element,true,true).'</option>';
         }
-        $conf_inhalt .= "</select></div>";
-        $template[$titel][] = array(getLanguageValue("config_text_defaultcat"),$conf_inhalt);
+        $conf_inhalt .= '</select></div></div></div>';
+        $template[$titel][] = $conf_inhalt;
     }
 
     if(ROOT or in_array("draftmode",$show)) {
@@ -177,25 +192,6 @@ function config() {
         if(ROOT or in_array("replaceemoticons",$show)) {
             $error[$titel][] = false;
             $template[$titel][] = array(getLanguageValue("config_text_replaceemoticons"),'<div class="js-usecmssyntax">'.buildCheckBox("replaceemoticons", ($CMS_CONF->get("replaceemoticons") == "true"),getLanguageValue("config_input_replaceemoticons")).'</div>');
-        }
-        if(ROOT or in_array("defaultcolors",$show)) {
-            $error[$titel][] = false;
-            $colors_div = '<div class="c-content">';
-            $colors_div .= '<div class="mo-in-li-l flex">';
-            $colors_div .= '<span class="js-save-default-color"><svg xmlns="http://www.w3.org/2000/svg" class="mr" width="20" height="20" stroke-width="1.5" viewBox="0 0 24 24" fill="none" > <path d="M3 19V5C3 3.89543 3.89543 3 5 3H16.1716C16.702 3 17.2107 3.21071 17.5858 3.58579L20.4142 6.41421C20.7893 6.78929 21 7.29799 21 7.82843V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19Z" stroke="currentColor" stroke-width="1.5"/> <path d="M8.6 9H15.4C15.7314 9 16 8.73137 16 8.4V3.6C16 3.26863 15.7314 3 15.4 3H8.6C8.26863 3 8 3.26863 8 3.6V8.4C8 8.73137 8.26863 9 8.6 9Z" stroke="currentColor" stroke-width="1.5"/> <path d="M6 13.6V21H18V13.6C18 13.2686 17.7314 13 17.4 13H6.6C6.26863 13 6 13.2686 6 13.6Z" stroke="currentColor" stroke-width="1.5"/> </svg></span>';
-            $colors_div .= '<span id="js-del-config-default-color" class="mo-tool-icon ui-corner-all"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="mr" fill="currentColor" viewBox="0 0 16 16"><title>'.getLanguageValue("admin_delete").'</title><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> </svg></span>';
-            $colors_div .= '<div id="js-config-default-color-box" class="ce-default-color-box ui-widget-content ui-corner-all flex">';
-            $colors_div .= '</div>';
-            $colors_div .= '</div>';
-            $colors_div .= '<div class="mo-in-li-r">';
-            $colors_div .= '<div id="js-menu-config-default-color" class="flex">'
-                .'← <img class="js-new-config-default-color ce-bg-color-change ce-default-color-img ui-widget-content ui-corner-all" alt="" title="" src="'.ICON_URL_SLICE.'">'
-                .'<input type="text" maxlength="6" value="DD0000" class="ce-bg-color-change js-in-hex ce-in-hex" id="js-new-default-color-value" size="6">'
-                .'<i class="js-coloreditor-button ed-icon-border ed-syntax-icon ed-farbeedit" title="'.getLanguageValue("dialog_title_coloredit").'" style="display:none"></i>'
-                .'</div>'
-                .'</div>'
-            .'</div>';
-            $template[$titel][] = '<div class="mo-margin-bottom">'.getLanguageValue("config_text_defaultcolors").'</div>'.$colors_div.'<input type="hidden" name="defaultcolors" value="'.$specialchars->rebuildSpecialChars($CMS_CONF->get("defaultcolors"),false,false).'">';
         }
     }
 

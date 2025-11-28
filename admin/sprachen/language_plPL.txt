@@ -22,6 +22,10 @@ minute                               = Chwila
 minutes                              = Protokół
 second                               = Drugi
 seconds                              = Towary drugiej jakości
+toggle_all                           = Zaznacz wszystko
+
+files_upload                         = Przesyłanie plików
+
 error_chmod                          = Nie można zmienić uprawnień pliku.
 error_mkdir                          = Nie udało się utworzyć folderu.
 error_no_file_dir                    = Folder lub plik nie istnieje.
@@ -120,6 +124,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Pamięć używana przez moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Tyle czasu zajęło moziloCMS
 toolbar_platzhalter_VALUE            = Wartość
 toolbar_platzhalter_DESCRIPTION      = Opis
+toolbar_editor_color                 = Wybrany kolor
 toolbar_editor_linenumber            = Pokaż/ukryj numery linii
 toolbar_editor_controlcharacter      = Pokaż/ukryj znaki kontrolne
 toolbar_editor_highlighter           = Tryb podświetlania składni
@@ -140,6 +145,7 @@ filter_text_plugins                  = Wtyczki
 filter_text_files                    = Pliki
 filter_text_catpage                  = Kategorie
 filter_text_template                 = Szablon
+filter_no_match                      = Brak dopasowania
 
 home_button                          = Informacje
 home_multiuser                       = Zresetuj system wieloużytkownikowy
@@ -214,6 +220,8 @@ gallery_error_noexists               = Nie ma galerii o takiej nazwie.
 gallery_error_subtitle_conf          = Nie udało się utworzyć pliku napisów.
 gallery_help_conf                    = Wstępnie zdefiniuj ustawienia skalowania
 gallery_image_size                   = Rozmiar obrazu
+gallery_image_size_width             = Szerokość
+gallery_image_size_height            = Wysokość
 gallery_messages_from_ftp            = Poniższe galerie zostały przekonwertowane tak, aby były zgodne z CMS.
 gallery_messages_from_ftp_no         = Wszystkie galerie są zgodne z CMS.
 gallery_name_new                     = Nowa Galeria
@@ -223,6 +231,7 @@ gallery_scale_thumbs                 = Skaluj miniatury do tego rozmiaru
 gallery_text_from_ftp                = Umożliwia przesyłanie wszystkich galerii i obrazów za pośrednictwem protokołu FTP
 gallery_text_from_ftp_button         = Zgodny z CMS
 gallery_text_subtitle                = Napisy na filmie obcojęzycznym
+gallery_text_alt                     = Tekst alternatywny
 
 config_button                        = Ustawienia
 config_error_defaultcat_emty         = Obecnie nie ma dostępnych kategorii.
@@ -382,6 +391,7 @@ plugins_text_fileinfo                = Istniejące ustawienia konfiguracji są z
 plugins_button_install               = Zainstalować
 plugins_button_delete                = Usuń wszystkie wybrane wtyczki
 plugins_select                       = lub z folderu "wtyczki"
+plugins_checkbox_toggle              = Pole wyboru wł./wył.
 
 template_button                      = Szablon
 template_title_grafiken              = Grafika

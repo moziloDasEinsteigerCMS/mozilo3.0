@@ -14,6 +14,13 @@
  *
  * Korrektur 2022-11-03:
  * trailing slash entfernt
+ *
+ * Korrektur 2025-05-20:
+ * Tabellenansicht responsive möglich
+ * 
+ * Korrektur 2025-06-20:
+ * Hinzufügen Attribut alt bei Bildern in der Inhaltsseite (barrierefrei)
+ * 
  */
 
 #[AllowDynamicProperties]
@@ -609,6 +616,12 @@ class Syntax {
         $imgsrc = false;
 
         $value = $specialchars->getHtmlEntityDecode($value);
+		
+		// Attribut alt extrahieren, wenn vorhanden
+		$alttext = preg_split("/[\|]+/", $value);
+		$alttext = preg_replace('/alt=/', "", $alttext);
+		$value = preg_replace('/\|alt=.*?$/', "", $value);
+		
         // Bei externen Bildern: $value NICHT nach ":" aufsplitten!
         if (preg_match($this->LINK_REGEX, $value)) {
             $imgsrc = $value;
@@ -630,9 +643,17 @@ class Syntax {
             list($width, $height, $type, $attr) = getimagesize(CONTENT_DIR_REL."$cat/dateien/$datei");
         }
 
+		// Attribut alt in Inhaltsseite vorhanden?
+		if (!empty($alttext[1])) {
+			$alt = $alttext[1];
+		}
+		else {
+			$alt = $language->getLanguageHtml("alttext_image_1", $specialchars->rebuildSpecialChars(replaceFileMarker($value,false),true,true));
+		}
+
         // Nun aber das Bild ersetzen!
         if ($imgsrc) {
-            $alt = $specialchars->rebuildSpecialChars(replaceFileMarker($value,false),true,true);
+
             $cssclass = "";
             
             if ($syntax == "bild") {
@@ -648,11 +669,11 @@ class Syntax {
             // ohne Untertitel
             if ($subtitle == "") {
                 // normales Bild: ohne <span> rundrum
-                    return '<img class="'.$cssclass.'" itemprop="image" src="'.$imgsrc.'" alt="'.$language->getLanguageHtml("alttext_image_1", $alt).'" '.$attr.'>';
+                    return '<img class="'.$cssclass.'" itemprop="image" src="'.$imgsrc.'" alt="'.$alt.'" '.$attr.'>';
                 }
             // mit Untertitel
             else {
-            	return '<figure class="'.$cssclass.'"><img itemprop="image" src="'.$imgsrc.'" alt="'.$language->getLanguageHtml("alttext_image_1", $alt).'" class="'.$cssclass.'" '.$attr.'><figcaption itemprop="caption" class="imagesubtitle">'.$subtitle.'</figcaption></figure>';
+            	return '<figure class="'.$cssclass.'"><img itemprop="image" src="'.$imgsrc.'" alt="'.$alt.'" class="'.$cssclass.'" '.$attr.'><figcaption itemprop="caption" class="imagesubtitle">'.$subtitle.'</figcaption></figure>';
                 }
         }
     }
@@ -828,11 +849,7 @@ class Syntax {
             $page_text = $specialchars->rebuildSpecialChars($page,true,true);
             return $this->createDeadlink($page_text, $language->getLanguageValue("tooltip_link_page_error_2", $page_text, $cat_text));
         }
-/*        $link_text = $desciption;
-        if(empty($desciption)) {
-            $link_text = $CatPage->get_HrefText($cat,$page);
-        }
-*/
+
         # wenn cat page schonn im merker ist fehlermeldung weil sonst
         # include endlosschleife
         $incl_catpage = $CatPage->get_AsKeyName($cat).":".$CatPage->get_AsKeyName($page);
@@ -963,6 +980,39 @@ class Syntax {
 
     function placeholder_replace($function,$placeholder) {
         switch ($placeholder) {
+        		case '{CANONICAL_LINK}':
+    global $specialchars, $CMS_CONF;
+
+    // Detect protocol and host
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'];
+
+    // Get subfolder path
+    $scriptName = $_SERVER['SCRIPT_NAME']; 
+    $basePath = rtrim(dirname($scriptName), '/') . '/';
+
+    // Get default category from CMS config
+    $defaultCat = $CMS_CONF->get("defaultcat");
+
+    // Determine if current request is the homepage
+    $isHomepage = (
+        CAT_REQUEST === $defaultCat &&
+        (PAGE_REQUEST === '' || PAGE_REQUEST === $defaultCat)
+    );
+
+    if ($isHomepage) {
+        $canonicalUrl = $protocol . $host . $basePath;
+    } else {
+        // Build full path to the current page
+        $path = $specialchars->replaceSpecialChars(CAT_REQUEST, true);
+        if (defined('PAGE_REQUEST') && PAGE_REQUEST !== '') {
+            $path .= '/' . $specialchars->replaceSpecialChars(PAGE_REQUEST, true) . '.html';
+        }
+        $canonicalUrl = $protocol . $host . $basePath . ltrim($path, '/');
+    }
+
+    $replace = '<link rel="canonical" href="' . $canonicalUrl . '">';
+    break;
             case '{CHARSET}':
                 $replace = CHARSET;
                 break;
@@ -1209,11 +1259,7 @@ Solen wir den $content Anzeigen?????????
                 $page = $CatPage->get_HrefText(CAT_REQUEST,PAGE_REQUEST);
             }
         }
-/*        global $passwordok;
-        if($passwordok === false) {
-            global $language;
-            $page   = $language->getLanguageValue("passwordform_title_0");
-        }*/
+
         # es wird nur die $cat benutzt wenn
         $title = $specialchars->rebuildSpecialChars($CMS_CONF->get("titlebarformat"),true,true);
         if(($CMS_CONF->get("hidecatnamedpages") == "true"
@@ -1236,71 +1282,97 @@ Solen wir den $content Anzeigen?????????
 
 
 // ------------------------------------------------------------------------------
-// Aufbau des Hauptmenues, Rueckgabe als String
+// Aufbau des Hauptmenues, Rueckgabe als String (barrierefrei)
 // ------------------------------------------------------------------------------
 function getMainMenu() {
-    global $CMS_CONF;
-    global $CatPage;
+    global $CMS_CONF, $CatPage, $language;
 
-    $mainmenu = "<ul class=\"mainmenu\">";
+    $useSubmenu = (int)$CMS_CONF->get("usesubmenu");
+    $html  = '<nav aria-label="' . htmlspecialchars($language->getLanguageValue("message_mainmenu"), ENT_QUOTES, 'UTF-8') . '">';
+    $html .= '<ul class="mainmenu">';
 
-    // Jedes Element des Arrays ans Menue anhaengen
-    foreach($CatPage->get_CatArray() as $cat) {
-        $mainmenu .= '<li class="mainmenu-item">'
-            .$CatPage->create_AutoLinkTag($cat,false,"menu");
-        if($CatPage->is_Activ($cat,false)
-                and $CMS_CONF->get("usesubmenu") > 0) {
-            $mainmenu .= $this->getDetailMenu($cat);
-        } elseif(!$CatPage->is_Activ($cat,false)
-                and $CMS_CONF->get("usesubmenu") == 2) {
-            $mainmenu .= $this->getDetailMenu($cat);
+    foreach ($CatPage->get_CatArray() as $cat) {
+        $isActive   = $CatPage->is_Activ($cat, false);
+        $hasSubmenu = ($isActive && $useSubmenu > 0) || (!$isActive && $useSubmenu == 2);
+
+        // Link erzeugen
+        $link = $CatPage->create_AutoLinkTag($cat, false, "menu");
+
+        // ARIA-Attribute vorbereiten
+        $attrs = [];
+        if ($isActive) {
+            $attrs[] = 'aria-current="page"';
         }
-        $mainmenu .= "</li>";
+        if ($hasSubmenu) {
+            // "menu" ist semantisch präziser als "true"
+            $attrs[] = 'aria-haspopup="menu"';
+            $attrs[] = 'aria-expanded="' . ($isActive ? 'true' : 'false') . '"';
+        }
 
+        // Attribute in den ersten <a ...> einsetzen
+        if (!empty($attrs)) {
+            $link = preg_replace('/<a\b/', '<a ' . implode(' ', $attrs), $link, 1);
+        }
+
+        // Ausgabe zusammensetzen
+        $html .= '<li class="mainmenu-item">' . $link;
+        if ($hasSubmenu) {
+            $html .= $this->getDetailMenu($cat);
+        }
+        $html .= '</li>';
     }
-    // Rueckgabe des Menues
-    return $mainmenu . "</ul>";
+
+    $html .= '</ul></nav>';
+    return $html;
 }
 
 
+
 // ------------------------------------------------------------------------------
-// Aufbau des Detailmenues, Rueckgabe als String
+// Aufbau des Detailmenues, Rueckgabe als String (barrierefrei)
 // ------------------------------------------------------------------------------
 function getDetailMenu($cat) {
-    global $language;
-    global $specialchars;
-    global $CMS_CONF;
-    global $CatPage;
+    global $CMS_CONF, $CatPage, $language;
 
-    if ($CMS_CONF->get("usesubmenu") > 0)
-        $cssprefix = "submenu";
-    else
-        $cssprefix = "detailmenu";
+    $cssprefix = ($CMS_CONF->get("usesubmenu") > 0) ? "submenu" : "detailmenu";
 
-    $detailmenu = "<ul class=\"detailmenu\">";
+    // Untermenü mit aria-label, damit Screenreader wissen zu welcher Kategorie es gehört
+    $detailmenu = '<ul class="detailmenu" aria-label="'.$language->getLanguageValue("message_submenu").' '.$cat.'">';
+
     // Sitemap
-    if ((ACTION_REQUEST == "sitemap") and ($CMS_CONF->get("usesubmenu") == 0))
-        $detailmenu .= '<li class="detailmenu-item">'.$CatPage->create_ActionLinkTag("sitemap",$cssprefix."active").'</li>';
+    if ((defined("ACTION_REQUEST") && ACTION_REQUEST == "sitemap") && ($CMS_CONF->get("usesubmenu") == 0)) {
+        $detailmenu .= '<li class="detailmenu-item">'
+                     . $CatPage->create_ActionLinkTag("sitemap",$cssprefix."active")
+                     . '</li>';
+    }
     // Suchergebnis
-    elseif ((ACTION_REQUEST == "search") and ($CMS_CONF->get("usesubmenu") == 0))
-        $detailmenu .= '<li class="detailmenu-item">'.$CatPage->create_ActionLinkTag("search",$cssprefix."active").'</li>';
-    // "ganz normales" Detailmenue einer Kategorie
+    elseif ((defined("ACTION_REQUEST") && ACTION_REQUEST == "search") && ($CMS_CONF->get("usesubmenu") == 0)) {
+        $detailmenu .= '<li class="detailmenu-item">'
+                     . $CatPage->create_ActionLinkTag("search",$cssprefix."active")
+                     . '</li>';
+    }
+    // "normales" Detailmenü
     else {
-        // Content-Verzeichnis der aktuellen Kategorie einlesen
         $pagearray = $CatPage->get_PageArray($cat);
-        # wenn keine Inhaltseiten lehr zurück
-        if(count($pagearray) == 0)
-            return NULL;
-        // Jedes Element des Arrays ans Menue anhaengen
+
+        if(count($pagearray) == 0) {
+            return ""; // kein NULL, sondern leerer String → konsistenter
+        }
+
         foreach ($pagearray as $page) {
-            $detailmenu .= '<li class="detailmenu-item">'
-                .$CatPage->create_AutoLinkTag($cat,$page,$cssprefix)
-                ."</li>";
+            // aktiver Unterlink → aria-current
+            $isActive = $CatPage->is_Activ($cat,$page);
+            $aria = $isActive ? ' aria-current="page"' : '';
+
+            $detailmenu .= '<li class="detailmenu-item">';
+            $detailmenu .= str_replace('<a ', '<a'.$aria.' ', $CatPage->create_AutoLinkTag($cat,$page,$cssprefix));
+            $detailmenu .= "</li>";
         }
     }
-    // Rueckgabe des Menues
+
     return $detailmenu . "</ul>";
 }
+
 
 }
 

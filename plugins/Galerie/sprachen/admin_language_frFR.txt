@@ -1,9 +1,9 @@
+config_gallery_usethumbs                = Utiliser les vignettes?
+config_gallery_target                   = Comment la galerie doit-elle s'ouvrir?
+config_gallery_target_self              = Dans la même fenêtre/onglet.
+config_gallery_target_blank             = Dans une nouvelle fenêtre/un nouvel onglet.
+config_gallery_captions                 = Utiliser les légendes des images?
+config_gallery_placeholders             = Ici, vous pouvez organiser les espaces réservés de la galerie dans l'ordre souhaité (les sauts de ligne sont autorisés).
+config_gallery_plugin_name              = Galerie par défaut de moziloCMS
 
-config_gallery_usethumbs                = 
-config_gallery_target                   = 
-config_gallery_target_self              = 
-config_gallery_target_blank             = 
-config_gallery_captions                 = 
-config_gallery_placeholders             = 
-config_gallery_plugin_name              = 
-config_gallery_plugin_desc              = 
+config_gallery_plugin_desc              = Crée l'affichage par défaut de la galerie. Dans les paramètres de la galerie du panneau d'administration de mozilo, vous pouvez spécifier si la galerie doit s'afficher dans une nouvelle fenêtre/un nouvel onglet (« target blank ») ou dans la fenêtre/le nouvel onglet actuel (« target self »). Vous pouvez également utiliser l'option « Utiliser les vignettes ?». Déterminez si les images doivent être affichées en mode image unique (EM) ou en mode aperçu (ÜM).<br> <br><span style="font-weight:bold;">Utilisation :</span><br>{Gallery|moziloCMS} insère la galerie « moziloCMS » (pour « target self ») ou un lien vers celle-ci (pour « target blank »).<br>{Gallery|moziloCMS,Any display text} insère un lien vers la galerie « moziloCMS » avec le texte d’affichage spécifié (uniquement pour « target blank »).<br><br>Pour une utilisation dans une nouvelle fenêtre/un nouvel onglet (« target blank »), les espaces réservés décrits peuvent être disposés dans le fichier gallerytemplate.html.<br><br><span style="font-weight:bold;">Configuration :</span><br>La disposition des différents éléments fonctionnels peut être modifiée à l’aide des espaces réservés dans le champ de texte. Les espaces réservés suivants sont disponibles :<br>- {CURRENTGALLERY} : Nom de la galerie<br>- {GALLERYMENU} : Menu « première/précédente/suivante/dernière image » (EM uniquement)<br>- {NUMBERMENU} : Menu numérique (en EM) / Aperçu de toutes les images, y compris les sous-titres (en ÜM)<br>- {CURRENTPIC} : Image actuelle (EM uniquement)<br>- {CURRENTDESCRIPTION} : Sous-titre de l’image actuelle (EM uniquement)<br>- {XOUTOFY} : « Image x sur y » (EM uniquement)<br>- {CURRENT_INDEX} : Index de l’image actuelle (EM uniquement)<br>- {PREVIOUS_INDEX} : Index de l’image précédente (EM uniquement)<br>- {NEXT_INDEX} : Index de l’image suivante (EM uniquement)<br><br>

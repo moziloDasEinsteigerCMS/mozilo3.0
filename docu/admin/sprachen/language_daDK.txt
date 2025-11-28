@@ -223,6 +223,7 @@ gallery_delete_confirm               = Vil du slette dette galleri med alle bill
 gallery_image_size                   = Billedstørrelse
 gallery_preview_size                 = Forhåndsvisningsstørrelse
 gallery_text_subtitle                = Undertekster
+gallery_text_alt                     = Alternativ tekst
 
 config_button                        = Indstillinger
 config_text                          = I dette område kan forskellige grundindstillinger og specifikationer til hjemmesiden vælges.
@@ -291,7 +292,7 @@ admin_button_include_docu            = med dokumentation
 admin_error_no_backups_select        = Der blev ikke valgt nogen filer.
 admin_text_chmodnewfiles             = Indstil filtilladelser, som moziloCMS generelt skal have på serveren.
 admin_text_upload_notice             = <i>Bemærk: På grund af sikkerhedsproblemer omkring moziloCMS, anbefaler vi kraftigt ikke at bruge filtypenavnene (type) php, svg, xml!</i>
-admin_text_uploadfilter              = Indtast yderligere filtypenavne for at uploade filer her.<br> <b>Ingen</b> mellemrum og kun adskilt af <u>kommaer</u>.
+admin_text_uploadfilter              = Indtast yderligere filtypenavne for at uploade filer her.<br> <b>Ingen</b> mellemrum og kun adskilt af <b>kommaer</b>.
 admin_text_upload_available          = Filtyper tilgængelige som standard: 
 admin_input_translator               = Oversætter:
 admin_input_language                 = Sprogvalg for administrationsområdet.

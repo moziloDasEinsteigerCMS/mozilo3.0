@@ -1,11 +1,11 @@
 
-config_lastchange_plugin_name              = LastChange
-config_lastchange_plugin_desc              = 
-config_lastchange_plugin_lastchange         = 
-config_lastchange_plugin_text               = 
-config_lastchange_plugin_page               = 
-config_lastchange_plugin_pagelink           = 
-config_lastchange_plugin_date               = 
-config_lastchange_messagetext               = 
-config_lastchange_date                      = 
-config_lastchange_showhiddenpagesinlastchanged = 
+config_lastchange_plugin_name                  = Lastchange
+config_lastchange_plugin_desc                  = Viser den sidste ændring.<br><br><span style="font-weight:bold;">Brug:</span><br>{Sidste ændring} udskriver noget i retning af: "Sidste ændring: Velkommen (23.10.2020, 9:07:20)"<br>{Sidste ændring|tekst} udskriver noget i retning af: "Sidste ændring"<br>{Sidste ændring|side} udskriver noget i retning af: "Velkommen"<br>{Sidste ændring|sidelink} udskriver noget i retning af: "Velkommen" (med et link til indholdssiden)<br>{Sidste ændring|dato} udskriver noget i retning af: "(23.10.2020, 9:07:20)"<br><br><span style="font-weight:bold;">Konfiguration:</span><br>Pluginnet henter teksten "Sidste ændring" og datoformatet fra CMS-sprogfilen; du kan også selv angive begge dele. Datoformatet er baseret på PHP date()-funktionen.
+config_lastchange_plugin_lastchange            = Sidste ændring med link og dato
+config_lastchange_plugin_text                  = Tekst til sidste ændring:
+config_lastchange_plugin_page                  = Navn på den sidst ændrede indholdsside
+config_lastchange_plugin_pagelink              = Link til den sidst ændrede indholdsside
+config_lastchange_plugin_date                  = Dato for sidste ændring
+config_lastchange_messagetext                  = Brugerdefineret tekst til sidste ændring:
+config_lastchange_date                         = Brugerdefineret datoformat:
+config_lastchange_showhiddenpagesinlastchanged = Skal der medtages skjulte indholdssider?

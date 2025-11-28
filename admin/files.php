@@ -24,7 +24,7 @@ function files() {
     $pagecontent .= '<div class="js-files mo-ul card">';
     $text_files = getLanguageValue("files");
     foreach ($CatPage->get_CatArray(true,false) as $pos => $cat) {
-        $pagecontent .= '<div class="js-file-dir mo-li ui-widget-content ui-corner-all card mb">';
+        $pagecontent .= '<div class="js-file-dir mo-li ui-widget-content card mb">';
         $pagecontent .= getFileUpload($cat,$CatPage->get_HrefText($cat,false),$text_files);
         $pagecontent .= '</div>';
     }
@@ -32,6 +32,4 @@ function files() {
 
     return $pagecontent;
 }
-
-
 ?>

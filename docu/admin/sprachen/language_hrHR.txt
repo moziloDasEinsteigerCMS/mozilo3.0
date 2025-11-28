@@ -223,6 +223,7 @@ gallery_delete_confirm               = Želite li izbrisati ovu galeriju sa svim
 gallery_image_size                   = veličina slike
 gallery_preview_size                 = Veličina pregleda
 gallery_text_subtitle                = Subtitle
+gallery_text_alt                     = Zamjenski tekst
 
 config_button                        = Postavke
 config_text                          = Ovdje možete promijeniti postavke koje utječu na ponašanje moziloCMS-a.
@@ -291,7 +292,7 @@ admin_button_include_docu            = uključuju dokumentaciju
 admin_error_no_backups_select        = Nije odabrana nijedna datoteka.
 admin_text_chmodnewfiles             = Upotrijebljeni atributi datoteke. 
 admin_text_upload_notice             = <i>Napomena: Zbog sigurnosnih problema oko moziloCMS-a, toplo preporučamo da ne koristite datotečne ekstenzije (tip) php, svg, xml!</i>
-admin_text_uploadfilter              = Ovdje unesite dodatne ekstenzije datoteka za učitavanje datoteka.<br> <b>Bez</b> razmaka i samo odvojene <u>zarezima</u>.
+admin_text_uploadfilter              = Ovdje unesite dodatne ekstenzije datoteka za učitavanje datoteka.<br> <b>Bez</b> razmaka i samo odvojene <b>zarezima</b>.
 admin_text_upload_available          = Vrste datoteka dostupne prema zadanim postavkama: 
 admin_input_translator               = Prevoditelj:
 admin_input_language                 = Odaberite na kojem će jeziku moziloCMS Admin biti prikazan:

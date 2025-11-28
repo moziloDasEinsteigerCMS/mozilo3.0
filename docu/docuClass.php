@@ -116,7 +116,6 @@ class moziloDocuClass {
 		  $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'admin/css/admin.css">'."\n";
         $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'admin/jquery/File-Upload/jquery.fileupload-ui.css">'."\n";
         $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'admin/editsite.css">'."\n";
-        $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'admin/jquery/coloredit/coloredit.css">'."\n";
         $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'css/from_ace.css">'."\n";
         $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'admin/jquery/ui-multiselect-widget/jquery.multiselect.css">'."\n";
         $html .= '<link rel="stylesheet" href="'.BASE_URL_DOCU.'admin/jquery/ui-multiselect-widget/jquery.multiselect.filter.css">'."\n";
@@ -127,7 +126,7 @@ class moziloDocuClass {
             global $syntax;
             $syntax->insert_jquery_in_head('jquery');
         } else
-            $html .= '<script src="'.BASE_URL_DOCU.'jquery/jquery-1.7.2.min.js"></script>'."\n";
+           $html .= '<script src="'.BASE_URL_DOCU.'jquery/jquery-1.7.2.min.js"></script>'."\n";
 #        $css = ' do-body-nodialog';
         $titel_artikel = "";
         $titel_subartikel = "";
@@ -145,8 +144,8 @@ class moziloDocuClass {
             .'var dialog = '.$var_dialog.';'
             .'var titel_artikel = "'.$titel_artikel.'";'
             .'var titel_subartikel = "'.$titel_subartikel.'";'
-            .'var in_text = "'.$this->getDocuLanguage("do_toggle_in_text").'";'
-            .'var out_text = "'.$this->getDocuLanguage("do_toggle_out_text").'";'
+  //          .'var in_text = "'.$this->getDocuLanguage("do_toggle_in_text").'";'
+  //          .'var out_text = "'.$this->getDocuLanguage("do_toggle_out_text").'";'
         .'</script>'."\n";
         return $html;
     }

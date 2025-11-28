@@ -35,7 +35,7 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
             	.'<div class="upload-bar-left flex flex-100">'
                 .'<span class="fileinput-button">'
                     .'<span class="mo-icons-icon mo-icons-add-file"></span>'
-                    .'<input type="file" name="files[]">'
+                    .'<input type="file" name="files[]" aria-label="'.getLanguageValue("files_upload").'">'
                 .'</span>'
                 .'<button type="submit" class="fu-img-button start mo-icons-icon mo-icons-save" title="'.getLanguageValue("button_save").'"></button>'
                 .'<button type="reset" class="fu-img-button cancel mo-icons-icon mo-icons-stop" title="'.getLanguageValue("button_cancel").'"></button>'
@@ -43,7 +43,7 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
                 if(ACTION == "gallery") {
                     $fileupload .= '<button class="fu-img-button resize mo-icons-icon mo-icons-img-scale" title="'.getLanguageValue("gallery_scale_thumbs").'"></button>';
                 }
-                $fileupload .= '<input type="checkbox" class="toggle"></div>';
+                $fileupload .= '<input type="checkbox" class="toggle" aria-label="'.getLanguageValue("toggle_all").'"></div>';
                 if(ACTION == "gallery") {
                     global $GALLERY_CONF;
                     $tmp_w = "";
@@ -53,9 +53,27 @@ function getFileUpload($curent_dir,$dir = false,$count_text = false,$newcss = ""
                     if($GALLERY_CONF->get('maxheight') != "auto" and $GALLERY_CONF->get('maxheight') > 0)
                         $tmp_h = $GALLERY_CONF->get('maxheight');
                     $fileupload .= ''
-                    .'<div class="upload-bar-middle flex flex-100"><span class="">'.getLanguageValue("gallery_image_size").'</span><span><input type="text" name="new_width" value="'.$tmp_w.'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"> x <input type="text" name="new_height" value="'.$tmp_h.'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></span></div>'
-                    .'<div class="upload-bar-right flex flex-100"><span class="">'.getLanguageValue("gallery_preview_size").'</span><span><input type="text" name="thumbnail_max_width" value="'.$GALLERY_CONF->get('maxthumbwidth').'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"> x <input type="text" name="thumbnail_max_height" value="'.$GALLERY_CONF->get('maxthumbheight').'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></span></div>'
-                    .'';
+                    .'<div class="upload-bar-middle flex flex-100 mo-nowrap">
+						<span class="">'.getLanguageValue("gallery_image_size").'</span>
+						<span>
+						<label><span class="sr-only">'.getLanguageValue("gallery_image_size_width").'</span>
+						<input type="text" name="new_width" value="'.$tmp_w.'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></label> x 
+        
+						<label><span class="sr-only">'.getLanguageValue("gallery_image_size").' '.getLanguageValue("gallery_image_size_height").'</span>
+						<input type="text" name="new_height" value="'.$tmp_h.'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></label>
+						</span>
+					</div>'
+
+					.'<div class="upload-bar-right flex flex-100 mo-nowrap">
+						<span class="">'.getLanguageValue("gallery_preview_size").'</span>
+						<span>
+						<label><span class="sr-only">'.getLanguageValue("gallery_image_size_width").'</span>
+						<input type="text" name="thumbnail_max_width" value="'.$GALLERY_CONF->get('maxthumbwidth').'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></label> x 
+        
+						<label><span class="sr-only">'.getLanguageValue("gallery_preview_size").' '.getLanguageValue("gallery_image_size_height").'</span>
+						<input type="text" name="thumbnail_max_height" value="'.$GALLERY_CONF->get('maxthumbheight').'" size="4" maxlength="4" class="mo-input-digit js-in-digit mo-align-center"></label>
+						</span>
+					</div>';
                 }
                 $fileupload .= '</div>'
             .'<div class="files"></div>'

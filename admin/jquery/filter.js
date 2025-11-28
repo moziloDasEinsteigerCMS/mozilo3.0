@@ -1,108 +1,193 @@
-$(function() {
-    $.widget('custom.mofilterplugin', {
-        options: {
-            search_item: false,
-            search_name: false,
-            filter_text: mozilo_lang["filter_text_"+action_activ]+' '+mozilo_lang["filter_text"],
-            filter_action: action_activ
-        },
-        _create: function() {
-            if(!this.options.search_item || !this.options.search_name)
-                return false;
+document.addEventListener("DOMContentLoaded", function () {
+    function createMoFilterPlugin(config) {
+        if (!config.search_item || !config.search_name) return;
 
-            var that = this;
-            this.rows = [];
-            this.search_rows = [];
+        const container = document.querySelector(config.selector);
+        if (!container) return;
 
-            this.search_fild = $('<div class="js-mofilterplugin mo-margin-top ui-state-default ui-corner-all ui-helper-clearfix mo-li-head-tag-no-ul mo-li-head-tag mo-tag-height-from-icon mo-middle card"><\/div>');
-            this.search_fild.append('<span class="mo-bold mo-padding-right mo-padding-left">'+this.options.filter_text+'<\/span>');
-            this.search_fild.append('<input class="mo-plugin-input mb" name="search" value="" type="search">');
+        let rows = [];
+        let searchRows = [];
 
-            this.search_fild.insertBefore(this.element);
+        // Create search UI
+        const searchField = document.createElement("div");
+        searchField.className = "js-mofilterplugin card";
 
-            this.search_fild.on({
-                    keydown: function(e) {
-                        if(e.which === 13) e.preventDefault();
-                        if(e.which === 27) $(this).val("");
-                    },
-                    keyup: function(e) {that._filter();},
-                    click: function(e) {that._filter();},
-                    focus: function(e) {that._makeRows();}
-                },'input[type="search"]');
+        const label = document.createElement("label");
+        label.className = "mo-bold mo-padding-right mo-padding-left";
+		  label.htmlFor = "filter"; 
+        label.textContent = mozilo_lang["filter_text_" + config.filter_action] + " " + mozilo_lang["filter_text"];
+        searchField.appendChild(label);
 
-            if(this.options.filter_action == "catpage") {
-                this.search_fild.append('<input type="button" class="js-filter-page-hide mo-checkbox-del mo-td-middle" value="'+mozilo_lang["filter_button_all_hide"]+'" \/>');
-                this.search_fild.on({
-                        click: function(e) {
-                            e.preventDefault();
-                            if($(this).hasClass('js-filter-page-hide')) {
-                                $('.js-li-page').css("display","none");
-                                $(this).val(mozilo_lang["filter_button_all_show"]).removeClass('js-filter-page-hide');
-                            } else {
-                                $('.js-li-page').css("display","inherit");
-                                $(this).val(mozilo_lang["filter_button_all_hide"]).addClass('js-filter-page-hide');
-                            }
-                        }
-                    },'input[type="button"]');
+        const searchInput = document.createElement("input");
+        searchInput.id = "filter";
+        searchInput.className = "mo-plugin-input mb";
+        searchInput.type = "search";
+        searchInput.name = "filter";
+        searchField.appendChild(searchInput);
+
+        // Insert searchField above container
+        container.parentNode.insertBefore(searchField, container);
+
+        // No-match message
+        const noMatchMessage = document.createElement("div");
+        noMatchMessage.className = "mo-no-match-message mo-padding-top mo-color-error";
+        noMatchMessage.style.display = "none";
+        noMatchMessage.textContent = mozilo_lang["filter_no_match"];
+
+        // Place message inside the container (not the search UI)
+        container.appendChild(noMatchMessage);
+
+        // Special catpage button
+        let toggleBtn = null;
+        if (config.filter_action === "catpage") {
+            toggleBtn = document.createElement("input");
+            toggleBtn.type = "button";
+            toggleBtn.className = "js-filter-page-hide mo-checkbox-del mo-td-middle";
+            toggleBtn.value = mozilo_lang["filter_button_all_hide"];
+            searchField.appendChild(toggleBtn);
+
+            toggleBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                const pages = document.querySelectorAll(".js-li-page");
+                if (toggleBtn.classList.contains("js-filter-page-hide")) {
+                    pages.forEach(el => el.style.display = "none");
+                    toggleBtn.value = mozilo_lang["filter_button_all_show"];
+                    toggleBtn.classList.remove("js-filter-page-hide");
+                } else {
+                    pages.forEach(el => el.style.display = "inherit");
+                    toggleBtn.value = mozilo_lang["filter_button_all_hide"];
+                    toggleBtn.classList.add("js-filter-page-hide");
+                }
+            });
+        }
+
+        // Populate row data
+        function makeRows() {
+            rows = Array.from(container.querySelectorAll(config.search_item));
+            searchRows = rows.map(row =>
+                (row.querySelector(config.search_name)?.textContent || "").toLowerCase()
+            );
+        }
+
+        // Filtering logic
+        function filterRows() {
+            makeRows();
+
+            let searchStr = searchInput.value.trim().toLowerCase();
+            if (!searchStr) {
+                rows.forEach(row => row.style.display = "inherit");
+                noMatchMessage.style.display = "none";
+
+                if (config.filter_action === "catpage") {
+                    document.querySelectorAll(".js-move-me-cat").forEach(el => {
+                        el.style.opacity = "1";
+                        el.style.cursor = "grabbing";
+                        el.classList.remove("js-deact-filter");
+                    });
+                    document.querySelectorAll(".js-new-ul .js-li-cat").forEach(el => {
+                        el.style.display = "inherit";
+                    });
+                }
+                return;
             }
-        },
-        _makeRows: function() {
-            var that = this;
-            this.rows = $(this.element).find(this.options.search_item);
-            this.search_rows = $.map(this.rows, function(v,i) {
-                    return that.rows.eq(i).find(that.options.search_name).text().toLowerCase();
+
+            // Regex processing
+            searchStr = searchStr
+                .replace(/[\-\[\]{}()\*?.,\\\^$|#]/g, "\\$&") // escape special chars
+                .replace(/[\s]*[+]/g, "|")
+                .replace(/[\s]/g, "\\s");
+
+            const regex = new RegExp(searchStr, "gi");
+
+            let anyVisible = false;
+            rows.forEach((row, i) => {
+                const text = searchRows[i];
+                const match = text.search(regex) !== -1;
+                row.style.display = match ? "inherit" : "none";
+                if (match) anyVisible = true;
+            });
+
+            // Show/hide "no results" message
+            noMatchMessage.style.display = anyVisible ? "none" : "block";
+
+            // Contextual actions
+            if (config.filter_action === "catpage") {
+                document.querySelectorAll(".js-move-me-cat").forEach(el => {
+                    el.style.opacity = "0.3";
+                    el.style.cursor = "default";
+                    el.classList.add("js-deact-filter");
                 });
-        },
-        _filter: function() {
-            var search_str = $.trim(this.search_fild.find('input[type="search"]').val().toLowerCase()),
-                rows = this.rows,
-                search_rows = this.search_rows;
-            if(!search_str) {
-                rows.css("display","inherit");
-                if(this.options.filter_action == "catpage") {
-                    $('.js-move-me-cat').css({opacity:1,cursor:"grabbing"}).removeClass('js-deact-filter');
-                    $('.js-new-ul .js-li-cat').css("display","inherit");
-                }
-            } else {
-                rows.css("display","none");
-                if(this.options.filter_action == "catpage") {
-                    $('.js-move-me-cat').css({opacity:0.3,cursor:"default"}).addClass('js-deact-filter');
-                    $('.js-new-ul .js-li-cat').css("display","none");
-                }
-                if(this.options.filter_action == "plugins")
-                    $(".js-plugin-del:checked").prop("checked",false);
+                document.querySelectorAll(".js-new-ul .js-li-cat").forEach(el => {
+                    el.style.display = "none";
+                });
+            }
 
-                // 1. sonderzeichen escapen auser lehrzeichen und +
-                // 2. + und oder lehrzeichen+ ist gleich oder suche also ein |
-                // 3. die restlichen lehrzeichen escapen
-                search_str = search_str.replace(/[\-\[\]{}()\*?.,\\\^$|#]/g,"\\$&")
-                    .replace(/[\s]*[+]/g,"|")
-                    .replace(/[\s]/g,"\\$&");
-
-                search_str = new RegExp(search_str,'gi');
-
-                $.map(search_rows, function(v,i) {
-                    if(v.search(search_str) !== -1)
-                        rows.eq(i).css("display","inherit");
-                    return null;
+            if (config.filter_action === "plugins") {
+                document.querySelectorAll(".js-plugin-del:checked").forEach(el => {
+                    el.checked = false;
                 });
             }
         }
-    });
 
-    if(action_activ == "gallery")
-        $('.js-gallery').mofilterplugin({search_item:'.js-file-dir',search_name:'.js-gallery-name'});
+        // Input events
+        searchInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") e.preventDefault();
+            if (e.key === "Escape") {
+                searchInput.value = "";
+                filterRows();
+            }
+        });
 
-    if(action_activ == "plugins")
-        $('.js-plugins').mofilterplugin({search_item:'.js-plugin',search_name:'.js-plugin-name'});
+        ["keyup", "click"].forEach(evt => {
+            searchInput.addEventListener(evt, filterRows);
+        });
 
-    if(action_activ == "files")
-        $('.js-files').mofilterplugin({search_item:'.js-file-dir',search_name:'.js-gallery-name'});
+        searchInput.addEventListener("focus", makeRows);
+    }
 
-    if(action_activ == "catpage")
-        $('.js-ul-cats').mofilterplugin({search_item:'.js-li-cat',search_name:'.js-cat-name'});
-        
-    if(action_activ == "template")
-        $('.js-templates').mofilterplugin({search_item:'.js-template',search_name:'.js-template-name'});
+    // Initialize per action_activ
+    if (action_activ === "gallery") {
+        createMoFilterPlugin({
+            selector: ".js-gallery",
+            search_item: ".js-file-dir",
+            search_name: ".js-gallery-name",
+            filter_action: "gallery"
+        });
+    }
+
+    if (action_activ === "plugins") {
+        createMoFilterPlugin({
+            selector: ".js-plugins",
+            search_item: ".js-plugin",
+            search_name: ".js-plugin-name",
+            filter_action: "plugins"
+        });
+    }
+
+    if (action_activ === "files") {
+        createMoFilterPlugin({
+            selector: ".js-files",
+            search_item: ".js-file-dir",
+            search_name: ".js-gallery-name",
+            filter_action: "files"
+        });
+    }
+
+    if (action_activ === "catpage") {
+        createMoFilterPlugin({
+            selector: ".js-ul-cats",
+            search_item: ".js-li-cat",
+            search_name: ".js-cat-name",
+            filter_action: "catpage"
+        });
+    }
+
+    if (action_activ === "template") {
+        createMoFilterPlugin({
+            selector: ".js-templates",
+            search_item: ".js-template",
+            search_name: ".js-template-name",
+            filter_action: "template"
+        });
+    }
 });
-

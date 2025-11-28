@@ -1,0 +1,59 @@
+Creëert een menu met vrijwel onbeperkte submenu-nesting.<br>
+<b>Opmerking:</b> Categorieën met een "/" (slash) worden niet meer weergegeven, omdat we de "/" (slash) voor het submenu gebruiken.<br>
+<br>
+Om een ​​detailmenu te gebruiken, moet u {MenuSubs|main} en {MenuSubs|detail} gebruiken,
+anders alleen {MenuSubs}.<br>
+<b>Opmerking:</b> De schakelaar "usesubmenu = 0" (bovenaan de lay-outs ingevoerd) wordt hier niet gebruikt!<br>
+<br>
+<b>Beschrijving:</b>
+<ul>
+<li>Zodra een verborgen contentpagina met een "/" in de naam wordt gevonden, wordt deze vervangen door de categorie met dezelfde naam als een submenu.</li>
+<li><b>Belangrijk</b> De naam wordt opgeslagen als een pad. bekeken.</li>
+<li>Om een ​​contentpagina voor subcategorieën te gebruiken die verborgen is met de instelling "Geef op of contentpagina's met dezelfde naam als de categorie verborgen moeten worden in het detailmenu:", moet de naam hetzelfde zijn als het laatste deel van de subcategorieën, bijvoorbeeld SubCategorieën=Categorie/Submenu_1 ContentPagina=Submenu_1 en moet dit de eerste contentpagina zijn.</li>
+</ul>
+<br>
+<b>Voorbeeld:</b><br>
+<ul><li style="list-style-type:none;"><b>Categorie</b>
+<ul>
+<li>ContentPagina_1</li>
+<li>Categorie / Submenu_1 <b>verborgen</b></li>
+<li>ContentPagina_2</li>
+</ul>
+<b>Categorie / Submenu_1</b>
+<ul>
+<li>ContentPagina_3</li>
+<li>Categorie / Submenu_1 / Submenu_2 <b>verborgen</b></li>
+</ul>
+<b>Categorie / Submenu_1 / Submenu_2</b>
+<ul>
+<li>Inhoudsopgave_4</li>
+<li>Inhoudsopgave_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Resultaat:</b><br>
+<ul><li style="list-style-type:none;"><b>Categorie</b>
+<ul>
+<li>Inhoudsopgave_1</li>
+<li><b>Submenu_1</b>
+<ul>
+<li>Inhoudsopgave_3</li>
+<li><b>Submenu_2</b>
+<ul>
+<li>Inhoudsopgave_4</li>
+<li>Inhoudsopgave_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Inhoudsopgave Pagina_2</li>
+</ul>
+</li></ul>
+<br>
+Een tweede menu kan worden gemaakt met <b>{MenuSubs|menusubs_2}</b>.<br>
+Bijvoorbeeld voor impressum- en contactgegevens in de voettekst van de pagina.<br>
+Selecteer eenvoudig een categorie in de pluginconfiguratie en voer deze in de sjabloon <b>{MenuSubs|menusubs_2}</b> <br> in op de gewenste locatie.<br>
+Alleen categorieën zonder "/" in hun naam kunnen worden geselecteerd.<br>
+Dit maakt ook subcategorieën mogelijk.<br>
+<br>
+Voor breadcrumb-navigatie voert u eenvoudig <b>{MenuSubs|breadcrumb}</b> in op de gewenste locatie.

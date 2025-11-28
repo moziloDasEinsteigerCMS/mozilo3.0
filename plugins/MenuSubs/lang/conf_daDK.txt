@@ -1,0 +1,3 @@
+no_menusubs_2      = Ingen MenuSubs_2
+menusubs_2         = Vælg kategori for MenuSubs_2
+sitemap_show_menu2 = Vis MenuSubs_2 i sitemap

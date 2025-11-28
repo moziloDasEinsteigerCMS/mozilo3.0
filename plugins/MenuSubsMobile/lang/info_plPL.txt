@@ -1,0 +1,74 @@
+Tworzy menu z niemal nieograniczoną liczbą zagnieżdżonych podmenu.<br>
+<br>
+Ta wtyczka jest rozszerzeniem wtyczki MenuSubs.<br>
+Nie wymaga JavaScriptu.<br>
+W Operze Mini pola wyboru nie są przezroczyste, dlatego użyto tam niewielkiej ilości JavaScriptu.<br>
+<br>
+<b>Zmiany:</b>
+<ul>
+<li>Lista zawsze zawiera wszystkie kategorie i strony z treścią. Są one teraz kontrolowane za pomocą klas menusubs-hidden i menusubs-show.</li>
+<li>Każda kategoria otrzymuje również element HTML etykiety i pola wyboru, z wyjątkiem przełącznika szablonu usesubmenu = 2.</li>
+<li>Przed listą znajduje się również element HTML etykiety i pola wyboru, który umożliwia rozwijanie lub zwijanie menu.</li>
+<li>W widoku normalnym wszystkie elementy HTML etykiety i pola wyboru są niewidoczne, więc jest to całkowicie normalne menu.</li>
+</ul>
+<br>
+<b>Uwaga:</b> Kilka funkcji specjalnych jest udokumentowanych w pliku plugin.css!<br>
+<br>
+<b>Uwaga:</b> Kategorie zawierające ukośnik „/” nie są już wyświetlane, ponieważ używamy go dla podmenu.<br>
+<br>
+Aby użyć menu szczegółowego, należy użyć {MenuSubsMobile|main} i Use {MenuSubsMobile|detail},
+w przeciwnym razie tylko {MenuSubsMobile}<br>
+<b>Uwaga:</b> Przełącznik „usesubmenu = 0” (wprowadzany na górze układu) nie jest tutaj używany!<br>
+<br>
+<b>Opis:</b>
+<ul>
+<li>Gdy zostanie znaleziona ukryta strona z treścią ze znakiem „/” w nazwie, zostanie ona zastąpiona jako podmenu z kategorią o tej samej nazwie.</li>
+<li><b>Ważne:</b> Nazwa jest uważana za ścieżkę.</li>
+<li>Aby użyć strony z treścią w ukrytych podkategoriach za pomocą ustawienia „Określ, czy strony z treścią o tej samej nazwie co kategoria mają być ukryte w menu szczegółów:”, nazwa musi być taka sama jak ostatnia część podkategorii, np. SubCategories=Category/Submenu_1 ContentPage=Submenu_1, a pierwsza treść strona musi być.</li>
+</ul>
+<br>
+<b>Przykład:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategoria</b>
+<ul>
+<li>Strona spisu treści_1</li>
+<li>Kategoria / Podmenu_1 <b>ukryte</b></li>
+<li>Strona spisu treści_2</li>
+</ul>
+<b>Kategoria / Podmenu_1</b>
+<ul>
+<li>Strona spisu treści_3</li>
+<li>Kategoria / Podmenu_1 / Podmenu_2 <b>ukryte</b></li>
+</ul>
+<b>Kategoria / Podmenu_1 / Podmenu_2</b>
+<ul>
+<li>Strona spisu treści_4</li>
+<li>Spis treści Strona_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Wynik:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategoria</b>
+<ul>
+<li>Strona_1</li>
+<li><b>Podmenu_1</b>
+<ul>
+<li>Strona_3</li>
+<li><b>Podmenu_2</b>
+<ul>
+<li>Strona_4</li>
+<li>Strona_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Strona_2</li>
+</ul>
+</li></ul>
+<br>
+Drugie menu można utworzyć za pomocą <b>{MenuSubsMobile|menusubs_2}</b>.<br>
+Na przykład, aby umieścić dane kontaktowe i informacje o firmie w stopce. strony.<br>
+Wystarczy wybrać kategorię w konfiguracji wtyczki i wpisać <b>{MenuSubsMobile|menusubs_2}</b> <br>w wybranym miejscu szablonu.<br>
+Dostępne są tylko kategorie, które nie mają znaku „/” w nazwie.<br>
+Oczywiście możliwe są również podkategorie.<br>
+<br>
+Aby korzystać z nawigacji po ścieżce nawigacyjnej, wystarczy wpisać <b>{MenuSubsMobile|breadcrumb}</b> w wybranym miejscu.

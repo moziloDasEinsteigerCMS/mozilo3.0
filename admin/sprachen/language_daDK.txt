@@ -22,6 +22,10 @@ minute                               = Minut
 minutes                              = Minutter
 second                               = Sekund
 seconds                              = Sekunder
+toggle_all                           = Vælg alle
+
+files_upload                         = Upload filer
+
 error_chmod                          = Filtilladelserne kunne ikke ændres.
 error_mkdir                          = Mappen kunne ikke oprettes.
 error_no_file_dir                    = Mappen eller filen findes ikke.
@@ -120,6 +124,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Hukommelse forbrugt af moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Så lang tid tog moziloCMS
 toolbar_platzhalter_VALUE            = Værdi
 toolbar_platzhalter_DESCRIPTION      = Beskrivelse
+toolbar_editor_color                 = Valgt farve
 toolbar_editor_linenumber            = Vis/skjul linjenumre
 toolbar_editor_controlcharacter      = Vis/skjul kontroltegn
 toolbar_editor_highlighter           = Syntaksfremhævningstilstand
@@ -140,6 +145,7 @@ filter_text_plugins                  = Plugins
 filter_text_files                    = Filer
 filter_text_catpage                  = Kategorier
 filter_text_template                 = Skabelon
+filter_no_match                      = Intet match
 
 home_button                          = Info
 home_multiuser                       = Nulstil flerbrugersystem
@@ -221,8 +227,11 @@ gallery_help_conf                    = Her kan du redigere galleri indstillinger
 gallery_error_noexists               = Der er intet galleri med dette navn.
 gallery_delete_confirm               = Vil du slette dette galleri med alle billeder og undertekster?
 gallery_image_size                   = Billedstørrelse
+gallery_image_size_width             = Bredde
+gallery_image_size_height            = Højde
 gallery_preview_size                 = Forhåndsvisningsstørrelse
 gallery_text_subtitle                = Undertekster
+gallery_text_alt                     = Alternativ tekst
 
 config_button                        = Indstillinger
 config_text                          = I dette område kan forskellige grundindstillinger og specifikationer til hjemmesiden vælges.
@@ -382,6 +391,7 @@ plugins_text_fileinfo                = Eksisterende konfigurationsindstillinger 
 plugins_button_install               = Installere
 plugins_button_delete                = Slet alle valgte plugins
 plugins_select                       = eller fra mappen "plugins".
+plugins_checkbox_toggle              = Afkrydsningsfelt til/fra
 
 template_button                      = Skabelon
 template_title_grafiken              = Grafik

@@ -13,6 +13,7 @@ do_page2                       = Galerija
 do_page3                       = Kontakt
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = Dostupne slike su odabrane iz <b>Okvira za odab
 do_editsitesyntax_text_28_2    = umetnuto.
 do_editsitesyntax_text_29      = Za sve elemente sintakse slike:
 do_editsitesyntax_text_30      = Ako stavite znak <span class="do-paren">=</span> iza naziva naredbe i zatim unesete tekst, on će biti prikazan kao naslov.
+do_editsitesyntax_text_30_1    = Unos alternativnog teksta (pristupačno) alt<span class="do-paren">=</span> nije obavezan. Ako se ne unese tekst, pretpostavlja se naziv slikovne datoteke.
 do_editsitesyntax_text_31      = Lotusov cvijet na jezeru
+do_editsitesyntax_text_31_1    = Lotosov cvijet pokazuje svoj puni sjaj
 do_editsitesyntax_text_32_1    = A s
 do_editsitesyntax_text_32_2    = postavljena slika može se uređivati ​​pomoću naredbi
 do_editsitesyntax_text_32_3    = vodoravno poravnato.

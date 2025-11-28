@@ -1,0 +1,59 @@
+Tworzy menu z niemal nieograniczoną liczbą zagnieżdżeń podmenu.<br>
+<b>Uwaga:</b> Kategorie zawierające ukośnik „/” nie będą już wyświetlane, ponieważ używamy go dla podmenu.<br>
+<br>
+Aby użyć menu szczegółowego, należy użyć {MenuSubs|main} i {MenuSubs|detail},
+w przeciwnym razie tylko {MenuSubs}.<br>
+<b>Uwaga:</b> Przełącznik „usesubmenu = 0” (wprowadzany na górze układu) nie jest tutaj używany!<br>
+<br>
+<b>Opis:</b>
+<ul>
+<li>Gdy zostanie znaleziona ukryta strona z treścią, w której nazwie znajduje się znak „/”, zostanie ona zastąpiona kategorią o tej samej nazwie co podmenu.</li>
+<li><b>Ważne</b> Nazwa jest przechowywana jako ścieżka. Wyświetlono.</li>
+<li>Aby użyć strony z treścią dla podkategorii, która jest ukryta za pomocą ustawienia „Określ, czy strony z treścią o tej samej nazwie co kategoria mają być ukryte w menu szczegółów:”, nazwa musi być taka sama jak ostatnia część podkategorii, np. SubCategories=Category/Submenu_1 ContentPage=Submenu_1 i musi być pierwszą stroną z treścią.</li>
+</ul>
+<br>
+<b>Przykład:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategoria</b>
+<ul>
+<li>ContentPage_1</li>
+<li>Kategoria / Submenu_1 <b>ukryta</b></li>
+<li>ContentPage_2</li>
+</ul>
+<b>Kategoria / Podmenu_1</b>
+<ul>
+<li>Strona_zawartości_3</li>
+<li>Kategoria / Podmenu_1 / Podmenu_2 <b>ukryte</b></li>
+</ul>
+<b>Kategoria / Podmenu_1 / Podmenu_2</b>
+<ul>
+<li>Strona_zawartości_4</li>
+<li>Strona_zawartości_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Wynik:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategoria</b>
+<ul>
+<li>Strona_zawartości_1</li>
+<li><b>Podmenu_1</b>
+<ul>
+<li>Strona_zawartości_3</li>
+<li><b>Podmenu_2</b>
+<ul>
+<li>Spis treści Strona_4</li>
+<li>Spis treści Strona_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spis treści Strona_2</li>
+</ul>
+</li></ul>
+<br>
+Drugie menu można utworzyć za pomocą <b>{MenuSubs|menusubs_2}</b>.<br>
+Na przykład, aby umieścić dane kontaktowe i dane firmy w stopce strony.<br>
+Wystarczy wybrać kategorię w konfiguracji wtyczki i wpisać ją w szablonie <b>{MenuSubs|menusubs_2}</b> <br> w wybranym miejscu.<br>
+Można wybrać tylko kategorie, które nie mają znaku „/” w nazwie.<br>
+Umożliwia to również tworzenie podkategorii.<br>
+<br>
+Aby korzystać z nawigacji po ścieżce nawigacyjnej, wystarczy wpisać <b>{MenuSubs|breadcrumb]</b> w wybranym miejscu.

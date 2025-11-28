@@ -13,6 +13,7 @@ do_page2                       = Eine Galerie
 do_page3                       = Kontakt
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = Die zur Verfügung stehenden Bilder werden aus 
 do_editsitesyntax_text_28_2    = eingefügt.
 do_editsitesyntax_text_29      = Für alle Bild-Syntax-Elemente gilt:
 do_editsitesyntax_text_30      = Wird hinter den Befehlsnamen ein <span class="do-paren">=</span> Zeichen gesetzt, und danach Text eingegeben, so wird dieser als Bildunterschrift angezeigt.
+do_editsitesyntax_text_30_1    = Die Eingabe eines Alternativtextes (barrierefrei) alt<span class="do-paren">=</span> ist optional möglich. Bei keiner Eingabe wird der Dateiname des Bildes angenommen.
 do_editsitesyntax_text_31      = Lotusblüte am See
+do_editsitesyntax_text_31_1    = Eine Lotusblüte zeigt ihre volle Pracht
 do_editsitesyntax_text_32_1    = Ein mit
 do_editsitesyntax_text_32_2    = platziertes Bild kann mit den Befehlen
 do_editsitesyntax_text_32_3    = horizontal ausgerichtet werden.
@@ -578,7 +581,9 @@ do_gallery_text_6_1            = Im Upload-Fenster die gewünschten Bilder hinzu
 do_gallery_text_6_2            = hochladen.
 do_gallery_text_7              = Je nach Browser lassen sich durch Festhalten der "<b>Shift</b>" bzw. "<b>Strg/Ctrl</b>" Taste auch mehrere Bilder gleichzeitig anwählen und hochladen.
 do_gallery_text_8              = Bei Doppelklick auf den grauen Balken <span style="background-color:#E6E6E6;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> öffnet sich das Textfeld für eine Bildunterschrift.
+do_gallery_text_8_1            = Bei Doppelklick auf den grauen Balken <span style="background-color:#E6E6E6;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> öffnet sich das Textfeld für den Alt Text.
 do_gallery_text_9              = Bildunterschrift im Textfeld eingeben und <u>mit <b>Enter-Taste</b> abschließen</u>.
+do_gallery_text_9_1            = Alt Text im Textfeld eingeben und <u>mit <b>Enter-Taste</b> abschließen</u>.
 do_gallery_text_10             = Die Einstellungen zur <b>Anzeige von Bildunterschriften</b> werden im jeweiligen <b>Galerie-Plugin</b> vorgenommen. <br><br> Die <b>Sortierung</b> der Bilder erfolgt <b>alphabetisch</b> nach ihren Dateinamen. <br /> Um die Reihenfolge zu steuern, können z.B. Nummern an den Anfang der Dateinamen gesetzt werden.
 do_gallery_text_11             = Das Galerie-Plugin von moziloCMS besitzt eine automatische Skalierungsfunktion, die zu große Bilder auf ein gewünschtes Format verkleinert. <br /> Dies lässt sich sowohl individuell auf jedes einzelne Bild anwenden, als auch generell für die gesamte Galerie voreinstellen.
 do_gallery_text_12             = Im Galerie-Balken die gewünschte Bildgröße als Breite x Höhe in die Textfenster eingeben. <br /> (Wird nur ein Wert eingegeben, ergibt sich der jeweils andere automatisch.)

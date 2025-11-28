@@ -7,6 +7,7 @@
 | Author:      moziloCMS                                                        |
 | Version: 0.1 - Simone Bechtold, sbDESIGN - Standard Layout bis 09/2021        |
 | Version: 0.2 - moziloCMS Update - Porting to HTML 5 Responsive Webdesign      |
+| Version: 0.3 - moziloCMS Update - Verbesserung bei Barrierefreiheit   		  |
 |                                                                               | 
 | *********  Dieser Hinweis darf nicht entfernt werden!  *********              |
 |===============================================================================|
@@ -18,20 +19,19 @@
 	  <meta name="viewport" content="width = device-width, initial-scale = 1.0">     
 
     <meta name="content-language" content="deutsch,de,at,ch">
-    <meta name="author" content="">
-    <meta name="date" content="">
+    <meta name="author" content="root" >
+    <meta name="date" content="2025-08-22T13:50:14+0100" >
     <meta name="keywords" content="{WEBSITE_KEYWORDS}">
     <meta name="description" content="{WEBSITE_DESCRIPTION}">
+	{CANONICAL_LINK}
     <meta name="robots" content="noindex">
     
     <link rel="SHORTCUT ICON" href="{LAYOUT_DIR}/favicon.ico">
-    <style>
-        @import "{LAYOUT_DIR}/css/style.css";
-        @import "{LAYOUT_DIR}/css/syntax.css";
-        /* Bei nutzung vom MenuSubsMobile Plugin
-        @import "{LAYOUT_DIR}/css/responsive.css"; */
-    </style>
-    
+	 <link rel="stylesheet" href="{LAYOUT_DIR}/css/style.css">
+	 <link rel="stylesheet" href="{LAYOUT_DIR}/css/syntax.css">
+        <!-- Bei nutzung vom MenuSubsMobile Plugin
+        <link rel="stylesheet" href="{LAYOUT_DIR}/css/responsive.css"> 
+        -->     
 	<script>
 		function setSearchFocus() {
 		  if (document.search) {
@@ -59,7 +59,7 @@
             <div class="sb-header_inner">
                 <!-- Logo, Seitentitel -->
                 <div id="sb-titel">
-                  <a href="{BASE_URL}index.php"><img src="{LAYOUT_DIR}/grafiken/logo.png" alt="Logo" /></a>
+                  <a href="{BASE_URL}index.php"><img src="{LAYOUT_DIR}/grafiken/logo.png" alt="Logo"></a>
                 </div>
                 <!-- Suche -->
                 <div class="sb-search">{SEARCH}</div>
@@ -71,9 +71,9 @@
             <!-- beginn linke Sidebar, hier kommen Menue, Counter Suche usw. unter -->
             <aside id="sb-sidebar">
                 <!-- Hier kommt die Navigation / das Menue der Seite rein -->
-                <nav id="sb-nav">
+                <div id="sb-nav">
                   {MAINMENU}
-                </nav>
+                </div>
                 <!-- SidebarInhalt, Platz fuer Sidebar, SidebarPage, Counter etc. 
                 <div class="sb-sidebarblock">
                 </div> -->

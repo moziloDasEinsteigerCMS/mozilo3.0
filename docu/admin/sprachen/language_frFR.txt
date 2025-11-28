@@ -223,6 +223,7 @@ gallery_scale_thumbs                 = Créer les miniatures avec cette taille:
 gallery_text_from_ftp                = Convertir toutes les images de la gallerie au format CMS Compliant
 gallery_text_from_ftp_button         = Conforme au CMS
 gallery_text_subtitle                = Sous-titres
+gallery_text_alt                     = Texte alternatif
 
 config_button                        = Paramètres
 config_error_defaultcat_emty         = Il n'y a actuellement aucune catégorie disponible.
@@ -308,7 +309,7 @@ admin_text_backup                    = Après combien de jours MoziloCMS doit-il
 admin_text_chmodnewfiles             = Définissez les droits sur les fichiers que moziloCMS devrait généralement avoir sur le serveur.
 admin_text_get_backup                = Créez une copie de sauvegarde du site Web et téléchargez-la sous forme de fichier ZIP.<br>La portée de la copie de sauvegarde peut être déterminée en activant les boutons radio individuels.
 admin_text_upload_notice             = <i>Remarque : en raison de problèmes de sécurité concernant moziloCMS, nous vous recommandons fortement de ne pas utiliser les extensions de fichier (type) php, svg, xml !</i> 
-admin_text_uploadfilter              = Saisissez ici des extensions de fichiers supplémentaires pour le téléchargement de fichiers.<br> <b>Pas</b> d'espaces et uniquement séparés par des <u>virgules</u>.
+admin_text_uploadfilter              = Saisissez ici des extensions de fichiers supplémentaires pour le téléchargement de fichiers.<br> <b>Pas</b> d'espaces et uniquement séparés par des <b>virgules</b>.
 admin_text_upload_available          = Types de fichiers disponibles par défaut :
 admin_theme_toggle                   = basculer entre le thème clair et sombre
 admin_user_greeting                  = Bonjour

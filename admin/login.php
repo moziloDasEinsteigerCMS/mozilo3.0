@@ -112,21 +112,24 @@ function login_formular($enabled,$error_lang = false) {
         }
     }
         $form .='</div>'."\n";
-    $form .= '<div class="login-container">'."\n";
-    $form .= '<div class="mo-login '.$enabled_css.' ui-corner-all login">'."\n";
+    $form .= '<main class="login-container">'."\n";
+        $form .= '<div class="mo-login '.$enabled_css.' login">'."\n";
     $form .= '<img src="'.URL_BASE.ADMIN_DIR_NAME.'/css/images/mozilo-logo.webp" class="avatar" alt="moziloCMS Logo">'."\n";
-	$form .= '<div class="mt mb mo-bold">'.getLanguageValue("admin_login").'</div>'."\n";
-
- #   if ($enabled)
-        $form .= '<form accept-charset="'.CHARSET.'" id="loginform" name="loginform" action="'.URL_BASE.ADMIN_DIR_NAME."/index.php".'" method="post">'."\n";
-    $form .= '<input class="mo-login_input" type="text" id="username" name="username" aria-label="'.getLanguageValue("username").'" placeholder="'.getLanguageValue("username").'" autocomplete="off"'.$enabled_input.' onKeyup="checkform()" required aria-required="true">'."\n"
-        .'<div class="form-group flex"><input class="mo-login_input" type="password" id="password" name="password" aria-label="'.getLanguageValue("password").'" placeholder="'.getLanguageValue("password").'" autocomplete="off"'.$enabled_input.' onKeyup="checkform()" required aria-required="true"><span id="password-toggle" class="mb" onclick="togglePassword()" role="button" aria-label="Password Toggle" tabindex="0"></span></div>'
-        .'<input name="login" id="loginbtn" value="'.getLanguageValue("login_submit").'" class="mo-login_submit button" type="submit" disabled>'."\n";
-#  if ($enabled)
-      $form .= "</form>"."\n";
-$form .= '<div class="mt"><small><a href="'.URL_BASE.'">'.getLanguageValue("login_return").'</a></small></div>'."\n";
+    $form .= '<h1 class="login-title mt mo-bold">'.getLanguageValue("admin_login").'</h1>'."\n";
+    $form .= '<form accept-charset="'.CHARSET.'" id="loginform" class="mt" name="loginform" action="'.URL_BASE.ADMIN_DIR_NAME.'/index.php" method="post">'."\n";
+    // Username
+    $form .= '<input class="mo-login_input" type="text" id="username" name="username" aria-label="'.getLanguageValue("username").'" placeholder="'.getLanguageValue("username").'" autocomplete="off"'.$enabled_input.' onkeyup="checkform()" required aria-required="true">'."\n";
+    // Passwort + Toggle-Button
+    $form .= '<div class="form-group flex">'
+        .'<input class="mo-login_input" type="password" id="password" name="password" aria-label="'.getLanguageValue("password").'" placeholder="'.getLanguageValue("password").'" autocomplete="off"'.$enabled_input.' onkeyup="checkform()" required aria-required="true">'
+        .'<button id="password-toggle" type="button" onclick="togglePassword(event)" aria-label="Password Toggle"></button>'
+        .'</div>'."\n";
+    // Submit-Button
+    $form .= '<input name="login" id="loginbtn" value="'.getLanguageValue("login_submit").'" class="mo-login_submit button" type="submit" disabled>'."\n";
+    $form .= "</form>\n";
+    $form .= '<div class="mt"><small><a href="'.URL_BASE.'">'.getLanguageValue("login_return").'</a></small></div>'."\n";
     $form .= '</div>'."\n";
-    $form .='</div>'."\n";
+    $form .='</main>'."\n";
 
     return $form;
 }
@@ -134,12 +137,12 @@ $form .= '<div class="mt"><small><a href="'.URL_BASE.'">'.getLanguageValue("logi
 // Logindaten überprüfen
 function checkLoginData($user, $pass) {
     global $loginpassword;
-    require_once(BASE_DIR_CMS.'PasswordHash.php');
-    $t_hasher = new PasswordHash(8, FALSE);
 
-    if(($user == $loginpassword->get("name")) and (true === $t_hasher->CheckPassword($pass, $loginpassword->get("pw")))) {
+    if(($user == $loginpassword->get("name")) and (true === password_verify($pass, $loginpassword->get("pw")))) {
         return true;
-    } elseif((strlen($loginpassword->get("username")) > 4) and ($user == $loginpassword->get("username")) and (true === $t_hasher->CheckPassword($pass, $loginpassword->get("userpw")))) {
+    }  
+    
+     elseif(($user == $loginpassword->get("username")) and (true === password_verify($pass, $loginpassword->get("userpw")))) {
         return true;
     } else {
         return false;

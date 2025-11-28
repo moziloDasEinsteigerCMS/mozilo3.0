@@ -1,0 +1,5 @@
+config_breadcrumb_text    = Fremhævet tekst (standard: tom)
+config_first_entry        = Første indtastning (standard: start)
+config_breadcrumb_divider = Divider (standard »)
+description               = Indsætter en brødkrumme hvor som helst i en artikel eller skabelon.
+placeholder               = Indsætter en brødkrumme

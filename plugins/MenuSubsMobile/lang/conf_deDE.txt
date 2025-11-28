@@ -1,5 +1,5 @@
-no_menusubs_2 = Kein MenuSubs_2
-menusubs_2 = Kategorie wählen für MenuSubs_2
-sitemap_show_menu2 = In der Sitemap MenuSubs_2 zeigen
+no_menusubs_2        = Kein MenuSubs_2
+menusubs_2           = Kategorie wählen für MenuSubs_2
+sitemap_show_menu2   = In der Sitemap MenuSubs_2 zeigen
 breadcrumb_delimiter = Trennzeichen der Brotkrümel-Einträge. Default ist "»"
-hidden = Stile, die beim Öffnen des mobilen Menüs ausgeführt werden. Eine kommaseparierte Liste aus ID = CSS-Eigenschaft : Wert
+hidden               = Stile, die beim Öffnen des mobilen Menüs ausgeführt werden. Eine kommaseparierte Liste aus ID = CSS-Eigenschaft : Wert

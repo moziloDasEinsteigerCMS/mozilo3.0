@@ -1,0 +1,73 @@
+Crée un menu avec une imbrication de sous-menus quasi illimitée.<br>
+<br>
+Ce plugin est une extension du plugin MenuSubs.<br>
+Il ne nécessite pas de JavaScript.<br>
+Dans Opera Mini, les cases à cocher ne sont pas transparentes ; une petite quantité de JavaScript est donc utilisée.<br>
+<br>
+<b>Les modifications sont :</b>
+<ul>
+<li>La liste inclut toujours toutes les catégories et pages de contenu. Ils sont désormais contrôlés via les classes menusubs-hidden et menusubs-show.</li>
+<li>Chaque catégorie reçoit également un élément HTML « label » et une case à cocher de saisie, à l'exception du commutateur de modèle usesubmenu = 2.</li>
+<li>Devant la liste, un élément HTML « label » et une case à cocher de saisie permettent de développer ou de réduire le menu.</li>
+<li>En mode normal, tous les éléments HTML « label » et « saisie de case à cocher » sont invisibles ; il s'agit donc d'un menu tout à fait normal.</li>
+</ul>
+<br>
+<b>Remarque :</b> Quelques fonctionnalités spéciales sont documentées dans le fichier plugin.css !<br>
+<br>
+<b>Remarque :</b> Les catégories contenant une barre oblique « / » ne sont plus affichées, car nous utilisons la barre oblique « / » pour le sous-menu.<br>
+<br>
+Pour utiliser un menu détaillé, vous devez utiliser {MenuSubsMobile|main} et {MenuSubsMobile|detail} ; sinon, uniquement {MenuSubsMobile}<br>
+<b>Remarque :</b> Le paramètre « usesubmenu = 0 » (saisi en haut des mises en page) n’est pas utilisé ici !<br>
+<br>
+<b>Description :</b>
+<ul>
+<li>Dès qu’une page de contenu masquée dont le nom contient un « / » est trouvée, elle est remplacée par un sous-menu de la catégorie du même nom.</li>
+<li><b>Important :</b> Le nom est considéré comme un chemin.</li>
+<li>Pour utiliser une page de contenu dans des sous-catégories masquées à l’aide du paramètre « Spécifier si les pages de contenu portant le même nom que la catégorie doivent être masquées dans le menu détaillé : », le nom doit être identique à la dernière partie des sous-catégories, par exemple : SubCategories=Category/Submenu_1 ContentPage=Submenu_1, et la première page de contenu doit être être.</li>
+</ul>
+<br>
+<b>Exemple :</b><br>
+<ul><li style="list-style-type:none;"><b>Catégorie</b>
+<ul>
+<li>Contenu page_1</li>
+<li>Catégorie / Sous-menu_1 <b>masqué</b></li>
+<li>Contenu page_2</li>
+</ul>
+<b>Catégorie / Sous-menu_1</b>
+<ul>
+<li>Contenu page_3</li>
+<li>Catégorie / Sous-menu_1 / Sous-menu_2 <b>masqué</b></li>
+</ul>
+<b>Catégorie / Sous-menu_1 / Sous-menu_2</b>
+<ul>
+<li>Contenu page_4</li>
+<li>Contenu Page_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Résultat :</b><br>
+<ul><li style="list-style-type:none;"><b>Catégorie</b>
+<ul>
+<li>Contenu Page_1</li>
+<li><b>Sous-menu_1</b>
+<ul>
+<li>Contenu Page_3</li>
+<li><b>Sous-menu_2</b>
+<ul>
+<li>Contenu Page_4</li>
+<li>Contenu Page_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Contenu Page_2</li>
+</ul>
+</li></ul>
+<br>
+Un deuxième menu peut être créé avec <b>{MenuSubsMobile|menusubs_2}</b>.<br>
+Par exemple, pour les mentions légales et les coordonnées dans le pied de page Page.<br>
+Sélectionnez simplement une catégorie dans la configuration du plugin et saisissez <b>{MenuSubsMobile|menusubs_2}</b> à l'emplacement souhaité dans le modèle.<br>
+Seules les catégories sans « / » dans leur nom sont disponibles.<br>
+Bien entendu, des sous-catégories sont également possibles.<br>
+<br>
+Pour une navigation par fil d'Ariane, saisissez simplement <b>{MenuSubsMobile|breadcrumb}</b> à l'emplacement souhaité.

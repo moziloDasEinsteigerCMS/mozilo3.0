@@ -1,0 +1,57 @@
+Crée un menu avec une imbrication de sous-menus quasi illimitée.<br>
+<b>Remarque :</b> Les catégories contenant une barre oblique « / » ne seront plus affichées, car nous utilisons cette barre oblique pour le sous-menu.<br>
+<br>
+Pour utiliser un menu détaillé, vous devez utiliser {MenuSubs|main} et {MenuSubs|detail}, sinon uniquement {MenuSubs}.<br>
+<b>Remarque :</b> Le paramètre « usesubmenu = 0 » (saisi en haut des mises en page) n'est pas utilisé ici !<br>
+<br>
+<b>Description :</b>
+<ul>
+<li>Dès qu'une page de contenu masquée contenant un « / » dans son nom est trouvée, elle est remplacée par la catégorie portant le même nom qu'un sous-menu.</li>
+<li><b>Important</b> Le nom est enregistré sous forme de chemin. Pour utiliser une page de contenu pour les sous-catégories masquée via le paramètre « Spécifier si les pages de contenu portant le même nom que la catégorie doivent être masquées dans le menu des détails », le nom doit être identique à la dernière partie des sous-catégories, par exemple : Sous-catégories = Catégorie/Sous-menu_1 ; Page de contenu = Sous-menu_1 ; et doit être la première page de contenu.</li>
+</ul>
+<br>
+<b>Exemple :</b><br>
+<ul><li style="list-style-type:none;"><b>Catégorie</b>
+<ul>
+<li>Page de contenu_1</li>
+<li>Catégorie / Sous-menu_1 <b>masquée</b></li>
+<li>Page de contenu_2</li>
+</ul>
+<b>Catégorie / Sous-menu_1</b>
+<ul>
+<li>Page de contenu_3</li>
+<li>Catégorie / Sous-menu_1 / Sous-menu_2 <b>masqué</b></li>
+</ul>
+<b>Catégorie / Sous-menu_1 / Sous-menu_2</b>
+<ul>
+<li>Contenu page_4</li>
+<li>Contenu page_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Résultat :</b><br>
+<ul><li style="list-style-type:none;"><b>Catégorie</b>
+<ul>
+<li>Contenu page_1</li>
+<li><b>Sous-menu_1</b>
+<ul>
+<li>Contenu page_3</li>
+<li><b>Sous-menu_2</b>
+<ul>
+<li>Contenu page_4</li>
+<li>Contenu page_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Contenu Page_2</li>
+</ul>
+</li></ul>
+<br>
+Un deuxième menu peut être créé avec <b>{MenuSubs|menusubs_2}</b>.<br>
+Par exemple, pour les mentions légales et les coordonnées en pied de page.<br>
+Sélectionnez simplement une catégorie dans la configuration du plugin et saisissez-la dans le modèle <b>{MenuSubs|menusubs_2}</b> <br> à l'emplacement souhaité.<br>
+Seules les catégories dont le nom ne contient pas de « / » sont sélectionnables.<br>
+Cela permet également de créer des sous-catégories.<br>
+<br>
+Pour une navigation par fil d'Ariane, saisissez simplement <b>{MenuSubs|breadcrumb}</b> à l'emplacement souhaité.

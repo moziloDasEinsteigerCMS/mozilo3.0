@@ -223,6 +223,7 @@ gallery_delete_confirm               = Delete this gallery with all pictures and
 gallery_image_size                   = Image size
 gallery_preview_size                 = Preview size
 gallery_text_subtitle                = Subtitle
+gallery_text_alt                     = Alt
 
 config_button                        = Settings
 config_text                          = Here, you can change the settings effecting moziloCMS' behaviour.
@@ -291,7 +292,7 @@ admin_button_include_docu            = include Documentation
 admin_error_no_backups_select        = No file choosen.
 admin_text_chmodnewfiles             = Used file attributes. 
 admin_text_upload_notice             = <i>Note: Due to security concerns around moziloCMS, we strongly recommend not using the file extensions (type) php, svg, xml!</i>
-admin_text_uploadfilter              = Enter additional file extensions for uploading files here.<br> <b>No</b> spaces and only separated by <u>commas</u>.
+admin_text_uploadfilter              = Enter additional file extensions for uploading files here.<br> <b>No</b> spaces and only separated by <b>commas</b>.
 admin_text_upload_available          = File types available by default:
 admin_input_translator               = Translator:
 admin_input_language                 = Choose in which language moziloCMS Admin should be displayed:

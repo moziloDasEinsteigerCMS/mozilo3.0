@@ -1,11 +1,11 @@
 
-config_lastchange_plugin_name              = LastChange
-config_lastchange_plugin_desc              = 
-config_lastchange_plugin_lastchange         = 
-config_lastchange_plugin_text               = 
-config_lastchange_plugin_page               = 
-config_lastchange_plugin_pagelink           = 
-config_lastchange_plugin_date               = 
-config_lastchange_messagetext               = 
-config_lastchange_date                      = 
-config_lastchange_showhiddenpagesinlastchanged = 
+config_lastchange_plugin_name                  = Lastchange
+config_lastchange_plugin_desc                  = Geeft de laatste wijziging weer.<br><br><span style="font-weight:bold;">Gebruik:</span><br>{Lastchange} geeft iets weer als: "Laatste wijziging: Welkom (23.10.2020, 09:07:20)"<br>{Lastchange|text} geeft iets weer als: "Laatste wijziging"<br>{Lastchange|page} geeft iets weer als: "Welkom"<br>{Lastchange|pagelink} geeft iets weer als: "Welkom" (met een link naar de inhoudspagina)<br>{Lastchange|date} geeft iets weer als: "(23.10.2020, 09:07:20)"<br><br><span style="font-weight:bold;">Configuratie:</span><br>De plugin haalt de tekst "Laatste change" en de datumnotatie uit het CMS-taalbestand; u kunt beide ook zelf opgeven. De datumnotatie is gebaseerd op de PHP date()-functie.
+config_lastchange_plugin_lastchange            = Laatste wijziging met link en datum
+config_lastchange_plugin_text                  = Tekst laatste wijziging:
+config_lastchange_plugin_page                  = Naam van de laatst gewijzigde contentpagina
+config_lastchange_plugin_pagelink              = Link naar de laatst gewijzigde contentpagina
+config_lastchange_plugin_date                  = Datum laatste wijziging
+config_lastchange_messagetext                  = Aangepaste tekst voor laatste wijziging:
+config_lastchange_date                         = Aangepaste datumnotatie:
+config_lastchange_showhiddenpagesinlastchanged = Verborgen contentpagina's opnemen?

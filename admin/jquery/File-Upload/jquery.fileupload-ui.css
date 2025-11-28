@@ -101,21 +101,21 @@ vertical-align:middle;
   text-align: left
 }
 
-.files td.subtitle {
+.files td.subtitle,.files td.alt {
   white-space: normal
 }
 
-.files td.subtitle input ,.files td.name input {
+.files td.subtitle input, .files td.alt input ,.files td.name input {
     width: 100%
 }
 
-.files .subtitle span {
+.files .subtitle span, .files .alt span {
    width: 97%;
     min-height: 1rem;
     cursor: text
 }
 
-.files .subtitle span.fu-empty {
+.files .subtitle span.fu-empty, .files .alt span.fu-empty {
     background-color: var(--border-color)
 }
 

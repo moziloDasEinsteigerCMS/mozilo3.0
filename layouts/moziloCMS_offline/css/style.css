@@ -36,7 +36,7 @@ main {
 
 .text-item {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   padding: 2rem 3rem;
   text-align: center;
   background: #f9f9f9
@@ -49,4 +49,43 @@ h1 {
 .bold {
   font-weight: 700;
   font-size: 1.3rem
+}
+/* -------------------------------------------------------- */
+/* [zentriert|...] */
+/* --------------- */
+.aligncenter {
+    text-align:center;
+}
+/* -------------------------------------------------------- */
+/* [links|...] */
+/* ----------- */
+.alignleft {
+    text-align:left;
+}
+/* -------------------------------------------------------- */
+/* [rechts|...] */
+/* ------------ */
+.alignright {
+    text-align:right;
+}
+/* -------------------------------------------------------- */
+/* [block|...] */
+/* ----------- */
+.alignjustify {
+    text-align:justify;
+}
+/* -------------------------------------------------------- */
+/* {TABLEOFCONTENTS} */
+/* ----------------- */
+div.tableofcontents ul ul {
+    /*padding-left:15px;*/
+}
+div.tableofcontents li.blind {
+    list-style-type:none;
+    list-style-image:none;
+}
+fieldset#searchfieldset {
+   border:none;
+   margin:0px;
+   padding:0px;
 }

@@ -1,6 +1,9 @@
+config_gallery_usethumbs                = Brug miniaturebilleder?
+config_gallery_target                   = Hvordan skal galleriet åbnes?
+config_gallery_target_self              = I samme vindue/faneblad.
+config_gallery_target_blank             = I et nyt vindue/faneblad.
+config_gallery_captions                 = Brug billedtekster?
+config_gallery_placeholders             = Her kan du arrangere galleriets pladsholdere i den ønskede rækkefølge (linjeskift er tilladt).
+config_gallery_plugin_name              = moziloCMS standardgalleri
 
-config_gallery_usethumbs                = Opret miniature
-config_gallery_captions                 = 
-config_gallery_placeholders             = 
-config_gallery_plugin_name              = 
-config_gallery_plugin_desc              = 
+config_gallery_plugin_desc              = Opretter standardgallerivisningen. I galleriindstillingerne i mozilo-administrationspanelet kan du angive, om galleriet skal vises i et nyt vindue/faneblad ("target blank") eller i det aktuelle ("target self"). Derudover kan du bruge indstillingen "Brug miniaturebilleder?". Bestem, om billederne skal vises i enkeltbilledtilstand (EM) eller oversigtstilstand (ÜM).<br> <br><span style="font-weight:bold;">Anvendelse:</span><br>{Gallery|moziloCMS} indsætter "moziloCMS"-galleriet (for "target self") eller et link til det (for "target blank").<br>{Gallery|moziloCMS,Any display text} indsætter et link til "moziloCMS"-galleriet med den angivne visningstekst (kun for "target blank").<br><br>Til brug i et nyt vindue/faneblad ("target blank") kan de beskrevne pladsholdere arrangeres i gallerytemplate.html.<br><br><span style="font-weight:bold;">Konfiguration:</span><br>Arrangementet af de enkelte funktionelle elementer kan ændres ved hjælp af pladsholderne i tekstfeltet. Følgende pladsholdere er tilgængelige:<br>- {CURRENTGALLERY}: Gallerinavn<br>- {GALLERYMENU}: Menu "første/forrige/næste/sidste billede" (kun EM)<br>- {NUMBERMENU}: Nummermenu (i EM) / Oversigt over alle billeder inklusive undertekster (i ÜM)<br>- {CURRENTPIC}: Aktuelt billede (kun EM)<br>- {CURRENTDESCRIPTION}: Undertitel på det aktuelle billede (kun EM)<br>- {XOUTOFY}: "Billede x af y" (kun EM)<br>- {CURRENT_INDEX}: Aktuelt billedindeks (kun EM)<br>- {PREVIOUS_INDEX}: Forrige billedindeks (kun EM)<br>- {NEXT_INDEX}: Næste billedindeks (kun EM)<br><br>

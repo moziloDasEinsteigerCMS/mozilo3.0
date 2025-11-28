@@ -223,6 +223,7 @@ gallery_scale_thumbs                 = Maak kleine voorbeeld afbeeldingen met de
 gallery_text_from_ftp                = Maakt alle galerijen en afbeeldingen geüpload via FTP
 gallery_text_from_ftp_button         = CMS-compatibel
 gallery_text_subtitle                = Ondertitels
+gallery_text_alt                     = Alt-tekst
 
 config_button                        = Instellingen
 config_error_defaultcat_emty         = Er zijn op dit moment geen categorieÃ«n beschikbaar.
@@ -308,7 +309,7 @@ admin_text_backup                    = Het maken van backup's kan het behoud zij
 admin_text_chmodnewfiles             = De server waarop moziloCMS draait kan te weinig rechten op bestand geven na het maken of uploaden van bestanden. moziloCMS kan zelf bestand kenmerken toekennen - Geef in aan welke dat moet zijn (in UNIX vorm bv. "766") of laat het veld leeg als dat probleem niet op treed.<br>Plaats het vinkje om de bestand kenmerken door te voeren op de reeds bestaande bestanden.
 admin_text_get_backup                = Maak een back-upkopie van de website en download deze als een ZIP-bestand.<br>De reikwijdte van de back-upkopie kunt u bepalen door de individuele optievelden te activeren.
 admin_text_upload_notice             = <i>Let op: Vanwege beveiligingsproblemen rondom MoziloCMS raden wij u ten zeerste af om de bestandsextensies (type) PHP, SVG en XML te gebruiken!</i>
-admin_text_uploadfilter              = Voer hier extra bestandsextensies in voor het uploaden van bestanden.<br> <b>Geen</b> spaties en alleen gescheiden door <u>komma's</u>.
+admin_text_uploadfilter              = Voer hier extra bestandsextensies in voor het uploaden van bestanden.<br> <b>Geen</b> spaties en alleen gescheiden door <b>komma's</b>.
 admin_text_upload_available          = Standaard beschikbare bestandstypen:
 admin_theme_toggle                   = schakelen tussen licht en donker thema
 admin_user_greeting                  = Hallo

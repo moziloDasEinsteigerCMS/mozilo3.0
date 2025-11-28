@@ -1,0 +1,11 @@
+config_cookieDays                             = Liczba dni, przez które wiadomość ma być ukryta po akceptacji (domyślnie: 30).
+config_cookieDays_error                       = Liczba dni: Proszę wpisać liczbę.
+config_cookieTitle                            = Niestandardowy tytuł (domyślnie: pusty)
+config_cookieDesc                             = Niestandardowy opis
+config_cookieSr                               = Niestandardowy opis dla tekstu czytnika ekranu
+config_cookieBtn                              = Niestandardowy opis przycisku
+config_cookiePrivacy                          = Tekst linku do strony prywatności
+config_cookieCat                              = Kategoria, w której znajduje się strona prywatności
+config_cookiePage                             = Nazwa strony prywatności
+description                                   = Wstawia powiadomienie o plikach cookie za pomocą {Cookies}. Tytuł, tekst, przycisk i czas trwania można skonfigurować indywidualnie.
+placeholder                                   = Wstawia powiadomienie o plikach cookie.

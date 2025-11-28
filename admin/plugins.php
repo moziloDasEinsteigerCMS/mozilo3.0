@@ -127,9 +127,8 @@ if($showdebug and !empty($debug))
                 .'</select>';
         }
         $plugin_manage["plugins_title_manage"][] = '<form id="js-plugin-manage" class="fadeIn" action="index.php?nojs=true&amp;action=plugins'.$multi_user.'" method="post" enctype="multipart/form-data">'
- //           .'<div class="mo-nowrap align-right ui-helper-clearfix">'
             .'<div class="flex mo-wrap">'
-                .'<div class="align-left"><span class="mo-bold">'.getLanguageValue("plugins_text_filebutton").'</span><br><span>'.getLanguageValue("plugins_text_fileinfo").'</span></div>'
+                .'<label for="js-plugin-install-file" class="flex-100"><span class="mo-bold">'.getLanguageValue("plugins_text_filebutton").'</span><br><span>'.getLanguageValue("plugins_text_fileinfo").'</span></label>'
                 .'<input type="file" id="js-plugin-install-file" name="plugin-install-file" class="mo-select-div button"'.$disabled.'>'
                 .$plugin_install_html
                 .'<input type="submit" id="js-plugin-install-submit" name="plugin-install" class="button" value="'.getLanguageValue("plugins_button_install",true).'"'.$disabled.'>'
@@ -137,15 +136,12 @@ if($showdebug and !empty($debug))
                 .'<div class="mo-align-right">'
                 .'<input type="submit" id="js-plugin-del-submit" value="'.getLanguageValue("plugins_button_delete",true).'" class="mo-margin-top js-send-del-stop button">'
             .'</div>'
- //           .'</div>'
             .'</form>';
 
         $plugin_manage["plugins_title_manage"]["toggle"] = true;
         $html_manage = contend_template($plugin_manage);
         $html_manage = str_replace("js-toggle","js-toggle-manage",$html_manage);
-        # es wurde in der template verwaltung was gemacht dann soll die aufgeklapt bleiben
-  //      if($plugin_manage_open)
-  //          $html_manage = str_replace("display:none","",$html_manage);
+
         $pagecontent .= $html_manage;
     }
 
@@ -193,9 +189,7 @@ if($showdebug and !empty($debug))
             $pagecontent .= '<details class="js-plugin mo-li ui-widget-content ui-corner-all card mb'.$plugin_css_li_error.'">'."\n"
     						.'<summary>'."\n"
             .'<span class="js-tools-show-hide mo-li-head-tag mo-li-head-tag-no-ul ui-state-active ui-corner-all ui-helper-clearfix flex">'."\n";
-  //          $check_show = ' style="display:none"';
-  //          if($plugin_manage_open)
-  //              $check_show = '';
+
             if($plugin_error === false) {
             	
             	$test_plugin_config = "ok";
@@ -232,8 +226,7 @@ if (is_null($config)) {
                 
                   $pluginwarning = '<span class="js-plugin-name mo-padding-left mo-middle flex-100">'.$plugin_name.'</span>'."\n";
                   $plugin_setting_active = '<span class="js-plugin-active mo-staus">'.buildCheckBox($currentelement.'[active]', ($plugin->settings->get("active") == "true"),getLanguageValue("plugins_input_active")).'</span>'."\n";
-   #               $plugin_config_edit = '<img class="js-tools-icon-show-hide js-toggle mo-tool-icon mo-icons-icon mo-icons-edit" src="'.ICON_URL_SLICE.'" alt="edit" />';
-                  $plugin_active = '<input type="checkbox" value="'.$currentelement.'" class="mo-checkbox mo-checkbox-del js-plugin-del ml fadeIn">'."\n";
+                  $plugin_active = '<label for="'.$currentelement.'-del" class="sr-only">'.$currentelement.' '.getLanguageValue("admin_delete").'</label><input id="'.$currentelement.'-del" type="checkbox" value="'.$currentelement.'" class="mo-checkbox mo-checkbox-del js-plugin-del ml fadeIn">'."\n";
                 }
                  
                 // 
@@ -279,15 +272,6 @@ if (is_null($config)) {
                     .$plugin_active
                     .'</span>'."\n"
                     .'</span>'    ."\n"         
-                
-            	
- #        #       $pagecontent .=   '<span class="js-plugin-name mo-padding-left mo-middle flex-100">'.$plugin_name.'</span>'
- #        #           .'<div class="mo-tag-height-from-icon mo-middle mo-nowrap">'
- #        #           .'<span class="js-plugin-active mo-staus">'.buildCheckBox($currentelement.'[active]', ($plugin->settings->get("active") == "true"),getLanguageValue("plugins_input_active")).'</span>'
-              //      .'<span class="js-tools-icon-show-hide js-toggle mo-tool-icon mo-icons-icon mo-icons-edit"></span>'
- #         #          .'<input type="checkbox" value="'.$currentelement.'" class="mo-checkbox mo-checkbox-del js-plugin-del ml"'.$check_show.' />'
- #          #         .'</div>'
-          #          .'</div>'
                     .'</summary>'."\n"
                     .'<div class="js-toggle-content mo-in-ul-ul ui-helper-clearfix fadeIn">'."\n"
                     .get_plugin_info($plugin_info);
@@ -357,8 +341,7 @@ function save_plugin_settings($conf_plugin,$config,$currentelement) {
         } elseif($conf_plugin->get($name)) {
             $conf_plugin->set($name,"");
         }
-    }
-    
+    }    
         // PHP 8.1 Alpha 1 erzeugt Fehler wenn strlen($messages) = null ist!
     if (empty($messages)) {
       $messages = "";
@@ -458,7 +441,8 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
         if(isset($config[$name]['type'])) {
             $type = ' type="'.$config[$name]['type'].'"';
             if($config[$name]['type'] == "textarea") {
-                $input = '<textarea name="'.$currentelement.'['.$name.']"'.$cols.$rows.' class="mo-plugin-textarea'.$css_add.'" style="width:100%">'.$value.'</textarea>';
+                $input = '<textarea id="'.$currentelement.'['.$name.']" name="'.$currentelement.'['.$name.']"'.$cols.$rows.' class="mo-plugin-textarea'.$css_add.'" style="width:100%">'.$value.'</textarea>';
+                $config[$name]['description'] = '<label for="'.$currentelement.'['.$name.']">'.$config[$name]['description'].'</label>';
                 if($template !== false or $template_conf === true) {
                     $search[] = '{'.$name.'_textarea}';
                     $replace[] = $input;
@@ -470,7 +454,8 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
                     $css_multi = " js-multi";
                     $plus_array = '[]';
                 }
-                $input = '<select name="'.$currentelement.'['.$name.']'.$plus_array.'"'.$size.$multiple.' class="mo-plugin-select js-select'.$css_multi.$css_add.'">';
+                $config[$name]['description'] = '<label for="'.$currentelement.'['.$name.']">'.$config[$name]['description'].'</label>';
+                $input = '<select id="'.$currentelement.'['.$name.']" name="'.$currentelement.'['.$name.']'.$plus_array.'"'.$size.$multiple.' class="mo-plugin-select js-select'.$css_multi.$css_add.'">';
                 if(is_array($config[$name]['descriptions'])) {
                     $select_array = array();
                     if($conf_plugin->get($name))
@@ -511,7 +496,7 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
                         }
                         $in_radio = '<input name="'.$currentelement.'['.$name.']"'.$type.$value.$checked.' id="'.$currentelement.'-'.$name.'-'.$key.'">';
                         $descriptions = '<label for="'.$currentelement.'-'.$name.'-'.$key.'">'.$descriptions.'</label>';
-                        $input .= $descriptions.'&nbsp;&nbsp;'.$in_radio.'<br />';
+                        $input .= $descriptions.'&nbsp;&nbsp;'.$in_radio.'<br>';
                         if($template !== false or $template_conf === true) {
                             $search[] = '{'.$name.'_radio_'.$key.'}';
                             $replace[] = $in_radio;
@@ -525,8 +510,8 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
                 if($conf_plugin->get($name) == "true") {
                     $checked = ' checked="checked"';
                 }
-                $input = '<input name="'.$currentelement.'['.$name.']"'.$type.$checked.' value="true" id="'.$currentelement.'-'.$name.'">';
-                $config[$name]['description'] = '<label for="'.$currentelement.'-'.$name.'">'.$config[$name]['description'].'</label>';
+                $input = '<label for="'.$currentelement.'-'.$name.'" class="sr-only">'.getLanguageValue("plugins_checkbox_toggle").'</label><input name="'.$currentelement.'['.$name.']"'.$type.$checked.' value="true" id="'.$currentelement.'-'.$name.'">';
+                $config[$name]['description'] = '<span>'.$config[$name]['description'].'</span>';
                 if($template !== false or $template_conf === true) {
                     $search[] = '{'.$name.'_checkbox}';
                     $replace[] = $input;
@@ -534,7 +519,8 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
             } elseif($config[$name]['type'] == "file") {
                 $input = '<span style="background-color:#FF0000;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
             } else {
-                $input = '<input name="'.$currentelement.'['.$name.']"'.$type.$value.$maxlength.$size.' class="mo-plugin-input'.$css_add.'">';
+                $input = '<input id="'.$currentelement.'-'.$name.'" name="'.$currentelement.'['.$name.']"'.$type.$value.$maxlength.$size.' class="mo-plugin-input'.$css_add.'">';
+                $config[$name]['description'] = '<label for="'.$currentelement.'-'.$name.'">'.$config[$name]['description'].'</label>';
                 if($template !== false or $template_conf === true) {
                     $search[] = '{'.$name.'_'.$config[$name]['type'].'}';
                     $replace[] = $input;
@@ -551,7 +537,7 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
         } elseif($template_conf === true) {
             if($config[$name]['template'] == "template_test")
                 # wennn in $config[name][template] nur template_test steht alle Platzhalter ausgeben
-                $ul_template["config_button"][] = array("Template Platzhalter",implode("<br />", $search));
+                $ul_template["config_button"][] = array("Template Platzhalter",implode("<br>", $search));
             else
                 $ul_template["config_button"][] = str_replace($search,$replace,$config[$name]['template']);
         }
@@ -563,14 +549,12 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
     # Achtung wenn in $config['--template~~'] nur "template_test" steht werden
     # alle $search ergebnisse ausgegeben
     if($template == "template_test") {
-        $ul_template["config_button"][] = array("Template Platzhalter",implode("<br />", $search));
+        $ul_template["config_button"][] = array("Template Platzhalter",implode("<br>", $search));
     }
     $show = '';
     if($conf_plugin->get("active") != "true")
        $show = ' style="display:none"';
     return '<div class="js-config card" '.$show.'>'."\n"
- //   			.'<div class="mo-ul">'
- //           .'<div class="mo-li ui-widget-content ui-corner-all card">'
             .'<div class="js-tools-show-hide mo-li-head-tag mo-tag-height-from-icon mo-li-head-tag-no-ul mo-middle ui-state-default ui-corner-top ui-helper-clearfix c-header">'."\n"
             .'<span class="mo-bold">'.getLanguageValue("config_button").'</span>'."\n"
             .'<span class="js-save-plugin" title="'.getLanguageValue("button_save").'" style="float:right">'."\n"
@@ -580,11 +564,8 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
            .'<div class="mo-in-ul-ul">'."\n"
             .contend_template($ul_template,false,true)."\n"
             .'</div>'."\n"
-//            .'</div>'
-//            .'</div>'
             .'</div>'."\n";
 }
-
 
 function plugin_del() {
     global $specialchars;
@@ -742,6 +723,4 @@ function PclZip_PreExtractCallBack($p_event, &$p_header) {
         return 0;
     return 1;
 }
-
-
 ?>

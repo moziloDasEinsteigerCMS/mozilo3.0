@@ -1,11 +1,9 @@
+config_gallery_usethumbs                = Użyć miniatur?
+config_gallery_target                   = Jak powinna być otwierana galeria?
+config_gallery_target_self              = W tym samym oknie/karcie.
+config_gallery_target_blank             = W nowym oknie/karcie.
+config_gallery_captions                 = Użyć podpisów pod obrazkami?
+config_gallery_placeholders             = Tutaj możesz ułożyć symbole zastępcze galerii w żądanej kolejności (dozwolone są podziały wiersza).
+config_gallery_plugin_name              = Domyślna galeria MoziloCMS
 
-config_gallery_picsperrow               = 
-config_gallery_picsperrow_regex_error   = 
-config_gallery_target                   = 
-config_gallery_target_self              = 
-config_gallery_target_blank             = 
-config_gallery_usethumbs                = 
-config_gallery_captions                 = 
-config_gallery_placeholders             = 
-config_gallery_plugin_name              = 
-config_gallery_plugin_desc              = 
+config_gallery_plugin_desc              = Tworzy domyślny widok galerii. W ustawieniach galerii w panelu administracyjnym Mozilo możesz określić, czy galeria ma być wyświetlana w nowym oknie/karcie („target blank”), czy w bieżącym („target self”). Dodatkowo możesz skorzystać z opcji „Użyć miniatur?”. Określ, czy obrazy mają być wyświetlane w trybie pojedynczego obrazu (EM), czy w trybie przeglądu (ÜM).<br> <br><span style="font-weight:bold;">Zastosowanie:</span><br>{Gallery|moziloCMS} wstawia galerię „moziloCMS” (dla „target self”) lub link do niej (dla „target blank”).<br>{Gallery|moziloCMS,Any display text} wstawia link do galerii „moziloCMS” z określonym tekstem wyświetlanym (tylko dla „target blank”).<br><br>Aby użyć jej w nowym oknie/karcie („target blank”), opisane symbole zastępcze można umieścić w pliku gallerytemplate.html.<br><br><span style="font-weight:bold;">Konfiguracja:</span><br>Układ poszczególnych elementów funkcyjnych można zmienić za pomocą symboli zastępczych w polu tekstowym. Dostępne są następujące symbole zastępcze:<br>- {CURRENTGALLERY}: Nazwa galerii<br>- {GALLERYMENU}: Menu „pierwszy/poprzedni/następny/ostatni obraz” (tylko EM)<br>- {NUMBERMENU}: Menu numeryczne (w EM) / Przegląd wszystkich obrazów, w tym napisów (w ÜM)<br>- {CURRENTPIC}: Aktualny obraz (tylko EM)<br>- {CURRENTDESCRIPTION}: Podtytuł bieżącego obrazu (tylko EM)<br>- {XOUTOFY}: „Obraz x z y” (tylko EM)<br>- {CURRENT_INDEX}: Indeks bieżącego obrazu (tylko EM)<br>- {PREVIOUS_INDEX}: Indeks poprzedniego obrazu (tylko EM)<br>- {NEXT_INDEX}: Indeks następnego obrazu (tylko EM)<br><br>

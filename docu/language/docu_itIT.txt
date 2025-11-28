@@ -13,6 +13,7 @@ do_page2                       = Una galleria
 do_page3                       = Contatto
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = Le immagini disponibili vengono selezionate dal
 do_editsitesyntax_text_28_2    = inserito.
 do_editsitesyntax_text_29      = Per tutti gli elementi della sintassi dell'immagine:
 do_editsitesyntax_text_30      = Se inserisci il segno <span class="do-paren">=</span> dopo il nome del comando e poi inserisci del testo, questo verrà visualizzato come didascalia.
+do_editsitesyntax_text_30_1    = L'inserimento di testo alternativo (accessibile) alt<span class="do-paren">=</span> è facoltativo. Se non viene inserito alcun testo, verrà assunto il nome del file immagine.
 do_editsitesyntax_text_31      = Fiore di loto al lago
+do_editsitesyntax_text_31_1    = Un fiore di loto mostra tutto il suo splendore
 do_editsitesyntax_text_32_1    = A con
 do_editsitesyntax_text_32_2    = l'immagine inserita può essere modificata con i comandi
 do_editsitesyntax_text_32_3    = allineato orizzontalmente.

@@ -2,7 +2,7 @@
 |===============================================================================|
 | Template: moziloCMS_Standard_Hell                                             |
 | Author: Sven Svetic, Twinix-Design                                            |
-| Version: 0.2 (angepasst durch moziloCMS)                                                                  | 
+| Version: 0.3 (angepasst durch moziloCMS)                                                                  | 
 | *********  Dieser Hinweis darf nicht entfernt werden!  *********              |
 |===============================================================================|
 */
@@ -43,14 +43,14 @@ body {
 # allgemeiner Style 
 --------------------------------------------------------------*/
 a {
-    color: #73a7cf;
+    color: #3875A3;
     text-decoration: none
 }
 
 a:link,
 a:visited,
 a:active {
-    color: #73a7cf;
+    color: #3875A3;
     text-decoration: none
 }
 
@@ -99,6 +99,19 @@ fieldset {
 .noborder {
 	border:none
 }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 
 /*--------------------------------------------------------------
 # Überschriften Style
@@ -207,7 +220,7 @@ td.contenttable2 {
 /*--------------------------------------------------------------
 # sitemap / # search results / # tableofcontents
 --------------------------------------------------------------*/
-.sitemap {
+#sitemap {
 /*    padding: 0 0 .588em 0.778em */
 }
 
@@ -226,12 +239,12 @@ td.contenttable2 {
     list-style-type: none
 }
 
-.sitemap a, .searchmap a, .tableofcontents a {
+#sitemap a, .searchmap result-list result-list a, .tableofcontents a {
     text-decoration: none;
     color: #212529
 }
 
-.sitemap a:hover, .searchmap a:hover, .tableofcontents a:hover {
+#sitemap a:hover, .searchmap result-list result-list a:hover, .tableofcontents a:hover {
     color: #30a5ff
 }
 /*--------------------------------------------------------------
@@ -305,7 +318,7 @@ span.rightcontentimage {
 
 .searchtextfield {
   width: 100%;
-  border: 2px solid #73a7cf;
+  border: 2px solid #3875A3;
   border-right: none;
   padding: 5px;
   border-radius: 5px 0 0 5px;
@@ -320,8 +333,8 @@ span.rightcontentimage {
 .searchbutton {
   width: 40px;
   height: 36px;
-  border: 1px solid #73a7cf;
-  background: #73a7cf;
+  border: 1px solid #3875A3;
+  background: #3875A3;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
 background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='%23ffffff' d='M13.22 14.63a8 8 0 1 1 1.41-1.41l4.29 4.29a1 1 0 1 1-1.41 1.41l-4.29-4.29zm-.66-2.07a6 6 0 1 0-8.49-8.49 6 6 0 0 0 8.49 8.49z'></path></svg>");
@@ -542,6 +555,10 @@ a.submenuactive:hover {
     background: #444444;
     color: #ffffff
 }
+
+.footer a {
+	color: #8FB8D6
+}
 /* -------------------------------------- */
 /* ---------- max-width 768px ----------- */
 /* -------------------------------------- */
@@ -657,4 +674,9 @@ input[type=checkbox]:checked ~ label .line3 {
     .header h1 {
         font-size: 2.857em
     }
+}
+fieldset#searchfieldset {
+   border:none;
+   margin:0px;
+   padding:0px;
 }

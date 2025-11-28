@@ -5,7 +5,7 @@
       | Template: moziloCMS Standard Dunkel
       | Datum: Februar 2025
       | Autor: moziloCMS // www.mozilo.de
-      | Version: 1.1     
+      | Version: 1.2     
       | *********  Dieser Hinweis darf nicht entfernt werden!  *********    
       -->
 <head>
@@ -14,6 +14,7 @@
    <title>{WEBSITE_NAME}</title>
    <meta name="description" content="{WEBSITE_DESCRIPTION}">
    <meta name="keywords" content="{WEBSITE_KEYWORDS}">
+{CANONICAL_LINK}
    <link rel="icon" type="image/x-icon" href="{LAYOUT_DIR}/favicon.ico">
     <link rel="stylesheet" href="{LAYOUT_DIR}/css/style.css">
 </head>
@@ -23,7 +24,7 @@
             <label for="menu-checkbox" id="menu-toggler">{WEBSITE_NAME}
                 <span id="menu-toggler-icon"></span>
             </label>
-        <nav>{MAINMENU}</nav>
+        {MAINMENU}
         <header><span>{WEBSITE_NAME}</span></header>
         <main>{CONTENT}</main>
         <footer>&copy; <script>document.write(new Date().getFullYear());</script> - {SITEMAPLINK} - {CMSINFO} - {MEMORYUSAGE} - {EXECUTETIME} &#10073; Layout: <a href="https://www.mozilo.de" title="Zur moziloCMS Webseite wechseln">moziloCMS</a></footer>

@@ -13,6 +13,7 @@ do_page2                       = Galeria
 do_page3                       = Kontakt
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = Dostępne obrazy są wybierane z <b>Selectbox</
 do_editsitesyntax_text_28_2    = wstawiono.
 do_editsitesyntax_text_29      = Dla wszystkich elementów składni obrazu:
 do_editsitesyntax_text_30      = Jeśli po nazwie polecenia umieścisz znak <span class="do-paren">=</span>, a następnie wpiszesz tekst, zostanie on wyświetlony jako podpis.
+do_editsitesyntax_text_30_1    = Wprowadzenie tekstu alternatywnego (dostępnego) alt<span class="do-paren">=</span> jest opcjonalne. Jeśli nie zostanie wprowadzony żaden tekst, przyjmowana jest nazwa pliku obrazu.
 do_editsitesyntax_text_31      = Kwiat lotosu nad jeziorem
+do_editsitesyntax_text_31_1    = Kwiat lotosu ukazuje całą swoją wspaniałość
 do_editsitesyntax_text_32_1    = A z
 do_editsitesyntax_text_32_2    = umieszczony obraz można edytować za pomocą poleceń
 do_editsitesyntax_text_32_3    = wyrównane w poziomie.

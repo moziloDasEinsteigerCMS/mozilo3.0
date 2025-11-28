@@ -515,15 +515,11 @@ $(function() {
             editor.destroy();
             dialog_editor.data("diffcontent",false);
             dialog_editor.data("close_after_save",false);
-            if($('.js-coloreditor-button').length > 0) {
-                $('#ce-colorchange').dialog("close");
-            }
         },
         open: function(event, ui) {
         	$('body').css('overflow','hidden');
         	$('.ui-widget-overlay').bind('click', function () { $(this).siblings('.ui-dialog').find('.ui-dialog-content').dialog('close'); });
-            if($('.js-coloreditor-button').length > 0)
-                $('#ce-colorchange').dialog("close");
+
             $("#menu-fix").hide(0).attr("id","menu-fix-close-editor");
             $('.overviewselect, .usersyntaxselectbox').multiselect( "option", "maxHeight", $("#"+meditorID).closest('td').outerHeight() + dialog_editor.next('.ui-dialog-buttonpane').height());
             // ein hack das die select grösse stimt
@@ -690,15 +686,45 @@ $(function() {
         }
     });
 
-/*
-    $('#pageedit-box').on({
-        mouseenter: function() { 
-            $(this).addClass("ui-state-hover").removeClass("ui-state-active");
-        },
-        mouseleave: function () {
-            $(this).removeClass("ui-state-hover").addClass("ui-state-active");
-        }
-    },".ed-syntax-hover");//ui-state-hover ed-syntax-icon
-*/
-//$(".ui-dialog").show(0);
+});
+
+const colorPicker = document.getElementById('colorPicker');
+const colorInput = document.getElementById('colorInput');
+const paletteIcon = document.getElementById('paletteIcon');
+
+// Klick auf Icon öffnet den Color Picker
+paletteIcon.addEventListener('click', () => {
+  colorPicker.click();
+});
+
+// Tastaturbedienung: Enter oder Space
+paletteIcon.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    colorPicker.click();
+  }
+});
+
+// Wenn eine Farbe gewählt wird
+colorPicker.addEventListener('input', () => {
+  const color = colorPicker.value; // z.B. "#ff0000"
+  const hexWithoutHash = color.replace('#', '');
+
+  // Wert ins Textfeld ohne #
+  colorInput.value = hexWithoutHash;
+
+  // Hintergrundfarbe anpassen
+  colorInput.style.backgroundColor = color;
+
+  // Textfarbe für Lesbarkeit anpassen
+  const r = parseInt(color.substr(1, 2), 16);
+  const g = parseInt(color.substr(3, 2), 16);
+  const b = parseInt(color.substr(5, 2), 16);
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  colorInput.style.color = brightness > 125 ? 'black' : 'white';
+});
+
+// Klick auf das Textfeld fügt den Farbcode ein
+colorInput.addEventListener('click', () => {
+  insert_ace('[farbe=' + colorInput.value + '|', ']', true);
 });

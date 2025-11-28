@@ -1,0 +1,4 @@
+cookieDesc                                    = Używamy plików cookie.
+cookieBtn                                     = Akceptuj
+cookiePrivacy                                 = Więcej informacji w polityce prywatności.
+cookieSr                                      = Używane są pliki cookie. Prosimy o wyrażenie zgody.

@@ -1,0 +1,5 @@
+config_breadcrumb_text    = Tekst wyróżniony (domyślnie: pusty)
+config_first_entry        = Pierwszy wpis (domyślnie: start)
+config_breadcrumb_divider = Dzielnik (domyślnie »)
+description               = Wstawia ścieżkę nawigacyjną w dowolnym miejscu artykułu lub szablonu.
+placeholder               = Wstawia ścieżkę nawigacyjną

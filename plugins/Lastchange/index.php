@@ -1,158 +1,178 @@
-<?php if(!defined('IS_CMS')) die();
+<?php
+/**
+ * Lastchange Plugin – Version 3.2.1 (PHP 8.0+)
+ * -------------------------------------------------------------
+ * • Bug‑Fix: geteiltes Deployment < 8.3 → "typed class constant" führte
+ *   zu Syntax‑Error 500.  Jetzt ungetypt (public const VERSION ...)
+ * • Läuft ab PHP 8.0 bis 8.4; ab 8.2 automatische AllowDynamicProperties.
+ * -------------------------------------------------------------
+ */
 
-/***************************************************************
-*
-* Plugin für moziloCMS, das die letzte Änderungen zurückgibt
-* 
-***************************************************************/
+declare(strict_types=1);
 
-class Lastchange extends Plugin {
+if (!defined('IS_CMS')) { die(); }
 
-    /***************************************************************
-    * 
-    * Gibt den HTML-Code zurück, mit dem die Plugin-Variable ersetzt 
-    * wird.
-    * 
-    ***************************************************************/
-    var $include_pages = array();
-    var $dateformat = NULL;
+/* ====================================================================
+   Fallback für PHP 8.0/8.1:
+   Wenn das eingebaute Attribut »AllowDynamicProperties« noch nicht
+   vorhanden ist, definieren wir eine leere Ersatz‑Klasse.
+   ==================================================================== */
+if (PHP_VERSION_ID < 80200 && !class_exists('AllowDynamicProperties')) {
+    #[\Attribute(\Attribute::TARGET_CLASS)]
+    class AllowDynamicProperties {}
+}
 
-    function getContent($value) {
+/* ====================================================================
+   Kernklasse –  **hier beginnt die eigentliche Plugin‑Logik**
+   ==================================================================== */
+#[\AllowDynamicProperties]   // ab PHP 8.2 blendet das die Deprecation‑Warnung aus
+class Lastchange extends Plugin
+{
+    /** Seiten‑Typen, die überprüft werden */
+    private array $includePages = [EXT_PAGE];
+
+    /** Ausgabeformat für Datum & Uhrzeit */
+    private /*readonly (>=8.4)*/ string $dateFormat = 'd.m.Y H:i';
+
+    /** Plugin‑Version */
+    public const VERSION = '3.2.1';
+
+    public function getContent(string $value): string
+    {
         global $language;
 
-        $this->include_pages = array(EXT_PAGE);
-        if($this->settings->get("showhiddenpagesinlastchanged") == "true")
-            $this->include_pages = array(EXT_PAGE,EXT_HIDDEN);
-        $messagetext = $language->getLanguageValue("message_lastchange_0");
-        if($this->settings->get("messagetext"))
-             $messagetext = $this->settings->get("messagetext");
-        $this->dateformat = $language->getLanguageValue("_dateformat_0");
-        if($this->settings->get("date"))
-             $this->dateformat = $this->settings->get("date");
-        if($value == "text") {
-            return $messagetext;
-        } elseif($value == "page") {
-            $lastchangeinfo = $this->getLastChangedContentPageAndDateLAST();
-            return $lastchangeinfo[0];
-        } elseif($value == "pagelink") {
-            $lastchangeinfo = $this->getLastChangedContentPageAndDateLAST();
-            return $lastchangeinfo[1];
-        } elseif($value == "date") {
-            $lastchangeinfo = $this->getLastChangedContentPageAndDateLAST();
-            return $lastchangeinfo[2];
-        } else {
-            $lastchangeinfo = $this->getLastChangedContentPageAndDateLAST();
-            return $messagetext." ".$lastchangeinfo[1]." (".$lastchangeinfo[2].")";
+        $this->includePages = $this->settings->get('showhiddenpagesinlastchanged') === 'true'
+            ? [EXT_PAGE, EXT_HIDDEN]
+            : [EXT_PAGE];
+
+        $messageText = $this->settings->get('messagetext')
+            ?: $language->getLanguageValue('message_lastchange_0');
+
+        $rawFormat = $this->settings->get('date')
+            ?: $language->getLanguageValue('_dateformat_0');
+
+        $allowed = '#^[dDjFmMnYyGgHhisa\-\.\/\s:]+$#';
+        $this->dateFormat = preg_match($allowed, $rawFormat) ? $rawFormat : 'd.m.Y H:i';
+
+        if (!preg_match('/[GgHh].*i|i.*[GgHh]/', $this->dateFormat)) {
+            $this->dateFormat .= ' H:i';
         }
 
-        return "";
-    } // function getContent
-    /***************************************************************
-    * 
-    * Gibt die Konfigurationsoptionen als Array zurück.
-    * 
-    ***************************************************************/
-        function getConfig() {
-        global $lang_lastchange_admin;
+        $info = $this->getLastChangedContentPageAndDate();
 
-        $config = array();
-        $config ['messagetext']  = array(
-            "type" => "text",
-            "description" => $lang_lastchange_admin->get("config_lastchange_messagetext"),
-            "maxlength" => "100"
-            );
-        $config ['date']  = array(
-            "type" => "text",
-            "description" => $lang_lastchange_admin->get("config_lastchange_date"),
-            "maxlength" => "100"
-            );
-        $config ['showhiddenpagesinlastchanged'] = array(
-            "type" => "checkbox",
-            "description" => $lang_lastchange_admin->get("config_lastchange_showhiddenpagesinlastchanged")
-            );
+        return match ($value) {
+            'text'     => $messageText,
+            'page'     => $info['pageText'],
+            'pagelink' => $info['pageLink'],
+            'date'     => $info['date'],
+            default    => $messageText . ' ' . $info['pageLink'] . ' (' . $info['date'] . ')',
+        };
+    }
 
-        // Nicht vergessen: Das gesamte Array zurückgeben
-        return $config;
-    } // function getConfig
-    /***************************************************************
-    * 
-    * Gibt die Plugin-Infos als Array zurück. 
-    * 
-    ***************************************************************/
-    function getInfo() {
+    private function getLastChangedContentPageAndDate(): array
+    {
+        global $language, $CatPage;
+
+        $latest = ['cat' => '', 'page' => '', 'time' => 0];
+
+        foreach ($CatPage->get_CatArray(false, false, $this->includePages) as $cat) {
+            $dirInfo = $this->getLastChangeOfCat($cat);
+            if ($dirInfo['time'] > $latest['time']) {
+                $latest = ['cat' => $cat, ...$dirInfo];
+            }
+        }
+
+        $pageText = $CatPage->get_HrefText($latest['cat'], $latest['page']);
+        $url      = $CatPage->get_Href($latest['cat'], $latest['page']);
+        $titleAttr = $language->getLanguageHTML(
+            'tooltip_link_page_2',
+            $pageText,
+            $CatPage->get_HrefText($latest['cat'], false)
+        );
+
+        $pageLink = $CatPage->create_LinkTag(
+            $url,
+            $pageText,
+            false,
+            $titleAttr,
+            false,
+            'lastchangelink'
+        );
+
+        $tz   = new DateTimeZone(date_default_timezone_get());
+        $time = $latest['time'] ?: time();
+        $dt   = (new DateTimeImmutable('@' . $time))->setTimezone($tz);
+
+        return [
+            'pageText' => $pageText,
+            'pageLink' => $pageLink,
+            'date'     => '<time datetime="' . $dt->format('c') . '">' . $dt->format($this->dateFormat) . '</time>',
+        ];
+    }
+
+    private function getLastChangeOfCat(string $cat): array
+    {
+        global $CatPage;
+        $latest = ['page' => '', 'time' => 0];
+
+        foreach ($CatPage->get_PageArray($cat, $this->includePages, true) as $page) {
+            $t = $CatPage->get_Time($cat, $page);
+            if ($t > $latest['time']) {
+                $latest = ['page' => $page, 'time' => $t];
+            }
+        }
+        return $latest;
+    }
+
+    public function getConfig(): array
+    {
+        global $lang_lastchange_admin, $ADMIN_CONF;
+
+        if (!$lang_lastchange_admin instanceof Properties) {
+            $dir  = PLUGIN_DIR_REL . 'Lastchange/';
+            $lang = $ADMIN_CONF->get('language');
+            $lang_lastchange_admin = new Properties($dir . 'sprachen/admin_language_' . $lang . '.txt', false);
+        }
+
+        return [
+            'messagetext' => [
+                'type' => 'text',
+                'description' => $lang_lastchange_admin->get('config_lastchange_messagetext'),
+                'maxlength' => '100',
+            ],
+            'date' => [
+                'type' => 'text',
+                'description' => $lang_lastchange_admin->get('config_lastchange_date'),
+                'maxlength' => '100',
+            ],
+            'showhiddenpagesinlastchanged' => [
+                'type' => 'checkbox',
+                'description' => $lang_lastchange_admin->get('config_lastchange_showhiddenpagesinlastchanged'),
+            ],
+        ];
+    }
+
+    public function getInfo(): array
+    {
         global $ADMIN_CONF;
-        global $lang_lastchange_admin;
 
-        $dir = PLUGIN_DIR_REL."Lastchange/";
-        $language = $ADMIN_CONF->get("language");
-        $lang_lastchange_admin = new Properties($dir."sprachen/admin_language_".$language.".txt",false);
+        $dir  = PLUGIN_DIR_REL . 'Lastchange/';
+        $lang = $ADMIN_CONF->get('language');
+        $lng  = new Properties($dir . 'sprachen/admin_language_' . $lang . '.txt', false);
 
-        $info = array(
-            // Plugin-Name
-            "Version 3.0",
-            // CMS-Version
-            "2.0 / 3.0",
-            // Kurzbeschreibung
-            $lang_lastchange_admin->get("config_lastchange_plugin_desc"),
-            // Name des Autors
-            "mozilo",
-            // Download-URL
-            "",
-            array(
-                '{Lastchange}' => $lang_lastchange_admin->get("config_lastchange_plugin_lastchange"),
-                '{Lastchange|text}' => $lang_lastchange_admin->get("config_lastchange_plugin_text"),
-                '{Lastchange|page}' => $lang_lastchange_admin->get("config_lastchange_plugin_page"),
-                '{Lastchange|pagelink}' => $lang_lastchange_admin->get("config_lastchange_plugin_pagelink"),
-                '{Lastchange|date}' => $lang_lastchange_admin->get("config_lastchange_plugin_date")
-                )
-            );
-            return $info;
-    } // function getInfo
-    // ------------------------------------------------------------------------------
-    // Rueckgabe eines Arrays, bestehend aus:
-    // - Name der zuletzt geaenderten Inhaltsseite
-    // - kompletter Link auf diese Inhaltsseite  
-    // - formatiertes Datum der letzten Aenderung
-    // ------------------------------------------------------------------------------
-    function getLastChangedContentPageAndDateLAST() {
-        global $language;
-        global $CatPage;
-
-        $latestchanged = array("cat" => "catname", "page" => "pagename", "time" => 0);
-        $currentdir = $CatPage->get_CatArray(false, false, $this->include_pages);
-        foreach($currentdir as $cat) {
-            $latestofdir = $this->getLastChangeOfCatLAST($cat);
-            if ($latestofdir['time'] > $latestchanged['time']) {
-                $latestchanged['cat'] = $cat;
-                $latestchanged['page'] = $latestofdir['page'];
-                $latestchanged['time'] = $latestofdir['time'];
-            }
-        }
-        $lastchangedpage = $CatPage->get_HrefText($latestchanged['cat'],$latestchanged['page']);
-        $url = $CatPage->get_Href($latestchanged['cat'],$latestchanged['page']);
-        $titel = $language->getLanguageHTML("tooltip_link_page_2", $lastchangedpage, $CatPage->get_HrefText($latestchanged['cat'],false));
-        $linktolastchangedpage = $CatPage->create_LinkTag($url,$lastchangedpage,false,$titel,false,"lastchangelink");
-        $lastchangedate = date($this->dateformat, $latestchanged['time']);
-        return array($lastchangedpage, $linktolastchangedpage,$lastchangedate);
+        return [
+            self::VERSION,
+            '2.0 / 3.0',
+            $lng->get('config_lastchange_plugin_desc'),
+            'mozilo (refactored)',
+            '',
+            [
+                '{Lastchange}'          => $lng->get('config_lastchange_plugin_lastchange'),
+                '{Lastchange|text}'     => $lng->get('config_lastchange_plugin_text'),
+                '{Lastchange|page}'     => $lng->get('config_lastchange_plugin_page'),
+                '{Lastchange|pagelink}' => $lng->get('config_lastchange_plugin_pagelink'),
+                '{Lastchange|date}'     => $lng->get('config_lastchange_plugin_date'),
+            ],
+        ];
     }
-    // ------------------------------------------------------------------------------
-    // Einlesen eines Kategorie-Verzeichnisses, Rueckgabe der zuletzt geaenderten Datei
-    // ------------------------------------------------------------------------------
-    function getLastChangeOfCatLAST($cat) {
-        global $CatPage;
-
-        $latestchanged = array("page" => "pagename", "time" => 0);
-        $currentdir = $CatPage->get_PageArray($cat,$this->include_pages,true);
-        foreach($currentdir as $page) {
-            if ($CatPage->get_Time($cat,$page) > $latestchanged['time']) {
-                $latestchanged['page'] = $page;
-                $latestchanged['time'] = $CatPage->get_Time($cat,$page);
-            }
-
-        }
-        return $latestchanged;
-    }
-
- }// class Lastchange
-
-?>
+}

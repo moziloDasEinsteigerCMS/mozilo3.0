@@ -342,7 +342,10 @@ function send_data(para,change_item) {
                 para += "&"+change_item.serialize();
             } else if(send_item_status == "gallery_subtitle") {
                 para += "";
-            } else if(send_item_status == "cat_page_del") {
+            } else if(send_item_status == "gallery_alt") {
+                para += "";
+            } 
+            else if(send_item_status == "cat_page_del") {
 //$('#out').html("cat_page_del="+make_send_para_change($(change_item).find("table").eq(0)))
                 para += make_send_para_change(change_item.find("div").eq(0));
             } else if(send_item_status == "file_rename") {
@@ -404,7 +407,14 @@ if(change_item.siblings('.fu-subtitle').text().length < 1)
 else
     change_item.siblings('.fu-subtitle').text(change_item.val()).removeClass('fu-empty');
                         change_item.remove();
-                    } else if(send_item_status == "file_rename") {
+                    } else if(send_item_status == "gallery_alt") {
+                        change_item.siblings('.fu-alt').text(change_item.val()).show(0);
+if(change_item.siblings('.fu-alt').text().length < 1)
+    change_item.siblings('.fu-alt').text(change_item.val()).addClass('fu-empty');
+else
+    change_item.siblings('.fu-alt').text(change_item.val()).removeClass('fu-empty');
+                        change_item.remove();
+                    }else if(send_item_status == "file_rename") {
                         file_rename(change_item);
                     } else if(send_item_status == "cat_page_del") {
                         var item_status = change_item.parents(".js-li-cat").find("table").eq(0);

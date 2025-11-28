@@ -1,11 +1,11 @@
 
-config_lastchange_plugin_name              = LastChange
-config_lastchange_plugin_desc              = 
-config_lastchange_plugin_lastchange         = 
-config_lastchange_plugin_text               = 
-config_lastchange_plugin_page               = 
-config_lastchange_plugin_pagelink           = 
-config_lastchange_plugin_date               = 
-config_lastchange_messagetext               = 
-config_lastchange_date                      = 
-config_lastchange_showhiddenpagesinlastchanged = 
+config_lastchange_plugin_name                  = Lastchange
+config_lastchange_plugin_desc                  = Wyświetla ostatnią zmianę.<br><br><span style="font-weight:bold;">Sposób użycia:</span><br>{Lastchange} wyświetla coś takiego: „Ostatnia zmiana: Witamy (23.10.2020, 09:07:20)”<br>{Lastchange|text} wyświetla coś takiego: „Ostatnia zmiana”<br>{Lastchange|page} wyświetla coś takiego: „Witamy”<br>{Lastchange|pagelink} wyświetla coś takiego: „Witamy” (z linkiem do strony z treścią)<br>{Lastchange|date} wyświetla coś takiego: „(23.10.2020, 09:07:20)”<br><br><span style="font-weight:bold;">Konfiguracja:</span><br>Wtyczka pobiera tekst „Ostatnia zmiana” i format daty z pliku językowego CMS; możesz również określić oba te elementy samodzielnie. Format daty jest oparty na funkcji PHP date().
+config_lastchange_plugin_lastchange            = Ostatnia zmiana z linkiem i datą
+config_lastchange_plugin_text                  = Tekst ostatniej zmiany:
+config_lastchange_plugin_page                  = Nazwa ostatnio zmienionej strony z treścią
+config_lastchange_plugin_pagelink              = Link do ostatnio zmienionej strony z treścią
+config_lastchange_plugin_date                  = Data ostatniej zmiany
+config_lastchange_messagetext                  = Niestandardowy tekst ostatniej zmiany:
+config_lastchange_date                         = Niestandardowy format daty:
+config_lastchange_showhiddenpagesinlastchanged = Czy uwzględnić strony z ukrytą treścią?

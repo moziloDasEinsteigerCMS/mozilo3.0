@@ -32,6 +32,7 @@ message_lastchange_0                            = Ãšltima alteraÃ§Ã£o:
 # message_lastimage_0                             = Ãšltima imagem
 # message_nextimage_0                             = PrÃ³xima imagem
 message_nodatafound_0                           = Nenhum conteÃºdo encontrado.
+message_mainmenu                                = Menu principal
 # message_previousimage_0                         = Imagem anterior
 message_search_0                                = Busca
 message_searchresult_0                          
@@ -39,6 +40,7 @@ message_searchresult_1                          = Resultados da busca para "{PAR
 message_searchnoresult_1                        = A pesquisa por "{PARAM1}" não retornou resultados. Por favor, inicie uma nova pesquisa.
 message_searchhelp_0                            = Pelo menos um termo de pesquisa deve ser especificado.
 message_sitemap_0                               = Mapa do site
+message_submenu                                 = USubmenu de
 message_tableofcontents_0                       = Índice
 message_template_error_1                        = Arquivo de designer "{PARAM1}" faltando! Entre em contato como o administrador.
 passwordform_title_0                            = Consulta de senha

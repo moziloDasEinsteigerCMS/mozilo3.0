@@ -1,0 +1,59 @@
+Cria um menu com aninhamento de submenus quase ilimitado.<br>
+<b>Observação:</b> Categorias contendo uma "/" (barra) não serão mais exibidas, pois usamos a "/" (barra) para o submenu.<br>
+<br>
+Para usar um menu de detalhes, você deve usar {MenuSubs|main} e {MenuSubs|detail},
+caso contrário, apenas {MenuSubs}.<br>
+<b>Observação:</b> A opção "usesubmenu = 0" (inserida na parte superior dos layouts) não é usada aqui!<br>
+<br>
+<b>Descrição:</b>
+<ul>
+<li>Assim que uma página de conteúdo oculto com uma "/" no nome for encontrada, ela será substituída pela categoria com o mesmo nome de um submenu.</li>
+<li><b>Importante</b> O nome é armazenado como um caminho. visualizado.</li>
+<li>Para usar uma página de conteúdo para subcategorias que está oculta usando a configuração "Especificar se páginas de conteúdo com o mesmo nome da categoria devem ser ocultadas no menu de detalhes:", o nome deve ser o mesmo da última parte das subcategorias, por exemplo, SubCategorias=Categoria/Submenu_1 Página_de_Conteúdo=Submenu_1 e deve ser a primeira página de conteúdo.</li>
+</ul>
+<br>
+<b>Exemplo:</b><br>
+<ul><li style="list-style-type:none;"><b>Categoria</b>
+<ul>
+<li>Página_de_Conteúdo_1</li>
+<li>Categoria / Submenu_1 <b>oculto</b></li>
+<li>Página_de_Conteúdo_2</li>
+</ul>
+<b>Categoria / Submenu_1</b>
+<ul>
+<li>ContentPage_3</li>
+<li>Categoria / Submenu_1 / Submenu_2 <b>oculto</b></li>
+</ul>
+<b>Categoria / Submenu_1 / Submenu_2</b>
+<ul>
+<li>Página de conteúdo_4</li>
+<li>Página de conteúdo_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Resultado:</b><br>
+<ul><li style="list-style-type:none;"><b>Categoria</b>
+<ul>
+<li>Página de conteúdo_1</li>
+<li><b>Submenu_1</b>
+<ul>
+<li>Página de conteúdo_3</li>
+<li><b>Submenu_2</b>
+<ul>
+<li>Página de conteúdo_4</li>
+<li>Página de conteúdo_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Página de conteúdo_2</li>
+</ul>
+</li></ul>
+<br>
+Um segundo menu pode ser criado com <b>{MenuSubs|menusubs_2}</b>.<br>
+Por exemplo, para informações de contato e informações de impressão no rodapé da página.<br>
+Basta selecionar uma categoria na configuração do plugin e inseri-la no modelo <b>{MenuSubs|menusubs_2}</b> <br> no local desejado.<br>
+Somente categorias que não possuem uma "/" no nome são selecionáveis.<br>
+Isso também permite subcategorias.<br>
+<br>
+Para navegação por trilha de navegação, basta inserir <b>{MenuSubs|breadcrumb}</b> no local desejado.

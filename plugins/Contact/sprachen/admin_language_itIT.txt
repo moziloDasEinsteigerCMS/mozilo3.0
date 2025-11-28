@@ -1,39 +1,48 @@
-toolbar_platzhalter_contact             = 
-config_titel_contact            = 
-config_text_formularmail        = 
-config_error_formularmail       = 
-config_text_contactformusespamprotection = 
-config_text_contactformwaittime = 
-config_text_contact             = 
-config_titel_contact_mandatory  = 
-config_titel_contact_show       = 
-config_titel_contact_input      = 
-config_titel_contact_help       = 
-config_input_contact_name       = 
-config_input_contact_subject    = 
-config_input_contact_mail       = 
-config_input_contact_website    = 
-config_input_contact_textarea   = 
-config_titel_spam_question      = 
-config_category                          = Categoria in cui si trova la pagina sulla protezione dei dati
-config_data_protection_page              = Nome della pagina sulla protezione dei dati
-config_contact_details          = 
-config_contact_details_scheme   = 
-config_text_contact_details     = 
-config_contact_details_name   = 
-config_contact_details_street   = 
-config_contact_details_plz   = 
-config_contact_details_city   = 
-config_contact_details_phone   = 
-config_contact_details_email   = 
-config_contact_details_website   = 
-config_contact_form               = 
-config_contact_social           = 
-config_text_contact_social     = 
-config_titel_social_input      = 
-config_contact_social_fb   = Facebook
-config_contact_social_mastodon   = Mastodon
-config_contact_social_insta  = Instagram
-config_contact_social_pinterest  = Pinterest
-config_contact_social_linkedin  = LinkedIn
-config_contact_social_youtube  = Youtube
+toolbar_placeholder_contact                   = Modulo di contatto
+#config_title_contact                          = Impostazioni del modulo di contatto
+config_text_formularmail                      = Il tuo indirizzo email a cui verrà inviato il modulo di contatto.
+
+config_error_formularmail                     = Questo non è un indirizzo email valido.
+
+config_text_contactformusespamprotection      = È necessario abilitare la protezione antispam per il modulo di contatto? I visitatori dovranno quindi completare una semplice verifica antispam per inviare il modulo.
+
+config_text_contactformwaittime               = Dopo quanti secondi un visitatore può inviare un nuovo messaggio tramite il modulo di contatto?
+
+config_help_contact                           = Possono essere visualizzati sia i <b>dati di contatto</b>, sia i link ai <b>social media</b>, sia un <b>modulo di contatto</b>. I campi dei dettagli di contatto, dei dettagli dei social media e del modulo di contatto possono essere personalizzati. Nel modulo di contatto, è anche possibile definire campi obbligatori. Inoltre, è possibile assegnare etichette personalizzate ai campi di input nel modulo di contatto, nonché aggiungere la protezione antispam e un'informativa sulla privacy. Il "Campo di testo a riga singola Email" viene utilizzato come mittente per i messaggi provenienti dal modulo di contatto. Puoi verificare se l'invio di email è supportato nella homepage di moziloAdmin.
+
+config_text_contact                           = Quali campi devono essere visualizzati nel modulo di contatto e quali devono essere compilati come campi obbligatori? Puoi anche assegnare etichette personalizzate ai campi di input.
+
+config_title_contact_mandatory                = Campo obbligatorio
+config_title_contact_show                     = Mostra
+config_title_contact_input                    = Etichetta
+config_title_contact_help                     = Descrizione
+config_input_contact_name                     = Campo di testo a riga singola "Nome"
+config_input_contact_mail                     = Campo di testo a riga singola "Email"
+config_input_contact_website                  = Campo di testo a riga singola "Sito web"
+config_input_contact_subject                  = Campo di testo a riga singola "Oggetto"
+config_input_contact_textarea                 = Campo di testo a più righe "Messaggio"
+config_input_contact_privacy                  = Testo della casella di controllo "Privacy"
+config_input_contact_mail_send_copy           = Invia una copia a questa persona
+config_title_spam_question                    = Attività antispam: una nuova domanda/risposta per riga<br>ad esempio 3 + 7 = 10
+config_category                               = Categoria in cui si trova la pagina sulla privacy
+config_data_protection_page                   = Nome della pagina sulla privacy
+config_contact_details                        = Mostrare i dettagli del contatto?
+config_contact_details_scheme                 = Tipo di dati del contatto
+config_text_contact_details                   = Quali campi devono essere visualizzati nei dettagli del contatto?
+config_contact_details_name                   = Nome/Nome dell'azienda
+config_contact_details_street                 = Indirizzo
+config_contact_details_plz                    = Codice postale
+config_contact_details_city                   = Città
+config_contact_details_phone                  = Numero di telefono
+config_contact_details_email                  = Indirizzo email
+config_contact_details_website                = Sito web
+config_contact_form                           = Mostrare il modulo di contatto?
+config_contact_social                         = Mostrare i social media?
+config_text_contact_social                    = Quali social media devono essere visualizzati?
+config_title_social_input                     = Link
+config_contact_social_fb                      = Facebook
+config_contact_social_mastodon                = Mastodon
+config_contact_social_insta                   = Instagram
+config_contact_social_pinterest               = Pinterest
+config_contact_social_linkedin                = LinkedIn
+config_contact_social_youtube                 = Youtube

@@ -5,7 +5,7 @@
 |===============================================================================|
 | Template: Standard moziloCMS                                                  |
 | Author: Sven Svetic, Twinix-Design                                            |
-| Version: 0.2                                                                  | 
+| Version: 0.3                                                                  | 
 | *********  Dieser Hinweis darf nicht entfernt werden!  *********              |
 |===============================================================================|
 -->
@@ -16,6 +16,7 @@
     <meta name="robots" content="index,follow">
     <meta name="description" content="{WEBSITE_DESCRIPTION}">
     <meta name="keywords" content="{WEBSITE_KEYWORDS}">
+    {CANONICAL_LINK}
     <title>{WEBSITE_TITLE}</title>
     <link rel="SHORTCUT ICON" href="{LAYOUT_DIR}/favicon.ico">
     <link rel="stylesheet" href="{LAYOUT_DIR}/css/style.css">
@@ -37,10 +38,12 @@
         <div class="dropdown">
             <input type="checkbox" id="checkbox_toggle">
             <label for="checkbox_toggle" class="hamburger">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </label>
+    				<span class="sr-only">Menü öffnen/schließen</span>
+    				<span class="line line1"></span>
+    				<span class="line line2"></span>
+    				<span class="line line3"></span>
+			</label>
+
         </div>
         <!-- Content -->
         <div class="main">

@@ -1,3 +1,4 @@
-cookieDesc      = Wir benutzen Cookies.
-cookieBtn       = Akzeptieren
-cookiePrivacy   = Weitere Infos in der Datenschutzerklärung.
+cookieDesc                                    = Wir benutzen Cookies.
+cookieBtn                                     = Akzeptieren
+cookiePrivacy                                 = Weitere Infos in der Datenschutzerklärung.
+cookieSr                                      = Es werden Cookies verwendet. Bitte zustimmen.

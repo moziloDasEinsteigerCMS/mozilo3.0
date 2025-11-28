@@ -14,6 +14,7 @@ class UploadHandler
 {
     protected $options;
     protected $subtitle;
+    protected $alt;
     protected $alowed_img_array;
     protected $alowed_file_array;
     
@@ -41,6 +42,8 @@ class UploadHandler
             $url_dir = URL_BASE.GALLERIES_DIR_NAME.'/'.$curent_dir_url.'/';
             if(is_file(GALLERIES_DIR_REL.$curent_dir."/texte.conf.php"))
                 $this->subtitle = new Properties(GALLERIES_DIR_REL.$curent_dir."/texte.conf.php");
+                if(is_file(GALLERIES_DIR_REL.$curent_dir."/alt.conf.php"))
+$this->alt = new Properties(GALLERIES_DIR_REL.$curent_dir."/alt.conf.php");
 #            $this->subtitle = new Properties(GALLERIES_DIR_REL.$curent_dir."/texte.txt");
         }
         if(ACTION == "template") {
@@ -185,6 +188,7 @@ class UploadHandler
                     $file->pixel_h = $getimagesize[1];
                 }
                 $file->subtitle = mo_rawurlencode($this->subtitle->get($file->name));
+$file->alt = mo_rawurlencode($this->alt->get($file->name));
             }
             foreach($this->options['image_versions'] as $version => $options) {
                 if (is_file($options['upload_dir'].$file_name)) {
@@ -467,6 +471,7 @@ if(!is_dir($this->options['upload_dir'])
                     }
 #                    $this->subtitle->set($file->name,"");
                     $file->subtitle = "";
+                    $file->alt = "";
                 }
                 setChmod($file_path);
             } else if ($this->options['discard_aborted_uploads']) {
@@ -600,6 +605,7 @@ if(!is_dir($this->options['upload_dir'])
         if ($success) {
             if(ACTION == "gallery") {
                 $this->subtitle->delete($file_name);
+$this->alt->delete($file_name);
             }
             foreach($this->options['image_versions'] as $version => $options) {
                 $file = $options['upload_dir'].$file_name;

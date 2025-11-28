@@ -1,0 +1,5 @@
+no_menusubs_2        = Aucun MenuSubs_2
+menusubs_2           = Sélectionner une catégorie pour MenuSubs_2
+sitemap_show_menu2   = Afficher MenuSubs_2 dans le plan du site
+breadcrumb_delimiter = Fil d'Ariane. La valeur par défaut est "»"
+hidden               = Styles à appliquer à l'ouverture du menu mobile. Liste de valeurs séparées par des virgules. ID = Propriété CSS : valeur

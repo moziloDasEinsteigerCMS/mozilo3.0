@@ -119,7 +119,7 @@ function update() {
             if($update_button === true) {
                 if($updates['kategorien'] === true)
                     $update_pages = '<input type="checkbox" value="true" name="update_pages" id="update_pages"><label for="update_pages">'.getLanguageValue("install_update_files_in_pages").'</label><br /><br />';
-                $update_submit = $update_pages.'<input type="submit" name="update_cms" value="'.getLanguageValue("install_update_buttom").'" />';
+                $update_submit = $update_pages.'<input type="submit" class="button" name="update_cms" value="'.getLanguageValue("install_update_buttom").'" />';
                 $update_submit = contend_template($update_submit,"");
             }
         } else
@@ -153,25 +153,27 @@ function testUpdate($test_art = false) {
     }
 
     $update_staus['galerien'] = "empty";
-    if(is_dir(BASE_DIR.GALLERIES_DIR_NAME)) {
-        foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME,"dir","none") as $datei) {
-            foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei,"file","none") as $img) {
-                if($img == 'texte.conf') {
-                    continue;
-                }
-                if(true === isUpdateFileName($img,"file")) {
-                    if($test_art === true or $test_art === "galerien")
-                        return true;
-                    $update_staus['galerien'] = true;
-                    break;
-                }
-            }
-            if(isUpdateFileName($datei)) {
-                $update_staus['galerien'] = true;
-                break;
-            }
+if(is_dir(BASE_DIR.GALLERIES_DIR_NAME)) {
+    foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME,"dir","none") as $datei) {
+
+        $needs_update = false;
+
+        // Prüfen ob texte.conf oder alt.conf.php fehlt
+        if(!is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf.php')) $needs_update = true;
+        if(!is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/alt.conf.php')) $needs_update = true;
+
+        foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei,"file","none") as $img) {
+            if($img == 'texte.conf' || $img == 'alt.conf') continue;
+            if(true === isUpdateFileName($img,"file")) $needs_update = true;
+        }
+
+        if($needs_update) {
+            if($test_art === true or $test_art === "galerien") return true;
+            $update_staus['galerien'] = true;
         }
     }
+}
+
     $update_staus['kategorien'] = "empty";
     if(is_dir(BASE_DIR.'kategorien')) {
         foreach(getDirAsArray(BASE_DIR.CONTENT_DIR_NAME,"dir","none") as $cat) {
@@ -257,37 +259,54 @@ function makeUpdate() {
     }
 
     if(is_dir(BASE_DIR.'galerien') and is_readable(BASE_DIR.'galerien')) {
-        foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME,"dir","none") as $datei) {
-            $tmp_conf = false;
-            if(is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf')) {
-                updateConf(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf');
-            } else
-                newConf(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei."/texte.conf.php");
-            if(is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf.php')) {
-                $tmp_conf = new Properties(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei."/texte.conf.php");
-            }
-            $update_text = array();
-            foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei,"file","none") as $img) {
-                if($img == 'texte.conf') continue;
-                if(false !== ($newname = isUpdateFileName($img,"file",true))) {
-                    $status = updateRename($img,$newname,BASE_DIR.GALLERIES_DIR_NAME."/".$datei."/");
-                    if($status) {
-                        $newname = $status;
-                    }
-                    if($tmp_conf !== false and $tmp_conf->keyExists($img)) {
-                        $tmp_conf->set($newname,toUtf($tmp_conf->get($img)));
-                        $tmp_conf->delete($img);
-                    }
-                    $update_page_files[$img] = $newname;
-                    if(is_file(BASE_DIR.GALLERIES_DIR_NAME."/".$datei."/".PREVIEW_DIR_NAME."/".$img))
-                        updateRename($img,$newname,BASE_DIR.GALLERIES_DIR_NAME."/".$datei."/".PREVIEW_DIR_NAME."/");
-                }
-            }
-            unset($tmp_conf);
-            if(false !== ($newname = isUpdateFileName($datei,false,true)))
-                updateRename($datei,$newname,BASE_DIR.GALLERIES_DIR_NAME."/");
+    foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME,"dir","none") as $datei) {
+        $tmp_conf = false;
+        if(is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf')) {
+            updateConf(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf');
+        } else
+            newConf(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei."/texte.conf.php");
+        if(is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/texte.conf.php')) {
+            $tmp_conf = new Properties(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei."/texte.conf.php");
         }
+
+        // NEU: alt.conf.php
+        $tmp_alt_conf = false;
+        if(is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/alt.conf')) {
+            updateConf(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/alt.conf');
+        } else
+            newConf(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei."/alt.conf.php");
+        if(is_file(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei.'/alt.conf.php')) {
+            $tmp_alt_conf = new Properties(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei."/alt.conf.php");
+        }
+
+        $update_text = array();
+        foreach(getDirAsArray(BASE_DIR.GALLERIES_DIR_NAME.'/'.$datei,"file","none") as $img) {
+            if($img == 'texte.conf' || $img == 'alt.conf') continue; // alt.conf überspringen
+            if(false !== ($newname = isUpdateFileName($img,"file",true))) {
+                $status = updateRename($img,$newname,BASE_DIR.GALLERIES_DIR_NAME."/".$datei."/");
+                if($status) {
+                    $newname = $status;
+                }
+                if($tmp_conf !== false and $tmp_conf->keyExists($img)) {
+                    $tmp_conf->set($newname,toUtf($tmp_conf->get($img)));
+                    $tmp_conf->delete($img);
+                }
+                // NEU: alt.conf.php synchronisieren
+                if($tmp_alt_conf !== false and $tmp_alt_conf->keyExists($img)) {
+                    $tmp_alt_conf->set($newname,toUtf($tmp_alt_conf->get($img)));
+                    $tmp_alt_conf->delete($img);
+                }
+                $update_page_files[$img] = $newname;
+                if(is_file(BASE_DIR.GALLERIES_DIR_NAME."/".$datei."/".PREVIEW_DIR_NAME."/".$img))
+                    updateRename($img,$newname,BASE_DIR.GALLERIES_DIR_NAME."/".$datei."/".PREVIEW_DIR_NAME."/");
+            }
+        }
+        unset($tmp_conf, $tmp_alt_conf);
+        if(false !== ($newname = isUpdateFileName($datei,false,true)))
+            updateRename($datei,$newname,BASE_DIR.GALLERIES_DIR_NAME."/");
     }
+}
+
 
     if(is_dir(BASE_DIR.'kategorien')) {
         $sort_array = array();

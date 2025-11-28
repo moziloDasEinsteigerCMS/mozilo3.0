@@ -25,12 +25,15 @@ document.body.style.overflow = 'hidden';
     modalImg.classList.remove("show");
     setTimeout(() => {
       modalImg.src = image.src;
-      if (!(modalTxt === null || typeof modalTxt === 'undefined')) {
-modalTxt.innerHTML = image.alt;
-}        
+
+      if (modalTxt) {
+        modalTxt.innerHTML = image.dataset.description || "";
+      }
+
       modalImg.classList.add("show");
     }, 300);
-  }
+}
+
 
   //Next button onclick
   if (nextBtn) {  

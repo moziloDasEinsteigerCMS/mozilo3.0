@@ -22,6 +22,10 @@ minute                               = Minuto
 minutes                              = Minutos
 second                               = Segundo
 seconds                              = Segundos
+toggle_all                           = Seleccionar todo
+
+files_upload                         = Subir archivos
+
 error_chmod                          = No se pueden modificar los permisos sobre el archivo
 error_mkdir                          = No se puede crear el directorio
 error_no_file_dir                    = No existe el archivo o directorio
@@ -121,6 +125,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Memoria usada por moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Este valor representa cuánto tiempo tarda moziloCMS en cargar la página
 toolbar_platzhalter_VALUE            = Valor
 toolbar_platzhalter_DESCRIPTION      = Descripción
+toolbar_editor_color                 = Color seleccionado
 toolbar_editor_linenumber            = Mostrar / ocultar los números de línea
 toolbar_editor_controlcharacter      = Mostrar / ocultar los caracteres de control
 toolbar_editor_highlighter           = Modo de resaltado de sintaxis
@@ -141,6 +146,7 @@ filter_text_plugins                  = Complementos
 filter_text_files                    = Archivos
 filter_text_catpage                  = Categorías
 filter_text_template                 = Plantilla
+filter_no_match                      = Sin coincidencia
 
 home_button                          = Información
 home_multiuser                       = Reseteo multiusuario
@@ -215,6 +221,8 @@ gallery_error_noexists               = No existe una galería con ese nombre.
 gallery_error_subtitle_conf          = El archivo con los pies de foto no se ha podido crear. 
 gallery_help_conf                    = Configuración global
 gallery_image_size                   = Tamaño de imagen
+gallery_image_size_width             = Ancho
+gallery_image_size_height            = Altura
 gallery_messages_from_ftp            = Las siguientes galerías se han convertido con compatibilidad al CMS.
 gallery_messages_from_ftp_no         = Todas las galerías son compatibles con el CMS.
 gallery_name_new                     = Nueva galería.
@@ -223,7 +231,8 @@ gallery_scale                        = Tamaño de escalado al subir imágenes.
 gallery_scale_thumbs                 = Tamaño de las miniaturas.
 gallery_text_from_ftp                = Transformar los nombres de todas las galerías e imágenes subidas por FTP con compatibilidad al CMS.
 gallery_text_from_ftp_button         = Compatibilidad CMS
-gallery_text_subtitle                = Pie de foto:
+gallery_text_subtitle                = Pie de foto
+gallery_text_alt                     = Texto alternativo
 
 config_button                        = Configuración
 config_error_defaultcat_emty         = Actualmente, no hay categorías disponibles
@@ -383,6 +392,7 @@ plugins_text_fileinfo                = Los ajustes de configuración ya existent
 plugins_button_install               = Instalar
 plugins_button_delete                = Eliminar todos los complementos seleccionados
 plugins_select                       = o desde la carpeta "complementos"
+plugins_checkbox_toggle              = Casilla activada/desactivada
 
 template_button                      = Plantilla
 template_title_grafiken              = Imágenes

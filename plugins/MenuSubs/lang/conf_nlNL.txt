@@ -1,0 +1,3 @@
+no_menusubs_2      = Geen MenuSubs_2
+menusubs_2         = Selecteer categorie voor MenuSubs_2
+sitemap_show_menu2 = Toon MenuSubs_2 in de sitemap

@@ -16,7 +16,6 @@ function showEditPageForm()    {
                 .$toolbar
     .'<div id="ace-menu-box" class="ui-widget-header ui-corner-top flex card">'
 
- #   .'<div class="" width="100%" cellspacing="0" border="0" cellpadding="0"><tr>'
     .'<div class="mo-nowrap flex">'
             .'<span id="show_gutter" class="ed-ace-icon ed-icon-border ed-syntax-icon ed-number" title="'.getLanguageValue("toolbar_editor_linenumber",true).'"></span>'
             .'<span id="show_hidden" class="ed-ace-icon ed-icon-border ed-syntax-icon ed-noprint" title="'.getLanguageValue("toolbar_editor_controlcharacter",true).'"></span>'
@@ -51,15 +50,13 @@ function showEditPageForm()    {
         $content .= returnToolbarColoredit();
     $content .= '</div>'
     .'<div class="mo-nowrap flex">'
-            .'<input class="mo-ace-in-text" id="search-text" type="text" name="search-text" value="">'
+            .'<input class="mo-ace-in-text" id="search-text" type="text" name="search-text" value="" aria-label="'.getLanguageValue("toolbar_editor_search",true).'">'
             .'<span id="search" class="ed-ace-icon ed-syntax-icon ed-find" title="'.getLanguageValue("toolbar_editor_search",true).'"></span>'
             .'<input class="mo-ace-in-check" type="checkbox" id="search-all" title="'.getLanguageValue("toolbar_editor_searchall",true).'">'
             .'<label class="mo-ace-in-check-label" for="search-all">'.getLanguageValue("toolbar_editor_textall",true).'</label>'
-            .'<input class="mo-ace-in-text" id="replace-text" type="text" name="search" value="">'
+            .'<input class="mo-ace-in-text" id="replace-text" type="text" name="search" value="" aria-label="'.getLanguageValue("toolbar_editor_replace",true).'">'
             .'<span id="replace" class="ed-ace-icon ed-syntax-icon ed-replace" title="'.getLanguageValue("toolbar_editor_replace",true).'"></span>'
     .'</div>'
-#    ."</tr>"
-#    ."</div>"
     .'</div>'
     .'<div id="pagecontent-border" style="position:relative;overflow:hidden;" class="ui-widget-content">'
         .'<div id="pagecontent"></div>'
@@ -81,9 +78,9 @@ function returnFormatToolbar() {
     global $USER_SYNTAX;
 
     $content = '<div id="format-toolbar" class="mo-menue-row-bottom mo-menue-row-top card flex mb">'
- #   ."<tr>"
+
     // Syntaxelemente
-#    .'<td width="50%" class="mo-nowrap">'
+
     .returnFormatToolbarIcon("link")
     .returnFormatToolbarIcon("mail")
     .returnFormatToolbarIcon("seite")
@@ -99,9 +96,9 @@ function returnFormatToolbar() {
     .returnFormatToolbarIcon("linie")
     .returnFormatToolbarIcon("html")
     .returnFormatToolbarIcon("include")
-#    ."</td>"
+
     // Textformatierung
-#    .'<td width="41%" class="mo-nowrap">'
+
     .returnFormatToolbarIcon("ueber1")
     .returnFormatToolbarIcon("ueber2")
     .returnFormatToolbarIcon("ueber3")
@@ -114,12 +111,10 @@ function returnFormatToolbar() {
     .returnFormatToolbarIcon("unter")
     .returnFormatToolbarIcon("durch")
     .returnFormatToolbarIcon("fontsize=0.8em")
-#    ."</td>"
+
     // Farben
-#    .'<td width="9%" id="colordiv-mozilo" class="mo-nowrap">'
+
         .returnToolbarColoredit()
-#    ."</td>"
-#    ."</tr>"
     ."</div>";
 
 
@@ -135,7 +130,6 @@ function returnFormatToolbar() {
 
 
     $content .= '<div class="mo-menue-row-bottom flex card mb" style="overflow-x:auto">';
-#    ."<tr>";
     # Template
     $template_title = NULL;
     $template_selectbox = "&nbsp;";
@@ -148,7 +142,6 @@ function returnFormatToolbar() {
     .'<div class="mo-select-div shrink-0">'.returnFilesSelectbox().'</div>'
     .'<div class="mo-select-div shrink-0">'.returnGalerySelectbox().'</div>'
    .'<div class="shrink-0">'.$template_selectbox.'</div>'
-#    ."</tr>"
     ."</div>"
 
     .'<div class="mo-menue-row-bottom flex card mb" style="overflow-x:auto">'
@@ -161,26 +154,28 @@ function returnFormatToolbar() {
 }
 
 function returnToolbarColoredit() {
-    $content = '<div id="js-color-menu" class="mo-nowrap flex">'
-            .'<span class="ed-syntax-icon ed-icon-border ed-syntax-color ce-bg-color-change ed-farbe" title="[farbe=RRGGBB| ... ]" onclick="insert_ace(\'[farbe=\' + document.getElementById(\'farbcode\').value + \'|\', \']\',true)"></span>'
-            .'<input type="text" maxlength="6" value="DD0000" class="ce-bg-color-change js-in-hex ce-in-hex" id="farbcode" size="6">'
-            .'<span class="js-coloreditor-button ed-icon-border ed-syntax-icon ed-farbeedit" title="'.getLanguageValue("dialog_title_coloredit",true).'" style="display:none"></span>'
-        .'</div>';
+    $content = '<label for="colorPicker" class="sr-only">'.getLanguageValue("dialog_title_coloredit",true).'</label><input type="color" id="colorPicker" style="display:none">'
+    .'<button  id="paletteIcon"  class="ed-syntax-icon ed-farbeedit shrink-0" tabindex="0" title="'.getLanguageValue("dialog_title_coloredit",true).'"></button>'
+    .'<input type="text" id="colorInput" value="DD0000" aria-label="'.getLanguageValue("toolbar_editor_color",true).'" title="[farbe=RRGGBB| ... ]" readonly>';
     return $content;
 }
 
 // Rueckgabe eines Standard-Formatsymbolleisten-Icons
 function returnFormatToolbarIcon($tag) {
-    if(strpos($tag,"=") > 0) {
-        $tag = substr($tag,0,strpos($tag,"="));
-        return '<span class="ed-syntax-icon ed-icon-border ed-'.$tag.'" title="['.$tag.'=|...]" onclick="insert_ace(\'['.$tag.'=|\', \']\',true)"></span>';
-    } elseif($tag == "tabelle")
-        return '<span class="ed-syntax-icon ed-icon-border ed-'.$tag.'" title="['.$tag.'|...]" onclick="insert_ace(\'['.$tag.'|\\n&lt;&lt; \', \' |  &gt;&gt;\\n&lt;  |  &gt;\\n]\',true)"></span>';
-    elseif($tag == "linie")
-        return '<span class="ed-syntax-icon ed-icon-border ed-'.$tag.'" title="[----]" onclick="insert_ace(\'[----]\', false,false)"></span>';
-    else
-        return '<span class="ed-syntax-icon ed-icon-border ed-'.$tag.'" title="['.$tag.'|...]" onclick="insert_ace(\'['.$tag.'|\', \']\',true)"></span>';
+    if (strpos($tag, "=") > 0) {
+        $tagName = substr($tag, 0, strpos($tag, "="));
+        return '<button type="button" class="ed-syntax-icon ed-icon-border ed-'.$tagName.' shrink-0" title="['.$tagName.'=|...]" onclick="insert_ace(\'['.$tagName.'=|\', \']\', true)"></button>';
+    } elseif ($tag == "tabelle") {
+        return '<button type="button" class="ed-syntax-icon ed-icon-border ed-'.$tag.' shrink-0" title="['.$tag.'|...]" onclick="insert_ace(\'['.$tag.'|\\n&lt;&lt; \', \' |  &gt;&gt;\\n&lt;  |  &gt;\\n]\', true)"></button>';
+    } elseif ($tag == "linie") {
+        return '<button type="button" class="ed-syntax-icon ed-icon-border ed-'.$tag.' shrink-0" title="[----]" onclick="insert_ace(\'[----]\', false, false)"></button>';
+    } elseif($tag == "bild" or $tag == "bildlinks" or $tag == "bildrechts")
+        return '<button type="button"  class="ed-syntax-icon ed-icon-border ed-'.$tag.' shrink-0" title="['.$tag.'|...]" onclick="insert_ace(\'['.$tag.'|\', \'|alt=]\',true)"></button>';
+     else {
+        return '<button type="button" class="ed-syntax-icon ed-icon-border ed-'.$tag.' shrink-0" title="['.$tag.'|...]" onclick="insert_ace(\'['.$tag.'|\', \']\', true)"></button>';
+    }
 }
+
 
 
 // Icons mit benutzerdefinierten Syntaxelementen
@@ -289,7 +284,7 @@ function returnSmileyBar() {
     $content = "";
     foreach($smileys->getSmileysArray() as $icon => $emoticon) {
         $icon = trim($icon);
-        $content .= '<span class="ed-smileys-icon" onclick="insert_ace(\' :'.$icon.': \', \'\',false)" >'.$emoticon.'</span>';
+        $content .= '<button type="button" class="ed-smileys-icon" onclick="insert_ace(\' :'.$icon.': \', \'\',false)">'.$emoticon.'</button>';
     }
     return $content;
 }

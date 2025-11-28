@@ -1,0 +1,57 @@
+Opretter en menu med næsten ubegrænset indlejring af undermenuer.<br>
+<b>Bemærk:</b> Kategorier, der indeholder et "/" (skråstreg), vises ikke længere, da vi bruger "/" (skråstreg) til undermenuen.<br>
+<br>
+For at bruge en detaljeret menu skal du bruge {MenuSubs|main} og {MenuSubs|detail}, ellers kun {MenuSubs}.<br>
+<b>Bemærk:</b> Parameteren "usesubmenu = 0" (indtastet øverst i layoutene) bruges ikke her!<br>
+<br>
+<b>Beskrivelse:</b>
+<ul>
+<li>Så snart en skjult indholdsside med et "/" i navnet findes, erstattes den med kategorien med samme navn som en undermenu.</li>
+<li><b>Vigtigt</b> Navnet gemmes som en sti. vist.</li>
+<li>For at bruge en indholdsside til underkategorier, der er skjult, ved hjælp af indstillingen "Angiv, om indholdssider med samme navn som kategorien skal skjules i detaljemenuen:", skal navnet være det samme som den sidste del af underkategorierne, f.eks. Underkategorier=Kategori/Undermenu_1 Indholdsside=Undermenu_1 og skal være den første indholdsside.</li>
+</ul>
+<br>
+<b>Eksempel:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategori</b>
+<ul>
+<li>Indholdsside_1</li>
+<li>Kategori / Undermenu_1 <b>skjult</b></li>
+<li>Indholdsside_2</li>
+</ul>
+<b>Kategori / Undermenu_1</b>
+<ul>
+<li>Indholdsside_3</li>
+<li>Kategori / Undermenu_1 / Undermenu_2 <b>skjult</b></li>
+</ul>
+<b>Kategori / Undermenu_1 / Undermenu_2</b>
+<ul>
+<li>Indhold side_4</li>
+<li>Indhold side_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Resultat:</b><br>
+<ul><li style="list-style-type:none;"><b>Kategori</b>
+<ul>
+<li>Indhold side_1</li>
+<li><b>Undermenu_1</b>
+<ul> <li>Indhold side_3</li>
+<li><b>Undermenu_2</b>
+<ul> <li>Indhold side_4</li>
+<li>Indhold side_5</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+<li>Indhold Side_2</li>
+</ul>
+</li></ul>
+<br>
+En anden menu kan oprettes med <b>{MenuSubs|menusubs_2}</b>.<br>
+For eksempel til impressum og kontaktoplysninger i sidefoden på siden.<br>
+Vælg blot en kategori i plugin-konfigurationen, og indtast den i skabelonen <b>{MenuSubs|menusubs_2}</b> <br> på den ønskede placering.<br>
+Kun kategorier, der ikke har et "/" i deres navn, kan vælges.<br>
+Dette giver også mulighed for underkategorier.<br>
+<br>
+For breadcrumb-navigation skal du blot indtaste <b>{MenuSubs|breadcrumb}</b> på den ønskede placering.

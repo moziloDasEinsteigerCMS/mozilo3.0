@@ -38,7 +38,6 @@ ini_set("display_errors", 1);
 # deshalb der versuch mit ini_set
 @ini_set('pcre.backtrack_limit', 1000000);
 
-
 define("BASE_DIR_ADMIN", BASE_DIR.ADMIN_DIR_NAME."/");
 
 if (is_file(BASE_DIR.CMS_DIR_NAME."/DefaultConfCMS.php")) {
@@ -62,7 +61,6 @@ if(function_exists('gzopen') and is_dir(BASE_DIR.BACKUP_DIR_NAME)) {
     }
     closedir($dh);
 }
-
 
 $test_dir = array(
     BASE_DIR_ADMIN.LANGUAGE_DIR_NAME => LANGUAGE_DIR_NAME,
@@ -98,7 +96,6 @@ if (isset($_GET['logout'])) {
     }
   }
 }
-
 
 if(isset($_FILE)) $_FILE = cleanREQUEST($_FILE);
 
@@ -200,16 +197,7 @@ if(LOGIN) { #-------------------------------
     } else {
         define("ROOT",true);
     }
-    # Plugin-Tab nur anzeigen wenn plugin Ordner mit mind. einem plugin vorhanden ist
-/*    if (count(getDirAsArray(PLUGIN_DIR_REL, "dir")) < 1 ) {
-        foreach($array_tabs as $key => $value) {
-            if($value == "plugins") {
-                unset($array_tabs[$key]);
-                break;
-            }
-        }
-    }
-*/
+
     $users_array = array();
     $tmp_action = getRequestValue('action');
     if(defined('MULTI_USER') and MULTI_USER) {
@@ -217,20 +205,6 @@ if(LOGIN) { #-------------------------------
         $id = md5(session_id());
         $users_array = $USERS->toArray();
         unset($users_array[$id]);
-        # die refresh ajax anfrage
-#!!!!!!!!!!!!!! kann gelöscht werden wenn ich das mit dem neuen multi mode fertig habe
-/*        if(getRequestValue('refresh_session') == "true") {
-            $hidden_action = "";
-            foreach($users_array as $action) {
-                if($action == "home" or $action == "login") continue;
-                if(in_array($action,$array_tabs))
-                    $hidden_action .= ",".$action;
-            }
-            if(strlen($hidden_action) > 1)
-                $hidden_action = substr($hidden_action,1);
-            exit($hidden_action);
-        }*/
-        # es gab ein redirect
 
         // PHP 8.1 Alpha 1 erzeugt Fehler wenn $USERS->get($id) = null ist!
         $get_user_id = $USERS->get($id);
@@ -329,7 +303,6 @@ function pageedit_dialog() {
     return $dialog;
 }
 
-
 // Gib Erfolgs- oder Fehlermeldung zurück
 function returnMessage($success, $message) {
     if ($success === true) {
@@ -383,7 +356,7 @@ function buildCheckBox($name, $checked,$label = false) {
         $checkbox .= ' checked=checked';
     }
     $checkbox .= ' name="'.$name.'"'.$id.'>';
-    $label_tag_plugin = '<span class="slider"></span></label>';
+    $label_tag_plugin = '<span class="slider"><span class="sr-only">'.str_replace('[active]','',$name).' Toggle</span></span></label>';
     if(ACTION != "plugins") {
     $label_tag_plugin .=' '.$label.'';
  }
@@ -429,21 +402,14 @@ function get_template_truss($content,$titel,$toggle = false) {
         if($toggle) {
             $template = '<details class="mo-manage-toggle card">'."\n"
             .'<summary>'."\n"
- #                   .'<li class="mo-li ui-widget-content ui-corner-all">'
                     .'<span class="flex js-toggle">'."\n"
                     .'<span class="mo-bold mo-padding-left flex-100">'.getLanguageValue($titel).'</span>'."\n"
- #                   .'<span class="js-toggle mo-tool-icon mo-icon mo-icons-icon mo-icons-edit"></span>'
                     .'</span>'."\n"
                     .'</summary>'."\n";
-  #                  .'<ul class="mo-in-ul-ul js-toggle-content card fadeIn">';
         } else {
         	            $template = '<div class="mo-ul card mb">'."\n"
-  #                  .'<li class="mo-li ui-widget-content ui-corner-all">'
                     .'<div class="mo-li-head-tag mo-tag-height-from-icon mo-li-head-tag-no-ul mo-middle ui-state-default ui-corner-top c-header">'.getLanguageValue($titel).'</div>'."\n";
-           #         .'<ul class="mo-in-ul-ul">';
-        
         }
-
 
         $template .= $content;
         if($toggle) { 
@@ -451,10 +417,7 @@ function get_template_truss($content,$titel,$toggle = false) {
         } else {
         	$template .= '</div>'."\n";
         }
-   #     $template .= 
-  #      '</ul>'
-  #              .'</li>'
-  #          '</div>';
+
     return $template;
 }
 
@@ -484,7 +447,7 @@ function getHelpMenu($artikel = false,$subartikel = false) {
     if($subartikel !== false)
         $subartikel = "&amp;subartikel=".$subartikel;
     if(file_exists(BASE_DIR."docu/index.php"))
-        return '<a href="'.URL_BASE.'docu/index.php?menu=false&amp;artikel='.$artikel.$subartikel.'" title="'.getLanguageValue("home_help").'" target="_blank" class="js-docu-link mo-butten-a-img" style="color: var(--main-font-color)">'.getLanguageValue("home_help").'</a>';
+        return '<a href="'.URL_BASE.'docu/index.php?menu=false&amp;artikel='.$artikel.$subartikel.'" target="_blank" class="js-docu-link mo-butten-a-img" style="color: var(--main-font-color)">'.getLanguageValue("home_help").'</a>';
     else return NULL;
 }
 

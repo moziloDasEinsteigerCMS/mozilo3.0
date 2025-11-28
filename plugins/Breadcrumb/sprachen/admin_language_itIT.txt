@@ -1,0 +1,5 @@
+config_breadcrumb_text    = Testo in evidenza (predefinito: vuoto)
+config_first_entry        = Prima voce (predefinito: inizio)
+config_breadcrumb_divider = Divisore (predefinito »)
+description               = Inserisce un breadcrumb in qualsiasi punto di un articolo o di un modello.
+placeholder               = Inserisce un breadcrumb

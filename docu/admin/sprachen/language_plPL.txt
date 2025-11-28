@@ -223,6 +223,7 @@ gallery_scale_thumbs                 = Skaluj miniatury do tego rozmiaru
 gallery_text_from_ftp                = Umożliwia przesyłanie wszystkich galerii i obrazów za pośrednictwem protokołu FTP
 gallery_text_from_ftp_button         = Zgodny z CMS
 gallery_text_subtitle                = Napisy na filmie obcojęzycznym
+gallery_text_alt                     = Tekst alternatywny
 
 config_button                        = Ustawienia
 config_error_defaultcat_emty         = Obecnie nie ma dostępnych kategorii.
@@ -308,7 +309,7 @@ admin_text_backup                    = Po ilu dniach moziloCMS powinien przypomn
 admin_text_chmodnewfiles             = Ustaw uprawnienia plików, jakie moziloCMS powinien mieć na serwerze.
 admin_text_get_backup                = Utwórz kopię zapasową witryny i pobierz ją jako plik ZIP. Zakres kopii zapasowej można określić, aktywując poszczególne pola opcji.
 admin_text_upload_notice             = <i>Uwaga: ze względu na kwestie bezpieczeństwa związane z moziloCMS, zdecydowanie odradzamy używania rozszerzeń plików (typu) php, svg, xml!</i>
-admin_text_uploadfilter              = Wprowadź tutaj dodatkowe rozszerzenia plików, aby przesłać pliki.<br> <b>Brak</b> spacji i rozdzielenie ich tylko <u>przecinkami</u>.
+admin_text_uploadfilter              = Wprowadź tutaj dodatkowe rozszerzenia plików, aby przesłać pliki.<br> <b>Brak</b> spacji i rozdzielenie ich tylko <b>przecinkami</b>.
 admin_text_upload_available          = Typy plików dostępne domyślnie:
 admin_theme_toggle                   = przełączanie między jasnym i ciemnym motywem
 admin_user_greeting                  = Cześć

@@ -55,6 +55,24 @@ color: red;
 font-style: italic
 }
 
+#cookie .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#cookie .cookie-banner:focus {
+  outline: 3px solid #005fcc;
+}
+
+
+
 @media only screen and (min-width: 48rem) {
   #cookie {
     width: 350px;

@@ -22,6 +22,10 @@ minute                               = Minute
 minutes                              = Minuten
 second                               = Sekunde
 seconds                              = Sekunden
+toggle_all                           = Alle auswählen
+
+files_upload                         = Dateien hochladen
+
 error_chmod                          = Die Dateirechte konnten nicht geändert werden.
 error_mkdir                          = Der Ordner konnte nicht erstellt werden.
 error_no_file_dir                    = Der Ordner oder die Datei existiert nicht.
@@ -90,6 +94,7 @@ properties                           = Meldung von Properties.php:
 editor_content_error_open            = Fehler beim Lesen des Inhalts (Dateirechte prüfen).
 editor_content_error_save            = Fehler beim Speichern des Inhalts (Dateirechte prüfen).
 toolbar_contents                     = Inhalte:
+toolbar_editor_color                 = Ausgewählte Farbe
 toolbar_editor_controlcharacter      = Steuerzeichen anzeigen / ausblenden
 toolbar_editor_fontsize              = Schriftgröße
 toolbar_editor_highlighter           = Syntaxhervorheben Modus
@@ -140,6 +145,7 @@ filter_text_plugins                  = Plugins
 filter_text_files                    = Dateien
 filter_text_catpage                  = Kategorien
 filter_text_template                 = Template
+filter_no_match                      = Keine Übereinstimmung
 
 home_button                          = Info
 home_multiuser                       = Mehrbenutzersystem zurücksetzen
@@ -221,8 +227,11 @@ gallery_help_conf                    = Skalierungseinstellungen vorbelegen
 gallery_error_noexists               = Es existiert keine Galerie mit diesem Namen.
 gallery_delete_confirm               = Diese Galerie mit allen Bildern und Untertiteln löschen?
 gallery_image_size                   = Bildergröße
+gallery_image_size_width             = Breite
+gallery_image_size_height            = Höhe
 gallery_preview_size                 = Vorschaugröße
 gallery_text_subtitle                = Untertitel
+gallery_text_alt                     = Alt Text
 
 config_button                        = Einstellungen
 config_text                          = In diesem Bereich können verschiedene Grundeinstellungen und Vorgaben für die Website ausgewählt werden.
@@ -290,8 +299,8 @@ admin_button_include_plugins         = mit Plugins
 admin_button_include_docu            = mit Dokumentation
 admin_error_no_backups_select        = Es wurden keine Dateien ausgewählt.
 admin_text_chmodnewfiles             = Dateirechte setzen, die moziloCMS generell auf dem Server haben soll.
-admin_text_upload_notice             = <i>Hinweis: Aufgrund der Sicherheit rund um moziloCMS empfehlen wir dringend, die Dateiendungen (Type) php,svg,xml nicht zu verwenden!</i> 
-admin_text_uploadfilter              = Zusätzliche Dateiendungen zum Hochladen von Dateien hier eintragen.<br> <b>Keine</b> Leerzeichen und nur durch <u>Komma</u> getrennt.
+admin_text_upload_notice             = Zusätzlichen Dateiendungen zum Hochladen von Dateien<br><br><i>Hinweis: Aufgrund der Sicherheit rund um moziloCMS empfehlen wir dringend, die Dateiendungen (Type) php,svg,xml nicht zu verwenden!</i>
+admin_text_uploadfilter              = <br>Dateiendungen hier eintragen.<br> <b>Keine</b> Leerzeichen und nur durch <b>Komma</b> getrennt.
 admin_text_upload_available          = Standardmäßig vorhandene Dateitypen: 
 admin_input_translator               = Übersetzer:
 admin_input_language                 = Sprachauswahl für den Admin-Bereich.
@@ -382,6 +391,7 @@ plugins_text_fileinfo                = Vorhandene Konfigurationseinstellungen bl
 plugins_button_install               = Installieren
 plugins_button_delete                = Alle Ausgewählten Plugins löschen
 plugins_select                       = oder aus dem Ordner "plugins"
+plugins_checkbox_toggle              = Tickbox an/aus
 
 template_button                      = Template
 template_title_grafiken              = Grafiken

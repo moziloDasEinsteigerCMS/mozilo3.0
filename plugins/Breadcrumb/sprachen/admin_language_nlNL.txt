@@ -1,0 +1,5 @@
+config_breadcrumb_text    = Uitgelichte tekst (standaard: leeg)
+config_first_entry        = Eerste item (standaard: start)
+config_breadcrumb_divider = Verdeler (standaard »)
+description               = Voegt een breadcrumb ergens in een artikel of sjabloon in.
+placeholder               = Voegt een breadcrumb in

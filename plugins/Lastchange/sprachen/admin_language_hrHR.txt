@@ -1,11 +1,11 @@
 
-config_lastchange_plugin_name              = LastChange
-config_lastchange_plugin_desc              = Prikazuje zadnju promjenu. <br /> <br /> <span style = "font-weight: bold;"> Upotreba: </span> <br /> {LASTCHANGE} ispisuje nešto poput: "Zadnja promjena: Dobrodošli (10 / 23/2020, 9:07:20) "<br /> {LASTCHANGE | text} daje nešto poput:" Posljednja promjena "<br /> {LASTCHANGE | page} daje nešto poput:" Dobrodošli "<br /> {LASTCHANGE | pagelink} daje nešto poput: "Dobrodošli" (s vezom na stranicu sa sadržajem) <br /> {LASTCHANGE | date} daje nešto poput: "(23.10.2020, 09:07:20)" <br / > <br /> <span style = "font-weight: bold;"> Konfiguracija: </span> <br /> Dodatak dobiva tekst "Posljednja promjena" i format datuma iz CMS jezične datoteke; ali oboje možete navesti i sami. Format datuma temelji se na PHP funkciji date (). 
-config_lastchange_plugin_lastchange         = Zadnja promjena s vezom i datumom 
-config_lastchange_plugin_text               = Posljednja promjena teksta: 
-config_lastchange_plugin_page               = Naziv zadnje izmijenjene stranice sadržaja 
-config_lastchange_plugin_pagelink           = Veza do zadnje promijenjene stranice sadržaja 
-config_lastchange_plugin_date               = Datum zadnje promjene 
-config_lastchange_messagetext               = Vlastiti tekst za posljednju promjenu: 
-config_lastchange_date                      = Vlastiti format datuma 
-config_lastchange_showhiddenpagesinlastchanged = Uključite stranice sa skrivenim sadržajem 
+config_lastchange_plugin_name                  = Lastchange
+config_lastchange_plugin_desc                  = Prikazuje posljednju promjenu.<br><br><span style="font-weight:bold;">Upotreba:</span><br>{Lastchange} ispisuje nešto poput: "Posljednja promjena: Dobrodošli (23.10.2020, 09:07:20)"<br>{Lastchange|text} ispisuje nešto poput: "Posljednja promjena"<br>{Lastchange|page} ispisuje nešto poput: "Dobrodošli"<br>{Lastchange|pagelink} ispisuje nešto poput: "Dobrodošli" (s vezom na stranicu sa sadržajem)<br>{Lastchange|date} ispisuje nešto poput: "(23.10.2020, 09:07:20)"<br><br><span style="font-weight:bold;">Konfiguracija:</span><br>Dodatak dohvaća tekst "Posljednja promjena" i format datuma iz CMS jezične datoteke; možete i sami odrediti oboje. Format datuma temelji se na PHP funkciji date().
+config_lastchange_plugin_lastchange            = Zadnja promjena s poveznicom i datumom
+config_lastchange_plugin_text                  = Tekst zadnje promjene:
+config_lastchange_plugin_page                  = Naziv stranice zadnje promjene sadržaja
+config_lastchange_plugin_pagelink              = Veza na stranicu zadnje promjene sadržaja
+config_lastchange_plugin_date                  = Datum zadnje promjene
+config_lastchange_messagetext                  = Prilagođeni tekst za posljednju promjenu:
+config_lastchange_date                         = Prilagođeni format datuma:
+config_lastchange_showhiddenpagesinlastchanged = Uključi skrivene stranice sadržaja? 

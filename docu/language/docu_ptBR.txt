@@ -13,6 +13,7 @@ do_page2                       = Uma galeria
 do_page3                       = Contato
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = As imagens disponíveis são selecionadas na <b
 do_editsitesyntax_text_28_2    = inserido.
 do_editsitesyntax_text_29      = Para todos os elementos de sintaxe de imagem:
 do_editsitesyntax_text_30      = Se você colocar um sinal <span class="do-paren">=</span> após o nome do comando e então digitar o texto, ele será exibido como uma legenda.
+do_editsitesyntax_text_30_1    = Inserir texto alternativo (acessível) alt<span class="do-paren">=</span> é opcional. Se nenhum texto for inserido, o nome do arquivo de imagem será assumido.
 do_editsitesyntax_text_31      = Flor de lótus no lago
+do_editsitesyntax_text_31_1    = Uma flor de lótus mostra todo o seu esplendor
 do_editsitesyntax_text_32_1    = A com
 do_editsitesyntax_text_32_2    = a imagem inserida pode ser editada com os comandos
 do_editsitesyntax_text_32_3    = alinhado horizontalmente.

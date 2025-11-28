@@ -78,7 +78,7 @@ showClose: true,
 			headerLinkContainer = (this.headerLinkContainer = $('<ul \/>'))
 				.addClass('ui-helper-reset')
                 .append('<li><a class="ui-multiselect-all" href="#"><span class="ui-icon ui-icon-check"><\/span><span class="flex">' + o.checkAllText + '<\/span><\/a><\/li><li><a class="ui-multiselect-none" href="#"><span class="ui-icon ui-icon-closethick"><\/span><span class="flex">' + o.uncheckAllText + '<\/span><\/a><\/li>')
-                .append('<li class="ui-multiselect-close"><a href="#" class="ui-multiselect-close"><span class="ui-icon ui-icon-circle-close"><\/span><\/a><\/li>')
+                .append('<li class="ui-multiselect-close"><a href="#" class="ui-multiselect-close" title="Close"><span class="ui-icon ui-icon-circle-close"><\/span><\/a><\/li>')
 				.appendTo( header ),
 			
 			checkboxContainer = (this.checkboxContainer = $('<ul \/>'))

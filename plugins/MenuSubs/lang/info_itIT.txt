@@ -1,0 +1,59 @@
+Crea un menu con un numero pressoché illimitato di sottomenu annidati.<br>
+<b>Nota:</b> le categorie contenenti una "/" (barra) non verranno più visualizzate, poiché utilizziamo la "/" (barra) per il sottomenu.<br>
+<br>
+Per utilizzare un menu dettagliato, è necessario utilizzare {MenuSubs|main} e {MenuSubs|detail},
+altrimenti solo {MenuSubs}.<br>
+<b>Nota:</b> l'opzione "usesubmenu = 0" (inserita nella parte superiore dei layout) non viene utilizzata qui!<br>
+<br>
+<b>Descrizione:</b>
+<ul>
+<li>Non appena viene trovata una pagina di contenuto nascosto con una "/" nel nome, questa viene sostituita con la categoria con lo stesso nome di un sottomenu.</li>
+<li><b>Importante</b> Il nome viene memorizzato come percorso. visualizzato.</li>
+<li>Per utilizzare una pagina di contenuto per le sottocategorie nascoste utilizzando l'impostazione "Specifica se le pagine di contenuto con lo stesso nome della categoria devono essere nascoste nel menu dei dettagli:", il nome deve essere lo stesso dell'ultima parte delle sottocategorie, ad esempio SubCategories=Category/Submenu_1 ContentPage=Submenu_1 e deve essere la prima pagina di contenuto.</li>
+</ul>
+<br>
+<b>Esempio:</b><br>
+<ul><li style="list-style-type:none;"><b>Category</b>
+<ul>
+<li>ContentPage_1</li>
+<li>Category / Submenu_1 <b>hidden</b></li>
+<li>ContentPage_2</li>
+</ul>
+<b>Category / Submenu_1</b>
+<ul>
+<li>ContentPage_3</li>
+<li>Category / Sottomenu_1 / Sottomenu_2 <b>nascosto</b></li>
+</ul>
+<b>Categoria / Sottomenu_1 / Sottomenu_2</b>
+<ul>
+<li>Pagina dei contenuti_4</li>
+<li>Pagina dei contenuti_5</li>
+</ul>
+</li></ul>
+<br>
+<b>Risultato:</b><br>
+<ul><li style="list-style-type:none;"><b>Categoria</b>
+<ul>
+<li>Pagina dei contenuti_1</li>
+<li><b>Sottomenu_1</b>
+<ul>
+<li>Pagina dei contenuti_3</li>
+<li><b>Sottomenu_2</b>
+<ul>
+<li>Pagina dei contenuti_4</li>
+<li>Pagina dei contenuti_5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Contenuti Pagina_2</li>
+</ul>
+</li></ul>
+<br>
+È possibile creare un secondo menu con <b>{MenuSubs|menusubs_2}</b>.<br>
+Ad esempio, per informazioni di contatto e impronta nel piè di pagina.<br>
+È sufficiente selezionare una categoria nella configurazione del plugin e inserirla nel modello <b>{MenuSubs|menusubs_2}</b> <br> nella posizione desiderata.<br>
+Sono selezionabili solo le categorie che non hanno una "/" nel nome.<br>
+Questo consente anche la creazione di sottocategorie.<br>
+<br>
+Per la navigazione breadcrumb, è sufficiente inserire <b>{MenuSubs|breadcrumb}</b> nella posizione desiderata.

@@ -117,11 +117,10 @@ if($showdebug and !empty($debug))
         }
 
         $template_manage["template_title_manage"][] = '<form id="js-template-manage2" class="fadeIn" action="index.php?nojs=true&amp;action=template'.$multi_user.'" method="post" enctype="multipart/form-data">'."\n"
-  //      .'<div class="mo-nowrap align-right">'."\n"
         .'<div class="flex mo-wrap">'."\n"
-                .'<div class="align-left">'."\n"
+                .'<label class="flex-100" for="js-template-install-file">'."\n"
                 .'<span class="mo-bold">'.getLanguageValue("template_text_filebutton").'</span><br><span>'.getLanguageValue("template_text_fileinfo").'</span>'."\n"
-                .'</div>'."\n"
+                .'</label>'."\n"
                 .'<input type="file" id="js-template-install-file" name="template-install-file" class="mo-select-div button"'.$disabled.'>'."\n"
                 .$template_install_html
                 .'<input type="submit" id="js-template-install-submit" name="template-install" class="button" value="'.getLanguageValue("template_button_install",true).'"'.$disabled.'>'."\n"
@@ -129,14 +128,10 @@ if($showdebug and !empty($debug))
                 .'<div class="mo-align-right">'."\n"
                 .'<input type="submit" id="js-template-del-submit" value="'.getLanguageValue("template_button_delete",true).'" class="mo-margin-top button">'."\n"
             .'</div>'."\n"
-    //        .'</div>'."\n"
             .'</form>'."\n";
 
             $template_manage["template_title_manage"]["toggle"] = true;
             $html_manage = contend_template($template_manage);
-            # es wurde in der template verwaltung was gemacht dann soll die aufgeklapt bleiben
-  //          if($template_manage_open)
-  //              $html_manage = str_replace("display:none","",$html_manage);
 
     }
 
@@ -201,35 +196,29 @@ if($showdebug and !empty($debug))
     
     $html_templates_active = "";
     $html_templates_inactive = ""; 
-//        $check_show = '';
 
         $html_templates_active .= '<div class="js-templates mo-ul card">'."\n";
         foreach(getDirAsArray(BASE_DIR.LAYOUT_DIR_NAME,"dir","natcasesort") as $pos => $file) {
 
-//            $checkbox_del = '<input type="checkbox" name="template-del[]" value="'.$file.'" class="mo-checkbox ml">';
-//            $radio_activ = '<label class="mo-radio" for="template-status'.$pos.'"><input id="template-status'.$pos.'" class="mr" name="template-active" type="radio" value="'.$file.'">'.getLanguageValue("template_input_set_active").'</label>';
-
             if($ACTIV_TEMPLATE == $file) {
-             #   $checkbox_del = '&nbsp;';
-             #   $radio_activ = "";
 
-            	$html_templates_active .= '<details class="js-template mo-in-ul-li mo-inline ui-widget-content ui-corner-all ui-helper-clearfix card" style="margin-bottom: var(--main-margin)">'."\n";
-            	$html_templates_active .= '<summary>'."\n";
-            	$html_templates_active .= '<span class="flex">'."\n";
-            	$html_templates_active .= '<span class="js-template-name mo-padding-left flex-100 mo-bold">'.$specialchars->rebuildSpecialChars($file,false,true).'</span>'."\n";
-            	$html_templates_active .= '</span>'."\n";
-            	$html_templates_active .= '</summary>'."\n";
-            	$html_templates_active .= ''.$html_template.''."\n";
-            	$html_templates_active .= '</details>'."\n";
-            } else {
-            	$html_templates_inactive .= '<div class="js-template mo-middle mo-tag-height-from-icon ui-helper-clearfix flex card mb">'."\n";
-            	$html_templates_inactive .='<div class="flex flex-100">'."\n";
-            	$html_templates_inactive .= '<span class="js-template-name mo-padding-left flex-100">'.$specialchars->rebuildSpecialChars($file,false,true).'</span>'."\n";
-            	$html_templates_inactive .= '<span><label class="mo-radio" for="template-status'.$pos.'"><input id="template-status'.$pos.'" class="mr" name="template-active" type="radio" value="'.$file.'">'.getLanguageValue("template_input_set_active").'</label></span>'."\n";
-            	$html_templates_inactive .= '<span><input type="checkbox" name="template-del[]" value="'.$file.'" class="mo-checkbox ml"></span>'."\n";
-            	$html_templates_inactive .='</div>'."\n";
-            	$html_templates_inactive .='</div>'."\n";
-            }
+                 $html_templates_active .= '<details class="js-template mo-in-ul-li mo-inline ui-widget-content ui-corner-all ui-helper-clearfix card" style="margin-bottom: var(--main-margin)">'."\n";
+                 $html_templates_active .= '<summary>'."\n";
+                 $html_templates_active .= '<span class="flex">'."\n";
+                 $html_templates_active .= '<span class="js-template-name mo-padding-left flex-100 mo-bold">'.$specialchars->rebuildSpecialChars($file,false,true).'</span>'."\n";
+                 $html_templates_active .= '</span>'."\n";
+                 $html_templates_active .= '</summary>'."\n";
+                 $html_templates_active .= ''.$html_template.''."\n";
+                 $html_templates_active .= '</details>'."\n";
+             } else {
+                 $html_templates_inactive .= '<div class="js-template mo-middle mo-tag-height-from-icon ui-helper-clearfix flex card mb">'."\n";
+                 $html_templates_inactive .='<div class="flex flex-100">'."\n";
+                 $html_templates_inactive .= '<fieldset style="border:none;" class="flex flex-100"><legend class="sr-only">'.getLanguageValue("template_button").' '.getLanguageValue("template_input_set_active").' / '.getLanguageValue("admin_delete").'</legend><span class="js-template-name mo-padding-left flex-100">'.$specialchars->rebuildSpecialChars($file,false,true).'</span>'."\n";
+                 $html_templates_inactive .= '<span><label class="mo-radio" for="template-status'.$pos.'"><input id="template-status'.$pos.'" class="mr" name="template-active" type="radio" value="'.$file.'">'.getLanguageValue("template_input_set_active").'</label></span>'."\n";
+                 $html_templates_inactive .= '<span><label class="sr-only" for="'.$file.'">'.getLanguageValue("admin_delete").'</label><input id="'.$file.'" type="checkbox" name="template-del[]" value="'.$file.'" class="mo-checkbox ml"></span></fieldset>'."\n";
+                 $html_templates_inactive .='</div>'."\n";
+                 $html_templates_inactive .='</div>'."\n";
+             }
         }
 
         $form_start = '<form id="js-template-manage" action="index.php?nojs=true&amp;action=template'.$multi_user.'" method="post" enctype="multipart/form-data">'."\n";

@@ -273,6 +273,7 @@
     <u>{DO_EDITSITESYNTAX_TEXT_29}</u>
   </h4>
   <p class="do-nomargin-top">{DO_EDITSITESYNTAX_TEXT_30} </p>
+  <p class="do-nomargin-top">{DO_EDITSITESYNTAX_TEXT_30_1} </p>
   <table class="do-after-br do-table do-table-example">
     <tr>
       <th>{DO_EDITOR_EXAMPLE}:</th>
@@ -286,6 +287,7 @@
         <span class="do-mo-files-place">@=</span>
         <span class="do-mo-files">{DO_HOME}:bild.jpg</span>
         <span class="do-mo-files-place">=@</span>
+		<span class="do-paren">|</span>alt={DO_EDITSITESYNTAX_TEXT_31_1}
         <span class="do-paren">]</span>
       </td>
       <td style="padding:.4em;">
@@ -778,7 +780,7 @@
 <div class="card">
   <div id="do12" class="c-header">{DO_EDITOR_FONT_COLOR}</div>
   <table class="do-table do-after-br"> {MODUL_editor_tabele_th} <tr>
-      <td class="do-td-center">{ED_ICON_farbe}</td>
+      <td class="do-td-center"><input type="text" maxlength="6" value="DD0000" class="ce-bg-color-change" size="6" style="background-color: #DD0000; color: #ffffff;"></td>
       <td>
         <span class="do-paren">[</span>
         <span class="do-mo-syntax">farbe</span>
@@ -795,7 +797,8 @@
       </td>
     </tr>
   </table>
-  <p>{DO_EDITSITESYNTAX_TEXT_78_1} {ED_ICON_farbe} {DO_EDITSITESYNTAX_TEXT_78_2} {ED_ICON_farbeedit}. </p>
+  <p>{DO_EDITSITESYNTAX_TEXT_78_1} <input type="text" maxlength="6" value="DD0000" class="ce-bg-color-change" size="6" style="background-color: #DD0000; color: #ffffff;"> {DO_EDITSITESYNTAX_TEXT_78_2} {ED_ICON_farbeedit}. </p>
+  <!--no_dialog_start
   <div class="do-box do-info-box do-after-br flex">
     <p>{DO_EDITSITESYNTAX_TEXT_79_1} <span class="do-paren">[</span>
       <span class="do-mo-syntax">farbe</span>
@@ -808,6 +811,7 @@
       <span class="do-paren">|</span> {DO_EDITSITESYNTAX_TEXT_77} <span class="do-paren">]</span> {DO_EDITSITESYNTAX_TEXT_79_2} {ED_ICON_farbe} {DO_EDITSITESYNTAX_TEXT_79_3}
     </p>
   </div>
+  
   <p>{DO_EDITSITESYNTAX_TEXT_80}
   </p>
   <p>
@@ -843,8 +847,9 @@
   <p class="do-arrow-point-box">
     <b class="do-arrow-point">7</b>{DO_EDITSITESYNTAX_TEXT_91}
   </p>
-  <div class="do-arrow-warp">{MODUL_color_editor} 
+  <div class="do-arrow-warp">MODUL_color_editor 
   </div>
+  no_dialog_end-->
 </div>
 <!--dialog_start-->
 <!--dialog_end-->

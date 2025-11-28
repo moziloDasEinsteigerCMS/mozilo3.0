@@ -22,6 +22,10 @@ minute                               = Minute
 minutes                              = Minutes
 second                               = Second
 seconds                              = Seconds
+toggle_all                           = Select All
+
+files_upload                         = Upload files
+
 error_chmod                          = Could not change rights of the file.
 error_mkdir                          = Could not create the Folder.
 error_no_file_dir                    = Folder or file does not exist.
@@ -120,6 +124,7 @@ toolbar_platzhalter_MEMORYUSAGE      = By moziloCMS spent memory
 toolbar_platzhalter_EXECUTETIME      = Thats how long moziloCMS took to load the page.
 toolbar_platzhalter_VALUE            = Value
 toolbar_platzhalter_DESCRIPTION      = Description
+toolbar_editor_color                 = Selected colour
 toolbar_editor_linenumber            = Show / hide lines numbers
 toolbar_editor_controlcharacter      = Show / hide control characters
 toolbar_editor_highlighter           = Syntax highlighting mode
@@ -140,6 +145,7 @@ filter_text_plugins                  = Plugins
 filter_text_files                    = Dateien
 filter_text_catpage                  = Categories
 filter_text_template                 = Templates
+filter_no_match                      = No match
 
 home_button                          = Info
 home_multiuser                       = Multiuser Reset
@@ -221,8 +227,11 @@ gallery_help_conf                    = Here, you can edit the gallery's settings
 gallery_error_noexists               = There is no gallery named like this.
 gallery_delete_confirm               = Delete this gallery with all pictures and subtitles?
 gallery_image_size                   = Image size
+gallery_image_size_width             = Width
+gallery_image_size_height            = Height
 gallery_preview_size                 = Preview size
 gallery_text_subtitle                = Subtitle
+gallery_text_alt                     = Alt
 
 config_button                        = Settings
 config_text                          = Here, you can change the settings effecting moziloCMS' behaviour.
@@ -382,6 +391,7 @@ plugins_text_fileinfo                = Only "plugin.conf.php" will not be overwr
 plugins_button_install               = Install
 plugins_button_delete                = Delete all selected Plugins
 plugins_select                       = or from the folder "plugins"
+plugins_checkbox_toggle              = Tickbox on/off
 
 template_button                      = Templates
 template_title_grafiken              = Graphics

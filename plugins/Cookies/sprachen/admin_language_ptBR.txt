@@ -1,0 +1,11 @@
+config_cookieDays                             = Número de dias durante os quais a mensagem deve ficar oculta após a aceitação (padrão: 30).
+config_cookieDays_error                       = Número de dias: Insira um número.
+config_cookieTitle                            = Título personalizado (padrão: vazio)
+config_cookieDesc                             = Descrição personalizada
+config_cookieSr                               = Descrição personalizada para o leitor de tela
+config_cookieBtn                              = Descrição personalizada para o botão
+config_cookiePrivacy                          = Texto para o link da página de privacidade
+config_cookieCat                              = Categoria na qual a página de privacidade está localizada
+config_cookiePage                             = Nome da página de privacidade
+description                                   = Insere um aviso de cookies usando {Cookies}. Título, texto, botão e duração podem ser configurados individualmente.
+placeholder                                   = Insere um aviso de cookies.

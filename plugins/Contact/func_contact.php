@@ -120,7 +120,7 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
             }
             // Es ist ein Fehler aufgetreten!
             if ($errormessage <> "") {
-                $form .= "<div id=\"formular_message\"><div id=\"contact_errormessage\">".$errormessage."</div></div>";
+                $form .= '<div id="formular_message"><div id="contact_errormessage" role="alert" aria-live="assertive">'.$errormessage.'</div></div>';
             }
             else {
                 $mailcontent = "";
@@ -157,7 +157,7 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
                 // Mail an eingestellte Mail-Adresse (Mail-Absender muss auch diese Adresse sein,
                 // sonst gibts kein Mail wenn der keine oder ungültige Adresse eingibt..
                 sendMail($mailsubject, $mailcontent, $settings->get("formularmail"), $settings->get("formularmail"), $mail);
-                $form .= "<div id=\"formular_message\"><div id=\"contact_successmessage\">".$lang_contact->getLanguageValue("contactform_confirmation")."</div></div>";
+                $form .= '<div id="formular_message"><div id="contact_successmessage" role="status" aria-live="polite">'.$lang_contact->getLanguageValue("contactform_confirmation").'</div></div>';
                 
                 // Felder leeren
                 $name = "";
@@ -192,7 +192,7 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
 					$name_mandatory_label = 'aria-required="false"';            
             }
             $form .= '<div class="form-group">';
-            $form .= "<label class=\"hide-mobile\">$name_mandatory $config_name[0]</label>";
+            $form .= '<label for="contact_name" class="hide-mobile">'.$name_mandatory.' '.$config_name[0].'</label>';
             $form .= '<input type="text" id="contact_name" name="'.$_SESSION['contactform_name'].'" value="'.$name.'" placeholder="'.$name_mandatory.' '.$config_name[0].'" aria-label="'.$config_name[0].'" '.$name_mandatory_label.'>';
             $form .= '</div>';
         }
@@ -206,7 +206,7 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
 					$mail_mandatory_label = 'aria-required="false"';         
             }
             $form .= '<div class="form-group">';
-            $form .= "<label class=\"hide-mobile\">$mail_mandatory $config_mail[0]</label>";
+            $form .= '<label for="contact_mail" class="hide-mobile">'.$mail_mandatory.' '.$config_mail[0].'</label>';
             $form .= '<input type="email" id="contact_mail" name="'.$_SESSION['contactform_mail'].'" value="'.$mail.'" placeholder="'.$mail_mandatory.' '.$config_mail[0].'" aria-label="'.$config_mail[0].'" '.$mail_mandatory_label.'>';
             $form .= '</div>';
         }
@@ -220,14 +220,14 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
 					$website_mandatory_label = 'aria-required="false"';     
             }
             $form .= '<div class="form-group">';
-            $form .= "<label class=\"hide-mobile\">$website_mandatory $config_website[0]</label>";
+            $form .= '<label for="contact_website" class="hide-mobile">'.$website_mandatory.' '.$config_website[0].'</label>';
             $form .= '<input type="url" id="contact_website" name="'.$_SESSION['contactform_website'].'" value="'.$website.'" placeholder="'.$website_mandatory.' '.$config_website[0].'" aria-label="'.$config_website[0].'" '.$website_mandatory_label.'>';
             $form .= '</div>';
         }
         //hp schutz
             $form .= '<div class="form-group hp">';
-            $form .= "<label class=\"hide-mobile\">*URL</label>";
-        		$form .= "<input name=\"url\" type=\"text\" id=\"url\" placeholder=\"Enter Your Website URL here\">";
+            $form .= '<label for="url" class="hide-mobile">*URL</label>';
+        		$form .= '<input name="url" type="url" id="url"  tabindex="-1" aria-hidden="true" placeholder="Enter Your Website URL here">';
             $form .= '</div>';       
         //hp Ende
           if ($config_subject[1] == "true") {
@@ -240,7 +240,7 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
 					$subject_mandatory_label = 'aria-required="false"';           
             }
             $form .= '<div class="form-group">';
-            $form .= "<label class=\"hide-mobile\">$subject_mandatory $config_subject[0]</label>";
+            $form .= '<label for="contact_subject" class="hide-mobile">'.$subject_mandatory.' '.$config_subject[0].'</label>';
             $form .= '<input type="text" id="contact_subject" name="'.$_SESSION['contactform_subject'].'" value="'.$subject.'" placeholder="'.$subject_mandatory.' '.$config_subject[0].'" aria-label="'.$config_subject[0].'" '.$subject_mandatory_label.'>';
             $form .= '</div>';
         }
@@ -254,7 +254,7 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
 					$message_mandatory_label = 'aria-required="false"';         
             }
             $form .= '<div class="form-group">';
-            $form .= "<label class=\"hide-mobile\">$message_mandatory $config_message[0]</label>";
+            $form .= '<label for="contact_message" class="hide-mobile">'.$message_mandatory.' '.$config_message[0].'</label>';
             $form .= '<textarea id="contact_message" name="'.$_SESSION['contactform_message'].'" placeholder="'.$message_mandatory.' '.$config_message[0].'" aria-label="'.$config_message[0].'" '.$message_mandatory_label.'>'.$message.'</textarea>';
             $form .= '</div>';
         }
@@ -263,8 +263,8 @@ $_SESSION['contactform_calculation'] = $_SESSION['contactform_calculation'] ?? '
             // Spamschutz-Aufgabe
             $calculation_data = getRandomCalculationData($settings);
             $_SESSION['calculation_result'] = $calculation_data[1];
-            $form .= "<label><span>* ".$lang_contact->getLanguageValue("contactform_spamprotection_text")."</span>"
-                ."<span>&nbsp;".$calculation_data[0]."</span></label>"
+            $form .= '<label for="contact_calculation"><span>* '.$lang_contact->getLanguageValue("contactform_spamprotection_text").'</span>'
+                .'<span>&nbsp;'.$calculation_data[0].'</span></label>'
                 .'<input type="text" id="contact_calculation" name="'.$_SESSION['contactform_calculation'].'" aria-label="Spam Protection" aria-required="true">';            
         }
         if ($config_privacy[1] == "true") {

@@ -1,12 +1,12 @@
 <?php if(!defined('IS_CMS')) die();
 
-define("CMSVERSION","3.0.3");
+define("CMSVERSION","3.0.4");
 define("CMSNAME","Hope");
 // define("CMSREVISION","1");
 define("CMSSTATUS", "stabil");
 
 #!!!!!!!! die version müssen wir noch checken
-define("MIN_PHP_VERSION","7.0");
+define("MIN_PHP_VERSION","8.1");
 
 define("PACK_JS",true);
 define("PACK_CSS",true);
@@ -111,6 +111,7 @@ function makePlatzhalter($all = false) {
                         '{WEBSITE_KEYWORDS}',
                         '{WEBSITE_DESCRIPTION}',
                         '{WEBSITE_NAME}',
+                        '{CANONICAL_LINK}',
                         '{MAINMENU}',
                         '{DETAILMENU}',
                         '{MEMORYUSAGE}',

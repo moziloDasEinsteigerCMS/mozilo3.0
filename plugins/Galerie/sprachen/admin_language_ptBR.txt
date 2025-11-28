@@ -1,11 +1,9 @@
+config_gallery_usethumbs                      = Usar miniaturas?
+config_gallery_target                         = Como a galeria deve ser aberta?
+config_gallery_target_self                    = Na mesma janela/aba.
+config_gallery_target_blank                   = Em uma nova janela/aba.
+config_gallery_captions                       = Usar legendas de imagem?
+config_gallery_placeholders                   = Aqui você pode organizar os espaços reservados da galeria na ordem desejada (quebras de linha são permitidas).
+config_gallery_plugin_name                    = Galeria padrão do moziloCMS
 
-config_gallery_picsperrow               = 
-config_gallery_picsperrow_regex_error   = 
-config_gallery_target                   = 
-config_gallery_target_self              = 
-config_gallery_target_blank             = 
-config_gallery_usethumbs                = 
-config_gallery_captions                 = 
-config_gallery_placeholders             = 
-config_gallery_plugin_name              = 
-config_gallery_plugin_desc              = 
+config_gallery_plugin_desc                    = Cria a visualização padrão da galeria. Nas configurações da galeria no painel de administração do mozilo, você pode especificar se a galeria deve ser exibida em uma nova janela/aba ("target blank") ou na atual ("target self"). Além disso, você pode usar a opção "Usar miniaturas?". Determine se as imagens devem ser exibidas no modo de imagem única (EM) ou no modo de visão geral (ÜM).<br><br><span style="font-weight:bold;">Uso:</span><br>{Gallery|moziloCMS} insere a galeria "moziloCMS" (para "target self") ou um link para ela (para "target blank").<br>{Gallery|moziloCMS,Qualquer texto de exibição} insere um link para a galeria "moziloCMS" com o texto de exibição especificado (somente para "target blank").<br><br>Para uso em uma nova janela/aba ("target blank"), os espaços reservados descritos podem ser organizados no arquivo gallerytemplate.html.<br><br><span style="font-weight:bold;">Configuração:</span><br>A disposição dos elementos funcionais individuais pode ser alterada usando os espaços reservados no campo de texto. Os seguintes marcadores estão disponíveis:<br>- {CURRENTGALLERY}: Nome da galeria<br>- {GALLERYMENU}: Menu "primeira/anterior/próxima/última imagem" (somente EM)<br>- {NUMBERMENU}: Menu numérico (em EM) / Visão geral de todas as imagens, incluindo legendas (em ÜM)<br>- {CURRENTPIC}: Imagem atual (somente EM)<br>- {CURRENTDESCRIPTION}: Legenda da imagem atual (somente EM)<br>- {XOUTOFY}: "Imagem x de y" (somente EM)<br>- {CURRENT_INDEX}: Índice da imagem atual (somente EM)<br>- {PREVIOUS_INDEX}: Índice da imagem anterior (somente EM)<br>- {NEXT_INDEX}: Índice da próxima imagem (somente EM)<br><br>

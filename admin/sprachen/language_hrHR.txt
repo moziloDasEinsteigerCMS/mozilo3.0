@@ -22,6 +22,10 @@ minute                               = Minuta
 minutes                              = Minute
 second                               = Drugi
 seconds                              = Sekunde
+toggle_all                           = Odaberi sve
+
+files_upload                         = Prijenos datoteka
+
 error_chmod                          = Nije moguće promijeniti prava na datoteku.
 error_mkdir                          = Nije moguće stvoriti mapu.
 error_no_file_dir                    = Mapa ili datoteka ne postoje.
@@ -120,6 +124,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Od moziloCMS-a potrošene memorije
 toolbar_platzhalter_EXECUTETIME      = Toliko je vremena potrebno moziloCMS-u za učitavanje stranice.
 toolbar_platzhalter_VALUE            = vrijednost
 toolbar_platzhalter_DESCRIPTION      = Opis
+toolbar_editor_color                 = Odabrana boja
 toolbar_editor_linenumber            = Prikaži / sakrij brojeve linija
 toolbar_editor_controlcharacter      = Prikaži / sakrij kontrolne znakove
 toolbar_editor_highlighter           = Način isticanja sintakse
@@ -140,6 +145,7 @@ filter_text_plugins                  = Dodaci
 filter_text_files                    = Datoteke
 filter_text_catpage                  = Kategorije
 filter_text_template                 = Predložak
+filter_no_match                      = Nema podudaranja
 
 home_button                          = Info
 home_multiuser                       = Ponovno postavljanje višekorisničkog
@@ -221,8 +227,11 @@ gallery_help_conf                    = Ovdje možete urediti postavke galerije.
 gallery_error_noexists               = Ne postoji galerija s ovakvim imenom.
 gallery_delete_confirm               = Želite li izbrisati ovu galeriju sa svim slikama i titlovima?
 gallery_image_size                   = veličina slike
+gallery_image_size_width             = Širina
+gallery_image_size_height            = Visina
 gallery_preview_size                 = Veličina pregleda
 gallery_text_subtitle                = Subtitle
+gallery_text_alt                     = Zamjenski tekst
 
 config_button                        = Postavke
 config_text                          = Ovdje možete promijeniti postavke koje utječu na ponašanje moziloCMS-a.
@@ -382,6 +391,7 @@ plugins_text_fileinfo                = Postojeće postavke konfiguracije zadrža
 plugins_button_install               = Instalirati
 plugins_button_delete                = Izbrišite sve odabrane dodatke
 plugins_select                       = ili iz mape "dodaci"
+plugins_checkbox_toggle              = Potvrdna kućica uključena/isključena
 
 template_button                      = Predlošci
 template_title_grafiken              = Grafike

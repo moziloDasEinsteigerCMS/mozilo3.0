@@ -1,11 +1,11 @@
 
-config_lastchange_plugin_name              = LastChange
-config_lastchange_plugin_desc              = 
-config_lastchange_plugin_lastchange         = 
-config_lastchange_plugin_text               = 
-config_lastchange_plugin_page               = 
-config_lastchange_plugin_pagelink           = 
-config_lastchange_plugin_date               = 
-config_lastchange_messagetext               = 
-config_lastchange_date                      = 
-config_lastchange_showhiddenpagesinlastchanged = 
+config_lastchange_plugin_name                  = Lastchange
+config_lastchange_plugin_desc                  = Affiche la dernière modification.<br><br><span style="font-weight:bold;">Utilisation :</span><br>{Lastchange} affiche un message du type: "Dernière modification: Bienvenue (23.10.2020, 09:07:20)"<br>{Lastchange|text} affiche un message du type: "Dernière modification"<br>{Lastchange|page} affiche un message du type: "Bienvenue"<br>{Lastchange|pagelink} affiche un message du type: "Bienvenue" (avec un lien vers la page de contenu)<br>{Lastchange|date} affiche un message du type: "(23.10.2020, 09:07:20)"<br><br><span style="font-weight:bold;">Configuration:</span><br>Le plugin récupère le texte "Dernière modification" change et le format de date du fichier de langue du CMS; vous pouvez également spécifier les deux vous-même. Le format de date est basé sur la fonction PHP date().
+config_lastchange_plugin_lastchange = Dernière modification avec lien et date
+config_lastchange_plugin_text                  = Texte de la dernière modification:
+config_lastchange_plugin_page                  = Nom de la page de contenu la plus récemment modifiée
+config_lastchange_plugin_pagelink              = Lien vers la page de contenu la plus récemment modifiée
+config_lastchange_plugin_date                  = Date de la dernière modification
+config_lastchange_messagetext                  = Texte personnalisé pour la dernière modification:
+config_lastchange_date                         = Format de date personnalisé:
+config_lastchange_showhiddenpagesinlastchanged = Inclure les pages de contenu masquées?

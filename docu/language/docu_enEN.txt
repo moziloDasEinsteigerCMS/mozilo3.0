@@ -13,6 +13,7 @@ do_page2                       = A gallery
 do_page3                       = Contact
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = The available images are inserted from the <b>S
 do_editsitesyntax_text_28_2    = .
 do_editsitesyntax_text_29      = The following applies to all image syntax elements:
 do_editsitesyntax_text_30      = If a <span class="do-paren">=</span> character is placed after the command name and text is entered afterwards, this is displayed as a caption.
+do_editsitesyntax_text_30_1    = Entering alternative text (accessible) alt<span class="do-paren">=</span> is optional. If no text is entered, the image file name is assumed.
 do_editsitesyntax_text_31      = Lotus flower by the lake
+do_editsitesyntax_text_31_1    = A lotus blossom shows its full splendor
 do_editsitesyntax_text_32_1    = An image placed with
 do_editsitesyntax_text_32_2    = can be aligned horizontally with the commands
 do_editsitesyntax_text_32_3    = .

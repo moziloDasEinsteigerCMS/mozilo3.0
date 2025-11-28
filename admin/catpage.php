@@ -185,10 +185,12 @@ function li_table($name,$in_cat_page,$status,$type,$cat_files,$cat_page_link = f
                         $cat_page_link = "#";
                         $target = "_self";
                     }
-                    $table .= '<a href="'.$cat_page_link.'" class="js-link-href" target="'.$target.'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"> <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path> </svg></a>';
-                }
-                    $table .= '<span class="js-'.$class.'-name js-normal-in-name js-rename-mode-hide" title="'.getLanguageValue("admin_new").' '.$name.'">'.$name.'</span>'
-                    .'<input type="hidden" name="sort_array'.$in_cat_page.'" value="'.$in_cat_page.'" class="js-in-'.$class.' js-in-cat-page">'
+                    $table .= '<a href="'.$cat_page_link.'" class="js-link-href" target="'.$target.'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"> <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"></path> </svg><span class="js-'.$class.'-name js-normal-in-name js-rename-mode-hide" title="'.getLanguageValue("admin_new").' '.$name.'">'.$name.'</span></a>';
+                } else {
+                    $table .= '<span class="js-'.$class.'-name js-normal-in-name js-rename-mode-hide" title="'.getLanguageValue("admin_new").' '.$name.'">'.$name.'</span>';
+                    
+                 }
+                    $table .= '<input type="hidden" name="sort_array'.$in_cat_page.'" value="'.$in_cat_page.'" class="js-in-'.$class.' js-in-cat-page">'
                     .$cat_files
                     .'<div class="js-edit-in-name mo-padding-left js-rename-mode-show">'
                     .'</div>'
@@ -207,10 +209,12 @@ function li_table($name,$in_cat_page,$status,$type,$cat_files,$cat_page_link = f
 </span>';
                             $table .= '<span class="js-tools-icon-show-hide js-edit-page"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ml" height="18" width="18" fill="currentColor"><title>'.getLanguageValue("admin_edit").'</title> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path d="M21 6.757l-2 2V4h-9v5H5v11h14v-2.757l2-2v5.765a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 20.993V8l6.003-6h10.995C20.55 2 21 2.455 21 2.992v3.765zm.778 2.05l1.414 1.415L15.414 18l-1.416-.002.002-1.412 7.778-7.778z"></path> </g> </svg>
 </span>';
-                        } elseif($type == EXT_LINK) {
-                            $table .= '<img class="js-tools-icon-show-hide mo-tool-icon mo-icon-blank" src="'.ICON_URL_SLICE.'" alt=" ">';
-                            $table .= '<img class="js-tools-icon-show-hide mo-tool-icon mo-icon-blank" src="'.ICON_URL_SLICE.'" alt=" ">';
                         }
+                        
+                        // elseif($type == EXT_LINK) {
+                          //  $table .= '<img class="js-tools-icon-show-hide mo-tool-icon mo-icon-blank" src="'.ICON_URL_SLICE.'" alt=" ">';
+                            //$table .= '<img class="js-tools-icon-show-hide mo-tool-icon mo-icon-blank" src="'.ICON_URL_SLICE.'" alt=" ">';
+                       // }
                         $table .= '<span class="js-tools-icon-show-hide js-edit-rename"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="ml" height="18" width="18"><title>'.getLanguageValue("admin_rename").'</title> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path fill-rule="nonzero" d="M8.595 12.812a3.51 3.51 0 0 1 0-1.623l-.992-.573 1-1.732.992.573A3.496 3.496 0 0 1 11 8.645V7.5h2v1.145c.532.158 1.012.44 1.405.812l.992-.573 1 1.732-.992.573a3.51 3.51 0 0 1 0 1.622l.992.573-1 1.732-.992-.573a3.496 3.496 0 0 1-1.405.812V16.5h-2v-1.145a3.496 3.496 0 0 1-1.405-.812l-.992.573-1-1.732.992-.572zM12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992z"></path> </g> </svg>
 </span>'
                         .'<span class="js-tools-icon-show-hide js-edit-delete"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="ml" viewBox="0 0 16 16"><title>'.getLanguageValue("admin_delete").'</title><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> </svg></span>'

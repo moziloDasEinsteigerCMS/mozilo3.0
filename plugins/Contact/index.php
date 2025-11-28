@@ -635,7 +635,7 @@ class Contact extends Plugin {
 
         $info = array(
             // Plugin-Name + Version
-            "Version: 3.0",
+            "Version: 3.0.1",
             // moziloCMS-Version
             "2.0 / 3.0",
             // Kurzbeschreibung nur <span> und <br /> sind erlaubt

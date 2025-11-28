@@ -223,6 +223,7 @@ gallery_delete_confirm               = Diese Galerie mit allen Bildern und Unter
 gallery_image_size                   = Bildergröße
 gallery_preview_size                 = Vorschaugröße
 gallery_text_subtitle                = Untertitel
+gallery_text_alt                     = Alt Text
 
 config_button                        = Einstellungen
 config_text                          = In diesem Bereich können verschiedene Grundeinstellungen und Vorgaben für die Website ausgewählt werden.
@@ -291,7 +292,7 @@ admin_button_include_docu            = mit Dokumentation
 admin_error_no_backups_select        = Es wurden keine Dateien ausgewählt.
 admin_text_chmodnewfiles             = Dateirechte setzen, die moziloCMS generell auf dem Server haben soll.
 admin_text_upload_notice             = <i>Hinweis: Aufgrund der Sicherheit rund um moziloCMS empfehlen wir dringend, die Dateiendungen (Type) php,svg,xml nicht zu verwenden!</i> 
-admin_text_uploadfilter              = Zusätzliche Dateiendungen zum Hochladen von Dateien hier eintragen.<br> <b>Keine</b> Leerzeichen und nur durch <u>Komma</u> getrennt.
+admin_text_uploadfilter              = Zusätzliche Dateiendungen zum Hochladen von Dateien hier eintragen.<br> <b>Keine</b> Leerzeichen und nur durch <b>Komma</b> getrennt.
 admin_text_upload_available          = Standardmäßig vorhandene Dateitypen: 
 admin_input_translator               = Übersetzer:
 admin_input_language                 = Sprachauswahl für den Admin-Bereich.

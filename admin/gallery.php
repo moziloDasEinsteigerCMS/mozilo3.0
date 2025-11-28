@@ -51,7 +51,23 @@ function gallery() {
                 ajax_return("success",true);
             }
             exit();
-        } elseif($changeart == "file_rename") {
+        }          elseif($changeart == "gallery_alt") {
+            if(false !== ($alttext = getRequestValue('alttext','post',false))
+                    and false !== ($curent_dir = getRequestValue('curent_dir','post'))
+                    and false !== ($file = getRequestValue('file','post'))) {
+                if(!is_file(GALLERIES_DIR_REL.$curent_dir."/alt.conf.php")
+                        and false === (newConf(GALLERIES_DIR_REL.$curent_dir."/alt.conf.php"))) {
+                    ajax_return("error",true,returnMessage(false,getLanguageValue("gallery_error_alt_conf")),true,true);
+                }
+                $tmp = new Properties(GALLERIES_DIR_REL.$curent_dir."/alt.conf.php");
+                $tmp->set($file,$alttext);
+                ajax_return("success",true);
+            }
+            exit();
+
+     }   
+        
+        elseif($changeart == "file_rename") {
             if(false !== ($newfile = getRequestValue('newfile','post'))
                     and false !== ($orgfile = getRequestValue('orgfile','post'))
                     and false !== ($curent_dir = getRequestValue('curent_dir','post'))) {
@@ -66,6 +82,11 @@ function gallery() {
                 $tmp = new Properties(GALLERIES_DIR_REL.$curent_dir."/texte.conf.php");
                 $tmp->set($newfile,$tmp->get($orgfile));
                 $tmp->delete($orgfile);
+                
+                $tmp = new Properties(GALLERIES_DIR_REL.$curent_dir."/alt.conf.php");
+$tmp->set($newfile,$tmp->get($orgfile));
+$tmp->delete($orgfile);
+
                 ajax_return("success",true);
             }
             exit();
@@ -100,9 +121,9 @@ function gallery() {
     $new_gallery .= '</div>';
     $new_gallery .= '</div>';
 
-    $max_img = '<input type="text" name="new_global_width" value="'.$GALLERY_CONF->get('maxwidth').'" maxlength="4" class="mo-input-digit js-in-digit-auto grid-4 mo-align-center"> x <input type="text" name="new_global_height" value="'.$GALLERY_CONF->get('maxheight').'" maxlength="4" class="mo-input-digit js-in-digit-auto grid-4 mo-align-center"> '.getLanguageValue("pixels");
+    $max_img = '<label><span class="sr-only">'.getLanguageValue("gallery_image_size_width").'</span><input type="text" name="new_global_width" value="'.$GALLERY_CONF->get('maxwidth').'" maxlength="4" class="mo-input-digit js-in-digit-auto grid-4 mo-align-center"></label> x <label><span class="sr-only">'.getLanguageValue("gallery_preview_size").' '.getLanguageValue("gallery_image_size_height").'</span><input type="text" name="new_global_height" value="'.$GALLERY_CONF->get('maxheight').'" maxlength="4" class="mo-input-digit js-in-digit-auto grid-4 mo-align-center"></label> '.getLanguageValue("pixels");
 
-    $max_prev_img = '<input type="text" name="thumbnail_global_max_width" value="'.$GALLERY_CONF->get('maxthumbwidth').'" maxlength="4" class="mo-input-digit js-in-digit grid-4 mo-align-center"> x <input type="text" name="thumbnail_global_max_height" value="'.$GALLERY_CONF->get('maxthumbheight').'" maxlength="4" class="mo-input-digit js-in-digit grid-4 mo-align-center"> '.getLanguageValue("pixels");
+    $max_prev_img = '<label><span class="sr-only">'.getLanguageValue("gallery_image_size_width").'</span><input type="text" name="thumbnail_global_max_width" value="'.$GALLERY_CONF->get('maxthumbwidth').'" maxlength="4" class="mo-input-digit js-in-digit grid-4 mo-align-center"></label> x <label><span class="sr-only">'.getLanguageValue("gallery_preview_size").' '.getLanguageValue("gallery_image_size_height").'</span><input type="text" name="thumbnail_global_max_height" value="'.$GALLERY_CONF->get('maxthumbheight').'" maxlength="4" class="mo-input-digit js-in-digit grid-4 mo-align-center"></label> '.getLanguageValue("pixels");
 
     $titel = "gallery_help_conf";
     $template[$titel]["toggle"] = true;
@@ -125,6 +146,9 @@ function newGallery($galleryname) {
             return ajax_return("error",false,$error,true,"js-dialog-reload");
         if(false === (newConf(GALLERIES_DIR_REL.$galleryname."/texte.conf.php")))
             return ajax_return("error",false,getLanguageValue("gallery_error_subtitle_conf"),true,true);
+            if(false === (newConf(GALLERIES_DIR_REL.$galleryname."/alt.conf.php")))
+    return ajax_return("error",false,getLanguageValue("gallery_error_alt_conf"),true,true);
+
         return ajax_return("success",false);
     }
     return ajax_return("error",false,returnMessage(false,getLanguageValue("error_dir_file_name")),true,true);
@@ -183,6 +207,14 @@ function changeFromFtp() {
             }
             $change = true;
         }
+                if(!file_exists(GALLERIES_DIR_REL.$currentgalerien."/alt.conf.php")) {
+            if(false === (newConf(GALLERIES_DIR_REL.$currentgalerien."/alt.conf.php"))) {
+                $message .= returnMessage(false,getLanguageValue("gallery_error_alt_conf"));
+                return;
+            }
+            $change = true;
+        }
+
         $dirimg = getDirAsArray(GALLERIES_DIR_REL.$currentgalerien,"img");
         foreach ($dirimg as $currentimg) {
             if(true !== ($error = setChmod(GALLERIES_DIR_REL.$currentgalerien."/".$currentimg))) {

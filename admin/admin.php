@@ -80,7 +80,7 @@ function admin() {
             $error[$titel][$count] = getLanguageValue("admin_error_languagefile_error")."<br>".ADMIN_DIR_NAME."/sprachen/language_".$ADMIN_CONF->get('language').".txt";
         } else
             $error[$titel][$count] = false;
-        $admin_inhalt = '<div class="mo-select-div flex"><select name="language" class="mo-select js-language flex-100">';
+        $admin_inhalt = '<div class="mo-select-div flex"><select id="language" name="language" class="mo-select js-language flex-100">';
 
         foreach($language_array as $element) {
             if(substr($element,0,9) == "language_") {
@@ -106,18 +106,18 @@ function admin() {
         }
 
         $admin_inhalt .= "</select></div>";
-        $template[$titel][] = array(getLanguageValue("admin_input_language"),$admin_inhalt);
+        $template[$titel][] = array('<label for="language">'.getLanguageValue("admin_input_language").'</label>',$admin_inhalt);
     }
 
     // Zeile "ADMIN-MAIL"
     if(ROOT or in_array("adminmail",$show)) {
         if(function_exists("isMailAvailable")) {
-            $template[$titel][] = array(getLanguageValue("admin_text_adminmail"),'<input type="text" class="mo-input-text" name="adminmail" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("adminmail"),true,true).'">');
+            $template[$titel][] = array('<label for="adminmail">'.getLanguageValue("admin_text_adminmail").'</label>','<input id="adminmail" type="text" class="mo-input-text" name="adminmail" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("adminmail"),true,true).'">');
         }
     }
     // Zeile "BACKUP-ERINNERUNG"
     if(ROOT or in_array("backupmsgintervall",$show)) {
-        $template[$titel][] = array(getLanguageValue("admin_text_backup"),'<input type="text" class="mo-input-digit js-in-digit" name="backupmsgintervall" value="'.$ADMIN_CONF->get("backupmsgintervall").'">');
+        $template[$titel][] = array('<label for="backupmsgintervall">'.getLanguageValue("admin_text_backup").'</label>','<input id="backupmsgintervall" type="text" class="mo-input-digit js-in-digit" name="backupmsgintervall" value="'.$ADMIN_CONF->get("backupmsgintervall").'">');
     }
  
     // Zeile "Backup"
@@ -151,7 +151,6 @@ function admin() {
             '<form action="index.php?action='.ACTION.'" method="post">'
             .'<input type="hidden" name="get_backup" value="true">'
             .$cms_input.$catpage_input.$gallery_input.$layouts_input.$plugins_input.$docu_input
-  #          .'<div style="font-size:.4em;">&nbsp;</div>'
             .'<input type="submit" title="'.getLanguageValue("admin_button_get_backup").'" name="admin_button_get_backup" class="button mr" value="'.getLanguageValue("admin_button_get_backup").'">'
             .'<span class="js-file-size-summe mo-padding-left">'.convertFileSizeUnit($cms_size).'</span>'
             .'</form>'
@@ -162,7 +161,7 @@ function admin() {
     // Zeile "SETZE DATEIRECHTE FÜR NEUE DATEIEN"
     if(ROOT or in_array("chmodnewfilesatts",$show)) {
         if(USE_CHMOD) {
-            $template[$titel][] = array(getLanguageValue("admin_text_chmodnewfiles"),'<input type="text" class="mo-input-digit js-in-chmod mr" size="4" maxlength="3" name="chmodnewfilesatts" value="'.$ADMIN_CONF->get("chmodnewfilesatts").'">'.'<input type="button" class="mt" title="'.getLanguageValue("admin_input_chmodupdate").'" name="chmodupdate" value="'.getLanguageValue("admin_input_chmodupdate").'">');
+            $template[$titel][] = array('<label for="chmodnewfilesatts">'.getLanguageValue("admin_text_chmodnewfiles").'</label>','<input id="chmodnewfilesatts" type="text" class="mo-input-digit js-in-chmod mr" size="4" maxlength="3" name="chmodnewfilesatts" value="'.$ADMIN_CONF->get("chmodnewfilesatts").'">'.'<input type="button" class="mt" title="'.getLanguageValue("admin_input_chmodupdate").'" name="chmodupdate" value="'.getLanguageValue("admin_input_chmodupdate").'">');
         }
     }
     // Zeile "UPLOAD-FILTER"
@@ -175,29 +174,27 @@ function admin() {
          $extension_list = implode(',', $combined_extension);
          $extension_list = str_replace('.', '', $extension_list);
          $extension_list = str_replace('nnn,', '<br>', $extension_list);
-    //    $template[$titel][] = array(getLanguageValue("admin_text_uploadfilter"),'<input type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'">');
-        $template[$titel][] = getLanguageValue("admin_text_upload_notice")
+       $template[$titel][] = getLanguageValue("admin_text_upload_notice")
         .'<div class="flex">'
-        .'<div class="mo-in-li-r">'.getLanguageValue("admin_text_uploadfilter").'</div><div>'.''.getLanguageValue("admin_text_upload_available").'<span class="tooltip ml"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path> <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path> </svg>
+        .'<div class="mo-in-li-r"><label for="upload">'.getLanguageValue("admin_text_uploadfilter").'</label></div><div>'.''.getLanguageValue("admin_text_upload_available").'<span class="tooltip ml"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path> <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path> </svg>
         
         <span class="tooltiptext">'.$extension_list.'</span>
-        </span><input type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'">'.'</div>'
+        </span><input id="upload" type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'">'.'</div>'
         
         .'</div>';
-  //      .'<div class="mo-in-li-r">'.'<input type="text" class="mo-input-text" name="upload" value="'.$specialchars->rebuildSpecialChars($ADMIN_CONF->get("upload"),true,true).'"></div>';   
     }
 
     global $loginpassword;
     if(ROOT) {
         $template[$titel][] = getLanguageValue("pw_text_login").' '.getLanguageValue("pw_help")
         .'<div class="flex">'
-        .'<div class="mo-in-li-r">'.getLanguageValue("pw_titel_newname").'</div><div class="mo-in-li-r">'.'<input type="text" class="js-in-pwroot mo-input-text" name="newname" value="'.$loginpassword->get("name").'">'.'</div>'
+        .'<div class="mo-in-li-r"><label for="newname">'.getLanguageValue("pw_titel_newname").'</label></div><div class="mo-in-li-r">'.'<input id="newname" type="text" class="js-in-pwroot mo-input-text" name="newname" value="'.$loginpassword->get("name").'">'.'</div>'
         .'</div>'
         .'<div class="flex mt">'
-        .'<div class="mo-in-li-r">'.getLanguageValue("pw_titel_newpw").'</div><div>'.'<input type="password" class="js-in-pwroot mo-input-text" value="'.NULL.'" name="newpw">'.'</div>'
+        .'<div class="mo-in-li-r"><label for="newpw">'.getLanguageValue("pw_titel_newpw").'</label></div><div>'.'<input id="newpw" type="password" class="js-in-pwroot mo-input-text" value="'.NULL.'" name="newpw">'.'</div>'
         .'</div>'
         .'<div class="flex mt">'
-        .'<div class="mo-in-li-r">'.getLanguageValue("pw_titel_newpwrepeat").'</div><div>'.'<input type="password" class="js-in-pwroot mo-input-text" value="" name="newpwrepeat">'.'</div>'
+        .'<div class="mo-in-li-r"><label for="newpwrepeat">'.getLanguageValue("pw_titel_newpwrepeat").'</label></div><div>'.'<input id="newpwrepeat" type="password" class="js-in-pwroot mo-input-text" value="" name="newpwrepeat">'.'</div>'
         .'</div>';
     }
 
@@ -218,13 +215,13 @@ function admin() {
         
         .'</div>'
         .'<div class="flex mt">'
-        .'<div class="mo-in-li-r">'.getLanguageValue("userpw_titel_newname").'</div><div class="mo-in-li-r">'.'<input type="text" class="js-in-pwuser mo-input-text" name="newusername" value="'.$loginpassword->get("username").'">'.'</div>'
+        .'<div class="mo-in-li-r"><label for="newusername">'.getLanguageValue("userpw_titel_newname").'</label></div><div class="mo-in-li-r">'.'<input id="newusername" type="text" class="js-in-pwuser mo-input-text" name="newusername" value="'.$loginpassword->get("username").'">'.'</div>'
 .'</div>'
         .'<div class="flex mt">'        
-        .'<div>'.getLanguageValue("userpw_titel_newpw").'</div><div>'.'<input type="password" class="js-in-pwuser mo-input-text" value="'.NULL.'" name="newuserpw">'.'</div>'
+        .'<div><label for="newuserpw">'.getLanguageValue("userpw_titel_newpw").'</label></div><div>'.'<input id="newuserpw" type="password" class="js-in-pwuser mo-input-text" value="'.NULL.'" name="newuserpw">'.'</div>'
 .'</div>'
         .'<div class="flex mt">'        
-        .'<div>'.getLanguageValue("userpw_titel_newpwrepeat").'</div><div>'.'<input type="password" class="js-in-pwuser mo-input-text" value="" name="newuserpwrepeat">'.'</div>'
+        .'<div><label for="newuserpwrepeat">'.getLanguageValue("userpw_titel_newpwrepeat").'</label></div><div>'.'<input id="newuserpwrepeat" type="password" class="js-in-pwuser mo-input-text" value="" name="newuserpwrepeat">'.'</div>'
         ."</div>".$user_allowed_settings;
     }
 
@@ -297,9 +294,8 @@ function setPassword($name = false,$pw = false,$pwrep = false,$type = false) {
         and preg_match("/[a-z]/", $pw)
         and preg_match("/[A-Z]/", $pw)
         ) {
-        require_once(BASE_DIR_CMS.'PasswordHash.php');
-        $t_hasher = new PasswordHash(8, FALSE);
-        $pw = $t_hasher->HashPassword($pw);
+            
+            $pw = password_hash($pw, PASSWORD_DEFAULT); 
 #!!!!!!! die fehlermeldung muss geändert werden
         if($pw == '*')
             return ajax_return("error",false,returnMessage(false,getLanguageValue("pw_error_newpwerror")),true,true);

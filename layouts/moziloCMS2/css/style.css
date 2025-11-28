@@ -35,13 +35,13 @@ p {
 /* allgemeine Links */
 a {
     font-weight     : bold;
-    color           : #73a7cf;
+    color           : #3875A3;
     text-decoration : none;
     padding         : 0px 2px 0px 2px;
 }
 
 a:link, a:visited, a:active {
-    color           : #73a7cf;
+    color           : #3875A3;
     font-weight     : bold;
     text-decoration : none;
 }
@@ -115,7 +115,25 @@ img {
   background-color: transparent;
   text-decoration: none;
   border-bottom: 0.1em dotted grey;
+    position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
 }
+
+#skiplinks a:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 1000;
+}
+
 
 #skiplinks a:visited {
 	color: white;
@@ -129,8 +147,8 @@ img {
 /**** Header, beinhaltet Suche und Seitentitel/Logo ****/
 #sb-header {
     background-color : #ffffff;
-    border-top       : 20px solid #73a7cf;
-    border-bottom    : 1px solid #73a7cf;
+    border-top       : 20px solid #3875A3;
+    border-bottom    : 1px solid #3875A3;
 }
 
 .sb-header_inner {
@@ -223,7 +241,7 @@ img {
     width       : 100%;
     height      : 120px;
     background  : #444444;
-    color       : rgba(255, 255, 255, 0.57);
+    color       : rgba(255, 255, 255, 0.58);
     /* margin      : 0 auto; */
     font-size   : 0.875em;
     border-top  : 1em solid #ebf0f3;
@@ -232,6 +250,10 @@ img {
 #footer p {
     margin  : 0;
     padding : 30px 0 0 0;
+}
+
+#footer a {
+	color: #8FB8D6
 }
 
 /*** Footer-Links, Admin-Login, Credits ***/
@@ -251,7 +273,7 @@ ul.mainmenu, ul.cat-menusubs {
     font-size       : 1em;
 }
 
-li.mainmenu, li.cat-menusubs {
+li.mainmenu-item-item, li.cat-menusubs {
     border-bottom : 1px solid #e6e6e6;
 }
 
@@ -267,7 +289,7 @@ a.menu, a.cat-menusubs-link {
 /* aktiver Hauptmenuepunkt */
 a.menuactive, a.cat-menusubs-link.menusubs-linkactive {
     padding       : 1em 0 1em 0.5em;
-    color         : #9da665 !important;
+    color         : #5F643A !important;
     text-align    : left;
     margin        : 0px;
     font-weight   : normal;
@@ -296,7 +318,7 @@ ul.subcat-menusubs {
     padding-left : 15px;
 }
 
-li.detailmenu, li.page-menusubs, li.subcat-menusubs {
+li.detailmenu-item-item, li.page-menusubs, li.subcat-menusubs {
     padding : 2px;
 }
 
@@ -312,7 +334,7 @@ a.submenu, a.page-menusubs-link, a.subcat-menusubs-link {
 a.submenuactive, a.page-menusubs-link.menusubs-linkactive, a.subcat-menusubs-link.menusubs-linkactive {
     display     : block;
     font-weight : normal;
-    color       : #9da665 !important;
+    color       : #5F643A !important;
     font-size   : 0.875em;
 }
 
@@ -341,7 +363,7 @@ a.subcat-menusubs-link, a.subcat-menusubs-link.menusubs-linkactive {
 /* responsive input search box */
 .searchtextfield {
   width: 75%;
-  border: 2px solid #73a7cf;
+  border: 2px solid #3875A3;
   padding: 5px;
   height: 20px;
   border-radius: 5px 0 0 5px;
@@ -350,25 +372,25 @@ a.subcat-menusubs-link, a.subcat-menusubs-link.menusubs-linkactive {
 }
 
 /* Suchbutton */
-input.searchbutton {
+button.searchbutton {
     border : none;
     margin : 5px 0px -5px -20px;
 }
 /********************************** Sitemap *********************************/
-.sitemap {
+#sitemap {
     margin : 1.4em 0 0 1em;
 }
 
-.sitemap ul {
+#sitemap ul {
     list-style-type : none;
     padding-left    : 2.4em;
 }
 
-.sitemap li {
+.result-list-item {
     margin-top : .5em;
 }
 
-.sitemap h2 {
+.result-list-header {
     margin-top : 1em;
 }
 

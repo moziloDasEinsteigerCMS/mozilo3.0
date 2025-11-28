@@ -1,11 +1,9 @@
+config_gallery_usethumbs                = Miniaturen gebruiken?
+config_gallery_target                   = Hoe moet de galerij worden geopend?
+config_gallery_target_self              = In hetzelfde venster/tabblad.
+config_gallery_target_blank             = In een nieuw venster/tabblad.
+config_gallery_captions                 = Bijschriften van afbeeldingen gebruiken?
+config_gallery_placeholders             = Hier kunt u de galerij-placeholders in de gewenste volgorde rangschikken (regeleinden zijn toegestaan).
+config_gallery_plugin_name              = standaardgalerij van MoziloCMS
 
-config_gallery_picsperrow               = Aantal voorbeeld afbeeldingen per rij
-config_gallery_picsperrow_regex_error   = 
-config_gallery_target                   = Moet het album worden geopend in een nieuw browser venster of in het huidige venster?
-config_gallery_target_self              = 
-config_gallery_target_blank             = 
-config_gallery_usethumbs                = Voorbeeld afbeeldingen maken
-config_gallery_captions                 = 
-config_gallery_placeholders             = 
-config_gallery_plugin_name              = 
-config_gallery_plugin_desc              = 
+config_gallery_plugin_desc              = Maakt de standaardgalerijweergave aan. In de galerijinstellingen in het Mozilo-beheerpaneel kunt u opgeven of de galerij in een nieuw venster/tabblad ("target blank") of in het huidige venster/tabblad ("target self") moet worden weergegeven. Daarnaast kunt u de optie "Miniaturen gebruiken?" gebruiken. Bepaal of de afbeeldingen in de modus met één afbeelding (EM) of de overzichtsmodus (ÜM) moeten worden weergegeven.<br> <br><span style="font-weight:bold;">Gebruik:</span><br>{Gallery|moziloCMS} voegt de galerij "moziloCMS" in (voor "target self") of een koppeling ernaartoe (voor "target blank").<br>{Gallery|moziloCMS,Any display text} voegt een koppeling naar de galerij "moziloCMS" in met de opgegeven weergavetekst (alleen voor "target blank").<br><br>Voor gebruik in een nieuw venster/tabblad ("target blank") kunnen de beschreven tijdelijke aanduidingen worden gerangschikt in gallerytemplate.html.<br><br><span style="font-weight:bold;">Configuratie:</span><br>De rangschikking van de afzonderlijke functionele elementen kan worden gewijzigd met behulp van de tijdelijke aanduidingen in het tekstveld. De volgende tijdelijke aanduidingen zijn beschikbaar:<br>- {CURRENTGALLERY}: Galerijnaam<br>- {GALLERYMENU}: Menu "eerste/vorige/volgende/laatste afbeelding" (alleen EM)<br>- {NUMBERMENU}: Nummermenu (in EM) / Overzicht van alle afbeeldingen inclusief ondertitels (in ÜM)<br>- {CURRENTPIC}: Huidige afbeelding (alleen EM)<br>- {CURRENTDESCRIPTION}: Ondertitel van de huidige afbeelding (alleen EM)<br>- {XOUTOFY}: "Afbeelding x van y" (alleen EM)<br>- {CURRENT_INDEX}: Index van huidige afbeelding (alleen EM)<br>- {PREVIOUS_INDEX}: Index van vorige afbeelding (alleen EM)<br>- {NEXT_INDEX}: Index van volgende afbeelding (alleen EM)<br><br>

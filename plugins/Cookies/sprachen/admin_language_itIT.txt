@@ -1,0 +1,11 @@
+config_cookieDays                             = Numero di giorni per cui il messaggio deve essere nascosto dopo l'accettazione (predefinito: 30).
+config_cookieDays_error                       = Numero di giorni: inserisci un numero.
+config_cookieTitle                            = Titolo personalizzato (predefinito: vuoto)
+config_cookieDesc                             = Descrizione personalizzata
+config_cookieSr                               = Descrizione personalizzata per il testo dello screen reader
+config_cookieBtn                              = Descrizione personalizzata per il pulsante
+config_cookiePrivacy                          = Testo per il collegamento alla pagina sulla privacy
+config_cookieCat                              = Categoria in cui si trova la pagina sulla privacy
+config_cookiePage                             = Nome della pagina sulla privacy
+description                                   = Inserisce un avviso sui cookie utilizzando {Cookies}. Titolo, testo, pulsante e durata possono essere configurati individualmente.
+placeholder                                   = Inserisce un avviso sui cookie.

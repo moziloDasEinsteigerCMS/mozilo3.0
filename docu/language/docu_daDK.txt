@@ -13,6 +13,7 @@ do_page2                       = Et galleri
 do_page3                       = Kontakte
 do_file1                       = mozilo.webp
 do_file2                       = text.txt
+do_file2_1                     = text
 do_file3                       = Test_PDF.pdf
 do_file4                       = Test_ZIP.zip
 do_gallery1                    = moziloCMS
@@ -449,7 +450,9 @@ do_editsitesyntax_text_28_1    = De tilgængelige billeder vælges fra <b>Select
 do_editsitesyntax_text_28_2    = indsat.
 do_editsitesyntax_text_29      = For alle billedsyntakselementer:
 do_editsitesyntax_text_30      = Hvis du sætter et <span class="do-paren">=</span> tegn efter kommandonavnet og derefter indtaster tekst, vil det blive vist som en billedtekst.
+do_editsitesyntax_text_30_1    = Indtastning af alternativ tekst (tilgængelig) alt<span class="do-paren">=</span> er valgfrit. Hvis der ikke indtastes tekst, antages billedfilnavnet.
 do_editsitesyntax_text_31      = Lotus blomstrer ved søen
+do_editsitesyntax_text_31_1    = En lotusblomst viser sin fulde pragt
 do_editsitesyntax_text_32_1    = A med
 do_editsitesyntax_text_32_2    = placeret billede kan redigeres med kommandoerne
 do_editsitesyntax_text_32_3    = justeret vandret.

@@ -1,0 +1,5 @@
+no_menusubs_2        = Geen MenuSubs_2
+menusubs_2           = Selecteer een categorie voor MenuSubs_2
+sitemap_show_menu2   = Toon MenuSubs_2 in de sitemap
+breadcrumb_delimiter = Breadcrumb-scheidingsteken. Standaard is "»"
+hidden               = Stijlen die worden toegepast wanneer het mobiele menu wordt geopend. Een door komma's gescheiden lijst met ID = CSS-eigenschap: waarde

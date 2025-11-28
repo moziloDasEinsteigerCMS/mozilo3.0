@@ -1,0 +1,11 @@
+config_cookieDays                             = Antal dage, som meddelelsen skal skjules i efter accept (standard: 30).
+config_cookieDays_error                       = Antal dage: Indtast venligst et tal.
+config_cookieTitle                            = Brugerdefineret titel (standard: tom)
+config_cookieDesc                             = Brugerdefineret beskrivelse
+config_cookieSr                               = Brugerdefineret beskrivelse af skærmlæsertekst
+config_cookieBtn                              = Brugerdefineret beskrivelse af knap
+config_cookiePrivacy                          = Tekst til link til privatlivssiden
+config_cookieCat                              = Kategori, hvor privatlivssiden er placeret
+config_cookiePage                             = Navn på privatlivssiden
+description                                   = Indsætter en cookiemeddelelse ved hjælp af {cookies}. Titel, tekst, knap og varighed kan konfigureres individuelt.
+placeholder                                   = Indsætter en cookiemeddelelse.
