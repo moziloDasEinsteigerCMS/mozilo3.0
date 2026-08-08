@@ -1,12 +1,13 @@
-
 config_lastchange_plugin_name                  = Lastchange
-config_lastchange_plugin_desc                  = Zeigt die letzte Änderung an.<br><br><span style="font-weight:bold;">Nutzung:</span><br>{Lastchange} gibt etwas aus wie: "Letzte Änderung: Willkommen (23.10.2020, 09:07:20)"<br>{Lastchange|text} gibt etwas aus wie: "Letzte Änderung"<br>{Lastchange|page} gibt etwas aus wie: "Willkommen"<br>{Lastchange|pagelink} gibt etwas aus wie: "Willkommen" (mit Link auf die Inhaltsseite)<br>{Lastchange|date} gibt etwas aus wie: "(23.10.2020, 09:07:20)"<br><br><span style="font-weight:bold;">Konfiguration:</span><br>Das Plugin bezieht den Text "Letzte Änderung" und das Datumsformat aus der CMS-Sprachdatei; man kann beides aber auch selbst angeben. Dabei orientiert sich das Datumsformat an der PHP-Funktion date().
+config_lastchange_plugin_desc = Zeigt die letzte Änderung an.<br><br><span style="font-weight:bold;">Nutzung:</span><br>{Lastchange} gibt z. B. aus: "Letzte Änderung: Willkommen (23.10.2020)"<br>{Lastchange|text} gibt z. B. aus: "Letzte Änderung"<br>{Lastchange|page} gibt z. B. aus: "Willkommen"<br>{Lastchange|pagelink} gibt z. B. aus: "Willkommen" (mit Link auf die Inhaltsseite)<br>{Lastchange|date} gibt z. B. aus: "23.10.2020"<br><br><span style="font-weight:bold;">Konfiguration:</span><br>Text und Datumsformat können hier individuell festgelegt werden.<br>Das Datumsformat richtet sich nach der PHP-Funktion <code>date()</code>.<br><br><span style="font-weight:bold;">Beispiele für Datumsformate:</span><br><code>d.m.Y</code> → 23.10.2020<br><code>d.m.Y H:i</code> → 23.10.2020 09:07<br><code>d.m.Y H:i:s</code> → 23.10.2020 09:07:20<br><code>Y-m-d</code> → 2020-10-23<br><code>d. F Y</code> → 23. Oktober 2020<br><br>Die Option „Uhrzeit anzeigen“ steuert, ob Zeitangaben ausgegeben werden.
+
 config_lastchange_plugin_lastchange            = Letzte Änderung mit Verknüpfung und Datum
-config_lastchange_plugin_text                  = Text Letzte Änderung:
+config_lastchange_plugin_text                  = Text „Letzte Änderung“
 config_lastchange_plugin_page                  = Name der zuletzt geänderten Inhaltsseite
 config_lastchange_plugin_pagelink              = Link auf die zuletzt geänderte Inhaltsseite
 config_lastchange_plugin_date                  = Datum der letzten Änderung
-config_lastchange_messagetext                  = Eigener Text für Letzte Änderung:
+
+config_lastchange_messagetext                  = Eigener Text für „Letzte Änderung“:
 config_lastchange_date                         = Eigenes Datumsformat:
 config_lastchange_showhiddenpagesinlastchanged = Versteckte Inhaltsseiten mit einbeziehen?
-
+config_lastchange_showtime                     = Uhrzeit anzeigen

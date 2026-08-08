@@ -22,6 +22,10 @@ minute                               = Minut
 minutes                              = Minutter
 second                               = Sekund
 seconds                              = Sekunder
+toggle_all                           = Vælg alle
+
+files_upload                         = Upload filer
+
 error_chmod                          = Filtilladelserne kunne ikke ændres.
 error_mkdir                          = Mappen kunne ikke oprettes.
 error_no_file_dir                    = Mappen eller filen findes ikke.
@@ -48,6 +52,7 @@ error_file_upload                    = Filen kunne ikke uploades.
 error_zip_nozip                      = Dette er ikke en ZIP-fil.
 error_read_htaccess                  = Fejl ved læsning af .htaccess.
 error_write_htaccess                 = Fejl ved skrivning af .htaccess.
+error_write_sortcatpage              = Fejl Kan ikke skrive SortCatPage.
 error_upload_filetype                = Filtype ikke tilladt.
 error_upload_replace                 = Der findes allerede en fil med navnet. Skal filen udskiftes?
 
@@ -120,6 +125,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Hukommelse forbrugt af moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Så lang tid tog moziloCMS
 toolbar_platzhalter_VALUE            = Værdi
 toolbar_platzhalter_DESCRIPTION      = Beskrivelse
+toolbar_editor_color                 = Valgt farve
 toolbar_editor_linenumber            = Vis/skjul linjenumre
 toolbar_editor_controlcharacter      = Vis/skjul kontroltegn
 toolbar_editor_highlighter           = Syntaksfremhævningstilstand
@@ -140,6 +146,7 @@ filter_text_plugins                  = Plugins
 filter_text_files                    = Filer
 filter_text_catpage                  = Kategorier
 filter_text_template                 = Skabelon
+filter_no_match                      = Intet match
 
 home_button                          = Info
 home_multiuser                       = Nulstil flerbrugersystem
@@ -160,7 +167,7 @@ home_cmsupdate_text_failed_fopen     = Test ikke muligt. "allow_url_fopen" er de
 home_cmsupdate_unknown_version       = Du bruger en ukendt moziloCMS-version!
 home_cmsupdate_stable_version        = Download den aktuelle version af moziloCMS:
 home_phpversion_text                 = Installeret PHP version
-home_error_phpversion_text           = PHP-versionen er for gammel til moziloCMS, mindst 7.x er påkrævet.
+home_error_phpversion_text           = PHP-versionen er for gammel til moziloCMS, mindst 8.1 er påkrævet.
 home_installpath_text                = Sti på serveren
 home_help                            = Hjælp og dokumentation
 home_help_text_docu                  = Detaljeret dokumentation i nyt vindue
@@ -210,6 +217,7 @@ gallery_error_new                    = Fejl ved oprettelse af galleriet. Tjek fi
 gallery_error_exists                 = Et galleri med dette navn findes allerede.
 gallery_error_datei_conf             = Fejl ved oprettelse af konfigurationsfilen. Tjek fil egenskaber!
 gallery_error_subtitle_conf          = Undertekstfilen kunne ikke oprettes.
+gallery_error_alt_conf               = Den alternative tekstdato kunne ikke ændres.
 gallery_messages_from_ftp            = Følgende gallerier er blevet konverteret til CMS-kompatible.
 gallery_messages_from_ftp_no         = Alle gallerier er CMS-kompatible
 gallery_text_from_ftp                = Gør alle gallerier og billeder uploadet via FTP
@@ -221,6 +229,8 @@ gallery_help_conf                    = Her kan du redigere galleri indstillinger
 gallery_error_noexists               = Der er intet galleri med dette navn.
 gallery_delete_confirm               = Vil du slette dette galleri med alle billeder og undertekster?
 gallery_image_size                   = Billedstørrelse
+gallery_image_size_width             = Bredde
+gallery_image_size_height            = Højde
 gallery_preview_size                 = Forhåndsvisningsstørrelse
 gallery_text_subtitle                = Undertekster
 gallery_text_alt                     = Alternativ tekst
@@ -292,7 +302,7 @@ admin_button_include_docu            = med dokumentation
 admin_error_no_backups_select        = Der blev ikke valgt nogen filer.
 admin_text_chmodnewfiles             = Indstil filtilladelser, som moziloCMS generelt skal have på serveren.
 admin_text_upload_notice             = <i>Bemærk: På grund af sikkerhedsproblemer omkring moziloCMS, anbefaler vi kraftigt ikke at bruge filtypenavnene (type) php, svg, xml!</i>
-admin_text_uploadfilter              = Indtast yderligere filtypenavne for at uploade filer her.<br> <b>Ingen</b> mellemrum og kun adskilt af <b>kommaer</b>.
+admin_text_uploadfilter              = Indtast yderligere filtypenavne for at uploade filer her.<br> <b>Ingen</b> mellemrum og kun adskilt af <u>kommaer</u>.
 admin_text_upload_available          = Filtyper tilgængelige som standard: 
 admin_input_translator               = Oversætter:
 admin_input_language                 = Sprogvalg for administrationsområdet.
@@ -319,6 +329,7 @@ admin_edit                           = Redigere
 admin_delete                         = Slet
 admin_rename                         = Omdøb
 admin_new                            = Ny
+admin_open_menu                      = Åbn menu
 
 admin_user_select_websitetitle       = Browserens titellinje
 admin_user_select_websitedescription = Hjemmesidebeskrivelse / søgeord
@@ -383,6 +394,7 @@ plugins_text_fileinfo                = Eksisterende konfigurationsindstillinger 
 plugins_button_install               = Installere
 plugins_button_delete                = Slet alle valgte plugins
 plugins_select                       = eller fra mappen "plugins".
+plugins_checkbox_toggle              = Afkrydsningsfelt til/fra
 
 template_button                      = Skabelon
 template_title_grafiken              = Grafik
@@ -414,7 +426,7 @@ install_help_title                   = Velkommen til moziloCMS installationsdial
 install_help                         = <p>I de næste trin vil vi teste, om webserveren eller webhostingpakken opfylder de nødvendige krav til moziloCMS. Derudover foretages grundlæggende forudindstillinger. Alle indstillinger kan til enhver tid ændres senere i administrationsområdet.</p><p>Hvis du har problemer med "filrettigheder" eller "pæne URL'er", er der <a href="https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank">i dette indlæg i forummet</a> har du sikkert allerede den hjælp du har brug for. Ellers bare spørg.</p><p><b>Installationsprogrammet er også nødvendigt, hvis:</b></p><ul><li>adgangskoden er blevet glemt eller</li><li> moziloCMS fra computeren blev kopieret til webserveren eller </li><li>data skal stadig opdateres fra en gammel moziloCMS-version.</li></ul><p><b>OBS!</b> </p><p>"<b>install.php</b>" og, hvis det er tilgængeligt "<b>update.php</b>" og "<b>update</b>"-mappen skal slettes efter installationsprocessen, da de udgør en stor sikkerhedsrisiko. Sørg for at tjekke, om dette er tilfældet.</p>
 
 install_help_update_title            = <p><b>Opdater instruktioner</b> fra <b>moziloCMS 1.12</b> til moziloCMS 2.0, i øjeblikket <b>moziloCMS 3.x</b></p>
-install_help_update_text             = <p>Alle trinene nævnt her kan udføres senere, det ene efter det andet eller alle på én gang.</p><ul><li>Kopiér alle kategorier og deres indhold til 2.0/3.x-mappen <b>kategorier</b>.</li><li>kopier gallerierne til mappen 2.0/3.x <b>gallerier</b>.</li><li>kopiér layouterne til mappen 2.0/3.x <b>layouts</b>.</li><li>Opret nu mappen <b>update</b> i rodmappen (for eksempel: moziloCMS/).</li><li>Kopiér alle <b>.conf</b>-filer fra <b>.../admin/conf</b> og <b>.../cms/conf</b> og, hvis det er tilgængeligt, <b>.../formular/formular.conf> til denne <b></b></b></b></b> mappe.</li></ul><p>Opdater moziloCMS 1.12 plugin-konfigurationsfilerne (<b>plugin.conf</b>) til moziloCMS 2.0/3.x.</p><p>Forudsætning:</p><ol><li>Pluginnet er også tilgængeligt til moziloCMS 2.0/3.x</li><li>Indstillingerne er så komplekse, at manuel justering ville være for meget.</li><li>Indstillingerne er de samme som i det gamle plugin.</li></ol><p>Instruktioner:</p><ol><li>Slet <b>plugin.conf.php</b>, hvis det findes.</li></b> <b>plugin.conf</b> fra det gamle plugin til det nye plugin.</li></ol>
+install_help_update_text             = <p>Alle trinene nævnt her kan udføres senere, det ene efter det andet eller alle på én gang.</p><ul><li>Kopiér alle kategorier og deres indhold til 3.x-mappen <b>kategorien</b>.</li><li>kopier gallerierne til mappen 3.x <b>galerien</b>.</li><li>kopiér layouterne til mappen 3.x <b>layouts</b>.</li><li>Opret nu mappen <b>update</b> i rodmappen (for eksempel: moziloCMS/).</li><li>Kopiér alle <b>.conf</b>-filer fra <b>.../admin/conf</b> og <b>.../cms/conf</b> og, hvis det er tilgængeligt, <b>.../formular/formular.conf> til denne <b></b></b></b></b> mappe.</li></ul><p>Opdater moziloCMS 1.12 plugin-konfigurationsfilerne (<b>plugin.conf</b>) til moziloCMS 3.x.</p><p>Forudsætning:</p><ol><li>Pluginnet er også tilgængeligt til moziloCMS 3.x</li><li>Indstillingerne er så komplekse, at manuel justering ville være for meget.</li><li>Indstillingerne er de samme som i det gamle plugin.</li></ol><p>Instruktioner:</p><ol><li>Slet <b>plugin.conf.php</b>, hvis det findes.</li></b> <b>plugin.conf</b> fra det gamle plugin til det nye plugin.</li></ol>
 
 install_help_password                = Jeg har lige glemt min adgangskode og vil gerne tildele en ny.
 install_help_password_button         = Skift blot adgangskoden
@@ -427,6 +439,7 @@ install_lang_select                  = Valg af sprog:
 install_lang_help                    = <p>Det valgte sprog er oprindeligt overtaget for hjemmesiden og administrationsområdet.</p><p>Efter installationen, i administrationsområdet, på fanen "Indstillinger" kan sproget på hjemmesiden indstilles og i "Admin"-fanen, som ændres i administrationsgrænsefladen.</p>
 install_lang_help_title              = Sprog
 install_next                         = Længere
+install_back                         = Tilbage
 
 install_chmod_help_title             = Fil og adgangsrettigheder
 install_chmod_help                   = <p>Der gøres et forsøg på at bestemme og indstille de serverfiltilladelser, der er nødvendige for at moziloCMS fungerer korrekt. Hvis dette ikke lykkes helt, kan de indstilles senere i admin-området, på fanen "Admin".</p><p>Hvis serveren forhindrer moziloCMS i at oprette filer, skal de nødvendige filrettigheder først tildeles via FTP , med chmod-kommandoen skal indstilles, før installationen kan fortsætte.</p>

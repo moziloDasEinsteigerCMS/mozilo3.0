@@ -380,7 +380,7 @@ $count++;
             // Plugin-Name
             "<b>MenuSubsMobile</b> Revision: 6",
             // Plugin-Version
-            "2.0 / 3.0",
+            "3.0",
             // Kurzbeschreibung
             $info_txt,
             // Name des Autors

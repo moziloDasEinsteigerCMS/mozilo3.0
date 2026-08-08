@@ -212,19 +212,49 @@ function dialog_delete() {
 
 function dialog_delete_files() {
     var del_item = dialog_multi.data("del_object");
+
     dialog_multi.dialog({
         title: mozilo_lang["dialog_title_delete"],
         buttons: [{
             text: mozilo_lang["yes"],
             click: function() {
-                del_item[0].find('.delete input:checked').siblings('button').addClass('js-nodialog').click();
-                del_item[1].find('.toggle').prop('checked', false);
-                dialog_multi.dialog("close");
+
+                // Alle Buttons sammeln
+                var buttons = del_item[0].find('.delete input:checked')
+                    .map(function () {
+                        return $(this).closest('.delete').find('button')[0];
+                    }).get();
+
+                // Funktion, die einen Button löscht und Promise zurückgibt
+                function deleteOne(btn) {
+                    return new Promise(resolve => {
+
+                        // Wenn moziloCMS nach dem Löschen ein Event feuert:
+                        $(document).one("ajaxStop", function () {
+                            resolve();
+                        });
+
+                        $(btn).addClass('js-nodialog').trigger('click');
+                    });
+                }
+
+                // Seriell alle Buttons abarbeiten
+                (async function run() {
+                    for (const btn of buttons) {
+                        await deleteOne(btn);
+                    }
+
+                    del_item[1].find('.toggle').prop('checked', false);
+                    dialog_multi.dialog("close");
+                })();
             }
         },{
             text: mozilo_lang["no"],
-            click: function() { dialog_multi.dialog("close"); }
-    }]}).removeData("del_object");
+            click: function() {
+                dialog_multi.dialog("close");
+            }
+        }]
+    }).removeData("del_object");
 }
 
 function dialog_delete_file() {

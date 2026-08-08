@@ -13,9 +13,22 @@ if (($loginpassword->get("name") == "") or ($loginpassword->get("pw") == "")) {
 
 // User hat sich ausgeloggt
 if(getRequestValue('logout','get',false)) {
-    // Session beenden und die Sessiondaten löschen
+    // Session starten, falls noch nicht aktiv
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    // Session-Daten komplett leeren
     @session_destroy();
-    unset($_SESSION);
+	 unset($_SESSION);
+
+    // Optional: Cookies löschen (Logout für Browser)
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
 }
 
 // Wurde das Anmeldeformular verschickt?
@@ -118,10 +131,10 @@ function login_formular($enabled,$error_lang = false) {
     $form .= '<h1 class="login-title mt mo-bold">'.getLanguageValue("admin_login").'</h1>'."\n";
     $form .= '<form accept-charset="'.CHARSET.'" id="loginform" class="mt" name="loginform" action="'.URL_BASE.ADMIN_DIR_NAME.'/index.php" method="post">'."\n";
     // Username
-    $form .= '<input class="mo-login_input" type="text" id="username" name="username" aria-label="'.getLanguageValue("username").'" placeholder="'.getLanguageValue("username").'" autocomplete="off"'.$enabled_input.' onkeyup="checkform()" required aria-required="true">'."\n";
+    $form .= '<input class="mo-login_input" type="text" id="username" name="username" aria-label="'.getLanguageValue("username").'" placeholder="'.getLanguageValue("username").'" autocomplete="off"'.$enabled_input.' onkeyup="checkform()" required>'."\n";
     // Passwort + Toggle-Button
     $form .= '<div class="form-group flex">'
-        .'<input class="mo-login_input" type="password" id="password" name="password" aria-label="'.getLanguageValue("password").'" placeholder="'.getLanguageValue("password").'" autocomplete="off"'.$enabled_input.' onkeyup="checkform()" required aria-required="true">'
+        .'<input class="mo-login_input" type="password" id="password" name="password" aria-label="'.getLanguageValue("password").'" placeholder="'.getLanguageValue("password").'" autocomplete="off"'.$enabled_input.' onkeyup="checkform()" required>'
         .'<button id="password-toggle" type="button" onclick="togglePassword(event)" aria-label="Password Toggle"></button>'
         .'</div>'."\n";
     // Submit-Button

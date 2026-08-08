@@ -1,4 +1,4 @@
-﻿_dateformat                          = d.m.Y, H:i:s
+_dateformat                          = d/m/Y, H:i:s
 _translator                          = mozilo
 # der Wert ist für date_default_timezone_set()
 _timezone                            = America/Sao_Paulo
@@ -22,6 +22,10 @@ minute                               = Minuto
 minutes                              = Minutos
 second                               = Segundo
 seconds                              = Segundos
+toggle_all                           = Selecionar tudo
+
+files_upload                         = Carregar arquivos
+
 error_chmod                          = As permissões do arquivo não puderam ser alteradas.
 error_mkdir                          = A pasta não pôde ser criada.
 error_no_file_dir                    = A pasta ou arquivo não existe.
@@ -48,6 +52,7 @@ error_file_upload                    = O arquivo não pôde ser carregado.
 error_zip_nozip                      = Este não é um arquivo ZIP.
 error_read_htaccess                  = Erro ao ler .htaccess.
 error_write_htaccess                 = Erro ao escrever .htaccess.
+error_write_sortcatpage              = Erro Não foi possível escrever no SortCatPage.
 error_upload_filetype                = Tipo de arquivo não permitido.
 error_upload_replace                 = Já existe um arquivo com o nome. O arquivo deve ser substituído?
 
@@ -120,6 +125,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Memória usada pelo moziloCMS
 toolbar_platzhalter_EXECUTETIME      = Foi quanto tempo levou o moziloCMS
 toolbar_platzhalter_VALUE            = Valor
 toolbar_platzhalter_DESCRIPTION      = Descrição
+toolbar_editor_color                 = Cor selecionada
 toolbar_editor_linenumber            = Mostrar / Ocultar números de linha
 toolbar_editor_controlcharacter      = Mostrar/Ocultar Caracteres de Controle
 toolbar_editor_highlighter           = Modo de destaque de sintaxe
@@ -140,6 +146,7 @@ filter_text_plugins                  = Plugins
 filter_text_files                    = Arquivos
 filter_text_catpage                  = Categorias
 filter_text_template                 = Modelo
+filter_no_match                      = Sem correspondência
 
 home_button                          = Informação
 home_multiuser                       = Redefinir sistema multiusuário
@@ -160,7 +167,7 @@ home_cmsupdate_text_failed_fopen     = Exame não possível. "allow_url_fopen" e
 home_cmsupdate_unknown_version       = Você está usando uma versão do moziloCMS desconhecida por nós!
 home_cmsupdate_stable_version        = Baixe a versão mais recente do moziloCMS:
 home_phpversion_text                 = Versão PHP instalada
-home_error_phpversion_text           = A versão do PHP é muito antiga para o moziloCMS, pelo menos a 7.x é necessária.
+home_error_phpversion_text           = A versão do PHP é muito antiga para o moziloCMS, pelo menos a 8.1 é necessária.
 home_installpath_text                = Caminho no servidor
 home_help                            = Ajuda e documentação
 home_help_text_docu                  = Documentação detalhada em uma nova janela
@@ -212,8 +219,11 @@ gallery_error_new                    = Erro ao criar galeria (verifique as permi
 gallery_error_newname                = A galeria não pôde ser renomeada (verifique as permissões do arquivo).
 gallery_error_noexists               = Não há nenhuma galeria com este nome.
 gallery_error_subtitle_conf          = Não foi possível criar o arquivo de legenda.
+gallery_error_alt_conf               = Não foi possível criar o arquivo de texto alternativo.
 gallery_help_conf                    = Predefinir configurações de escala
 gallery_image_size                   = Tamanho da imagemtamanho da imagem
+gallery_image_size_width             = Largura
+gallery_image_size_height            = Altura
 gallery_messages_from_ftp            = As seguintes galerias foram convertidas para compatibilidade com CMS.
 gallery_messages_from_ftp_no         = Todas as galerias são compatíveis com CMS.
 gallery_name_new                     = Nova Galeria
@@ -309,7 +319,7 @@ admin_text_backup                    = Depois de quantos dias o moziloCMS deve l
 admin_text_chmodnewfiles             = Defina as permissões de arquivo que o moziloCMS geralmente deve ter no servidor.
 admin_text_get_backup                = Crie uma cópia de backup do site e baixe-a como um arquivo ZIP.<br>O escopo da cópia de backup pode ser determinado ativando os campos de opções individuais.
 admin_text_upload_notice             = <i>Observação: Devido a preocupações de segurança em torno do moziloCMS, recomendamos fortemente não usar as extensões de arquivo (tipo) php, svg, xml!</i>
-admin_text_uploadfilter              = Insira extensões de arquivo adicionais para upload de arquivos aqui.<br> <b>Sem</b> espaços e separados apenas por <b>vírgulas</b>.
+admin_text_uploadfilter              = Insira extensões de arquivo adicionais para upload de arquivos aqui.<br> <b>Sem</b> espaços e separados apenas por <u>vírgulas</u>.
 admin_text_upload_available          = Tipos de arquivo disponíveis por padrão: 
 admin_theme_toggle                   = alternar entre tema claro e escuro
 admin_user_greeting                  = Olá
@@ -319,6 +329,7 @@ admin_edit                           = Editar
 admin_delete                         = Extinguir
 admin_rename                         = Renomear
 admin_new                            = Novo
+admin_open_menu                      = Menu Aberto
 
 admin_user_select_websitetitle       = Barra de título do navegador
 admin_user_select_websitedescription = Descrição do site / Palavras-chave
@@ -383,6 +394,7 @@ plugins_text_fileinfo                = As configurações existentes são mantid
 plugins_button_install               = Instalar
 plugins_button_delete                = Excluir todos os plugins selecionados
 plugins_select                       = ou da pasta "plugins"
+plugins_checkbox_toggle              = Ativação/desativação da caixa de seleção
 
 template_button                      = Modelo
 template_title_grafiken              = Gráficos
@@ -414,7 +426,7 @@ install_help_title                   = Bem-vindo à caixa de diálogo de instala
 install_help                         = <p>As próximas etapas testarão se o servidor web ou o pacote de hospedagem web atende aos requisitos do moziloCMS. Além disso, são feitas predefinições básicas. Todas as configurações podem ser alteradas posteriormente na área de administração a qualquer momento.</p><p>Se você tiver problemas com "permissões de arquivo" ou "URLs legais", há <a href="https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank">nesta postagem do fórum</a> você provavelmente encontrará a ajuda que precisa. Caso contrário, basta perguntar.</p><p><b>O programa de instalação também é necessário se:</b></p><ul><li>Você esqueceu sua senha ou</li><li>o O moziloCMS do computador foi copiado para o servidor web ou</li><li>os dados precisam ser atualizados de uma versão antiga do moziloCMS.</li></ul><p><b>ATENÇÃO!</b></p><p>O "<b>install.php</b>" e se presente o "<b>update.php</b>" assim como a pasta "<b>update</b>" devem ser excluídos após o processo de instalação porque representam um grande risco à segurança. Por favor, verifique se este é o caso.</p>
 
 install_help_update_title            = <p><b>Instruções de atualização</b> do <b>moziloCMS 1.12, moziloCMS 2.0</b> para o atual <b>moziloCMS 3.x</b></p>
-install_help_update_text             = <p>Todos os pontos mencionados aqui podem ser executados posteriormente, um após o outro ou todos de uma vez.</p><ul><li>Todas as categorias e seus conteúdos na pasta 2.0/3.x <b> categorias</b> copiar.</li><li>Copie as galerias para a pasta 2.0/3.x <b>galerias</b>.</li><li>Copie os layouts para a pasta 2.0/3.x. x pasta <b>layouts</b> copy.</li><li>Agora crie a pasta <b>update</b> no diretório raiz (por exemplo: moziloCMS/).</li><li> Nesta pasta <b>update</b>, todos os arquivos <b>.conf</b> de <b>.../admin/conf</b> e <b>.../cms/conf</b> e se presente <b> .../formular/formular.conf</b>.</li></ul><p>arquivos de configuração do plugin moziloCMS 1.12 (<b>plugin.conf</b>) para moziloCMS 2.0/3.x</p><p>Requisito:</p><ol><li>O plugin também está disponível para moziloCMS 2.0/3. x </li><li>As configurações são tão complexas que o ajuste manual seria demais.</li><li>Existem as mesmas configurações do plugin antigo</li></ol><p>Instruções: </p><ol><li>Se presente, exclua o <b>plugin.conf.php</b>.</li><li>Do plugin antigo, exclua o <b>plugin.conf</b> no novo plugin.</li></ol>
+install_help_update_text             = <p>Todos os pontos mencionados aqui podem ser executados posteriormente, um após o outro ou todos de uma vez.</p><ul><li>Todas as categorias e seus conteúdos na pasta 3.x <b>kategorien</b> copiar.</li><li>Copie as galerias para a pasta 3.x <b>galerien</b>.</li><li>Copie os layouts para a pasta 3.x. x pasta <b>layouts</b> copy.</li><li>Agora crie a pasta <b>update</b> no diretório raiz (por exemplo: moziloCMS/).</li><li> Nesta pasta <b>update</b>, todos os arquivos <b>.conf</b> de <b>.../admin/conf</b> e <b>.../cms/conf</b> e se presente <b> .../formular/formular.conf</b>.</li></ul><p>arquivos de configuração do plugin moziloCMS 1.12 (<b>plugin.conf</b>) para moziloCMS 3.x</p><p>Requisito:</p><ol><li>O plugin também está disponível para moziloCMS 3. x </li><li>As configurações são tão complexas que o ajuste manual seria demais.</li><li>Existem as mesmas configurações do plugin antigo</li></ol><p>Instruções: </p><ol><li>Se presente, exclua o <b>plugin.conf.php</b>.</li><li>Do plugin antigo, exclua o <b>plugin.conf</b> no novo plugin.</li></ol>
 
 install_help_password                = Acabei de esquecer minha senha e gostaria de definir uma nova.
 install_help_password_button         = Basta alterar a senha.
@@ -427,6 +439,7 @@ install_lang_select                  = Seleção de idioma:
 install_lang_help_title              = Linguagem
 install_lang_help                    = <p>O idioma selecionado é inicialmente aplicado ao site e à área de administração.</p><p>Após a instalação, o idioma do site pode ser alterado na área de administração, na aba "Configurações" e no Aba "Admin", que pode ser alterada na interface de administração.</p>
 install_next                         = Avançar
+install_back                         = Voltar
 
 install_chmod_help_title             = Direitos de arquivo e acesso
 install_chmod_help                   = <p>É feita uma tentativa de determinar e definir as permissões de arquivo do servidor que são necessárias para o funcionamento adequado do moziloCMS. Se isso não funcionar completamente, eles podem ser definidos posteriormente na área de administração, na guia "Admin".</p><p>Se o servidor impedir que o moziloCMS crie arquivos, as permissões de arquivo necessárias devem primeiro ser definidas via FTP , com o comando chmod deve ser definido antes que a instalação possa continuar.</p>

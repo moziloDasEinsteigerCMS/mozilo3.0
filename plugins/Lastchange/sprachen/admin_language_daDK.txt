@@ -1,11 +1,13 @@
-
 config_lastchange_plugin_name                  = Lastchange
-config_lastchange_plugin_desc                  = Viser den sidste ændring.<br><br><span style="font-weight:bold;">Brug:</span><br>{Sidste ændring} udskriver noget i retning af: "Sidste ændring: Velkommen (23.10.2020, 9:07:20)"<br>{Sidste ændring|tekst} udskriver noget i retning af: "Sidste ændring"<br>{Sidste ændring|side} udskriver noget i retning af: "Velkommen"<br>{Sidste ændring|sidelink} udskriver noget i retning af: "Velkommen" (med et link til indholdssiden)<br>{Sidste ændring|dato} udskriver noget i retning af: "(23.10.2020, 9:07:20)"<br><br><span style="font-weight:bold;">Konfiguration:</span><br>Pluginnet henter teksten "Sidste ændring" og datoformatet fra CMS-sprogfilen; du kan også selv angive begge dele. Datoformatet er baseret på PHP date()-funktionen.
-config_lastchange_plugin_lastchange            = Sidste ændring med link og dato
-config_lastchange_plugin_text                  = Tekst til sidste ændring:
-config_lastchange_plugin_page                  = Navn på den sidst ændrede indholdsside
-config_lastchange_plugin_pagelink              = Link til den sidst ændrede indholdsside
-config_lastchange_plugin_date                  = Dato for sidste ændring
-config_lastchange_messagetext                  = Brugerdefineret tekst til sidste ændring:
+config_lastchange_plugin_desc = Viser den seneste ændring.<br><br><span style="font-weight:bold;">Brug:</span><br>{Lastchange} viser f.eks.: "Seneste ændring: Velkommen (23.10.2020)"<br>{Lastchange|text} viser f.eks.: "Seneste ændring"<br>{Lastchange|page} viser f.eks.: "Velkommen"<br>{Lastchange|pagelink} viser f.eks.: "Velkommen" (med link til indholdssiden)<br>{Lastchange|date} viser f.eks.: "23.10.2020"<br><br><span style="font-weight:bold;">Konfiguration:</span><br>Tekst og datoformat kan indstilles individuelt.<br>Datoformatet er baseret på PHP-funktionen <code>date()</code>.<br><br><span style="font-weight:bold;">Eksempler på datoformater:</span><br><code>d.m.Y</code> → 23.10.2020<br><code>d.m.Y H:i</code> → 23.10.2020 09:07<br><code>d.m.Y H:i:s</code> → 23.10.2020 09:07:20<br><code>Y-m-d</code> → 2020-10-23<br><code>d. F Y</code> → 23. oktober 2020<br><br>Indstillingen „Vis klokkeslæt” bestemmer, om tidsoplysninger vises.
+
+config_lastchange_plugin_lastchange            = Seneste ændring med link og dato
+config_lastchange_plugin_text                  = Tekst „Seneste ændring”
+config_lastchange_plugin_page                  = Navn på den senest ændrede indholdsside
+config_lastchange_plugin_pagelink              = Link til den senest ændrede indholdsside
+config_lastchange_plugin_date                  = Dato for den seneste ændring
+
+config_lastchange_messagetext                  = Brugerdefineret tekst for „Seneste ændring”:
 config_lastchange_date                         = Brugerdefineret datoformat:
-config_lastchange_showhiddenpagesinlastchanged = Skal der medtages skjulte indholdssider?
+config_lastchange_showhiddenpagesinlastchanged = Medtage skjulte indholdssider?
+config_lastchange_showtime                     = Vis klokkeslæt

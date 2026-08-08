@@ -54,7 +54,7 @@ class Contact extends Plugin {
             
                $return = '<div class="contact_form">';
                if ($this->settings->get("contact_details") == "true") {
-              	$return .= '<h3 class="heading3">'.$lang_contact->getLanguageValue("contactdetails_heading").'</h3>';
+              	$return .= '<div class="heading3">'.$lang_contact->getLanguageValue("contactdetails_heading").'</div>';
               	$return .= '<div class="contact_details" itemscope="" itemtype="https://schema.org/';
               	if($this->settings->get("contact_details_scheme") == "person") {
               	$return .= 'Person';              
@@ -95,7 +95,7 @@ class Contact extends Plugin {
                
                               
                if ($this->settings->get("contact_social") == "true") {
-              	$return .= '<h3 class="heading3">'.$lang_contact->getLanguageValue("contactsocial_heading").'</h3>';
+              	$return .= '<div class="heading3">'.$lang_contact->getLanguageValue("contactsocial_heading").'</div>';
               	$return .= '<div class="contact_social">';
               	if ($this->settings->get("contact_social_fb_show") == "true") {
                	$return .= '<div><a href="'.$this->settings->get("contact_social_fb").'" aria-label="Facebook Link" title= "Facebook" target="_blank">Facebook</a></div>';
@@ -122,7 +122,7 @@ class Contact extends Plugin {
 
         require_once($dir."func_contact.php");
         
-     	  $return .= '<h3 class="heading3">'.$lang_contact->getLanguageValue("contactform_heading").'</h3>';
+     	  $return .= '<div class="heading3">'.$lang_contact->getLanguageValue("contactform_heading").'</div>';
         $return .= buildContactForm($this->settings);
         
         /* security hotfix 2017-06-14 */
@@ -637,7 +637,7 @@ class Contact extends Plugin {
             // Plugin-Name + Version
             "Version: 3.0.1",
             // moziloCMS-Version
-            "2.0 / 3.0",
+            "3.0",
             // Kurzbeschreibung nur <span> und <br /> sind erlaubt
             $lang_contact_admin->get("config_help_contact"),
             // Name des Autors

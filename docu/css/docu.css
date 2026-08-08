@@ -253,6 +253,7 @@ content: "";
 #do-box .do-box p, #do-box .do-box ul {
 margin: 0;
   padding-left: 23px;
+  color: #333
 }
 
 #do-box .do-link-box {
@@ -413,7 +414,7 @@ padding: var(--main-padding);
 }
 
 .do-tab-label.active {
-background-color: var(--main-color);
+background-color: var(--content-blockColor);
   color: #fff;
 }
 

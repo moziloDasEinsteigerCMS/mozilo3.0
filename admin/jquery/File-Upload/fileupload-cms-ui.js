@@ -1,3 +1,23 @@
+var resizeQueue = [];
+var resizeRunning = false;
+
+function startResizeQueue(fileuploadInstance) {
+    if (resizeRunning) return;
+    var item = resizeQueue.shift();
+    if (!item) return;
+
+    resizeRunning = true;
+
+    fileuploadInstance._trigger('resize_all_new', item.e, {
+        context: item.template,
+        url: item.url,
+        type: 'POST',
+        isValidated: true,
+        dataType: fileuploadInstance.options.dataType
+    });
+}
+
+
 var parentWidget = ($.blueimpIP || $.blueimp).fileupload;
 $.widget('blueimpUI.fileupload', $.blueimpUI.fileupload, {
 //$.widget('blueimpUI.fileupload', parentWidget, {
@@ -16,7 +36,7 @@ $.widget('blueimpUI.fileupload', $.blueimpUI.fileupload, {
                     data.isAdjusted = true;
                     data.files.valid = data.isValidated = that._validate(files);
                     data.context = that._renderUpload(files)
-                        .appendTo(options.filesContainer)
+                        .prependTo(options.filesContainer)
                         .data('data', data);
 //$("#out").html($("#out").html()+"<br>files="+$(data.context).html());
 if(options.prev_img === true) {
@@ -164,11 +184,14 @@ that._changeFilesCount();
                             context.addClass('ui-state-error');
                             context.find('.error').html('Error: '+textStatus+', '+errorThrown);
                         })
-                        .complete(function() {
-//$("#out").html($("#out").html() + "<br>complete=");
-                            context.addClass('in').removeClass('ui-state-disabled');
-                            context.find('.delete input').removeClass('disabled').prop('checked', false);
-                        });
+                        .complete(function () {
+							context.addClass('in').removeClass('ui-state-disabled');
+							context.find('.delete input').removeClass('disabled').prop('checked', false);
+
+							resizeRunning = false;
+							startResizeQueue(that);
+});
+
                 }
             }
     },
@@ -295,26 +318,28 @@ if(template.hasClass('name-twice')) {
             }
         },
 
-        _resizeImgHandler: function (e) {
-            e.preventDefault();
-            var button = $(this),
-                template = button.closest('.template-download');
-            if(template.hasClass('ui-state-disabled')) return;
-//$("#out").html($("#out").html()+"<br />_resizeImgHandler");
-                template.addClass('ui-state-disabled').removeClass('in');
-                template.find('.delete input').addClass('disabled');
+		_resizeImgHandler: function (e) {
+			e.preventDefault();
+			var button   = $(this),
+			template = button.closest('.template-download'),
+			fu       = e.data.fileupload;
 
-            e.data.fileupload._trigger('resize_all_new', e, {
-                context: template,
-                url: 'index.php?file='+template.find('.name').text()+'&'+button.closest('.fileupload').serialize()+'&resize=true',
-                type: 'POST',
-                isValidated: true,
-                dataType: e.data.fileupload.options.dataType
-            });
+			if (template.hasClass('ui-state-disabled')) return;
 
+				template.addClass('ui-state-disabled').removeClass('in');
+				template.find('.delete input').addClass('disabled');
 
-//  .siblings('.resize').click();
-        },
+			resizeQueue.push({
+				e: e,
+				template: template,
+				url: 'index.php?file=' + template.find('.name').text() +
+				'&' + button.closest('.fileupload').serialize() +
+				'&resize=true'
+		});
+
+		startResizeQueue(fu);
+},
+
 
         _initButtonBarEventHandlers: function () {
 //$("#out").html($("#out").html()+"<br />_initButtonBarEventHandlers");
@@ -356,7 +381,7 @@ if(template.hasClass('name-twice')) {
                     e.preventDefault();
 //$("#out").html($("#out").html()+"<br />resize");
                     filesList.find('.delete input:checked')
-                        .siblings('.resize').click();
+                        .closest('.template-download').find('.resize').trigger('click');  //.siblings('.resize').click();
                     fileUploadButtonBar.find('.toggle')
                         .prop('checked', false);
                 });

@@ -1,11 +1,13 @@
-
 config_lastchange_plugin_name                  = Lastchange
-config_lastchange_plugin_desc                  = Geeft de laatste wijziging weer.<br><br><span style="font-weight:bold;">Gebruik:</span><br>{Lastchange} geeft iets weer als: "Laatste wijziging: Welkom (23.10.2020, 09:07:20)"<br>{Lastchange|text} geeft iets weer als: "Laatste wijziging"<br>{Lastchange|page} geeft iets weer als: "Welkom"<br>{Lastchange|pagelink} geeft iets weer als: "Welkom" (met een link naar de inhoudspagina)<br>{Lastchange|date} geeft iets weer als: "(23.10.2020, 09:07:20)"<br><br><span style="font-weight:bold;">Configuratie:</span><br>De plugin haalt de tekst "Laatste change" en de datumnotatie uit het CMS-taalbestand; u kunt beide ook zelf opgeven. De datumnotatie is gebaseerd op de PHP date()-functie.
+config_lastchange_plugin_desc = Toont de laatste wijziging.<br><br><span style="font-weight:bold;">Gebruik:</span><br>{Lastchange} toont bijvoorbeeld: "Laatste wijziging: Welkom (23.10.2020)"<br>{Lastchange|text} toont bijvoorbeeld: "Laatste wijziging"<br>{Lastchange|page} toont bijvoorbeeld: "Welkom"<br>{Lastchange|pagelink} toont bijvoorbeeld: "Welkom" (met link naar de inhoudspagina)<br>{Lastchange|date} toont bijvoorbeeld: "23.10.2020"<br><br><span style="font-weight:bold;">Configuratie:</span><br>Tekst en datumformaat kunnen hier individueel worden ingesteld.<br>Het datumformaat is gebaseerd op de PHP-functie <code>date()</code>.<br><br><span style="font-weight:bold;">Voorbeelden van datumformaten:</span><br><code>d.m.Y</code> → 23.10.2020<br><code>d.m.Y H:i</code> → 23.10.2020 09:07<br><code>d.m.Y H:i:s</code> → 23.10.2020 09:07:20<br><code>Y-m-d</code> → 2020-10-23<br><code>d. F Y</code> → 23. oktober 2020<br><br>De optie „Tijd weergeven” bepaalt of tijdsgegevens worden weergegeven.
+
 config_lastchange_plugin_lastchange            = Laatste wijziging met link en datum
-config_lastchange_plugin_text                  = Tekst laatste wijziging:
-config_lastchange_plugin_page                  = Naam van de laatst gewijzigde contentpagina
-config_lastchange_plugin_pagelink              = Link naar de laatst gewijzigde contentpagina
-config_lastchange_plugin_date                  = Datum laatste wijziging
-config_lastchange_messagetext                  = Aangepaste tekst voor laatste wijziging:
-config_lastchange_date                         = Aangepaste datumnotatie:
-config_lastchange_showhiddenpagesinlastchanged = Verborgen contentpagina's opnemen?
+config_lastchange_plugin_text                  = Tekst „Laatste wijziging”
+config_lastchange_plugin_page                  = Naam van de laatst gewijzigde inhoudspagina
+config_lastchange_plugin_pagelink              = Link naar de laatst gewijzigde inhoudspagina
+config_lastchange_plugin_date                  = Datum van de laatste wijziging
+
+config_lastchange_messagetext                  = Eigen tekst voor „Laatste wijziging”:
+config_lastchange_date                         = Eigen datumformaat:
+config_lastchange_showhiddenpagesinlastchanged = Verborgen inhoudspagina’s meenemen?
+config_lastchange_showtime                     = Tijd weergeven

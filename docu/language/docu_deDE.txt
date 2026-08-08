@@ -225,7 +225,7 @@ do_catpage_text_0              = Mit Mausklick auf den entsprechenden Admin-Tab 
 do_catpage_text_1              = Um Inhaltsseiten anlegen zu können muss zuerst eine <b>Kategorie</b> angeglegt werden. Kategorien sind mit den Kapiteln in einem Buch vergleichbar. <br /> Kategorien und Inhaltsseiten können sowohl lokal angelegt werden, als auch als reine Links, die zu externen Webseiten führen. <br /> Nach der Installation von moziloCMS ist als Beispiel die Kategorie "Willkommen", mit drei Inhaltsseiten, bereits angelegt.
 do_catpage_text_2              = Im Menü die "<b>Kategorie-Schiebefläche</b>" greifen, mit gedrückter linker Maustaste in den Arbeitsbereich ziehen und über dem dann erscheinenden Platzhalter <b class="do-arrow-point">2</b>loslassen.
 do_catpage_text_3_1            = Nach Klick auf das <b>Umbenennen</b> Icon
-do_catpage_text_3_2            = (oder Doppelklick auf "Kategorie") wird das Eingabefeld für den Kategorienamen aktiv. <br /> Gewünschten Kategorienamen eingeben und <u>mit <b>Enter-Taste</b></u>, oder erneuten Klick auf das <b>Umbenennen</b> Icon, abschließen.
+do_catpage_text_3_2            = (oder Doppelklick auf "Kategorie") wird das Eingabefeld für den Kategorienamen aktiv. <br /> Gewünschten Kategorienamen eingeben und mit <b>Enter-Taste</b>, oder erneuten Klick auf das <b>Umbenennen</b> Icon, abschließen.
 do_catpage_text_4              = Kategorien werden im Menü <b>nicht</b> angezeigt, wenn sie noch keine Inhaltsseiten haben, oder die Inhaltsseiten den Status "<b>versteckt</b>" haben.
 do_catpage_text_5              = Eine <b>Link-Kategorie</b> ist eine Kategorie, unter der keine eigenen Inhaltsseiten liegen, sondern deren Aufruf zu einer anderen Website weiterleitet.
 do_catpage_text_6              = Feld für die externe <b>Link-Adresse</b>.
@@ -237,7 +237,7 @@ do_catpage_text_9_1            = Zum Festlegen der <b>Position im Webseiten-Men�
 do_catpage_text_9_2            = anfassen und nach oben oder unten verschieben.
 do_catpage_text_10_1           = Mauszeiger auf den Kategorie-Balken führen und auf den Papierkorb
 do_catpage_text_10_2           = klicken.
-do_catpage_text_11             = Es werden <b><u>alle</u></b> darin enthaltenen <b>Inhaltsseiten</b> und <b>Dateien</b> ebenfalls gelöscht.
+do_catpage_text_11             = Es werden <b>alle</b> darin enthaltenen <b>Inhaltsseiten</b> und <b>Dateien</b> ebenfalls gelöscht.
 do_catpage_text_12             = Im Menü die "<b>Inhaltsseite-Schiebefläche</b>" greifen, mit gedrückter linker Maustaste in den Arbeitsbereich der gewünschten Kategorie ziehen und über dem dann erscheinenden Platzhalter loslassen.
 do_catpage_text_13_1           = Bei Klick auf das <b>Bearbeiten</b> Icon
 do_catpage_text_13_2           = (oder Doppelklick auf "Inhaltsseite") werden das Feld für den <b>Seitennamen</b> und die <b>Status-Einstellung</b> aktiv.
@@ -245,8 +245,8 @@ do_catpage_text_14_1           = Seite wird im Menü angezeigt.
 do_catpage_text_14_2           = Seite wird im Menü <b>nicht</b> angezeigt, kann aber <b>per Link</b> aufgerufen werden.
 do_catpage_text_14_3           = Seite wird im Menü nicht angezeigt und ist auch nicht aufrufbar. Sie kann nur im Admin-Bereich bearbeitet werden.
 do_catpage_text_15_1           = Nach Eingabe des gewünschten Seitennnamens und Auswahl des Status, den Vorgang durch erneuten Klick auf den Icon
-do_catpage_text_15_2           = oder <u>mit der <b>Enter-Taste</b> abschließen</u>.
-do_catpage_text_16             = Zum korrekten Abschließen (Speichern) des Vorgangs per <b>Enter-Taste</b>, <u>muss</u> sich der <b>Schreib-Cursor im Textfeld</b> befinden! <br /> Betätigen der <b>Escape-Taste</b> (Esc), während sich der Schreib-Cursor im Textfeld befindet, macht alle Änderungen rückgängig.
+do_catpage_text_15_2           = oder mit der <b>Enter-Taste</b> abschließen.
+do_catpage_text_16             = Zum korrekten Abschließen (Speichern) des Vorgangs per <b>Enter-Taste</b>, muss sich der <b>Schreib-Cursor im Textfeld</b> befinden! <br /> Betätigen der <b>Escape-Taste</b> (Esc), während sich der Schreib-Cursor im Textfeld befindet, macht alle Änderungen rückgängig.
 do_catpage_text_17             = Eine <b>Link-Inhaltsseite</b> ist eine Inhaltsseite, deren Aufruf zu einer anderen Webseite weiterleitet.
 do_catpage_text_18_1           = Nach Klick auf das <b>Edit-Icon</b>
 do_catpage_text_18_2           = öffnet sich der Seiten-Editor. Dort werden die Inhaltsseiten mit <b>Texten</b>, <b>Bildern</b>, <b>Links</b>, etc. gefüllt.
@@ -263,7 +263,7 @@ do_catpage_text_26             = Klick auf den Button blendet alle Inhaltsseiten
 
 do_config_text_0               = Mit Mausklick auf den entsprechenden Admin-Tab den Arbeitsbereich <span class="mo-icon-text-right mo-tabs-icon mo-tab-config"></span><b>Einstellungen</b> aufrufen.
 do_config_text_1               = In diesem Bereich können verschiedene Grundeinstellungen und Vorgaben für die Website ausgewählt werden.
-do_config_text_2               = Eingaben in Textfeldern <u>müssen</u> durch drücken der <b>Enter-Taste</b> gespeichert werden.
+do_config_text_2               = Eingaben in Textfeldern müssen durch drücken der <b>Enter-Taste</b> gespeichert werden.
 do_config_text_3               = Name der Website. Was hier steht erscheint auch in der Kopfleiste des Admin-Bereiches.
 do_config_text_4               = Mit diesem Zeichen werden die einzelnen Anzeige-Elemente in der Titelleiste des Browsers voneinander getrennt.
 do_config_text_5               = Hier wird zusammengestellt, was in der Titelleiste des Browsers angezeigt wird.
@@ -302,7 +302,7 @@ do_config_text_34_2            = ziehen und danach Speichern
 do_config_text_35              = Hier kann ausgewählt werden, wo Inhaltsseiten mit dem Attribut "normal" trotzdem angezeigt werden sollen.
 do_config_text_36              = Hier kann ausgewählt werden, ob externe Links oder Datei-Downloads im aktuellen, oder in einem neuen Browserfenster geöffnet werden sollen.
 do_config_text_37              = Hier wird eingestellt ob Inhaltsseiten, mit gleichem Namen wie die Kategorie in der sie sich befinden, im Detailmenü ausgeblendet werden. <br /> Diese Einstellung ist für die erste Seite einer Kategorie gedacht. Da diese ja bereits durch Klick auf die Kategorie aufgerufen wird, muss sie nicht noch einmal im Detailmenü erscheinen.
-do_config_text_38              = Ist eine namensgleiche Seite <u>nicht</u> die erste Seite der Kategorie, wird sie durch die Aktivierung dieser Funktion unsichtbar.
+do_config_text_38              = Ist eine namensgleiche Seite nicht die erste Seite der Kategorie, wird sie durch die Aktivierung dieser Funktion unsichtbar.
 do_config_text_39              = Checkbox zur Aktivierung von "mod_rewrite". <br /> Diese Serverfunktion wandelt die oft sehr kryptisch zusammengesetzten Seitenaufrufe in schönere, leichter lesbare und damit einprägsamere Links um. <br /> Ein Link der normalerweise <b><i>"www.domain.de?cat=Willkommen&amp;page=Kontakt"</i></b> lautet, wird dadurch zu <b><i>"www.domain.de/Willkommen/Kontakt.html"</i></b>.
 do_config_text_40              = Checkbox zur Aktivierung von Tooltips. <br /> Tooltips sind kleine Pop-up-Fenster, die eine kurze Beschreibung oder Info anzeigen, wenn der Mauszeiger über einen Link gehalten wird.
 do_config_text_41              = Einfach den Mauszeiger hier drüber halten
@@ -554,7 +554,7 @@ do_files_text_15               = Der moziloCMS-Dateimanager kann Bilddateien (.j
 do_files_text_16               = Um die Vorschau zu öffnen einfach auf das kleine Symbol links neben dem Dateinamen klicken.
 do_files_text_17               = Um die Vorschau wieder zu schließen, im Vorschaufenster rechts oben auf das "Schließen" Symbol <span class="ui-icon ui-icon-closethick" style="background: var(--main-font-color)"></span> klicken.
 do_files_text_18               = Die Vorschau funktioniert erst, wenn die entsprechende Datei bereits hochgeladen ist.
-do_files_text_19               = Durch Doppelklick auf einen Dateinamen öffnet sich das entsprechende Textfeld. Hier den neuen Dateinamen eingeben und <u>mit <b>Enter-Taste</b> abschließen</u>.
+do_files_text_19               = Durch Doppelklick auf einen Dateinamen öffnet sich das entsprechende Textfeld. Hier den neuen Dateinamen eingeben und mit <b>Enter-Taste</b> abschließen.
 do_files_text_20               = <b><u>Auf keinen Fall</u></b> die Dateinamen-Erweiterung (z. B.: .jpg, .txt oder .zip) ändern, da das System die Datei dann nicht mehr erkennt!
 do_files_text_21               = Sollte es den neuen Dateinamen bereits in diesem Ordner geben, erscheint eine Fehlermeldung. <br /><b>Zurück zum alten Namen:</b> Nach Schließen der Fehlermeldung den Schreib-Cursor wieder in das Textfeld setzen und "ESC"-Taste drücken.
 do_files_text_22_1             = Gewünschte Datei einfach durch Klick auf den Papierkorb in der Dateileiste

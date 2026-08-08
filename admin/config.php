@@ -150,8 +150,14 @@ function config() {
             $error[$titel][] = getLanguageValue("config_error_layouts_emty");
         } else
             $error[$titel][] = false;
-        $conf_select .= '<div class="mo-select-div flex mt"><select name="draftlayout" class="mo-select flex-100">';
-        $conf_select .= '<option value="false">'.getLanguageValue("config_input_draftlayout").'</option>';
+        $conf_select  = '<div class="mo-select-div flex mt">';
+$conf_select .= '<label for="draftlayout" class="mo-label sr-only">'
+             .  getLanguageValue("config_input_draftlayout")
+             .  '</label>';
+
+$conf_select .= '<select id="draftlayout" name="draftlayout" class="mo-select flex-100">';
+$conf_select .= '<option value="false">'.getLanguageValue("config_input_draftlayout").'</option>';
+
         foreach ($tmp_array as $file) {
             $selected = NULL;
             if ($file == $CMS_CONF->get("draftlayout")) {

@@ -54,7 +54,7 @@ $.widget('blueimpUI.fileupload', $.blueimpUI.fileupload, {
         $.each(o.files, function (index, file) {
 
             var row = $('<div class="template-download fadeIn file-item ui-widget ui-widget-content ui-corner-all card flex">' +
-			'<fieldset style="border:none; width:100%;"><legend class="sr-only">'+mozilo_lang["template_title_editor"]+' '+mozilo_lang["images"]+' / '+mozilo_lang["admin_delete"]+'<\/legend>' +
+//			'<fieldset style="border:none; width:100%;"><legend class="sr-only">'+mozilo_lang["template_title_editor"]+' '+mozilo_lang["images"]+' / '+mozilo_lang["admin_delete"]+'<\/legend>' +
                 '<div class="flex-100 flex">' +
 					'<div class="error">' +
                     '<\/div>' +
@@ -69,7 +69,9 @@ $.widget('blueimpUI.fileupload', $.blueimpUI.fileupload, {
 						'<div class="delete flex flex-100">' +
                         '<span class="fu-img-button resize mo-icons-icon mo-icons-img-scale" title="'+mozilo_lang["gallery_scale_thumbs"]+'"><\/span>'+
                         '<button class="fu-img-button mo-icons-icon mo-icons-delete" title="'+mozilo_lang["admin_delete"]+'"><span class="sr-only">'+mozilo_lang["file"]+' '+mozilo_lang["admin_delete"]+'<\/span><\/button>'+
+                        '<fieldset style="border:none"><legend class="sr-only">'+mozilo_lang["template_title_editor"]+' '+mozilo_lang["images"]+' / '+mozilo_lang["admin_delete"]+'<\/legend>' +
                         '<label for=""><span class="sr-only"> '+mozilo_lang["plugins_checkbox_toggle"]+'<\/span><input id="" type="checkbox" name="delete" value="1" \/><\/label>'+
+'<\/fieldset>'+
 						'<\/div>'+
 					'<\/div>'+
                         
@@ -89,7 +91,7 @@ $.widget('blueimpUI.fileupload', $.blueimpUI.fileupload, {
                         '<span class="name"><span class="fu-rename-file"><\/span><\/span>' +
                     '<\/div>' +
                 '<\/div>' +
-			'<\/fieldset>'+
+	//		'<\/fieldset>'+
             '<\/div>');
 
             if(file.pixel_w && file.pixel_h) {

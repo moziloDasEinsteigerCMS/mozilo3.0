@@ -94,7 +94,7 @@ function get_HtmlHead() {
 
     $cssMinifier = new cssMinifier();
 
-    $dialog_jslang = array("close","yes","no","button_cancel","button_save","button_preview","page_reload","page_edit_discard","page_cancel_reload","dialog_title_send","dialog_title_error","dialog_title_messages","dialog_title_save_beforeclose","dialog_title_delete","dialog_title_lastbackup","dialog_title_docu","login_titel_dialog","error_name_no_freename","error_save_beforeclose","dialog_title_coloredit","error_exists_file_dir","error_datei_file_name","error_zip_nozip","filter_button_all_hide","filter_button_all_show","filter_text","filter_text_gallery","filter_text_plugins","filter_text_files","filter_text_catpage","filter_text_template","config_error_modrewrite","template_title_editor","gallery_text_subtitle", "gallery_text_alt","pixels","admin_delete","error_upload_filetype","error_upload_replace","plugins_checkbox_toggle","file","filter_no_match");
+    $dialog_jslang = array("close","yes","no","button_cancel","button_save","button_preview","page_reload","page_edit_discard","page_cancel_reload","dialog_title_send","dialog_title_error","dialog_title_messages","dialog_title_save_beforeclose","dialog_title_delete","dialog_title_lastbackup","dialog_title_docu","login_titel_dialog","error_name_no_freename","error_save_beforeclose","dialog_title_coloredit","error_exists_file_dir","error_datei_file_name","error_zip_nozip","filter_button_all_hide","filter_button_all_show","filter_text","filter_text_gallery","filter_text_plugins","filter_text_files","filter_text_catpage","filter_text_template","config_error_modrewrite","template_title_editor","gallery_text_subtitle", "gallery_text_alt","pixels","admin_delete","admin_rename","error_upload_filetype","error_upload_replace","plugins_checkbox_toggle","file","filter_no_match");
 
     $home_jslang = array("home_error_test_mail");
 
@@ -127,7 +127,7 @@ function get_HtmlHead() {
         .'var URL_BASE = "'.URL_BASE.'";'
         .'var ADMIN_DIR_NAME = "'.ADMIN_DIR_NAME.'";'
         .'var ICON_URL = "'.ICON_URL.'";'
-        .'var ICON_URL_SLICE = "'.ICON_URL_SLICE.'";'
+  //      .'var ICON_URL_SLICE = "'.ICON_URL_SLICE.'";'
         .'var usecmssyntax = "'.$CMS_CONF->get("usecmssyntax").'";'
         .'var modrewrite = "'.$CMS_CONF->get("modrewrite").'";'
         .'var defaultcolors = "'.$specialchars->rebuildSpecialChars($CMS_CONF->get("defaultcolors"),false,false).'";'
@@ -234,7 +234,7 @@ function get_Head() {
         // Header rechts
         .'<div class="header-right flex">'."\n"
         // Theme Toggle
-        .'<button class="theme-toggle mr" id="theme-toggle" aria-label="'.getLanguageValue("admin_theme_toggle",true).'" aria-pressed="false">
+        .'<button class="theme-toggle mr" id="theme-toggle" aria-label="'.getLanguageValue("admin_theme_toggle").'" aria-pressed="false">
             <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
               <mask class="moon" id="moon-mask">
                 <rect x="0" y="0" width="100%" height="100%" fill="white" />
@@ -270,7 +270,7 @@ function get_Head() {
         </button>'
         .'<ul id="user-menu" class="dropdown-menu slide" role="menu" aria-hidden="true">'
         .'<li class="dropdown-menu-item" role="none"><a role="menuitem" href="../index.php?draft=true" target="_blank" style="color: var(--main-font-color)">'.getLanguageValue("button_preview").'</a></li>'
-        .'<li class="dropdown-menu-item" role="none"><span role="menuitem">'.getHelpMenu().'</span></li>'
+        .'<li class="dropdown-menu-item" role="none"><span>'.getHelpMenu().'</span></li>'
         .'<li class="dropdown-menu-item" role="none"><a role="menuitem" href="index.php?logout=true">'.getLanguageValue("logout_button",true).'</a></li>'
         .'</ul>'
         .'</div>'
@@ -279,7 +279,7 @@ function get_Head() {
         .'</div>'."\n"
         // Mobile menu toggle
         .'<span class="nav-wrapper">
-            <label class="menu-icon" for="menu-btn"><span class="navicon"></span><span class="sr-only">Menü öffnen</span></label>
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span><span class="sr-only">'.getLanguageValue("admin_open_menu").'</span></label>
           </span>'."\n"
     .'</header>'."\n";
 }
@@ -292,7 +292,7 @@ function get_Tabs() {
     if(defined('MULTI_USER') and MULTI_USER)
         $multi_user = "&amp;multi=true";
 
-    echo '<nav class="admin-side" aria-label="Hauptmenü">'."\n"
+    echo '<nav class="admin-side" aria-label="'.getLanguageValue("toolbar_platzhalter_MAINMENU").'">'."\n"
    .'<input class="menu-btn" type="checkbox" id="menu-btn">'
    .'<ul id="js-menu-tabs" class="mo-menu-tabs ui-tabs-nav ui-helper-reset ui-widget-header ui-corner-top nav" role="menubar">';
 

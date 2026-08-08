@@ -172,7 +172,7 @@ function li_table($name,$in_cat_page,$status,$type,$cat_files,$cat_page_link = f
     if($cat_page_link !== false and $type == "cat")
         $head_div_open = '<div class="mo-li-head-tag mo-li-head-tag-no-ul ui-state-active ui-corner-all">';
 
-    $table = $head_div_open.'<div class="js-tools-show-hide mo-tag-height-from-icon flex">';
+    $table = $head_div_open.'<fieldset style="border:none;"><legend class="sr-only">'.getLanguageValue("template_title_editor").' '.getLanguageValue("category").' / '.getLanguageValue("page").'</legend><div class="js-tools-show-hide mo-tag-height-from-icon flex">';
                 if($type == "cat") {
                     $table .= '<div class="js-move-cat">'
                         .'<span class="js-move-me-cat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <line x1="12" y1="20" x2="12" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M12 21L9 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M12 21L15 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M12 4.5L15 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M12 4.5L9 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg></span>'
@@ -211,16 +211,12 @@ function li_table($name,$in_cat_page,$status,$type,$cat_files,$cat_page_link = f
 </span>';
                         }
                         
-                        // elseif($type == EXT_LINK) {
-                          //  $table .= '<img class="js-tools-icon-show-hide mo-tool-icon mo-icon-blank" src="'.ICON_URL_SLICE.'" alt=" ">';
-                            //$table .= '<img class="js-tools-icon-show-hide mo-tool-icon mo-icon-blank" src="'.ICON_URL_SLICE.'" alt=" ">';
-                       // }
                         $table .= '<span class="js-tools-icon-show-hide js-edit-rename"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="ml" height="18" width="18"><title>'.getLanguageValue("admin_rename").'</title> <g> <path fill="none" d="M0 0h24v24H0z"></path> <path fill-rule="nonzero" d="M8.595 12.812a3.51 3.51 0 0 1 0-1.623l-.992-.573 1-1.732.992.573A3.496 3.496 0 0 1 11 8.645V7.5h2v1.145c.532.158 1.012.44 1.405.812l.992-.573 1 1.732-.992.573a3.51 3.51 0 0 1 0 1.622l.992.573-1 1.732-.992-.573a3.496 3.496 0 0 1-1.405.812V16.5h-2v-1.145a3.496 3.496 0 0 1-1.405-.812l-.992.573-1-1.732.992-.572zM12 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992z"></path> </g> </svg>
 </span>'
                         .'<span class="js-tools-icon-show-hide js-edit-delete"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="ml" viewBox="0 0 16 16"><title>'.getLanguageValue("admin_delete").'</title><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> </svg></span>'
                     .'</div>'
                 .'</div>'
-    .'</div>'.$head_div_close;
+    .'</div></fieldset>'.$head_div_close;
     return $table;
 }
 

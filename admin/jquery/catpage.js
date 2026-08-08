@@ -162,13 +162,39 @@ var for_page_sortable_receive = function( event, ui ) {
     }
 };
 
+function initPageSortable() {
+
+    var handleSelector = window.matchMedia("(max-width: 600px)").matches
+        ? ".js-page-name"
+        : ".js-move-me-page";
+
+    var options = $.extend({}, option_page_sortable, {
+        handle: handleSelector
+    });
+
+    // Falls Sortable schon existiert → zerstören
+    if ($(".js-ul-pages").data("ui-sortable")) {
+        $(".js-ul-pages").sortable("destroy");
+    }
+
+    // Neu initialisieren
+    $(".js-ul-pages").sortable(options);
+}
+
+// Initial starten
+$(function() {
+    initPageSortable();
+});
+
+// Bei Fensteränderung neu setzen
+$(window).on("resize", initPageSortable);
 
 var option_page_sortable = {
     scrollSensitivity: 40,
     scrollSpeed: 10,
     distance: 30,
     connectWith: ".js-ul-pages",
-    handle: ".js-move-me-page",
+ //   handle: ".js-move-me-page",
     placeholder: "mo-in-ul-li mo-tag-height-from-icon ui-corner-all ui-state-highlight mo-placeholder mb",
     receive: for_page_sortable_receive,
     start: function(event, ui) {

@@ -18,12 +18,12 @@ unset($name_id);
 if(is_file("sessionClass.php")) {
    require_once("sessionClass.php");
 } else
-    @session_name(SESSION_MO);
+    session_name(SESSION_MO);
 
 session_set_cookie_params(['samesite' => 'Lax']);
 session_start();
 
-if(strtolower(substr("PHP_OS",0,3)) == "win")
+if (strtolower(substr(PHP_OS, 0, 3)) == "win")
     define("USE_CHMOD", false);
 else
     define("USE_CHMOD", true);
@@ -33,10 +33,10 @@ define("DRAFT", true);
 # -1 für debug
 error_reporting(-1);
 // Initial: Fehlerausgabe unterdrücken, um Path-Disclosure-Attacken ins Leere laufen zu lassen
-ini_set("display_errors", 1);
+ini_set("display_errors", 0);
 # ab php > 5.2.0 hat preg_* ein default pcre.backtrack_limit von 100000 zeichen
 # deshalb der versuch mit ini_set
-@ini_set('pcre.backtrack_limit', 1000000);
+ini_set('pcre.backtrack_limit', 1000000);
 
 define("BASE_DIR_ADMIN", BASE_DIR.ADMIN_DIR_NAME."/");
 
@@ -46,7 +46,7 @@ if (is_file(BASE_DIR.CMS_DIR_NAME."/DefaultConfCMS.php")) {
     die("Fatal Error File doesn't exist: "."DefaultConfCMS.php");
 }
 // UTF-8 erzwingen - experimentell!
-@ini_set("default_charset", CHARSET);
+ini_set("default_charset", CHARSET);
 
 #$start_time = get_executTime(false);
 define("START_TIME",get_executTime(false));
@@ -57,7 +57,7 @@ if(function_exists('gzopen') and is_dir(BASE_DIR.BACKUP_DIR_NAME)) {
     while(($entry = readdir($dh)) !== false) {
         if($entry == "." or $entry == "..")
             continue;
-        @unlink(BASE_DIR.BACKUP_DIR_NAME.'/'.$entry);
+        unlink(BASE_DIR.BACKUP_DIR_NAME.'/'.$entry);
     }
     closedir($dh);
 }
@@ -97,12 +97,12 @@ if (isset($_GET['logout'])) {
   }
 }
 
-if(isset($_FILE)) $_FILE = cleanREQUEST($_FILE);
+if (isset($_FILES)) $_FILES = cleanREQUEST($_FILES);
 
 $message = NULL;
 
 define("ICON_URL",URL_BASE.ADMIN_DIR_NAME.'/gfx/');
-define("ICON_URL_SLICE",URL_BASE.ADMIN_DIR_NAME.'/gfx/clear.gif');
+//define("ICON_URL_SLICE",URL_BASE.ADMIN_DIR_NAME.'/gfx/clear.gif');
 
 require_once(BASE_DIR_ADMIN."default_conf.php");
 
@@ -119,7 +119,7 @@ setTimeLocale($LANGUAGE);
 $LOGINCONF = new Properties(BASE_DIR_ADMIN.CONF_DIR_NAME."/logindata.conf.php");
 # Achtung die loginpass darf nur mit php Angelegt werden
 if(is_file(BASE_DIR_ADMIN.CONF_DIR_NAME."/loginpass.conf.php"))
-    @chmod(BASE_DIR_ADMIN.CONF_DIR_NAME."/loginpass.conf.php",0600);
+    chmod(BASE_DIR_ADMIN.CONF_DIR_NAME."/loginpass.conf.php",0600);
 $loginpassword = new Properties(BASE_DIR_ADMIN.CONF_DIR_NAME."/loginpass.conf.php");
 
 // Login ueberpruefen
@@ -175,7 +175,7 @@ if(LOGIN) { #-------------------------------
         }
         $sort_array = var_export($cat_page_sort_array,true);
         if(true != (mo_file_put_contents(SORT_CAT_PAGE,"<?php if(!defined('IS_CMS')) die();\n\$cat_page_sort_array = ".$sort_array.";\n?>")))
-            $message .= returnMessage(false,"Achtung kann SortCatPage nicht Schreiben");
+            $message .= returnMessage(false,getLanguageValue("error_write_sortcatpage"));
     }
 
     require_once(BASE_DIR_CMS.'idna_convert.class.php');
@@ -286,11 +286,11 @@ function get_executTime($start_time) {
 function get_memory() {
     $size = 0;
     if(function_exists('memory_get_usage'))
-        $size = @memory_get_usage();
+        $size = memory_get_usage();
     if(function_exists('memory_get_peak_usage'))
-        $size = @memory_get_peak_usage();
+        $size = memory_get_peak_usage();
     $unit = array('B','KB','MB','GB','TB','PB');
-    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i].' '.getLanguageValue("get_memory");
+    return round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i].' '.getLanguageValue("get_memory");
 }
 
 /*------------------------------

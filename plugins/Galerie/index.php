@@ -540,7 +540,7 @@ if ($this->settings->get("caption") == "true") {
             // Plugin-Name
             "<b>".$lang_gallery_admin->get("config_gallery_plugin_name")."</b> \$Revision: 146 $",
             // CMS-Version
-            "2.0 / 3.0",
+            "3.0",
             // Kurzbeschreibung
             $lang_gallery_admin->get("config_gallery_plugin_desc"),
             // Name des Autors

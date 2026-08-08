@@ -1,11 +1,13 @@
-
 config_lastchange_plugin_name                  = Lastchange
-config_lastchange_plugin_desc                  = Wyświetla ostatnią zmianę.<br><br><span style="font-weight:bold;">Sposób użycia:</span><br>{Lastchange} wyświetla coś takiego: „Ostatnia zmiana: Witamy (23.10.2020, 09:07:20)”<br>{Lastchange|text} wyświetla coś takiego: „Ostatnia zmiana”<br>{Lastchange|page} wyświetla coś takiego: „Witamy”<br>{Lastchange|pagelink} wyświetla coś takiego: „Witamy” (z linkiem do strony z treścią)<br>{Lastchange|date} wyświetla coś takiego: „(23.10.2020, 09:07:20)”<br><br><span style="font-weight:bold;">Konfiguracja:</span><br>Wtyczka pobiera tekst „Ostatnia zmiana” i format daty z pliku językowego CMS; możesz również określić oba te elementy samodzielnie. Format daty jest oparty na funkcji PHP date().
+config_lastchange_plugin_desc = Wyświetla ostatnią zmianę.<br><br><span style="font-weight:bold;">Użycie:</span><br>{Lastchange} wyświetla np.: "Ostatnia zmiana: Witamy (23.10.2020)"<br>{Lastchange|text} wyświetla np.: "Ostatnia zmiana"<br>{Lastchange|page} wyświetla np.: "Witamy"<br>{Lastchange|pagelink} wyświetla np.: "Witamy" (z linkiem do strony treści)<br>{Lastchange|date} wyświetla np.: "23.10.2020"<br><br><span style="font-weight:bold;">Konfiguracja:</span><br>Tekst oraz format daty mogą być ustawione indywidualnie.<br>Format daty opiera się na funkcji PHP <code>date()</code>.<br><br><span style="font-weight:bold;">Przykłady formatów daty:</span><br><code>d.m.Y</code> → 23.10.2020<br><code>d.m.Y H:i</code> → 23.10.2020 09:07<br><code>d.m.Y H:i:s</code> → 23.10.2020 09:07:20<br><code>Y-m-d</code> → 2020-10-23<br><code>d. F Y</code> → 23. października 2020<br><br>Opcja „Pokaż godzinę” określa, czy wyświetlane są informacje o czasie.
+
 config_lastchange_plugin_lastchange            = Ostatnia zmiana z linkiem i datą
-config_lastchange_plugin_text                  = Tekst ostatniej zmiany:
-config_lastchange_plugin_page                  = Nazwa ostatnio zmienionej strony z treścią
-config_lastchange_plugin_pagelink              = Link do ostatnio zmienionej strony z treścią
+config_lastchange_plugin_text                  = Tekst „Ostatnia zmiana”
+config_lastchange_plugin_page                  = Nazwa ostatnio zmienionej strony treści
+config_lastchange_plugin_pagelink              = Link do ostatnio zmienionej strony treści
 config_lastchange_plugin_date                  = Data ostatniej zmiany
-config_lastchange_messagetext                  = Niestandardowy tekst ostatniej zmiany:
-config_lastchange_date                         = Niestandardowy format daty:
-config_lastchange_showhiddenpagesinlastchanged = Czy uwzględnić strony z ukrytą treścią?
+
+config_lastchange_messagetext                  = Własny tekst dla „Ostatnia zmiana”:
+config_lastchange_date                         = Własny format daty:
+config_lastchange_showhiddenpagesinlastchanged = Uwzględnić ukryte strony treści?
+config_lastchange_showtime                     = Pokaż godzinę

@@ -79,19 +79,27 @@ class Breadcrumb extends Plugin {
     }
 
     private function makeListItem(string $url, string $name, int $position): string {
-        return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
-               '<a itemprop="item" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '">' .
-               '<span itemprop="name">' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '</span>' .
-               '</a><meta itemprop="position" content="' . $position . '">' .
-               '</li>';
-    }
+    $name = html_entity_decode($name, ENT_QUOTES, 'UTF-8');
+    $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+
+    return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
+           '<a itemprop="item" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '">' .
+           '<span itemprop="name">' . $name . '</span>' .
+           '</a><meta itemprop="position" content="' . $position . '">' .
+           '</li>';
+}
+
 
     private function makeTextItem(string $name, int $position): string {
-        return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
-               '<span itemprop="name">' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '</span>' .
-               '<meta itemprop="position" content="' . $position . '">' .
-               '</li>';
-    }
+    $name = html_entity_decode($name, ENT_QUOTES, 'UTF-8');
+    $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+
+    return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
+           '<span itemprop="name" aria-current="page">' . $name . '</span>' .
+           '<meta itemprop="position" content="' . $position . '">' .
+           '</li>';
+}
+
 
     function getConfig(): array {
         return [
@@ -116,12 +124,12 @@ class Breadcrumb extends Plugin {
     function getInfo(): array {
         global $ADMIN_CONF;
 
-        $lang = $ADMIN_CONF->get('language') ?? 'de';
+        $lang = $ADMIN_CONF->get('language') ?? 'deDE';
         $this->admin_lang = new Language(PLUGIN_DIR_REL . 'Breadcrumb/sprachen/admin_language_' . $lang . '.txt');
 
         return [
-            'Version 3.1',
-            '2.0 / 3.0',
+            'Version 3.1.1',
+            '3.0',
             $this->admin_lang->getLanguageValue('description'),
             'moziloCMS',
             'https://www.mozilo.de',

@@ -21,6 +21,9 @@
  * Korrektur 2025-06-20:
  * Hinzufügen Attribut alt bei Bildern in der Inhaltsseite (barrierefrei)
  * 
+ * Korrektur 2026-02-17:
+ * canoncial korrigiert für dynamische Seiten (Sitemap, suche)
+ * 
  */
 
 #[AllowDynamicProperties]
@@ -983,36 +986,49 @@ class Syntax {
         		case '{CANONICAL_LINK}':
     global $specialchars, $CMS_CONF;
 
-    // Detect protocol and host
+    // Protokoll und Hostname ermitteln
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
     $host = $_SERVER['HTTP_HOST'];
 
-    // Get subfolder path
+    // Pfad des Skripts ermitteln (Basisverzeichnis)
     $scriptName = $_SERVER['SCRIPT_NAME']; 
     $basePath = rtrim(dirname($scriptName), '/') . '/';
 
-    // Get default category from CMS config
+    // Standard-Kategorie aus der CMS-Konfiguration abrufen
     $defaultCat = $CMS_CONF->get("defaultcat");
 
-    // Determine if current request is the homepage
+    // Überprüfen, ob die aktuelle Seite die Startseite ist
     $isHomepage = (
         CAT_REQUEST === $defaultCat &&
         (PAGE_REQUEST === '' || PAGE_REQUEST === $defaultCat)
     );
 
+    // Die Query-String-Parameter (falls vorhanden) abrufen
+    $queryString = $_SERVER['QUERY_STRING'];
+
     if ($isHomepage) {
+        // Für die Startseite ist die kanonische URL nur das Basisverzeichnis
         $canonicalUrl = $protocol . $host . $basePath;
     } else {
-        // Build full path to the current page
+        // Erstellen des vollständigen Pfads zur aktuellen Seite
         $path = $specialchars->replaceSpecialChars(CAT_REQUEST, true);
         if (defined('PAGE_REQUEST') && PAGE_REQUEST !== '') {
             $path .= '/' . $specialchars->replaceSpecialChars(PAGE_REQUEST, true) . '.html';
         }
-        $canonicalUrl = $protocol . $host . $basePath . ltrim($path, '/');
+
+        // Wenn ein Query-String vorhanden ist, wird dieser zur kanonischen URL hinzugefügt
+        if ($queryString) {
+            $canonicalUrl = $protocol . $host . $basePath . 'index.php?' . $queryString;
+        } else {
+            $canonicalUrl = $protocol . $host . $basePath . ltrim($path, '/');
+        }
     }
 
+    // Ausgabe des kanonischen Link-Tags
     $replace = '<link rel="canonical" href="' . $canonicalUrl . '">';
     break;
+
+
             case '{CHARSET}':
                 $replace = CHARSET;
                 break;

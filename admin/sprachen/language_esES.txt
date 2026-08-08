@@ -1,4 +1,4 @@
-_dateformat                          = d-m-Y, H:i:s
+_dateformat                          = d.m.Y, H:i:s
 _translator                          = Miguel A. Glez. "euato", mozilo
 # der Wert ist für date_default_timezone_set()
 _timezone                            = Europe/Madrid
@@ -52,6 +52,7 @@ error_file_upload                    = Error al subir archivo
 error_zip_nozip                      = El archivo no es un ZIP	
 error_read_htaccess                  = Error al leer el archivo .htaccess
 error_write_htaccess                 = Error al escribir el archivo .htaccess
+error_write_sortcatpage              = Error No se puede escribir SortCatPage.
 error_upload_filetype                = Tipo de archivo no permitido.
 error_upload_replace                 = Ya existe un archivo con el nombre. Se debe reemplazar el archivo?
 
@@ -167,7 +168,7 @@ home_cmsupdate_text_failed_fopen     = Examen no posible. "allow_url_fopen" est�
 home_cmsupdate_unknown_version       = ¡Estás usando una versión de moziloCMS desconocida!
 home_cmsupdate_stable_version        = Descargue la versión actual de moziloCMS:
 home_phpversion_text                 = Versión de PHP instalada
-home_error_phpversion_text           = La versión de PHP es demasiado antigua para moziloCMS, se requiere al menos 7.x.
+home_error_phpversion_text           = La versión de PHP es demasiado antigua para moziloCMS, se requiere al menos 8.1.
 home_installpath_text                = Ruta del servidor donde moziloCMS está instalado
 home_help                            = Ayuda
 home_help_text_docu                  = Documentación detallada -en alemán- (abre en nueva ventana)
@@ -219,6 +220,7 @@ gallery_error_new                    = Error al crear el archivo de configuraci�
 gallery_error_newname                = Error al renombrar la galería. ¡Comprueba los permisos del archivo!
 gallery_error_noexists               = No existe una galería con ese nombre.
 gallery_error_subtitle_conf          = El archivo con los pies de foto no se ha podido crear. 
+gallery_error_alt_conf               = No se pudo crear el archivo de texto alternativo.
 gallery_help_conf                    = Configuración global
 gallery_image_size                   = Tamaño de imagen
 gallery_image_size_width             = Ancho
@@ -262,7 +264,6 @@ config_text_catnamedpages            = ¿Deben ocultarse en el submenú de detal
 config_text_cmslanguage              = Selecciona el idioma por defecto para los textos mostrados en el sitio web <br />(p. ej. mensajes emergentes)
 config_text_cmslayout                = Seleccione la plantilla de diseño del sitio web.
 config_text_defaultcat               = Selecciona la categoría de inicio por defecto del sitio web<br /><i>Se muestra cuando se accede al sitio web por primera vez o si no existe una página</i>
-config_text_defaultcolors            = Selector de color para definir y guardar la paleta de colores predefinida.<br />Arrastrar el cuadro del color seleccionado hasta el rectángulo de la izquierda antes de guardar (se pueden ordenar una vez desplazados)
 config_text_draftmode                = Poner el sitio en "modo mantenimiento": <br /> Sólo la categoría de inicio será mostrada y una plantilla especial del sitio. <br /> Menú para seleccionar la plantilla de "modo mantenimiento"
 config_text_modrewrite               = ¿Habilitar mod_rewrite (módulo del servidor Apache)?<br />Con esto se consiguen URL más legibles y amigables
 config_text_replaceemoticons         = Uso de emoticonos en el editor de contenido
@@ -328,6 +329,7 @@ admin_edit                           = Editar
 admin_delete                         = Extinguir
 admin_rename                         = Rebautizar
 admin_new                            = Nuevo
+admin_open_menu                      = Menú abierto
 
 admin_user_select_websitetitle       = Título barra navegación
 admin_user_select_websitedescription = Descripción / palabras clave del sitio web
@@ -425,7 +427,7 @@ install_help                         = En los siguientes pasos, probaremos si el
 
 install_help_update_title            = <p><b>Instrucciones de actualización</b> de <b>moziloCMS 1.12, moziloCMS 2.0</b> a la versión actual <b>moziloCMS 3.x</b></p>
 
-install_help_update_text             = <p>Todos los pasos enumerados aquí se pueden realizar más tarde, uno tras otro o todos a la vez.</p><ul><li>Copie todas las categorías y su contenido en la carpeta <b>categories</b> de la versión 2.0/3.x.</li><li>Copie las galerías en la carpeta <b>galleries</b> de la versión 2.0/3.x.</li><li>Copie los diseños en la carpeta <b>layouts</b> de la versión 2.0/3.x.</li><li>Ahora cree la carpeta <b>update</b> en el directorio raíz (por ejemplo: moziloCMS/).</li><li>Copie todos los archivos <b>.conf</b> de <b>.../admin/conf</b> y <b>.../cms/conf</b> y, si está disponible, <b>.../formular/formular.conf</b> en esta carpeta <b>update</b>.</li></ul><p>moziloCMS 1.12 Actualización de los archivos de configuración del complemento (<b>plugin.conf</b>) a moziloCMS 2.0/3.x</p><p>Requisito:</p><ol><li>El complemento también está disponible para moziloCMS 2.0/3.x</li><li>La configuración es tan compleja que el ajuste manual sería demasiado complicado.</li><li>La configuración es la misma que en el complemento anterior.</li></ol><p>Instrucciones:</p><ol><li>Elimine el archivo <b>plugin.conf.php</b> si existe.</li><li>Copie el archivo <b>plugin.conf</b> del complemento anterior al nuevo.</li></ol>
+install_help_update_text             = <p>Todos los pasos enumerados aquí se pueden realizar más tarde, uno tras otro o todos a la vez.</p><ul><li>Copie todas las categorías y su contenido en la carpeta <b>kategorien</b> de la versión 3.x.</li><li>Copie las galerías en la carpeta <b>galerien</b> de la versión 3.x.</li><li>Copie los diseños en la carpeta <b>layouts</b> de la versión 3.x.</li><li>Ahora cree la carpeta <b>update</b> en el directorio raíz (por ejemplo: moziloCMS/).</li><li>Copie todos los archivos <b>.conf</b> de <b>.../admin/conf</b> y <b>.../cms/conf</b> y, si está disponible, <b>.../formular/formular.conf</b> en esta carpeta <b>update</b>.</li></ul><p>moziloCMS 1.12 Actualización de los archivos de configuración del complemento (<b>plugin.conf</b>) a moziloCMS 3.x</p><p>Requisito:</p><ol><li>El complemento también está disponible para moziloCMS 3.x</li><li>La configuración es tan compleja que el ajuste manual sería demasiado complicado.</li><li>La configuración es la misma que en el complemento anterior.</li></ol><p>Instrucciones:</p><ol><li>Elimine el archivo <b>plugin.conf.php</b> si existe.</li><li>Copie el archivo <b>plugin.conf</b> del complemento anterior al nuevo.</li></ol>
 
 install_help_password                = Solamente he olvidado mi contraseña y quiero generar otra
 install_help_password_button         = Sólo modificar la contraseña
@@ -438,12 +440,13 @@ install_lang_select                  = Escoge tu idioma
 install_lang_help_title              = Idioma
 install_lang_help                    = <p>Se fijará el idioma tanto para el sitio web como para el área de administración. Puedes modificarlo -en cualquier momento- después de la instalación. <i>Cambia el idioma del sitio web en: "Ajustes" y en "Administración"</i>.</p>
 install_next                         = Siguiente
+install_back                         = Atrás
 
 install_chmod_help_title             = Permisos de archivos y acceso
 install_chmod_help                   = El instalador intentará detectar y fijar los permisos de archivos necesarios para permitir los cambios realizados por moziloCMS y el FTP. <br /> Los permisos pueden no ser detectados correctamente. En ese caso deberás fijarlos en la sección correspondiente de la pestaña "Admin" del área de administración.<br /> Si moziloCMS no es capaz de crear archivos deberás fijar los permisos vía FTP para continuar desde aquí.   
 install_chmod_no_chmod               = No es necesario chmod
 
-install_chmod_testfile_rw            = "Puedes eliminar "<b>{PARAM1}</b>" vía FTP?</b> Actual {PARAM2}"
+install_chmod_testfile_rw            = Puedes <b>eliminar</b> "<b>{PARAM1}</b>" vía FTP? Actual {PARAM2}
 install_chmod_testfile_next_button   = Ampliar los permisos del fichero
 
 install_chmod_use                    = Las siguientes propiedades de archivo fueron fijadas: "<b>{PARAM1}</b>"

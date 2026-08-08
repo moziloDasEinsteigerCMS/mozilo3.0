@@ -1,11 +1,13 @@
-
 config_lastchange_plugin_name                  = Lastchange
-config_lastchange_plugin_desc                  = Displays the last change.<br><br><span style="font-weight:bold;">Usage:</span><br>{Lastchange} prints something like: "Last change: Welcome (23.10.2020, 9:07:20)"<br>{Lastchange|text} prints something like: "Last change"<br>{Lastchange|page} prints something like: "Welcome"<br>{Lastchange|pagelink} prints something like: "Welcome" (with a link to the content page)<br>{Lastchange|date} prints something like: "(23.10.2020, 9:07:20)"<br><br><span style="font-weight:bold;">Configuration:</span><br>The plugin retrieves the text "Last change" and the Date format from the CMS language file; you can also specify both yourself. The date format is based on the PHP date() function.
-config_lastchange_plugin_lastchange            = Last change with link and date
-config_lastchange_plugin_text                  = Last change text:
-config_lastchange_plugin_page                  = Name of the last changed content page
-config_lastchange_plugin_pagelink              = Link to the last changed content page
-config_lastchange_plugin_date                  = Date of last change
-config_lastchange_messagetext                  = Custom text for last change:
+config_lastchange_plugin_desc = Displays the last modification.<br><br><span style="font-weight:bold;">Usage:</span><br>{Lastchange} displays for example: "Last modification: Welcome (23.10.2020)"<br>{Lastchange|text} displays for example: "Last modification"<br>{Lastchange|page} displays for example: "Welcome"<br>{Lastchange|pagelink} displays for example: "Welcome" (with link to the content page)<br>{Lastchange|date} displays for example: "23.10.2020"<br><br><span style="font-weight:bold;">Configuration:</span><br>Text and date format can be defined individually.<br>The date format is based on the PHP function <code>date()</code>.<br><br><span style="font-weight:bold;">Examples of date formats:</span><br><code>d.m.Y</code> → 23.10.2020<br><code>d.m.Y H:i</code> → 23.10.2020 09:07<br><code>d.m.Y H:i:s</code> → 23.10.2020 09:07:20<br><code>Y-m-d</code> → 2020-10-23<br><code>d. F Y</code> → 23. October 2020<br><br>The option “Show time” controls whether time information is displayed.
+
+config_lastchange_plugin_lastchange            = Last modification with link and date
+config_lastchange_plugin_text                  = Text “Last modification”
+config_lastchange_plugin_page                  = Name of the last modified content page
+config_lastchange_plugin_pagelink              = Link to the last modified content page
+config_lastchange_plugin_date                  = Date of the last modification
+
+config_lastchange_messagetext                  = Custom text for “Last modification”:
 config_lastchange_date                         = Custom date format:
 config_lastchange_showhiddenpagesinlastchanged = Include hidden content pages?
+config_lastchange_showtime                     = Show time

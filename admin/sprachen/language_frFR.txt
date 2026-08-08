@@ -52,6 +52,7 @@ error_file_upload                    = Impossible uploader ce fichier
 error_zip_nozip                      = Ce fichier n'est pas de type ZIP.
 error_read_htaccess                  = Erreur en lisant .htaccess.
 error_write_htaccess                 = Erruer en écrivant .htaccess.
+error_write_sortcatpage              = Erreur impossible d'écrire SortCatPage.
 error_upload_filetype                = Type de fichier non autorisé.
 error_upload_replace                 = Un fichier portant ce nom existe déjà. Le fichier doit-il être remplacé ?
 
@@ -166,7 +167,7 @@ home_cmsupdate_text_failed_fopen     = Vérification impossible.
 home_cmsupdate_unknown_version       = Vous utilisez une version inconnue de moziloCMS!
 home_cmsupdate_stable_version        = Téléchargez la version actuelle de moziloCMS:
 home_phpversion_text                 = Version de PHP installée:
-home_error_phpversion_text           = Votre version de PHP est obsolète. Pour utiliser moziloCMS, vous avez besoin au minimum de la version 5.x
+home_error_phpversion_text           = Votre version de PHP est obsolète. Pour utiliser moziloCMS, vous avez besoin au minimum de la version 8.1
 home_installpath_text                = Chemin d'installation de mozilo:
 home_help                            = Aide
 home_help_text_docu                  = Documentation
@@ -218,6 +219,7 @@ gallery_error_new                    = Erreur de création de la gallerie. Véri
 gallery_error_newname                = Impossible de renommer la gallerie. Vérifiez permissions des fichiers!
 gallery_error_noexists               = Aucune gallerie avec ce nom.
 gallery_error_subtitle_conf          = Le fichier de sous-titres n'a pas pu être créé.
+gallery_error_alt_conf               = Impossible de créer le fichier de texte alternatif.
 gallery_help_conf                    = Paramètres de la gallerie d'images.
 gallery_image_size                   = Taille
 gallery_image_size_width             = Largeur
@@ -327,6 +329,7 @@ admin_edit                           = Modifier
 admin_delete                         = Éteindre
 admin_rename                         = Renommer
 admin_new                            = Nouveau
+admin_open_menu                      = Menu ouvert
 
 admin_user_select_websitetitle       = Barre de titre du navigateur
 admin_user_select_websitedescription = Description du site Web / mots de recherche
@@ -423,7 +426,7 @@ install_help_title                   = Bienvenue dans la boîte de dialogue d'in
 install_help                         = <p>Dans les prochaines étapes, nous testerons si le serveur Web ou le package d'hébergement Web répond aux exigences nécessaires pour moziloCMS. De plus, des préréglages de base sont effectués. Tous les paramètres peuvent être modifiés à tout moment ultérieurement dans la zone d'administration.</p><p>Si vous rencontrez des problèmes avec les «droits de fichiers» ou les "belles URL", il existe <a href="https://www.mozilo. de/forum/ index.php/topic,18.0.html" target="_blank">dans ce message du forum</a> Probablement l'aide dont vous avez besoin. Sinon, demandez simplement.</p><p><b>L'installateur est également nécessaire si:</b></p><ul><li>le mot de passe a été oublié ou</li><li>le moziloCMS de l'ordinateur a été copié sur le serveur Web ou </li><li>les données doivent encore être mises à jour à partir d'une ancienne version de MoziloCMS.</li></ul><p><b>ATTENTION!</b></p><p>Le "<b>install.php</b>" et, si disponible, le "<b>update.php</b>" ainsi que le "<b>update</b>" doit être supprimé après le processus d'installation, car il présente un risque de sécurité majeur. Assurez-vous de vérifier si tel est le cas.</p>
 
 install_help_update_title            = <p><b>Instructions de mise à jour</b> de <b>moziloCMS 1.12, moziloCMS 2.0</b> vers la version <b>moziloCMS 3.x</b> actuelle</p>
-install_help_update_text             = <p>Toutes les étapes listées ici peuvent être effectuées ultérieurement, l'une après l'autre ou simultanément.</p><ul><li>Copiez toutes les catégories et leur contenu dans le dossier 2.0/3.x <b>categories</b>.</li><li>Copiez les galeries dans le dossier 2.0/3.x <b>galleries</b>.</li><li>Copiez les mises en page dans le dossier 2.0/3.x <b>layouts</b>.</li><li>Créez maintenant le dossier <b>update</b> dans le répertoire racine (par exemple: moziloCMS/).</li><li>Copiez tous les fichiers <b>.conf</b> de <b>.../admin/conf</b> et <b>.../cms/conf</b> et, si disponible, <b>.../formular/formular.conf</b> dans ce dossier <b>update</b> dossier.</li></ul><p>moziloCMS 1.12 Mise à jour des fichiers de configuration du plugin (<b>plugin.conf</b>) sur moziloCMS 2.0/3.x</p><p>Prérequis:</p><ol><li>Le plugin est également disponible pour moziloCMS 2.0/3.x</li><li>Les paramètres sont si complexes qu'un ajustement manuel serait trop fastidieux.</li><li>Les paramètres sont les mêmes que dans l'ancien plugin.</li></ol><p>Instructions :</p><ol><li>Supprimez le fichier <b>plugin.conf.php</b> s'il existe.</li><li>Copiez le fichier <b>plugin.conf</b> de l'ancien plugin vers le nouveau.</li></ol>
+install_help_update_text             = <p>Toutes les étapes listées ici peuvent être effectuées ultérieurement, l'une après l'autre ou simultanément.</p><ul><li>Copiez toutes les catégories et leur contenu dans le dossier 3.x <b>kategorien</b>.</li><li>Copiez les galeries dans le dossier 3.x <b>galerien</b>.</li><li>Copiez les mises en page dans le dossier 3.x <b>layouts</b>.</li><li>Créez maintenant le dossier <b>update</b> dans le répertoire racine (par exemple: moziloCMS/).</li><li>Copiez tous les fichiers <b>.conf</b> de <b>.../admin/conf</b> et <b>.../cms/conf</b> et, si disponible, <b>.../formular/formular.conf</b> dans ce dossier <b>update</b> dossier.</li></ul><p>moziloCMS 1.12 Mise à jour des fichiers de configuration du plugin (<b>plugin.conf</b>) sur moziloCMS 3.x</p><p>Prérequis:</p><ol><li>Le plugin est également disponible pour moziloCMS 3.x</li><li>Les paramètres sont si complexes qu'un ajustement manuel serait trop fastidieux.</li><li>Les paramètres sont les mêmes que dans l'ancien plugin.</li></ol><p>Instructions :</p><ol><li>Supprimez le fichier <b>plugin.conf.php</b> s'il existe.</li><li>Copiez le fichier <b>plugin.conf</b> de l'ancien plugin vers le nouveau.</li></ol>
 
 install_help_password                = J'ai oublié mon mot de passe et j'en ai besoin d'un nouveau.
 install_help_password_button         = Seulement changer le mot de passe
@@ -436,12 +439,13 @@ install_lang_select                  = Sélection de la langue:
 install_lang_help                    = <p>La langue sélectionnée est initialement appliquée au site Web et à la zone d'administration. Après l'installation, la langue du site peut être modifiée dans la zone d'administration, dans l'onglet "Paramètres", et la langue de l'interface d'administration dans l'onglet "Admin".</p>
 install_lang_help_title              = Langue
 install_next                         = Continuer
+install_back                         = Précédent
 
 install_chmod_help_title             = Droits d'accès
 install_chmod_help                   = <p>Il s'agit de déterminer et de définir les droits de fichiers serveur nécessaires au bon fonctionnement de moziloCMS. Si le serveur empêche moziloCMS de créer des fichiers, les droits de fichiers nécessaires doivent d'abord être définis par FTP, à l'aide de la commande chmod, avant de pouvoir poursuivre l'installation.</p>
 install_chmod_no_chmod               = chmod n'est pas nécessaire
 
-install_chmod_testfile_rw            = Le fichier "<b>{PARAM1}</b>" peut-il être supprimé via FTP <b>?</b> Valeur actuelle {PARAM2}
+install_chmod_testfile_rw            = Le fichier "<b>{PARAM1}</b>" peut-il être supprimé via FTP? Valeur actuelle {PARAM2}
 install_chmod_testfile_next_button   = Étendre les autorisations de fichiers
 
 install_chmod_use                    = Ces autorisations de fichier sont utilisées : "<b>{PARAM1}</b>"

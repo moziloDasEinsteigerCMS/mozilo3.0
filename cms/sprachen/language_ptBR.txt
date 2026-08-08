@@ -33,6 +33,7 @@ message_lastchange_0                            = Ãšltima alteraÃ§Ã£o:
 # message_nextimage_0                             = PrÃ³xima imagem
 message_nodatafound_0                           = Nenhum conteÃºdo encontrado.
 message_mainmenu                                = Menu principal
+message_memory                                  = Memória usada
 # message_previousimage_0                         = Imagem anterior
 message_search_0                                = Busca
 message_searchresult_0                          
@@ -43,6 +44,8 @@ message_sitemap_0                               = Mapa do site
 message_submenu                                 = USubmenu de
 message_tableofcontents_0                       = Índice
 message_template_error_1                        = Arquivo de designer "{PARAM1}" faltando! Entre em contato como o administrador.
+message_time_0                                  = Página em
+message_time_1                                  = Criada a Sec.
 passwordform_title_0                            = Consulta de senha
 passwordform_pagepasswordplease_0               = Por favor insira a senha desta página:
 passwordform_message_passwordwrong_0            = Acesso negado: Senha incorreta.

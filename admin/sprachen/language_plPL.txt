@@ -52,6 +52,7 @@ error_file_upload                    = Nie udało się przesłać pliku.
 error_zip_nozip                      = To nie jest plik ZIP.
 error_read_htaccess                  = Błąd podczas odczytu pliku .htaccess.
 error_write_htaccess                 = Błąd podczas zapisu .htaccess.
+error_write_sortcatpage              = Błąd Nie można zapisać SortCatPage.
 error_upload_filetype                = Typ pliku nie jest dozwolony.
 error_upload_replace                 = Plik o tej nazwie już istnieje. Czy plik należy zastąpić?
 
@@ -166,7 +167,7 @@ home_cmsupdate_text_failed_fopen     = Badanie nie jest możliwe. Opcja "allow_u
 home_cmsupdate_unknown_version       = Używasz wersji moziloCMS, której nie znamy!
 home_cmsupdate_stable_version        = Pobierz najnowszą wersję moziloCMS:
 home_phpversion_text                 = Zainstalowana wersja PHP
-home_error_phpversion_text           = Wersja PHP jest zbyt stara dla moziloCMS, wymagana jest co najmniej wersja 7.x.
+home_error_phpversion_text           = Wersja PHP jest zbyt stara dla moziloCMS, wymagana jest co najmniej wersja 8.1.
 home_installpath_text                = Ścieżka na serwerze
 home_help                            = Pomoc i dokumentacja
 home_help_text_docu                  = Szczegółowa dokumentacja w nowym oknie
@@ -218,6 +219,7 @@ gallery_error_new                    = Błąd podczas tworzenia galerii (sprawd�
 gallery_error_newname                = Nie można zmienić nazwy galerii (sprawdź uprawnienia do pliku).
 gallery_error_noexists               = Nie ma galerii o takiej nazwie.
 gallery_error_subtitle_conf          = Nie udało się utworzyć pliku napisów.
+gallery_error_alt_conf               = Nie można utworzyć pliku z tekstem alternatywnym.
 gallery_help_conf                    = Wstępnie zdefiniuj ustawienia skalowania
 gallery_image_size                   = Rozmiar obrazu
 gallery_image_size_width             = Szerokość
@@ -327,6 +329,7 @@ admin_edit                           = Redagować
 admin_delete                         = Usuwać
 admin_rename                         = Przemianować
 admin_new                            = Nowy
+admin_open_menu                      = Otwórz menu
 
 admin_user_select_websitetitle       = Pasek tytułu przeglądarki
 admin_user_select_websitedescription = Opis witryny / słowa kluczowe
@@ -423,7 +426,7 @@ install_help_title                   = Witamy w oknie dialogowym instalacji mozi
 install_help                         = <p>Następne kroki pozwolą sprawdzić, czy serwer WWW lub pakiet hostingu spełnia wymagania moziloCMS. Ponadto tworzone są podstawowe ustawienia wstępne. Wszystkie ustawienia można później w dowolnym momencie zmienić w obszarze administracyjnym.</p><p>Jeśli masz problemy z "uprawnieniami do plików" lub "ładnymi adresami URL", istnieje <a href="https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank">w tym poście na forum</a> prawdopodobnie znajdziesz potrzebną pomoc. W przeciwnym razie po prostu zapytaj.</p><p><b>Program instalacyjny jest również konieczny, jeśli:</b></p><ul><li>Zapomniałeś hasła lub</li><li> moziloCMS z komputera został skopiowany na serwer WWW lub</li><li>dane muszą zostać zaktualizowane ze starej wersji moziloCMS.</li></ul><p><b>UWAGA!</b></p><p>Plik "<b>install.php</b>" i jeśli jest obecny plik "<b>update.php</b>", a także folder "<b>update</b>" muszą zostać usunięte po zakończeniu instalacji, ponieważ stanowią poważne zagrożenie bezpieczeństwa. Sprawdź, czy tak jest.</p>
 
 install_help_update_title            = <p><b>Instrukcje aktualizacji</b> z <b>moziloCMS 1.12, moziloCMS 2.0</b> do obecnej wersji <b>moziloCMS 3.x</b></p>
-install_help_update_text             = <p>Wszystkie wymienione tutaj punkty można wykonać później, jeden po drugim lub wszystkie naraz.</p><ul><li>Wszystkie kategorie i ich zawartość w folderze 2.0/3.x <b> kategorie</b> kopiuj.</li><li>Skopiuj galerie do folderu 2.0/3.x <b>galleries</b>.</li><li>Skopiuj układy do folderu 2.0/3. x folder <b>layouts</b> skopiuj.</li><li>Teraz utwórz folder <b>update</b> w katalogu głównym (na przykład: moziloCMS/).</li><li> W tym folderze <b>update</b> znajdują się wszystkie pliki <b>.conf</b> z <b>.../admin/conf</b> i <b>.../cms/conf</b> i jeśli obecny <b> .../formular/formular.conf</b>.</li></ul><p>Pliki konfiguracyjne wtyczki moziloCMS 1.12 (<b>plugin.conf</b>) do moziloCMS 2.0/3.x</p><p>Wymagania:</p><ol><li>Wtyczka jest dostępna również dla moziloCMS 2.0/3.x </li><li>Ustawienia są tak skomplikowane, że ich ręczna zmiana byłaby zbyt trudna.</li><li>Są to te same ustawienia, co w starej wtyczce</li></ol><p>Instrukcje :</p><ol><li>Jeśli istnieje, usuń plik <b>plugin.conf.php</b>.</li><li>Ze starej wtyczki usuń plik <b>plugin.conf</b> do nowej wtyczki.</li></ol>
+install_help_update_text             = <p>Wszystkie wymienione tutaj punkty można wykonać później, jeden po drugim lub wszystkie naraz.</p><ul><li>Wszystkie kategorie i ich zawartość w folderze 3.x <b>kategorien</b> kopiuj.</li><li>Skopiuj galerie do folderu 3.x <b>galerien</b>.</li><li>Skopiuj układy do folderu 3. x folder <b>layouts</b> skopiuj.</li><li>Teraz utwórz folder <b>update</b> w katalogu głównym (na przykład: moziloCMS/).</li><li> W tym folderze <b>update</b> znajdują się wszystkie pliki <b>.conf</b> z <b>.../admin/conf</b> i <b>.../cms/conf</b> i jeśli obecny <b> .../formular/formular.conf</b>.</li></ul><p>Pliki konfiguracyjne wtyczki moziloCMS 1.12 (<b>plugin.conf</b>) do moziloCMS 3.x</p><p>Wymagania:</p><ol><li>Wtyczka jest dostępna również dla moziloCMS 3.x </li><li>Ustawienia są tak skomplikowane, że ich ręczna zmiana byłaby zbyt trudna.</li><li>Są to te same ustawienia, co w starej wtyczce</li></ol><p>Instrukcje :</p><ol><li>Jeśli istnieje, usuń plik <b>plugin.conf.php</b>.</li><li>Ze starej wtyczki usuń plik <b>plugin.conf</b> do nowej wtyczki.</li></ol>
 
 install_help_password                = Zapomniałem hasła i chciałbym ustawić nowe.
 install_help_password_button         = Zmień tylko hasło.
@@ -436,6 +439,7 @@ install_lang_select                  = Wybór języka:
 install_lang_help_title              = Język
 install_lang_help                    = <p>Wybrany język zostanie początkowo zastosowany do witryny internetowej i obszaru administracyjnego.</p><p>Po instalacji język witryny można zmienić w obszarze administracyjnym, na karcie "Ustawienia" oraz w Karta "Administrator", którą można zmienić w interfejsie administracyjnym.</p>
 install_next                         = Dalej
+install_back                         = Wstecz
 
 install_chmod_help_title             = Pliki i prawa dostępu
 install_chmod_help                   = <p>Podjęto próbę określenia i ustawienia uprawnień plików serwera, które są niezbędne do prawidłowego funkcjonowania moziloCMS. Jeżeli to nie zadziała w pełni, można je ustawić później w obszarze administracyjnym, w zakładce "Administrator".</p><p>Jeżeli serwer uniemożliwia programowi moziloCMS tworzenie plików, należy najpierw ustawić niezbędne uprawnienia plików za pomocą protokołu FTP , przy czym polecenie chmod musi być ustawione przed kontynuacją instalacji.</p>

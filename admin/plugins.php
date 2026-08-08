@@ -236,21 +236,24 @@ if (is_null($config)) {
                 //        2.0  - aktuelles moziloCMS 
                 //
                 // print_r($plugin_info);
-                $pl_ver = 0;
-                if (!empty($plugin_info[1])) {
-                  $needed_mozilo_version = $plugin_info[1];
-                } else {
-                  $pl_ver = 1;
-                }
-                
-                $pos = strpos($needed_mozilo_version, '1.1');
-                if ($pos!==false) {
-                  $pl_ver = 1;
-                }                   
-                $pos = strpos($needed_mozilo_version, '2');
-                if ($pos!==false) {
-                  $pl_ver = 2;
-                } 
+                $needed_mozilo_version = $plugin_info[1] ?? '';
+$pl_ver = 0;
+
+if ($needed_mozilo_version === '') {
+    $pl_ver = 1;
+}
+
+$checks = [
+    '1.1' => 1,
+    '2'   => 2,
+    '3'   => 2, // bewusst so gewollt
+];
+
+foreach ($checks as $needle => $value) {
+    if (strpos($needed_mozilo_version, $needle) !== false) {
+        $pl_ver = $value;
+    }
+}
                 
                 if ($pl_ver < 2) {
                   // echo "Version: " . $needed_mozilo_version . " <br />";               
@@ -368,7 +371,7 @@ function get_plugin_info($plugin_info) {
             $link = strip_tags($pli4_0);
             $link_text = strip_tags($pli4_1);
         } else {
-            $pli4 = $plugin_info[4][0];
+            $pli4 = $plugin_info[4];
             $link = strip_tags($pli4);
             $link_text = strip_tags($pli4);
         }
@@ -485,27 +488,46 @@ function get_plugin_config($conf_plugin,$config,$currentelement) {
                     $search[] = '{'.$name.'_select}';
                     $replace[] = $input;
                 }
-            } elseif($config[$name]['type'] == "radio") {
-                if(is_array($config[$name]['descriptions'])) {
-                    $input = '';
-                    foreach($config[$name]['descriptions'] as $key => $descriptions) {
-                        $value = ' value="'.$key.'"';
-                        $checked = NULL;
-                        if($conf_plugin->get($name) == $key) {
-                            $checked = ' checked="checked"';
-                        }
-                        $in_radio = '<input name="'.$currentelement.'['.$name.']"'.$type.$value.$checked.' id="'.$currentelement.'-'.$name.'-'.$key.'">';
-                        $descriptions = '<label for="'.$currentelement.'-'.$name.'-'.$key.'">'.$descriptions.'</label>';
-                        $input .= $descriptions.'&nbsp;&nbsp;'.$in_radio.'<br>';
-                        if($template !== false or $template_conf === true) {
-                            $search[] = '{'.$name.'_radio_'.$key.'}';
-                            $replace[] = $in_radio;
-                            $search[] = '{'.$name.'_descriptions_'.$key.'}';
-                            $replace[] = $descriptions;
-                        }
-                    }
-                }
-            } elseif($config[$name]['type'] == "checkbox") {
+            } elseif ($config[$name]['type'] == "radio") {
+
+    if (is_array($config[$name]['descriptions'])) {
+
+        // Prüfen, ob mehr als 1 Radiooption existiert
+        $useFieldset = (count($config[$name]['descriptions']) > 1);
+
+        // Fieldset öffnen
+        if ($useFieldset) {
+            $input = '<fieldset style="border:none"><legend class="sr-only">'.getLanguageValue("plugins_title_manage").'</legend>';
+        } else {
+            $input = '';
+        }
+
+        foreach ($config[$name]['descriptions'] as $key => $descriptions) {
+
+            $value   = ' value="'.$key.'"';
+            $checked = ($conf_plugin->get($name) == $key) ? ' checked="checked"' : '';
+
+            $id = $currentelement.'-'.$name.'-'.$key;
+
+            $in_radio = '<input name="'.$currentelement.'['.$name.']"'.$type.$value.$checked.' id="'.$id.'">';
+            $label    = '<label for="'.$id.'">'.$descriptions.'</label>';
+
+            $input .= $label.'&nbsp;&nbsp;'.$in_radio.'<br>';
+
+            if ($template !== false or $template_conf === true) {
+                $search[]  = '{'.$name.'_radio_'.$key.'}';
+                $replace[] = $in_radio;
+                $search[]  = '{'.$name.'_descriptions_'.$key.'}';
+                $replace[] = $label;
+            }
+        }
+
+        // Fieldset schließen
+        if ($useFieldset) {
+            $input .= '</fieldset>';
+        }
+    }
+} elseif($config[$name]['type'] == "checkbox") {
                 $checked = NULL;
                 if($conf_plugin->get($name) == "true") {
                     $checked = ' checked="checked"';

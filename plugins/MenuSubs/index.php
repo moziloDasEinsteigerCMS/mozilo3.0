@@ -221,20 +221,21 @@ class MenuSubs extends Plugin {
         if($CMS_CONF->get("showhiddenpagesinsitemap") == "true") {
             $include_pages = array(EXT_PAGE,EXT_HIDDEN);
         }
-        $sitemap = '<h1 id="menusubs-sitemap-title">'.$language->getLanguageValue("message_sitemap_0")."</h1>"
-                    .'<div class="sitemap" id="menusubs-sitemap">';
+        $sitemap = '<div id="sitemap" class="menusubs-sitemap"><h2 id="menusubs-sitemap-title" class="heading2">'.$language->getLanguageValue("message_sitemap_0")."</h2>";
+ //                   .'<div class="sitemap" id="menusubs-sitemap">';
         foreach($CatPage->get_CatArray(false, false, $include_pages) as $cat) {
             if(strpos($cat,"%2F") > 1) continue;
             if($this->settings->get("menusubs_2") == $cat) {
                 if($this->settings->get("sitemap_show_menu2") == "true") {
-                    $menu_2 = '<h2>'.$CatPage->get_HrefText($cat,false).'</h2>';
+                    $menu_2 = '<div class="sitemap result-list">';
+                    $menu_2 = '<span class="sitemap result-list-header">'.$CatPage->get_HrefText($cat,false).'</span></div>';
                     $menu_2 .= $this->getSitemapPage($cat,true);
                     $return = true;
                 }
                 continue;
             }
             if($CatPage->get_Type($cat,false) == "cat") {
-                $sitemap .= '<h2>'.$CatPage->create_AutoLinkTag($cat,false,"").'</h2>';
+                $sitemap .= '<div class="sitemap result-list"><span class="sitemap result-list-header">'.$CatPage->create_AutoLinkTag($cat,false,"").'</span></div>';
                 $sitemap .= $this->getSitemapPage($cat);
                 $return = true;
             }
@@ -248,9 +249,9 @@ class MenuSubs extends Plugin {
         global $CatPage;
         global $CMS_CONF;
         $return = false;
-        $sitemap = '<ul>';
+        $sitemap = '<div class="sitemap result-list">';
         if($menu2)
-            $sitemap = '<ul id="menusubs-sitemap-menu2">';
+            $sitemap = '<div id="menusubs-sitemap-menu2">';
         foreach($CatPage->get_PageArray($cat,array(EXT_PAGE,EXT_HIDDEN)) as $page) {
             if(strpos($cat,"%2F") > 1
                     and $CMS_CONF->get("hidecatnamedpages") == "true"
@@ -260,16 +261,16 @@ class MenuSubs extends Plugin {
                     and $CatPage->get_Type($cat,$page) == EXT_HIDDEN
                     and $CatPage->get_Type($page,false) == "cat") {
                 $return = true;
-                $sitemap .= '<li><h3>'.$this->create_CatSubLinkTag($cat,$page,"").'</h3>';
+                $sitemap .= '<div class="sitemap result-list-item">'.$this->create_CatSubLinkTag($cat,$page,"").'</div>';
                 $sitemap .= $this->getSitemapPage($page);
-                $sitemap .= '</li>'."\n";
+  //            $sitemap .= '</div>'."\n";
             } elseif($CatPage->get_Type($cat,$page) != EXT_HIDDEN) {
-                $sitemap .= '<li>'.$CatPage->create_AutoLinkTag($cat,$page,"").'</li>';
+                $sitemap .= '<div class="sitemap result-list-item">'.$CatPage->create_AutoLinkTag($cat,$page,"").'</div>';
                 $return = true;
             }
         }
         if($return)
-            return $sitemap.'</ul>';
+            return $sitemap.'</div>';
         return null;
     }
 
@@ -319,9 +320,9 @@ class MenuSubs extends Plugin {
             $info_txt = file_get_contents(BASE_DIR.PLUGIN_DIR_NAME."/MenuSubs/lang/info_deDE.txt");
         $info = array(
             // Plugin-Name
-            "<b>MenuSubs</b> Revision: 6",
+            "<b>MenuSubs</b> Revision: 7",
             // Plugin-Version
-            "2.0 / 3.0",
+            "3.0",
             // Kurzbeschreibung
             $info_txt,
             // Name des Autors

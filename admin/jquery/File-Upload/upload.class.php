@@ -268,6 +268,16 @@ $file->alt = mo_rawurlencode($this->alt->get($file->name));
                 $image_quality = isset($options['png_quality']) ?
                     $options['png_quality'] : 9;
                 break;
+                case 'webp':
+    @imagealphablending($new_img, false);
+    @imagesavealpha($new_img, true);
+
+    $src_img = @imagecreatefromwebp($file_path);
+    $write_image = 'imagewebp';
+    $image_quality = isset($options['webp_quality'])
+        ? $options['webp_quality']
+        : 80;
+    break;
             default:
                 $src_img = null;
         }
@@ -361,7 +371,7 @@ $file->alt = mo_rawurlencode($this->alt->get($file->name));
         $file_name = basename($name);
         // Add missing file extension for known image types:
         if (strpos($file_name, '.') === false &&
-            preg_match('/^image\/(gif|jpe?g|png)/', $type, $matches)) {
+            preg_match('/^image\/(gif|jpe?g|png|webp)/', $type, $matches)) {
             $file_name .= '.'.$matches[1];
         }
         $file_name = cleanUploadFile($file_name);

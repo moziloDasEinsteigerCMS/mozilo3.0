@@ -154,6 +154,7 @@ JS;
                 'description' => $this->admin_lang->getLanguageValue('config_cookiePage'),
                 'maxlength' => '100',
             ]
+
         ];
     }
 
@@ -165,7 +166,7 @@ JS;
 
         return [
             'Version 3.1',
-            '2.0 / 3.0',
+            '3.0',
             $this->admin_lang->getLanguageValue('description'),
             'moziloCMS',
             'https://www.mozilo.de',

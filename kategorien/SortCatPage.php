@@ -3,10 +3,10 @@ $cat_page_sort_array = array (
   'Willkommen' => 
   array (
     'Willkommen.txt.php' => 'null',
+    'Inhaltsseite.hid.php' => 'null',
   ),
   'Kategorie' => 
   array (
-    'Inhaltsseite.txt.php' => 'null',
   ),
 );
 ?>

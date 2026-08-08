@@ -1,19 +1,26 @@
-<div class="header mo-align-center mo-head-box ui-widget ui-state-default ui-corner-all mo-li-head-tag-no-ul mo-li-head-tag mo-td-middle ui-helper-clearfix">
-	<div class="header-left mo-td-middle">
+<div class="header">
+	<div class="header-left">
 		<img src="css/images/mozilo-logo-24.webp" alt="moziloCMS Logo">
 		<span class="hide-mobile mr mo-bold">{CMS_ADMIN_TITEL}</span>
 	</div>
 	<div class="header-center">
-		<span class="tooltips">{DO_WEBSITETITLE}</span>
+		<b class="do-arrow-point">1</b>{DO_WEBSITETITLE}
 	</div>
-	<div class="header-right flex">{MODUL_icon_sun-and-moon}
-		<div id="admin-user" class="mr ml"><input id="admin-user-check" type="checkbox" name="menu">
-			<label for="admin-user-check">{ADMIN_USER_GREETING}, {ADMIN_NOROOT_ADMIN}</label>
-			<ul class="submenu card">
-				<li><a href="../index.php?draft=true" title="{HELP_WEBSITE_BUTTON}" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><b class="do-arrow-point">4</b><span>{BUTTON_PREVIEW}</span></a></li>
-				<li><a href="../docu/index.php" title="{HOME_HELP}" target="_blank" class="mo-butten-a-img" style="color: var(--main-font-color)"><b class="do-arrow-point">5</b>{HOME_HELP}</a></li>
-				<li><a href="index.php?logout=true" title="{LOGOUT_BUTTON}"><b class="do-arrow-point">6</b><span>{LOGOUT_BUTTON}</span></a></li>
-			</ul>
+	<div class="header-right flex"><b class="do-arrow-point">2</b>{MODUL_icon_sun-and-moon}
+		<div id="admin-user" class="mr ml">
+			<div class="dropdown" data-open="true">
+				<button class="dropdown-button" aria-haspopup="true" aria-expanded="false">
+				<b class="do-arrow-point">3</b><span>{ADMIN_USER_GREETING}, {ADMIN_NOROOT_ADMIN}</span>
+				<span class="dropdown-button-arrow" aria-hidden="true">
+					<svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+				</span>
+				</button>
+				<ul class="dropdown-menu slide card" role="menu" aria-hidden="true">
+					<li style="text-align:left;"><b class="do-arrow-point">4</b><a role="menuitem" href="../index.php?draft=true" target="_blank" style="color: var(--main-font-color)">{BUTTON_PREVIEW}</a></li>
+					<li style="text-align:left;"><b class="do-arrow-point">5</b><a role="menuitem" href="/mozilo305-alpha4/docu/index.php?menu=false&amp;artikel=home" target="_blank" style="color: var(--main-font-color)">{HOME_HELP}</a></li>
+					<li style="text-align:left;"><b class="do-arrow-point">6</b><a role="menuitem" href="index.php?logout=true">{LOGOUT_BUTTON}</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

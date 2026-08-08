@@ -40,7 +40,7 @@ function makeDefaultConf($conf_array,$for_new = false) {
                         'cmslanguage' => 'deDE',
                         'cmslayout' => 'moziloCMS',
                         'defaultcat' => 'Willkommen',
-                        'defaultcolors' => '',
+          //              'defaultcolors' => '',
                         'draftlayout' => 'false'),
                     'checkbox' => array(
                         'hidecatnamedpages' => 'false',
@@ -66,7 +66,7 @@ function makeDefaultConf($conf_array,$for_new = false) {
                         'usecmssyntax',
                         'editusersyntax',
                         'replaceemoticons',
-                        'defaultcolors',
+         //               'defaultcolors',
                         'hiddenpages',
                         'targetblank',
                         'hidecatnamedpages',

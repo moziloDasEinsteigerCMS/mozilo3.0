@@ -259,7 +259,11 @@ function insert_ace(aTag, eTag, select) {
 
         tmp_start = range_ace[i].start.column;
         tmp_end = range_ace[i].end.column;
-
+		
+// Patch 1 Position speichern; 2 Zeilen einfügen      
+        var insert_row = range_ace[i].start.row;
+        var insert_col = tmp_start;
+        
         if(eTag) {
             editor_session.doc.replace(range_ace[i], aTag+selectet+eTag);
             var end_column = aTag.length;
@@ -272,6 +276,66 @@ function insert_ace(aTag, eTag, select) {
             range_ace[i].end.column = range_ace[i].start.column + aTag.length;
             range_ace[i].end.row = range_ace[i].start.row;
         }
+        
+// Patch 2; Einfügen Codeblock zwischen if(eTag) {...} und if(select) {...}
+// --- PATCH: Param1 selektieren auch bei eTag='}' (z.B. PhotoSwipe); geschütztes Param1 -> Param2; leere Parameter -> Cursor im Param-Feld ---
+		var tagText = null;
+
+// Kandidatentext des eingefügten Tags rekonstruieren
+		if (typeof aTag === "string" && aTag.charAt(0) === "{") {
+			if (eTag === "}") tagText = aTag + "}";
+			else if (!eTag)   tagText = aTag;
+		}
+
+		if (tagText && tagText.indexOf("}") !== -1) {
+		var p1 = tagText.indexOf("|");
+		if (p1 !== -1) {
+        var p2 = tagText.indexOf("|", p1 + 1);
+        var rb = tagText.indexOf("}"); // erste schließende Klammer
+
+		// Fall A: mindestens zwei Pipes vorhanden -> standardmäßig Param1
+        if (p2 !== -1) {
+             
+			if (p2 > p1 + 1) {
+                // Standard: Param1 selektieren
+                select = true;
+                range_ace[i].start.row    = insert_row;
+                range_ace[i].end.row      = insert_row;
+                range_ace[i].start.column = insert_col + p1 + 1;
+                range_ace[i].end.column   = insert_col + p2;
+
+            } else {
+                // Param1 leer (z.B. {X||...}) -> Cursor in Param1 (direkt nach dem ersten '|')
+                select = true;
+                var pos1 = insert_col + p1 + 1;
+                range_ace[i].start.row    = insert_row;
+                range_ace[i].end.row      = insert_row;
+                range_ace[i].start.column = pos1;
+                range_ace[i].end.column   = pos1;
+            }
+
+        // Fall B: genau eine Pipe, Param1 bis '}' gefüllt -> Param1 selektieren
+        } else if (rb !== -1 && rb > p1 + 1) {
+            select = true;
+            range_ace[i].start.row    = insert_row;
+            range_ace[i].end.row      = insert_row;
+            range_ace[i].start.column = insert_col + p1 + 1;
+            range_ace[i].end.column   = insert_col + rb;
+
+        // Fall C: {X|} leer -> Cursor in Param1 (direkt nach dem '|', also vor '}')
+        } else if (rb !== -1 && rb === p1 + 1) {
+            select = true;
+            var posC = insert_col + p1 + 1;
+            range_ace[i].start.row    = insert_row;
+            range_ace[i].end.row      = insert_row;
+            range_ace[i].start.column = posC;
+            range_ace[i].end.column   = posC;
+        }
+    }
+// --- /PATCH ---
+}
+         
+        
         if(select) {
             if(i == 0)
                 // das selectierte wieder selectioeren, setzt auch den cursor ins element
@@ -528,10 +592,19 @@ $(function() {
             // das ist wichtig da erst dann die button breite bekant ist
             $('.overviewselect, .usersyntaxselectbox, .js-ace-select').multiselect("refresh");
         },//Stop
-        resize: function(event, ui) {
+    /*    resize: function(event, ui) {
             init_ace_editor();
-        }
+        }*/
     });
+    
+        // Wird beim Größenändern des Dialogs ausgeführt.
+$(window).on('resize', function () {
+    if (dialog_editor.is(':visible')) {
+        dialog_editor.dialog("option", "height", $(window).height() - 100);
+        dialog_editor.dialog("option", "width", $(window).width() - 100);
+        init_ace_editor();
+    }
+});
 
     if(action_activ == "catpage") {
         dialog_editor.dialog({buttons: [{

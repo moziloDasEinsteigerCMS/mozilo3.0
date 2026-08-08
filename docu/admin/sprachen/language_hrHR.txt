@@ -22,6 +22,10 @@ minute                               = Minuta
 minutes                              = Minute
 second                               = Drugi
 seconds                              = Sekunde
+toggle_all                           = Odaberi sve
+
+files_upload                         = Prijenos datoteka
+
 error_chmod                          = Nije moguće promijeniti prava na datoteku.
 error_mkdir                          = Nije moguće stvoriti mapu.
 error_no_file_dir                    = Mapa ili datoteka ne postoje.
@@ -48,6 +52,7 @@ error_file_upload                    = Prijenos datoteke nije uspio
 error_zip_nozip                      = Datoteka nije ZIP.
 error_read_htaccess                  = Pogreška prilikom čitanja .htaccess datoteke.
 error_write_htaccess                 = Pogreška pri pisanju .htaccess datoteke.
+error_write_sortcatpage              = Pogreška Nije moguće napisati SortCatPage.
 error_upload_filetype                = Vrsta datoteke nije dopuštena.
 error_upload_replace                 = Datoteka s tim imenom već postoji. Treba li zamijeniti datoteku?
 
@@ -120,6 +125,7 @@ toolbar_platzhalter_MEMORYUSAGE      = Od moziloCMS-a potrošene memorije
 toolbar_platzhalter_EXECUTETIME      = Toliko je vremena potrebno moziloCMS-u za učitavanje stranice.
 toolbar_platzhalter_VALUE            = vrijednost
 toolbar_platzhalter_DESCRIPTION      = Opis
+toolbar_editor_color                 = Odabrana boja
 toolbar_editor_linenumber            = Prikaži / sakrij brojeve linija
 toolbar_editor_controlcharacter      = Prikaži / sakrij kontrolne znakove
 toolbar_editor_highlighter           = Način isticanja sintakse
@@ -140,6 +146,7 @@ filter_text_plugins                  = Dodaci
 filter_text_files                    = Datoteke
 filter_text_catpage                  = Kategorije
 filter_text_template                 = Predložak
+filter_no_match                      = Nema podudaranja
 
 home_button                          = Info
 home_multiuser                       = Ponovno postavljanje višekorisničkog
@@ -160,7 +167,7 @@ home_cmsupdate_text_failed_fopen     = Test nije moguć. "allow_url_fopen" je on
 home_cmsupdate_unknown_version       = Koristite nepoznatu verziju moziloCMS-a!
 home_cmsupdate_stable_version        = Preuzmite trenutnu verziju moziloCMS-a:
 home_phpversion_text                 = Instalirana PHP verzija
-home_error_phpversion_text           = Vaša je PHP verzija zastarjela. Da biste koristili moziloCMS, trebat će vam najmanje 5.x
+home_error_phpversion_text           = Vaša je PHP verzija zastarjela. Da biste koristili moziloCMS, trebat će vam najmanje 8.1
 home_installpath_text                = Položaj poslužitelja, instaliran je moziloCMS
 home_help                            = Pomoć
 home_help_text_docu                  = Detaljna dokumentacija u novom prozoru
@@ -210,6 +217,7 @@ gallery_error_new                    = Pogreška pri stvaranju galerije. Provjer
 gallery_error_exists                 = Galerija s tim imenom već postoji.
 gallery_error_datei_conf             = Pogreška prilikom stvaranja konfiguracijske datoteke. Provjerite atribute datoteke!
 gallery_error_subtitle_conf          = Datoteka titla nije se mogla stvoriti.
+gallery_error_alt_conf               = Datoteka alternativnog teksta nije mogla biti kreirana.
 gallery_messages_from_ftp            = Sljedeće su galerije pretvorene u CMS.
 gallery_messages_from_ftp_no         = Sve galerije su u skladu s CMS-om.
 gallery_text_from_ftp                = Pretvara sve FTP-učitane galerije i slike usklađene sa CMS-om.
@@ -221,6 +229,8 @@ gallery_help_conf                    = Ovdje možete urediti postavke galerije.
 gallery_error_noexists               = Ne postoji galerija s ovakvim imenom.
 gallery_delete_confirm               = Želite li izbrisati ovu galeriju sa svim slikama i titlovima?
 gallery_image_size                   = veličina slike
+gallery_image_size_width             = Širina
+gallery_image_size_height            = Visina
 gallery_preview_size                 = Veličina pregleda
 gallery_text_subtitle                = Subtitle
 gallery_text_alt                     = Zamjenski tekst
@@ -250,7 +260,6 @@ config_input_usesyntax               = Koristite CMS sintaksu
 config_text_replaceemoticons         = Zamijenite emotikone
 config_text_usersyntax               = Stvorite vlastite elemente sintakse.
 config_input_replaceemoticons        = Zamijenite emotikone
-config_text_defaultcolors            = Birač boja za stvaranje i spremanje unaprijed definiranih boja.
 config_text_showhiddenpages          = Stranice sa skrivenim sadržajem obično se ne prikazuju na vašem web mjestu. Ovdje možete definirati iznimke: Gdje bi se trebale prikazivati ​​stranice s nevidljivim sadržajem?
 config_input_search                  = Unutar rezultata pretraživanja
 config_input_sitemap                 = Unutar karte web mjesta
@@ -292,7 +301,7 @@ admin_button_include_docu            = uključuju dokumentaciju
 admin_error_no_backups_select        = Nije odabrana nijedna datoteka.
 admin_text_chmodnewfiles             = Upotrijebljeni atributi datoteke. 
 admin_text_upload_notice             = <i>Napomena: Zbog sigurnosnih problema oko moziloCMS-a, toplo preporučamo da ne koristite datotečne ekstenzije (tip) php, svg, xml!</i>
-admin_text_uploadfilter              = Ovdje unesite dodatne ekstenzije datoteka za učitavanje datoteka.<br> <b>Bez</b> razmaka i samo odvojene <b>zarezima</b>.
+admin_text_uploadfilter              = Ovdje unesite dodatne ekstenzije datoteka za učitavanje datoteka.<br> <b>Bez</b> razmaka i samo odvojene <u>zarezima</u>.
 admin_text_upload_available          = Vrste datoteka dostupne prema zadanim postavkama: 
 admin_input_translator               = Prevoditelj:
 admin_input_language                 = Odaberite na kojem će jeziku moziloCMS Admin biti prikazan:
@@ -319,6 +328,7 @@ admin_edit                           = Uredi
 admin_delete                         = Ugasiti
 admin_rename                         = Preimenovati
 admin_new                            = Novi
+admin_open_menu                      = Otvori izbornik
 
 admin_user_select_websitetitle       = Traka naslova preglednika
 admin_user_select_websitedescription = Opis web stranice / ključne riječi
@@ -383,6 +393,7 @@ plugins_text_fileinfo                = Postojeće postavke konfiguracije zadrža
 plugins_button_install               = Instalirati
 plugins_button_delete                = Izbrišite sve odabrane dodatke
 plugins_select                       = ili iz mape "dodaci"
+plugins_checkbox_toggle              = Potvrdna kućica uključena/isključena
 
 template_button                      = Predlošci
 template_title_grafiken              = Grafike
@@ -414,7 +425,7 @@ install_help_title                   = Dobro došli u instalacijski program mozi
 install_help                         = <p>U sljedećim ćemo koracima testirati ispunjava li web poslužitelj ili web hosting paket zahtjeve za moziloCMS. Osim toga, napravljene su osnovne postavke. Sve postavke mogu se promijeniti kasnije u bilo koje vrijeme u administratorskom području.</p><p>Ako imate problema s "dopuštenjima za datoteke" ili "prekrasnim URL-ovima," vjerojatno ćete pronaći potrebnu pomoć u <a href="https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank">ovom postu na forumu</a>. U suprotnom, samo pitajte.</p><p><b>Instalacijski program je također neophodan ako ste:</b></p><ul><li>zaboravili lozinku ili</li><li>moziloCMS je kopiran s vašeg računala na web poslužitelj ili</li><li>trebate ažurirati podatke sa starije verzije moziloCMS.</li></ul><p><b>PAŽNJA!</b></p><p>"<b>install.php</b>" i, ako postoje, mapa "<b>update.php</b>" kao i "<b>update</b>" moraju se izbrisati nakon postupka instalacije jer predstavljaju značajan sigurnosni rizik. Provjerite je li to slučaj.</p>
 
 install_help_update_title            = <p><b>Upute za ažuriranje</b> s <b>moziloCMS 1.12, moziloCMS 2.0</b> na trenutni <b>moziloCMS 3.x</b></p>
-install_help_update_text             = <p>Svi ovdje navedeni koraci mogu se izvesti kasnije, jedan za drugim ili odjednom.</p><ul><li>Kopiraj sve kategorije i njihov sadržaj u mapu 2.0/3.x <b>categories</b>.</li><li>Kopiraj galerije u mapu 2.0/3.x <b>galleries</b>.</li><li>Kopiraj rasporede u mapu 2.0/3.x <b >layouts</b>.</li><li>Sada stvorite mapu <b>update</b> u korijenskom direktoriju (na primjer: moziloCMS/).</li><li>Kopirajte sve datoteke <b>.conf</b> iz <b>.../admin/conf</b> i <b>.../cms/conf</b> i, ako je dostupno, <b>.../formular/formular.conf</b> u ovu mapu <b>update</b>.</li ></ul><p>MoziloCMS 1.12 konfiguracijske datoteke Ažuriranje (<b>plugin.conf</b>) na moziloCMS 2.0/3.x</p><p>Preduvjet:</p><ol><li>Dodatak je također dostupan za moziloCMS 2.0/3.x</li><li>Postavke su toliko složene da bi ručno podešavanje bilo previše.</li><li>Postavke su iste kao u starom dodatku.</li></ ol><p>Upute:</p><ol><li>Izbrišite <b>plugin.conf.php</b> ako postoji.</li><li>Kopirajte <b>plugin.conf</b> iz starog dodatka u novi dodatak.</li></ol>
+install_help_update_text             = <p>Svi ovdje navedeni koraci mogu se izvesti kasnije, jedan za drugim ili odjednom.</p><ul><li>Kopiraj sve kategorije i njihov sadržaj u mapu 3.x <b>kategorien</b>.</li><li>Kopiraj galerije u mapu 3.x <b>galerien</b>.</li><li>Kopiraj rasporede u mapu 3.x <b >layouts</b>.</li><li>Sada stvorite mapu <b>update</b> u korijenskom direktoriju (na primjer: moziloCMS/).</li><li>Kopirajte sve datoteke <b>.conf</b> iz <b>.../admin/conf</b> i <b>.../cms/conf</b> i, ako je dostupno, <b>.../formular/formular.conf</b> u ovu mapu <b>update</b>.</li ></ul><p>MoziloCMS 1.12 konfiguracijske datoteke Ažuriranje (<b>plugin.conf</b>) na moziloCMS 3.x</p><p>Preduvjet:</p><ol><li>Dodatak je također dostupan za moziloCMS 3.x</li><li>Postavke su toliko složene da bi ručno podešavanje bilo previše.</li><li>Postavke su iste kao u starom dodatku.</li></ ol><p>Upute:</p><ol><li>Izbrišite <b>plugin.conf.php</b> ako postoji.</li><li>Kopirajte <b>plugin.conf</b> iz starog dodatka u novi dodatak.</li></ol>
 
 install_help_password                = Zaboravio sam samo lozinku i želio bih stvoriti novu
 install_help_password_button         = Samo promijenite lozinku
@@ -427,12 +438,13 @@ install_lang_select                  = Odaberite svoj jezik:
 install_lang_help_title              = Jezik
 install_lang_help                    = <p>Odabrani jezik početno će se primijeniti na web mjesto i administrativno područje.</p><p>Nakon instalacije, možete promijeniti jezik web mjesta na kartici "Postavke" u administrativnom području i jezik administrativnog sučelja na kartici "Administrator".</p>
 install_next                         = Sljedeći
+install_back                         = Natrag
 
 install_chmod_help_title             = Atributi za datoteke i prava pristupa
 install_chmod_help                   = Instalacijski program će pokušati otkriti i postaviti atribute datoteka potrebnih za promjenu datoteka moziloCMS-om i FTP-om. <br> Atributi datoteke možda neće biti otkriveni točno. Ako je to slučaj, trebate ih postaviti u odjeljku "Administrator" područja administratora. <br> Ako moziloCMS ne može stvoriti datoteke, morate postaviti atribute datoteke putem FTP-a da nastave ovdje.
 install_chmod_no_chmod               = Nije potreban chmod.
 
-install_chmod_testfile_rw            = Može li se datoteka "<b>{PARAM1}</b>" izbrisati putem FTP-a?</b> Trenutna vrijednost {PARAM2}
+install_chmod_testfile_rw            = Može li se datoteka "<b>{PARAM1}</b>" <b>izbrisati</b> putem FTP-a? Trenutna vrijednost {PARAM2}
 
 install_chmod_testfile_next_button   = Povećaj atribute datoteke
 

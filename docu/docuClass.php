@@ -340,7 +340,7 @@ class moziloDocuClass {
     }
 
     function makeDocuMenu() {
-        $docmenu = '<div class="admin-side">'
+        $docmenu = '<nav class="admin-side">'
         .'<input class="menu-btn" type="checkbox" id="menu-btn">'
         .'<ul class="nav do-menu ui-helper-reset">';
         foreach($this->menu as $nav => $tmp) {
@@ -353,7 +353,7 @@ class moziloDocuClass {
         }
 
         $docmenu .= '</ul>';
-        $docmenu .= '</div>';
+        $docmenu .= '</nav>';
         return $docmenu;
     }
 

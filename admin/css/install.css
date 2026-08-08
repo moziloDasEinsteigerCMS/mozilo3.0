@@ -78,6 +78,10 @@ display: contents
   display: none
 }
 
+.wizard-buttons {
+gap: var(--main-margin);
+}
+
 /*Generell*/
 
 .c-header{

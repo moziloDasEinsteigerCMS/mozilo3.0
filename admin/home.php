@@ -152,10 +152,16 @@ else {
     // Aktuelles Datum
     $error[$titel][] = false;
     $time_zone = date("T");
-    if(function_exists('date_default_timezone_get'))
-        $time_zone = @date_default_timezone_get();
-    $template[$titel][] = array(getLanguageValue("home_date_text"),date("Y-m-d H:i:s")." ".$time_zone);
-
+    if(function_exists('date_default_timezone_get')) {
+    $time_zone = @date_default_timezone_get();
+    }
+    // Datum aus Sprachdatei holen
+    $dateFormat = getLanguageValue("_dateformat"); 
+    $currentDate = date($dateFormat) . " " . $time_zone;
+    $template[$titel][] = array(getLanguageValue("home_date_text"),
+    $currentDate
+    );
+    
     // Sprache
     $error[$titel][] = false;
     if(false !== ($locale = @setlocale(LC_TIME, "0"))) {

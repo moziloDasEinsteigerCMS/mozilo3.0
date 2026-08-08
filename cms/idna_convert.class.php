@@ -1009,12 +1009,13 @@ class idna_convert {
      * @return integer the length of the string in bytes.
      */
     protected static function byteLength($string)
-    {
-        if (self::$_mb_string_overload) {
-            return mb_strlen($string, '8bit');
-        }
-        return strlen((binary) $string);
+{
+    if (self::$_mb_string_overload) {
+        return mb_strlen($string, '8bit');
     }
+    return strlen((string) $string);
+}
+
 
     /**
      * Attempts to return a concrete IDNA instance.

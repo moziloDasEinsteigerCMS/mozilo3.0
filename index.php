@@ -8,7 +8,7 @@ ini_set('display_errors', 0);
 
 # ab php > 5.2.0 hat preg_* ein default pcre.backtrack_limit von 100000 zeichen
 # deshalb der versuch mit ini_set
-@ini_set('pcre.backtrack_limit', 1000000);
+ini_set('pcre.backtrack_limit', 1000000);
 
 # fals da bei winsystemen \\ drin sind in \ wandeln
 $BASE_DIR = str_replace("\\\\", "\\",__FILE__);
@@ -26,7 +26,7 @@ if(is_file(BASE_DIR.CMS_DIR_NAME."/DefaultConfCMS.php")) {
 }
 
 // UTF-8 erzwingen - experimentell!
-@ini_set("default_charset", CHARSET);
+ini_set("default_charset", CHARSET);
 
 if(!is_file(BASE_DIR.CMS_DIR_NAME."/conf/main.conf.php") and is_file(BASE_DIR."install.php")) {
     $install = $_SERVER['HTTP_HOST'].URL_BASE."install.php";
@@ -119,7 +119,7 @@ $SEARCH_REQUEST = stripcslashes(getRequestValue('search'));
 // XSS sample
 // <script type="text/javascript">alert()</script>
 
-$xss_remove_chars = $SEARCH_REQUEST;
+/*$xss_remove_chars = $SEARCH_REQUEST;
 $xss_remove_chars1 = str_replace(chr(0x3C), '', $xss_remove_chars);   // >
 $xss_remove_chars2 = str_replace(chr(0x3E), '', $xss_remove_chars1);  // <
 $xss_remove_chars3 = str_replace(chr(0x2B), '', $xss_remove_chars2);  // +
@@ -141,7 +141,10 @@ $xss_remove_chars6 = str_replace('%28', '', $xss_remove_chars5);  // (
 $xss_remove_chars7 = str_replace('%29', '', $xss_remove_chars6);  // )
 $xss_remove_chars8 = str_replace('%2F', '', $xss_remove_chars7);  // /
 $xss_remove_chars9 = str_replace('%26', '', $xss_remove_chars8);  // &
-$SEARCH_REQUEST = $xss_remove_chars9;
+$SEARCH_REQUEST = $xss_remove_chars9;*/
+
+$SEARCH_REQUEST = htmlspecialchars(trim($SEARCH_REQUEST), ENT_QUOTES, 'UTF-8');
+
 
 // echo "Suchstring = " . $SEARCH_REQUEST;
 // die();
@@ -254,23 +257,25 @@ if(strpos($HTML,"<!--{EXECUTETIME}-->") > 1)
 echo $HTML;
 
 function get_executTime($start_time) {
+global $language;
     if(!function_exists('gettimeofday'))
         return NULL;
     list($usec, $sec) = explode(" ", microtime());
     if($start_time === false) {
         return ((float)$usec + (float)$sec);
     }
-    return "Seite in ".sprintf("%.4f", (((float)$usec + (float)$sec) - $start_time))." Sek. erstellt";
+    return ''.$language->getLanguageValue("message_time_0").' '.sprintf("%.4f", (((float)$usec + (float)$sec) - $start_time)).' '.$language->getLanguageValue("message_time_1").'';
 }
 
 function get_memory() {
+	global $language;
     $size = 0;
     if(function_exists('memory_get_usage'))
-        $size = @memory_get_usage();
+        $size = memory_get_usage();
     if(function_exists('memory_get_peak_usage'))
-        $size = @memory_get_peak_usage();
+        $size = memory_get_peak_usage();
     $unit=array('B','KB','MB','GB','TB','PB');
-    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i].' Memory benutzt';
+    return round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i].' '.$language->getLanguageValue("message_memory").'';
 }
 
 // ------------------------------------------------------------------------------

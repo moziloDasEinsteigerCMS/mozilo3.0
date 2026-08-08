@@ -90,6 +90,10 @@ function setUserFilesChmod() {
         );
 
     foreach($dirs as $dir => $onlyconf) {
+    	
+ if (!is_dir($dir)) {
+        continue;
+    }
         if(true !== ($error = setUserRecursivChmod($dir,$onlyconf)))
             return $error;
     }
@@ -97,6 +101,7 @@ function setUserFilesChmod() {
 }
 
 function setUserRecursivChmod($dir,$onlyconf = false) {
+	
     // Existenz prüfen
     if(!file_exists($dir))
         return returnMessage(false, getLanguageValue("error_no_file_dir"));

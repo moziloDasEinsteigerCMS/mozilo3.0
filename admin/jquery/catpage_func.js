@@ -168,11 +168,11 @@ function get_ext(cat_page) {
 function make_input_name(cat_page) {
     var name = get_page(cat_page);
     if(name) {
-        return $("<input type=\"text\" class=\"js-in-name js-make-input\" \/>").val(rawurldecode_js(name));
+        return $("<input type=\"text\" class=\"js-in-name js-make-input\" aria-label=\"" + mozilo_lang["admin_rename"] + "\" \/>").val(rawurldecode_js(name));
     }
     name = get_cat(cat_page);
     if(name)
-        return $("<input type=\"text\" class=\"js-in-name js-make-input\" \/>").val(rawurldecode_js(name));
+        return $("<input type=\"text\" class=\"js-in-name js-make-input\" aria-label=\"" + mozilo_lang["admin_rename"] + "\" \/>").val(rawurldecode_js(name));
     return "";
 }
 

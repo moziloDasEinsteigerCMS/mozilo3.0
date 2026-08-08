@@ -92,12 +92,17 @@ $(function () {
  //   }
 
     $('.fileupload .preview a:not([target^=_blank])').live('click', function (e) {
-        e.preventDefault();
-        if(is_img(this.href))
-            dialog_img_preview(this.href);
-        else
-            dialog_iframe_preview(this.href);
-    });
+    e.preventDefault();
+    var file_href = this.href;   // <-- unbedingt definieren
+
+    if (is_img(file_href)) {
+        dialog_img_preview(file_href);
+    } else if (is_text(file_href)) {
+        dialog_text_preview(file_href);
+    } else {
+        dialog_iframe_preview(file_href);
+    }
+});
 
 // --- Doppelklick auf Dateiname ---
 $('.fu-rename-file').live('dblclick', function(e) {
@@ -110,7 +115,7 @@ $('.fu-rename-file').live('dblclick', function(e) {
 
     // Span verstecken, Input daneben einfügen
     $(this).addClass('fu-nosearch').hide(0).after(
-        "<input class='fu-rename-in-file' type='text' data-ext='" + ext + "' value='" + baseName + "'><span class='name-ext'>"+ ext +"</span>"
+        "<input class='fu-rename-in-file' type='text' aria-label='" + mozilo_lang["admin_rename"] + "' data-ext='" + ext + "' value='" + baseName + "'><span class='name-ext'>"+ ext +"</span>"
     );
 
     $(this).siblings('.fu-rename-in-file').focus();
@@ -171,13 +176,13 @@ $('.fu-rename-in-file').live('keydown', function(e) {
 
     $('.fu-subtitle').live('dblclick', function (e) {
         e.preventDefault();
-        $(this).hide(0).after("<input class=\"fu-subtitle-in\" type=\"text\">");
+        $(this).hide(0).after("<input class=\"fu-subtitle-in\" type=\"text\" aria-label='" + mozilo_lang["gallery_text_subtitle"] + "'>");
         $(this).siblings('.fu-subtitle-in').val($(this).text()).focus();
     });
 	
     $('.fu-alt').live('dblclick', function (e) {
         e.preventDefault();
-        $(this).hide(0).after("<input class=\"fu-alt-in\" type=\"text\">");
+        $(this).hide(0).after("<input class=\"fu-alt-in\" type=\"text\" aria-label='" + mozilo_lang["gallery_text_alt"] + "'>");
         $(this).siblings('.fu-alt-in').val($(this).text()).focus();
     });
 

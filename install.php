@@ -26,7 +26,6 @@ todo:
 - erzeugen conf funktionen, mit echo vorerst mal einbinden
 
 */
-
 $debug = false;
 if(isset($_POST['debug']) or isset($_GET['debug']))
     $debug = true;
@@ -134,6 +133,14 @@ if(is_file("update.php")) {
     }
 }
 
+// Wizard Buttons auswerten
+if (isset($_POST['wizard_back'])) {
+    $current_step = $_POST['wizard_back'];
+} elseif (isset($_POST['wizard_next'])) {
+    $current_step = $_POST['wizard_next'];
+}
+
+
 $current_step = $steps[0];
 if(isset($_POST["current_step"]) and in_array($_POST["current_step"],$steps))
     $current_step = $_POST["current_step"];
@@ -181,6 +188,10 @@ if($clean) {
 
 echo $html_step;
 
+// Wizard Buttons unter Content
+echo wizardButtons($steps, $current_step);
+
+
 if($debug) {
     echo '<input type="submit" name="reset" value="Reset">';
     echo '<input type="hidden" name="debug" value="true">';
@@ -207,6 +218,32 @@ echo getHtml("end").'</body>'."\n"
 // Funktionen
 // -----------------------------------------------------------------------------
 
+// -----------------------------------------------------------------------------
+// Wizard-Buttons für Installation
+// -----------------------------------------------------------------------------
+function wizardButtons($steps, $current_step) {
+    $pos = array_search($current_step, $steps);
+    $prev = ($pos > 0) ? $steps[$pos - 1] : null;
+    $next = ($pos < count($steps) - 1) ? $steps[$pos + 1] : null;
+
+    $html = '<div class="wizard-buttons flex">';
+    if ($current_step === "finish") {
+        $html .= "";
+    } else {
+    if ($prev) {
+        $html .= '<button type="button" class="button wizard-step" data-step="'.$prev.'">&laquo; '.getLanguageValue("install_back").'</button>';
+    }
+    if ($next) {
+        $html .= '<button type="button" class="button wizard-step" data-step="'.$next.'">'.getLanguageValue("install_next").' &raquo;</button>';
+    }
+    }
+    $html .= '</div>';
+
+    return $html;
+}
+
+
+
 function testInstall() {
     if(!is_file(BASE_DIR.CMS_DIR_NAME."/Language.php") and !is_file(BASE_DIR.ADMIN_DIR_NAME."/sessionClass.php"))
         exit("Du musst das CMS schon mit FTP hochladen!");
@@ -214,6 +251,7 @@ function testInstall() {
     if(!is_readable(ADMIN_DIR_NAME) and !is_readable(CMS_DIR_NAME) and !is_readable(BASE_DIR.CMS_DIR_NAME."/Language.php") and !is_readable(BASE_DIR.ADMIN_DIR_NAME."/sessionClass.php"))
         exit("Die Rechtevergabe von Deinem Provider ist echt bescheiden.");
 }
+
 
 function help() {
     $status = true;
@@ -252,59 +290,46 @@ function language() {
 }
 
 function chmod_test() {
-#return array(true,"");
     $status = false;
-    $no_chmod = getLanguageValue("install_chmod_no_chmod");
-    $help = contend_template('<div class="c-header">'.getLanguageValue("install_chmod_help_title").'</div>'.installHelp("install_chmod_help"),"");
-    $file_test = BASE_DIR."test_install.txt";
+    $help = contend_template(
+        '<div class="c-header">'.getLanguageValue("install_chmod_help_title").'</div>'.installHelp("install_chmod_help"),
+        ""
+    );
 
-    if(!isset($_POST['chmod_test']) or $_POST['chmod_test'] == "false") {
-        # die mit FTP Hochgeladen Daterechte Prüfen
-        if(!isFileRW(BASE_DIR) or !isFileRW(BASE_DIR.ADMIN_DIR_NAME)) {
-            $html = contend_template(getLanguageValue("install_chmod_change_ftp").'<input class="button" type="submit" name="chmod_ftp_change" value="'.getLanguageValue("install_chmod_change_ftp_button").'">',"");
-            $chmod = "false";
-        # wir ermitel die Dateirechte von PHP Angelegten Dateien
+    $test_file = BASE_DIR . 'install_chmod_test.tmp';
+
+    try {
+        // Temporäre Testdatei erstellen
+        file_put_contents($test_file, 'test');
+
+        // Prüfen, ob Verzeichnisse schreibbar sind
+        if(is_writable(BASE_DIR) && is_writable(BASE_DIR_ADMIN)) {
+            $status = true;
+            $chmod = substr(decoct(fileperms($test_file)),-3);
+            $html = contend_template(getLanguageValue("install_chmod_use", $chmod), true);
         } else {
-            if(!is_file($file_test))
-                file_put_contents($file_test, "chmod test");
-            if(fileowner($file_test) == fileowner(BASE_DIR."install.php")) {
-                $html = contend_template(getLanguageValue("install_chmod_use",$no_chmod),true);
-                $html .= '<input type="hidden" name="chmod_test" value="">';
-                if(is_file($file_test))
-                    unlink($file_test);
-                return array(true,$help.$html);
-            }
-            # chmod um 1 erhöhen
-            if(isset($_POST['chmod_testfile']) and $_POST['chmod_testfile'] == getLanguageValue("install_chmod_testfile_next_button")) {
-                setInstallChmod($file_test,getNextChmod($file_test));
-            }
-            clearstatcache();
-            $html = contend_template(array(getLanguageValue("install_chmod_testfile_rw",basename($file_test),substr(decoct(fileperms($file_test)),-3)),'<input type="submit" class="button" name="chmod_testfile" value="'.getLanguageValue("yes").'">'.'<input type="submit" class="button" name="chmod_testfile" value="'.getLanguageValue("install_chmod_testfile_next_button").'">'),"");
             $chmod = "false";
-            # das ist jetzt der chmod wert den wir benutzen müssen
-            if(isset($_POST['chmod_testfile']) and $_POST['chmod_testfile'] == getLanguageValue("yes")) {
-#!!!!!! chmode hier anwenden auf alle relewanten dateien??????????
-                clearstatcache();
-                $chmod = substr(decoct(fileperms($file_test)),-3);
-                if(is_file($file_test))
-                    unlink($file_test);
-                $html = contend_template(getLanguageValue("install_chmod_use",$chmod),true);
-                $status = true;
-            }
+            $html = contend_template(
+                getLanguageValue("install_chmod_change_ftp")
+                . '<input class="button" type="submit" name="chmod_ftp_change" value="'.getLanguageValue("install_chmod_change_ftp_button").'">',
+                ""
+            );
         }
-    } else {
-        if(is_file($file_test))
-            unlink($file_test);
-        $chmod = $_POST['chmod_test'];
-        $chmod_text = $chmod;
-        $status = true;
-        if($chmod == "" or $chmod === "false")
-            $chmod_text = $no_chmod;
-        $html = contend_template(getLanguageValue("install_chmod_use",$chmod_text),true);
+    } finally {
+        // Testdatei immer löschen
+        if(file_exists($test_file)) {
+            @unlink($test_file); // @ unterdrückt Warnungen, falls Datei gerade gesperrt ist
+        }
     }
+
+    // Hidden Input für den aktuellen Chmod-Wert
     $html .= '<input type="hidden" name="chmod_test" value="'.$chmod.'">';
-    return array($status,$help.$html);
+
+    return array($status, $help.$html);
 }
+
+
+
 
 function environment() {
     $html_ret = "";
@@ -396,15 +421,23 @@ function environment() {
         $html_ret .= contend_template($html,"");
     }
     // Aktuelles Datum
-    if(true === $conf and function_exists('date_default_timezone_get')) {
-        global $CMS_CONF,$LANG;
-        $CMS_CONF = new Properties(BASE_DIR_CMS.CONF_DIR_NAME.'/main.conf.php');
-        setTimeLocale($LANG);
-        $time_zone = @date_default_timezone_get();
-    } else
-        $time_zone = date("T");
-    $html = array(getLanguageValue("home_date_text"),date("Y-m-d H.i.s")." ".$time_zone);
-    $html_ret .= contend_template($html,"");
+if (true === $conf && function_exists('date_default_timezone_get')) {
+    global $CMS_CONF, $LANG;
+    $CMS_CONF = new Properties(BASE_DIR_CMS . CONF_DIR_NAME . '/main.conf.php');
+    setTimeLocale($LANG);
+    $time_zone = date_default_timezone_get();
+} else {
+    $time_zone = date("T");
+}
+
+$dateFormat = getLanguageValue("_dateformat");
+$currentDate = date($dateFormat) . " " . $time_zone;
+
+
+$html = array(getLanguageValue("home_date_text"),$currentDate);
+
+$html_ret .= contend_template($html, "");
+
 
 
     if($status)
@@ -449,9 +482,21 @@ function rewrite() {
             file_put_contents(BASE_DIR.'install/test.php', $test_datei);
         }
 
-        $html = '<img style="margin-right:2em;" src="'.URL_BASE.CMS_DIR_NAME.'/jquery/ajax-loader.gif">'
+        $html = '<svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24" height="24"
+  viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+    <path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+      <animateTransform 
+         attributeName="transform" 
+         attributeType="XML" 
+         type="rotate"
+         dur="1s" 
+         from="0 50 50"
+         to="360 50 50" 
+         repeatCount="indefinite" />
+  </path>
+</svg>'
         .getLanguageValue("install_rewrite_test_text",'<span id="step-mod-conf">0</span>',writeHtaccess("test",0,true))
-        .'<script language="Javascript" type="text/javascript">/*<![CDATA[*/'
+        .'<script>/*<![CDATA[*/'
         .'var finish_test = false;'
         .'var max_step = '.writeHtaccess("test",0,true).';'
         .'/*]]>*/</script>';
@@ -577,7 +622,10 @@ function finish() {
     if(!is_file('install.php'))
         $active = ' disabled="disabled"';
 
-    $html .= contend_template(getLanguageValue($clean).'<input type="submit" class="button" name="clean_finish" value="'.getLanguageValue("install_finish_clean_button").'"'.$active.'>',false);
+    $html .= contend_template(getLanguageValue($clean)
+    .'<input type="hidden" name="current_step" value="finish">'
+    .'<input type="submit" class="button" name="clean_finish" value="'.getLanguageValue("install_finish_clean_button").'"'.$active.'>',
+false);
 
     $html .= contend_template('<div class="c-header">'.getLanguageValue("install_finish_help_title").'</div>'.installHelp("install_finish_help").'<a class="button" href="'.ADMIN_DIR_NAME.'/index.php">'.getLanguageValue("install_finish_submit").'</a>',"");
 
@@ -624,7 +672,7 @@ function menu_tabs($steps,$current_step,$status) {
         }
         $lang_step = getLanguageValue("install_tab_".$step);
         $tabs .= '<li class="flex-100 js-multi-user ui-state-default'.$activ.'">';
-        $tabs .= '<a href="install.php" class="step_tabs" name="'.$step.'">'
+        $tabs .= '<a href="install.php" class="step_tabs" data-step="'.$step.'">'
             .'<span class="mo-install-icon mo-install-'.$step.'"></span><span class="mo-install-text">'.$lang_step.'</span>'
             .'</a>';
 
@@ -644,7 +692,7 @@ function menu_tabs($steps,$current_step,$status) {
 function makeConfFiles() {
     if(isset($_POST['environment']) and $_POST['environment'] == "true")
         return true;
-    if(version_compare(PHP_VERSION, '5.1.2') < 0)
+    if(version_compare(PHP_VERSION, '8.1') < 0)
         return false;
 
     if(!is_dir(BASE_DIR_ADMIN.CONF_DIR_NAME))
@@ -696,16 +744,14 @@ function makeConfFiles() {
             return false;
         }
         if($name == "loginpass")
-            @chmod($dir,0600);
+            chmod($dir,0600);
     }
     return true;
 }
 
 function installHelp($index) {
-    return #'<span class="mo-message-erfolg">'
- #   .'<img class="mo-message-icon mo-icons-icon mo-icons-information" src="'.URL_BASE.ADMIN_DIR_NAME.'/gfx/clear.gif" alt="information" />'
-    getLanguageValue($index);
-  #  '</span>';
+    return    getLanguageValue($index);
+
 }
 
 function getLanguageValue($index,$param1 = '',$param2 = '') {
@@ -776,7 +822,7 @@ function writeHtaccess($art,$step,$getcount = false) {
         if($art == "cms") {
             $base_pfad = BASE_DIR;
             if(is_file(BASE_DIR.ADMIN_DIR_NAME.'/.htaccess'))
-                @unlink(BASE_DIR.ADMIN_DIR_NAME.'/.htaccess');
+                unlink(BASE_DIR.ADMIN_DIR_NAME.'/.htaccess');
         }
 
         if($art == "cms" and is_file($base_pfad.'.htaccess')) {
@@ -846,7 +892,7 @@ function setInstallChmod($file,$mode) {
         if($mode[1] >= 2 and $mode[1] <= 6) $mode = $mode + 10;
         if($mode[2] >= 2 and $mode[2] <= 6) $mode = $mode + 1;
     }
-    return @chmod($file, octdec($mode));
+    return chmod($file, octdec($mode));
 }
 
 // Datei Les- und Schreibbar?
@@ -856,17 +902,17 @@ function isFileRW($file) {
 }
 
 function cleanUpUpdate() {
-    @unlink('install.php');
+    unlink('install.php');
     if(is_file('update.php')) {
-        @unlink('update.php');
+        unlink('update.php');
     }
     if(is_dir(BASE_DIR.'update') and false !== ($currentdir = opendir(BASE_DIR.'update'))) {
         while(false !== ($file = readdir($currentdir))) {
             if($file == "." or $file == "..") continue;
-            @unlink(BASE_DIR.'update/'.$file);
+            unlink(BASE_DIR.'update/'.$file);
         }
         closedir($currentdir);
-        @rmdir(BASE_DIR.'update');
+        rmdir(BASE_DIR.'update');
     }
     $tmp = "";
     if(is_file('install.php'))
@@ -997,7 +1043,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var li = a.closest("li");
             if (li && li.classList.contains("js-no-click")) return;
             var stepInput = document.querySelector("#step_input");
-            if (stepInput) stepInput.value = a.getAttribute("name") || "";
+            if (stepInput) stepInput.value = a.dataset.step || "";
             var form = document.querySelector("form");
             if (form) {
                 if (typeof form.requestSubmit === "function") form.requestSubmit();
@@ -1035,11 +1081,25 @@ document.addEventListener("DOMContentLoaded", function() {
             var stepInput = document.querySelector("#step_input");
             if (stepInput && stepInput.value === "") {
                 var selected = document.querySelector(".ui-tabs-selected a");
-                if (selected) stepInput.value = selected.getAttribute("name") || "";
+if (selected) stepInput.value = selected.dataset.step || "";
             }
         });
     }
 });
+// Wizard-Buttons klicken
+document.querySelectorAll(".wizard-step").forEach(function(btn){
+    btn.addEventListener("click", function(){
+        var step = btn.getAttribute("data-step");
+        var stepInput = document.querySelector("#step_input");
+        if(stepInput) stepInput.value = step;
+        var form = document.querySelector("form");
+        if(form){
+            if(typeof form.requestSubmit === "function") form.requestSubmit();
+            else form.submit();
+        }
+    });
+});
+
 JS;
 
 $html_start = '<!DOCTYPE html>'."\n"
@@ -1061,6 +1121,28 @@ $html_start = '<!DOCTYPE html>'."\n"
   .'<img src="'.URL_BASE.ADMIN_DIR_NAME.'/css/images/mozilo-logo-24.webp" alt="moziloCMS Logo">'."\n"
   .'<span class="mr mo-bold">moziloCMS Setup</span>'."\n"
   .'</div>'."\n"
+  // Header rechts
+        .'<div class="header-right flex">'."\n"
+        // Theme Toggle
+        .'<button class="theme-toggle mr" id="theme-toggle" aria-label="'.getLanguageValue("admin_theme_toggle",true).'" aria-pressed="false">
+            <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+              <mask class="moon" id="moon-mask">
+                <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                <circle cx="24" cy="10" r="6" fill="black" />
+              </mask>
+              <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+              <g class="sun-beams" stroke="currentColor" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </g>
+            </svg>
+         </button>'."\n"
     .'</header>'."\n";
        $html_start .= '<form class="install-form" action="install.php" method="post">'."\n";
 

@@ -124,6 +124,14 @@ function scaleImage($pic, $dir_origin, $dir_target, $maxWidth, $maxHeight, $make
             $doSharpen            = TRUE;
             $quality            = 65;
         break;
+        
+        // Damit werden Webps verarbeitet
+        case 'image/webp':
+    $creationFunction = 'ImageCreateFromWebp';
+    $outputFunction   = 'ImageWebp';
+    $doSharpen        = TRUE;
+    $quality          = 80;
+    break;
 
         // alles andere wird einfach copiert (Sollte noch verbessert werden!)
         default:
@@ -138,8 +146,8 @@ function scaleImage($pic, $dir_origin, $dir_target, $maxWidth, $maxHeight, $make
     // Ein leeres Objekt für das Ziel anlegen
     $dst    = imagecreatetruecolor($tnWidth, $tnHeight);
 
-    // Transparenz im Bild einschalten (nur GIF und PNG)
-    if (in_array($size['mime'], array('image/gif', 'image/png'))) {
+    // Transparenz im Bild einschalten (nur Webp, GIF und PNG)
+    if (in_array($size['mime'], array('image/gif', 'image/png','image/webp'))) {
         $transparencyIndex = imagecolortransparent($src);
         $transparencyColor = array('red' => 255, 'green' => 255, 'blue' => 255);
         

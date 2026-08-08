@@ -30,7 +30,7 @@ var in_size_enter_handler = function(event) {
     if(event.which == 13) { // enter
         event.preventDefault();
         send_item_status = "gallery_size";
-        send_data(user_para,$(this).closest('li').find('input'));
+        send_data(user_para,$(this).closest('div').find('input'));
     }
 };
 

@@ -134,7 +134,7 @@ function returnFormatToolbar() {
     $template_title = NULL;
     $template_selectbox = "&nbsp;";
     if(ACTION == "template") {
-        $template_title = "Template CSS und Bilder";
+  //      $template_title = "Template CSS und Bilder";
         $template_selectbox = returnTemplateSelectbox();
     }
 

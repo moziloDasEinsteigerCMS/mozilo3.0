@@ -315,10 +315,23 @@ cursor: pointer;
 [data-theme="dark"] .ace-mozilo .ace_scroller,
 [data-theme="dark"] .ace-mozilo .ace_gutter {
   background: var(--main-bg-color);
-  color: var(--main-font-color);
+  color: grey;  /*var(--main-font-color);*/
   border-right: 1px solid var(--border-color)
 }
 
 [data-theme="dark"] .ed-ace-icon-active {
   color: var(--main-bg-color)
+}
+
+[data-theme="dark"] .ace_gutter-cell {
+    color: grey;
+}
+
+[data-theme="dark"] .ace-mozilo .ace_cursor {
+    border-left: 2px solid #fff;
+}
+
+[data-theme="dark"] .ace-mozilo .ace_overwrite-cursors .ace_cursor {
+    border-left: 0px;
+    border-bottom: 1px solid #fff;
 }

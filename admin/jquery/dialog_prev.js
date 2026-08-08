@@ -42,8 +42,24 @@ function dialog_img_preview_wait(file_title) {
     }).dialog("open");
 }
 
+function dialog_text_preview(file_href) {
+    // Neues <pre> Element für den Text
+    var pre = $('<pre style="width:100%"></pre>');
+
+    // Dialog öffnen
+    dialog_prev.dialog({
+        title: file_href.substring(file_href.lastIndexOf("/") + 1),
+        height: $(window).height() - dialogMaxheightOffset,
+        width: 'auto'
+    }).empty().append(pre).dialog("open");
+
+    $.get(file_href, function(data) {
+        pre.text(data);  
+    });
+}
+
 function dialog_iframe_preview(file_href) {
-    var prev_iframe = $('<iframe  style="overflow:visible; border: none; text-align:left; width:100%; height:100%;"><\/iframe>').prop('src', file_href);
+    var prev_iframe = $('<iframe  style="overflow:visible; border: none; text-align:left; width:100%; height:100%; "><\/iframe>').prop('src', file_href);
     dialog_prev.dialog({
         title: file_href.substring(file_href.lastIndexOf("/")+1),
   //      width: $(".mo-td-content-width").eq(0).width(),
@@ -54,6 +70,13 @@ function dialog_iframe_preview(file_href) {
 function is_img(file_href) {
     var ext = file_href.substring(file_href.lastIndexOf(".")+1).toLowerCase();
     if(typeof ext == "string" && (ext == "png" || ext == "webp" ||   ext == "bmp" || ext == "gif" || ext == "jpg" || ext == "jpeg" || ext == "ico"))
+        return true;
+    return false;
+}
+
+function is_text(file_href) {
+    var ext = file_href.substring(file_href.lastIndexOf(".") + 1).toLowerCase();
+    if (typeof ext === "string" && (ext === "txt" || ext === "log" || ext === "json" || ext === "md"))
         return true;
     return false;
 }

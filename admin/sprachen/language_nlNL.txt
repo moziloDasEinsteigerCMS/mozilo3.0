@@ -1,4 +1,4 @@
-﻿_dateformat                          = d.m.Y, H:i:s
+_dateformat                          = d-m-Y, H:i:s
 _translator                          = T. Verhoef, mozilo
 # der Wert ist für date_default_timezone_set()
 _timezone                            = Europe/Amsterdam
@@ -52,6 +52,7 @@ error_file_upload                    = Het bestand kon niet worden geüpload.
 error_zip_nozip                      = Dit is geen ZIP-bestand.
 error_read_htaccess                  = Fout bij het lezen van .htaccess.
 error_write_htaccess                 = Fout bij het schrijven van .htaccess.
+error_write_sortcatpage              = Fout Kan SortCatPage niet schrijven.
 error_upload_filetype                = Bestandstype niet toegestaan.
 error_upload_replace                 = Er bestaat al een bestand met de naam. Moet het bestand worden vervangen?
 
@@ -166,7 +167,7 @@ home_cmsupdate_text_failed_fopen     = Examen niet mogelijk. "allow_url_fopen" i
 home_cmsupdate_unknown_version       = U gebruikt een onbekende moziloCMS-versie!
 home_cmsupdate_stable_version        = Download de huidige moziloCMS-versie: 
 home_phpversion_text                 = Geïnstalleerde PHP-versie
-home_error_phpversion_text           = De PHP-versie is te oud voor MoziloCMS, minimaal 7.x is vereist.
+home_error_phpversion_text           = De PHP-versie is te oud voor MoziloCMS, minimaal 8.1 is vereist.
 home_installpath_text                = Pad op de server
 home_help                            = Hulp en documentatie
 home_help_text_docu                  = Gedetailleerde documentatie in een nieuw venster
@@ -218,6 +219,7 @@ gallery_error_new                    = Fout bij het maken van het foto album. Co
 gallery_error_newname                = Fout bij het hernoemen van het foto album. Controleer de rechten op de mappen en bestanden.
 gallery_error_noexists               = Er is geen galerie met deze naam.
 gallery_error_subtitle_conf          = Het ondertitelbestand kon niet worden aangemaakt.
+gallery_error_alt_conf               = Het alt-tekstbestand kon niet worden aangemaakt.
 gallery_help_conf                    = Hier kan je de algemene foto album instellingen aanpassen.
 gallery_image_size                   = Efbeeldingsgrootte
 gallery_image_size_width             = Breedte
@@ -261,7 +263,6 @@ config_text_catnamedpages            = Geef geen webpagina's in het menu weer, a
 config_text_cmslanguage              = Kies de standaatd taal voor je website (oa. de tips)
 config_text_cmslayout                = Kies de opmaak voor jou moziloCMS. Je vind meer opmaak keuzes op <a href
 config_text_defaultcat               = Kies hier met welke categorie je website begint.
-config_text_defaultcolors            = Kleurenkiezer om vooraf gedefinieerde kleuren te maken en op te slaan.
 config_text_draftmode                = Website overschakelen naar bouwplaatsmodus:<br>Menu voor het selecteren van een bouwplaatssjabloon (Als een bouwplaatssjabloon met een menu wordt geselecteerd, wordt in deze modus alleen de startcategorie weergegeven):
 config_text_modrewrite               = Gebruik maken van mod_rewrite ?
 config_text_replaceemoticons         = moziloCMS kan smileys in de webpagina's (bv. ":)" of ":P" ) vervangen door plaatjes. Vink dit aan als je wilt dat moziloCMS de text smileys vervangt door plaatjes.
@@ -327,6 +328,7 @@ admin_edit                           = Bewerking
 admin_delete                         = Blussen
 admin_rename                         = Hernoemen
 admin_new                            = Nieuw
+admin_open_menu                      = Open Menu
 
 admin_user_select_websitetitle       = Browser titelbalk
 admin_user_select_websitedescription = Websitebeschrijving / Trefwoorden
@@ -423,7 +425,7 @@ install_help_title                   = Welkom bij het installatiedialoogvenster 
 install_help                         = <p>In de volgende stappen testen we of de webserver of het webhostingpakket voldoet aan de vereisten voor moziloCMS. Daarnaast worden er basispresets gemaakt. Alle instellingen kunnen later op elk gewenst moment worden gewijzigd in het beheerdersgedeelte.</p><p>Als u problemen ondervindt met "bestandsrechten" of "mooie URL's", is er <a href="https://www.mozilo.de/forum/index.php/topic,18.0.html" target="_blank">in dit forumbericht</a> vindt u waarschijnlijk de hulp die u nodig hebt. Anders vraag je het gewoon</p><p><b>Het installatieprogramma is ook nodig als:</b></p><ul><li>het wachtwoord is vergeten of</li><li>de moziloCMS is verwijderd van de computer is gekopieerd naar de webserver of</li><li>gegevens van een oude moziloCMS-versie moeten nog worden bijgewerkt.</li></ul><p><b>LET OP!</b></p><p>De "<b>install.php</b>" en indien aanwezig de "<b>update.php</b>" en de map "<b>update</b>" moeten na het installatieproces worden verwijderd, omdat ze een groot beveiligingsrisico vormen. Controleer of dit het geval is.</p>
 
 install_help_update_title            = <p><b>Update-instructies</b> van <b>moziloCMS 1.12, moziloCMS 2.0</b> naar de huidige <b>moziloCMS 3.x</b></p>
-install_help_update_text = <p>Alle hier vermelde stappen kunnen later worden uitgevoerd, één na de ander of allemaal tegelijk.</p><ul><li>Kopieer alle categorieën en hun inhoud naar de map <b>categories</b> in 2.0/3.x.</li><li>Kopieer de galerijen naar de map <b>galleries</b> in 2.0/3.x.</li><li>Kopieer de lay-outs naar de map <b>layouts</b> in 2.0/3.x.</li><li>Maak nu de map <b>update</b> aan in de hoofdmap (bijvoorbeeld: moziloCMS/).</li><li>Kopieer alle <b>.conf</b>-bestanden van <b>.../admin/conf</b> en <b>.../cms/conf</b> en, indien beschikbaar, <b>.../formular/formular.conf</b> naar deze <b>update</b> map.</li></ul><p>moziloCMS 1.12 De pluginconfiguratiebestanden (<b>plugin.conf</b>) bijwerken in moziloCMS 2.0/3.x</p><p>Vereiste:</p><ol><li>De plugin is ook beschikbaar voor moziloCMS 2.0/3.x</li><li>De instellingen zijn zo complex dat handmatige aanpassing te veel zou zijn.</li><li>De instellingen zijn hetzelfde als in de oude plugin.</li></ol><p>Instructies:</p><ol><li>Verwijder <b>plugin.conf.php</b> als deze bestaat.</li><li>Kopieer <b>plugin.conf</b> van de oude plugin naar de nieuwe plugin.</li></ol>
+install_help_update_text = <p>Alle hier vermelde stappen kunnen later worden uitgevoerd, één na de ander of allemaal tegelijk.</p><ul><li>Kopieer alle categorieën en hun inhoud naar de map <b>categories</b> in 3.x.</li><li>Kopieer de galerijen naar de map <b>galleries</b> in 3.x.</li><li>Kopieer de lay-outs naar de map <b>layouts</b> in 3.x.</li><li>Maak nu de map <b>update</b> aan in de hoofdmap (bijvoorbeeld: moziloCMS/).</li><li>Kopieer alle <b>.conf</b>-bestanden van <b>.../admin/conf</b> en <b>.../cms/conf</b> en, indien beschikbaar, <b>.../formular/formular.conf</b> naar deze <b>update</b> map.</li></ul><p>moziloCMS 1.12 De pluginconfiguratiebestanden (<b>plugin.conf</b>) bijwerken in moziloCMS 3.x</p><p>Vereiste:</p><ol><li>De plugin is ook beschikbaar voor moziloCMS 3.x</li><li>De instellingen zijn zo complex dat handmatige aanpassing te veel zou zijn.</li><li>De instellingen zijn hetzelfde als in de oude plugin.</li></ol><p>Instructies:</p><ol><li>Verwijder <b>plugin.conf.php</b> als deze bestaat.</li><li>Kopieer <b>plugin.conf</b> van de oude plugin naar de nieuwe plugin.</li></ol>
 
 install_help_password                = Ik ben mijn wachtwoord vergeten en wil graag een nieuw wachtwoord instellen.
 install_help_password_button         = Verander alleen het wachtwoord
@@ -436,6 +438,7 @@ install_lang_select                  = Taalkeuze:
 install_lang_help_title              = Taal
 install_lang_help                    = <p>De geselecteerde taal wordt in eerste instantie toegepast op de website en het beheerdersgedeelte.</p><p>Na de installatie kan de taal van de website worden gewijzigd in het beheerdersgedeelte, op het tabblad 'Instellingen' en in de Tabblad 'Beheerder'. Dit kan worden gewijzigd in de beheerinterface.</p>
 install_next                         = Verder
+install_back                         = Terug
 
 install_chmod_help_title             = Bestands- en toegangsrechten
 install_chmod_help                   = <p>Er wordt een poging gedaan om de serverbestandsmachtigingen te bepalen en in te stellen die nodig zijn voor het correct functioneren van moziloCMS. Als dit niet helemaal werkt, kunnen ze later worden ingesteld in het beheerdersgedeelte, in het tabblad 'Beheerder'.</p><p>Als de server MoziloCMS verhindert bestanden aan te maken, moeten de benodigde bestandsrechten eerst via FTP worden ingesteld , moet met de opdracht chmod worden ingesteld voordat de installatie kan doorgaan.</p>
